@@ -1,0 +1,1 @@
+<%@ Application Codebehind="Global.asax.cs" Inherits="HotelManagerProject.Global_asax" Language="C#" %>
