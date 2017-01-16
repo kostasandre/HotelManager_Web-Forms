@@ -70,7 +70,7 @@ namespace HotelManagerLib.Models.Persistant
         /// </summary>
         [ForeignKey("Hotel")]
         [Browsable(false)]
-        public int? HotelId { get; set; }
+        public int HotelId { get; set; }
 
         /// <summary>
         /// Gets or sets the id.
