@@ -1,0 +1,75 @@
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="MasterPage.master.cs" Inherits="HotelManagerProject.MasterPage" %>
+
+<%@ Register Assembly="DevExpress.Web.ASPxTreeList.v16.2, Version=16.2.3.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" Namespace="DevExpress.Web.ASPxTreeList" TagPrefix="dx" %>
+
+<%@ Import Namespace="System.Web.DynamicData" %>
+<%@ Import Namespace="System.Web.UI" %>
+<%@ Import Namespace="System.Web.UI.WebControls" %>
+<%@ Import Namespace="System.Web.UI.WebControls" %>
+<%@ Import Namespace="System.Web.UI.WebControls.Expressions" %>
+<%@ Import Namespace="System.Web.UI.WebControls.WebParts" %>
+
+<!DOCTYPE html>
+
+<html>
+<head runat="server">
+    <title></title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <link href="CssClasses/StyleSheet1.css" rel="stylesheet" />
+    <script src="Scripts/Script.js"></script>
+    <style type="text/css">
+        .navbar {
+	        margin-bottom:-1px;
+            border-radius:0;
+        }
+        #submenu {
+            background-color: #222;
+            margin-bottom:20px;
+	        min-height:0;
+        }
+        .navbar-nav{margin:0}
+        .collapsing {
+	        display:none;
+        }
+
+</style>
+    <asp:ContentPlaceHolder ID="head" runat="server">
+    </asp:ContentPlaceHolder>
+</head>
+<body class="background-img">
+
+    <form id="form1" runat="server">
+        <div class="container">
+  <nav class="navbar navbar-inverse" role="navigation" id="topmenu">
+    <ul class="nav navbar-nav">
+      <li class="dropdown"> <a href="#" data-toggle="collapse" data-target="#one">One</a> </li>
+      <li class="dropdown"> <a href="#" data-toggle="collapse" data-target="#two">Two</a> </li>
+      <li class="dropdown"> <a href="#" data-toggle="collapse" data-target="#three">Three</a> </li>
+    </ul>
+  </nav>
+</div>
+<div class="container">
+  <nav class="navbar navbar-inverse" role="navigation" id="submenu">
+    <ul class="nav navbar-nav navbar-inverse collapse" id="one">
+      <li><a href="#" id="">One sub 1</a></li>
+      <li><a href="#" id="">One sub 2</a></li>
+      <li><a href="#" id="">One sub 3</a></li>
+      <li><a href="#" id="">One sub 4</a></li>
+    </ul>
+    <ul class="nav navbar-nav collapse" id="two">
+      <li><a href="#" id="">Two sub 1</a></li>
+      <li><a href="#" id="">Two sub 2</a></li>
+      <li><a href="#" id="">Two sub 3</a></li>
+    </ul>
+    <ul class="nav navbar-nav collapse" id="three">
+      <li><a href="#" id="">Three sub 1</a></li>
+      <li><a href="#" id="">Three sub 2</a></li>
+    </ul>
+  </nav>
+</div>
+        
+    </form>
+</body>
+</html>
