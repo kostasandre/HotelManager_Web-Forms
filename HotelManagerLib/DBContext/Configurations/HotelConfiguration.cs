@@ -37,6 +37,7 @@ namespace HotelManagerLib.DBContext.Configurations
             // Foreign Keys
             this.HasMany(x => x.Rooms).WithRequired(x => x.Hotel).HasForeignKey(x => x.HotelId);
             this.HasOptional(x => x.Picture);
+            this.HasOptional(x => x.Services).WithMany().WillCascadeOnDelete(false);
 
             // Required Entities
             this.Property(x => x.Name).IsRequired().HasMaxLength(150);

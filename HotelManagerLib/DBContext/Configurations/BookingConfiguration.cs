@@ -1,9 +1,9 @@
 ﻿// --------------------------------------------------------------------------------------------------------------------
-// <copyright file="RoomTypeConfiguration.cs" company="">
+// <copyright file="BookingConfiguration.cs" company="">
 //   
 // </copyright>
 // <summary>
-//   The room type configuration.
+//   The booking configuration.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
 
@@ -19,27 +19,31 @@ namespace HotelManagerLib.DBContext.Configurations
     #endregion
 
     /// <summary>
-    /// The room type configuration.
+    /// The booking configuration.
     /// </summary>
-    public class RoomTypeConfiguration : EntityTypeConfiguration<RoomType>
+    public class BookingConfiguration : EntityTypeConfiguration<Booking>
     {
         /// <summary>
-        /// Initializes a new instance of the <see cref="RoomTypeConfiguration"/> class.
+        /// Initializes a new instance of the <see cref="BookingConfiguration"/> class.
         /// </summary>
-        public RoomTypeConfiguration()
+        public BookingConfiguration()
         {
-            this.ToTable("RoomType");
+            this.ToTable("Booking");
 
             // Primary Keys
             this.HasKey(x => x.Id);
             this.Property(x => x.Id).HasDatabaseGeneratedOption(DatabaseGeneratedOption.Identity);
 
             // Foreign Keys
-            this.HasMany(x => x.Rooms).WithRequired(x => x.RoomType).HasForeignKey(x => x.RoomTypeId);
-            
+            this.HasRequired(x => x.Room);
 
             // Required Entities
-            this.Property(x => x.Code).IsRequired().HasMaxLength(150);
+            this.Property(x => x.SystemPrice).IsRequired();
+            this.Property(x => x.AgreedPrice).IsRequired();
+            this.Property(x => x.CustomerId).IsRequired();
+            this.Property(x => x.Status).IsRequired();
+            this.Property(x => x.To).IsRequired();
+            this.Property(x => x.From).IsRequired();
         }
     }
 }
