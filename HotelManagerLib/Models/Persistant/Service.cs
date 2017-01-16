@@ -1,5 +1,5 @@
 ﻿// --------------------------------------------------------------------------------------------------------------------
-// <copyright file="Services.cs" company="">
+// <copyright file="Service.cs" company="">
 //   
 // </copyright>
 // <summary>
@@ -12,6 +12,8 @@ namespace HotelManagerLib.Models.Persistant
     #region
 
     using System;
+    using System.Collections.Generic;
+    using System.ComponentModel;
 
     using HotelManagerLib.Models.Persistant.Interfaces;
 
@@ -20,8 +22,34 @@ namespace HotelManagerLib.Models.Persistant
     /// <summary>
     /// The services.
     /// </summary>
-    class Services : IEntity, IEntityAudit
+    public class Service : IBillableEntity
     {
+        /// <summary>
+        /// Initializes a new instance of the <see cref="Service"/> class.
+        /// </summary>
+        public Service()
+        {
+            this.Hotels = new List<Hotel>();
+            this.Created = DateTime.Now;
+            this.CreatedBy = Environment.UserName;
+        }
+
+        /// <summary>
+        /// Gets or sets the billing service.
+        /// </summary>
+        public BillingService BillingService { get; set; }
+
+        /// <summary>
+        /// Gets or sets the billing service id.
+        /// </summary>
+        [Browsable(false)]
+        public int? BillingServiceId { get; set; }
+
+        /// <summary>
+        /// Gets or sets the code.
+        /// </summary>
+        public string Code { get; set; }
+
         /// <summary>
         /// Gets or sets the created.
         /// </summary>
@@ -43,8 +71,19 @@ namespace HotelManagerLib.Models.Persistant
         public string DeletedBy { get; set; }
 
         /// <summary>
+        /// Gets or sets the description.
+        /// </summary>
+        public string Description { get; set; }
+
+        /// <summary>
+        /// Gets or sets the hotels.
+        /// </summary>
+        public virtual List<Hotel> Hotels { get; set; }
+
+        /// <summary>
         /// Gets or sets the id.
         /// </summary>
+        [Browsable(false)]
         public int Id { get; set; }
 
         /// <summary>

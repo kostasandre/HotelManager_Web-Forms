@@ -1,9 +1,9 @@
 ﻿// --------------------------------------------------------------------------------------------------------------------
-// <copyright file="RoomTypeConfiguration.cs" company="">
+// <copyright file="BillingServiceConfiguration.cs" company="">
 //   
 // </copyright>
 // <summary>
-//   The room type configuration.
+//   The billing service configuration.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
 
@@ -19,27 +19,27 @@ namespace HotelManagerLib.DBContext.Configurations
     #endregion
 
     /// <summary>
-    /// The room type configuration.
+    /// The billing service configuration.
     /// </summary>
-    public class RoomTypeConfiguration : EntityTypeConfiguration<RoomType>
+    public class BillingServiceConfiguration : EntityTypeConfiguration<BillingService>
     {
         /// <summary>
-        /// Initializes a new instance of the <see cref="RoomTypeConfiguration"/> class.
+        /// Initializes a new instance of the <see cref="BillingServiceConfiguration"/> class.
         /// </summary>
-        public RoomTypeConfiguration()
+        public BillingServiceConfiguration()
         {
-            this.ToTable("RoomType");
+            this.ToTable("BillingService");
 
             // Primary Keys
             this.HasKey(x => x.Id);
             this.Property(x => x.Id).HasDatabaseGeneratedOption(DatabaseGeneratedOption.Identity);
 
             // Foreign Keys
-            this.HasMany(x => x.Rooms).WithRequired(x => x.RoomType).HasForeignKey(x => x.RoomTypeId);
-            
+            this.HasMany(x => x.Services).WithRequired(x => x.BillingService).HasForeignKey(x => x.BillingServiceId);
 
             // Required Entities
-            this.Property(x => x.Code).IsRequired().HasMaxLength(150);
+            this.Property(x => x.Price).IsRequired();
+            this.Property(x => x.Quantity).IsRequired();
         }
     }
 }

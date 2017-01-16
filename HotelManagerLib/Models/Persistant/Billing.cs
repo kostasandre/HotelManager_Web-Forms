@@ -1,9 +1,9 @@
 ﻿// --------------------------------------------------------------------------------------------------------------------
-// <copyright file="RoomType.cs" company="">
+// <copyright file="Billing.cs" company="">
 //   
 // </copyright>
 // <summary>
-//   The room type.
+//   The billing.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
 
@@ -15,35 +15,36 @@ namespace HotelManagerLib.Models.Persistant
     using System.Collections.Generic;
     using System.ComponentModel;
 
-    using HotelManagerLib.Enums;
     using HotelManagerLib.Models.Persistant.Interfaces;
 
     #endregion
 
     /// <summary>
-    /// The room type.
+    /// The billing.
     /// </summary>
-    public class RoomType : IBillableEntity
+    public class Billing : IEntity, IEntityAudit
     {
         /// <summary>
-        /// Initializes a new instance of the <see cref="RoomType"/> class.
+        /// Initializes a new instance of the <see cref="Billing"/> class.
         /// </summary>
-        public RoomType()
+        public Billing()
         {
-            this.Rooms = new List<Room>();
+            this.BillingServices = new List<BillingService>();
             this.Created = DateTime.Now;
             this.CreatedBy = Environment.UserName;
         }
 
-        /// <summary>
-        /// Gets or sets the bed type.
-        /// </summary>
-        public BedType BedType { get; set; }
+
 
         /// <summary>
-        /// Gets or sets the code.
+        /// Gets or sets the billing services.
         /// </summary>
-        public string Code { get; set; }
+        public virtual List<BillingService> BillingServices { get; set; }
+
+        /// <summary>
+        /// Gets or sets the bookings.
+        /// </summary>
+        public virtual Booking Booking { get; set; }
 
         /// <summary>
         /// Gets or sets the created.
@@ -72,19 +73,24 @@ namespace HotelManagerLib.Models.Persistant
         public int Id { get; set; }
 
         /// <summary>
-        /// Gets or sets the rooms.
+        /// Gets or sets a value indicating whether paid.
         /// </summary>
-        public virtual List<Room> Rooms { get; set; }
+        public bool Paid { get; set; }
 
         /// <summary>
-        /// Gets or sets a value indicating whether sauna.
+        /// Gets or sets the price for room.
         /// </summary>
-        public bool Sauna { get; set; }
+        public double PriceForRoom { get; set; }
 
         /// <summary>
-        /// Gets or sets a value indicating whether Television.
+        /// Gets or sets the price for services.
         /// </summary>
-        public bool Tv { get; set; }
+        public double PriceForServices { get; set; }
+
+        /// <summary>
+        /// Gets or sets the total price.
+        /// </summary>
+        public double TotalPrice { get; set; }
 
         /// <summary>
         /// Gets or sets the updated.
@@ -95,15 +101,5 @@ namespace HotelManagerLib.Models.Persistant
         /// Gets or sets the updated by.
         /// </summary>
         public string UpdatedBy { get; set; }
-
-        /// <summary>
-        /// Gets or sets the view.
-        /// </summary>
-        public View View { get; set; }
-
-        /// <summary>
-        /// Gets or sets a value indicating whether wi fi.
-        /// </summary>
-        public bool WiFi { get; set; }
     }
 }

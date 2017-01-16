@@ -1,9 +1,9 @@
 ﻿// --------------------------------------------------------------------------------------------------------------------
-// <copyright file="RoomTypeConfiguration.cs" company="">
+// <copyright file="BillingConfiguration.cs" company="">
 //   
 // </copyright>
 // <summary>
-//   The room type configuration.
+//   The billing configuration.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
 
@@ -19,27 +19,30 @@ namespace HotelManagerLib.DBContext.Configurations
     #endregion
 
     /// <summary>
-    /// The room type configuration.
+    /// The billing configuration.
     /// </summary>
-    public class RoomTypeConfiguration : EntityTypeConfiguration<RoomType>
+    public class BillingConfiguration : EntityTypeConfiguration<Billing>
     {
         /// <summary>
-        /// Initializes a new instance of the <see cref="RoomTypeConfiguration"/> class.
+        /// Initializes a new instance of the <see cref="BillingConfiguration"/> class.
         /// </summary>
-        public RoomTypeConfiguration()
+        public BillingConfiguration()
         {
-            this.ToTable("RoomType");
+            this.ToTable("Billing");
 
             // Primary Keys
             this.HasKey(x => x.Id);
             this.Property(x => x.Id).HasDatabaseGeneratedOption(DatabaseGeneratedOption.Identity);
 
             // Foreign Keys
-            this.HasMany(x => x.Rooms).WithRequired(x => x.RoomType).HasForeignKey(x => x.RoomTypeId);
-            
+            this.HasRequired(x => x.Booking);
+            this.HasMany(x => x.BillingServices).WithRequired(x => x.Billing).HasForeignKey(x => x.BillingId);
 
             // Required Entities
-            this.Property(x => x.Code).IsRequired().HasMaxLength(150);
+            this.Property(x => x.Paid).IsRequired();
+            this.Property(x => x.PriceForRoom).IsRequired();
+            this.Property(x => x.PriceForServices).IsRequired();
+            this.Property(x => x.TotalPrice).IsRequired();
         }
     }
 }
