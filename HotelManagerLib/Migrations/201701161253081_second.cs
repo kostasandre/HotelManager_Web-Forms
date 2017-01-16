@@ -11,7 +11,7 @@ namespace HotelManagerLib.Migrations
                 "dbo.Billing",
                 c => new
                     {
-                        Id = c.Int(nullable: false, identity: true),
+                        Id = c.Int(nullable: false, identity: true) ,
                         Created = c.DateTime(nullable: false),
                         CreatedBy = c.String(),
                         Deleted = c.DateTime(),
