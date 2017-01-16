@@ -1,6 +1,6 @@
 ﻿// --------------------------------------------------------------------------------------------------------------------
-// <copyright file="Hotel.cs" company="Data Communication">
-//   Hotel Manager
+// <copyright file="Hotel.cs" company="">
+//   
 // </copyright>
 // <summary>
 //   The hotel.
@@ -31,6 +31,7 @@ namespace HotelManagerLib.Models.Persistant
         public Hotel()
         {
             this.Rooms = new List<Room>();
+            this.Services = new List<Service>();
             this.Created = DateTime.Now;
             this.CreatedBy = Environment.UserName;
         }
@@ -86,19 +87,27 @@ namespace HotelManagerLib.Models.Persistant
         /// </summary>
         public string Phone { get; set; }
 
-        [ForeignKey("Picture")]
-        [Browsable(false)]
-        public int? PictureId { get; set; }
-
         /// <summary>
         /// Gets or sets the picture.
         /// </summary>
         public virtual Picture Picture { get; set; }
 
         /// <summary>
+        /// Gets or sets the picture id.
+        /// </summary>
+        [ForeignKey("Picture")]
+        [Browsable(false)]
+        public int? PictureId { get; set; }
+
+        /// <summary>
         /// Gets or sets the rooms.
         /// </summary>
         public virtual List<Room> Rooms { get; set; }
+
+        /// <summary>
+        /// Gets or sets the services.
+        /// </summary>
+        public virtual List<Service> Services { get; set; }
 
         /// <summary>
         /// Gets or sets the tax id.

@@ -49,12 +49,19 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="DBContext\Configurations\BillingConfiguration.cs" />
+    <Compile Include="DBContext\Configurations\BillingServiceConfiguration.cs" />
+    <Compile Include="DBContext\Configurations\BookingConfiguration.cs" />
+    <Compile Include="DBContext\Configurations\CustomerConfiguration.cs" />
     <Compile Include="DBContext\Configurations\HotelConfiguration.cs" />
     <Compile Include="DBContext\Configurations\PictureConfiguration.cs" />
+    <Compile Include="DBContext\Configurations\PricingListConfiguration.cs" />
     <Compile Include="DBContext\Configurations\RoomConfiguration.cs" />
     <Compile Include="DBContext\Configurations\RoomTypeConfiguration.cs" />
+    <Compile Include="DBContext\Configurations\ServicesConfiguration.cs" />
     <Compile Include="DBContext\DataBaseContext.cs" />
     <Compile Include="Enums\BedType.cs" />
+    <Compile Include="Enums\Status.cs" />
     <Compile Include="Enums\View.cs" />
     <Compile Include="Migrations\201701160904120_createDataBase.cs" />
     <Compile Include="Migrations\201701160904120_createDataBase.Designer.cs">
@@ -69,13 +76,19 @@
       <DependentUpon>201701161508104_third.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
+    <Compile Include="Models\Persistant\Billing.cs" />
+    <Compile Include="Models\Persistant\BillingService.cs" />
+    <Compile Include="Models\Persistant\Booking.cs" />
+    <Compile Include="Models\Persistant\Customer.cs" />
     <Compile Include="Models\Persistant\Hotel.cs" />
+    <Compile Include="Models\Persistant\Interfaces\IBillableEntity.cs" />
     <Compile Include="Models\Persistant\Interfaces\IEntity.cs" />
     <Compile Include="Models\Persistant\Interfaces\IEntityAudit.cs" />
     <Compile Include="Models\Persistant\Picture.cs" />
+    <Compile Include="Models\Persistant\PricingList.cs" />
     <Compile Include="Models\Persistant\Room.cs" />
     <Compile Include="Models\Persistant\RoomType.cs" />
-    <Compile Include="Models\Persistant\Services.cs" />
+    <Compile Include="Models\Persistant\Service.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Properties\Settings.Designer.cs">
       <AutoGen>True</AutoGen>
