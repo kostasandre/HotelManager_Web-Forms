@@ -29,7 +29,6 @@ namespace HotelManagerLib.Models.Persistant
         /// </summary>
         public BillingService()
         {
-            this.Services = new List<Service>();
             this.Created = DateTime.Now;
             this.CreatedBy = Environment.UserName;
         }
@@ -44,7 +43,27 @@ namespace HotelManagerLib.Models.Persistant
         /// </summary>
         [Browsable(false)]
         public int BillingId { get; set; }
-        
+
+        /// <summary>
+        /// Gets or sets the created.
+        /// </summary>
+        public DateTime Created { get; set; }
+
+        /// <summary>
+        /// Gets or sets the created by.
+        /// </summary>
+        public string CreatedBy { get; set; }
+
+        /// <summary>
+        /// Gets or sets the deleted.
+        /// </summary>
+        public DateTime? Deleted { get; set; }
+
+        /// <summary>
+        /// Gets or sets the deleted by.
+        /// </summary>
+        public string DeletedBy { get; set; }
+
         /// <summary>
         /// Gets or sets the id.
         /// </summary>
@@ -64,17 +83,9 @@ namespace HotelManagerLib.Models.Persistant
         /// <summary>
         /// Gets or sets the service.
         /// </summary>
-        public List<Service> Services { get; set; }
-        
-        /// <summary>
-        /// Gets or sets the created.
-        /// </summary>
-        public DateTime Created { get; set; }
+        public Service Service { get; set; }
 
-        /// <summary>
-        /// Gets or sets the created by.
-        /// </summary>
-        public string CreatedBy { get; set; }
+        public int ServiceId { get; set; }
 
         /// <summary>
         /// Gets or sets the updated.
@@ -85,15 +96,5 @@ namespace HotelManagerLib.Models.Persistant
         /// Gets or sets the updated by.
         /// </summary>
         public string UpdatedBy { get; set; }
-
-        /// <summary>
-        /// Gets or sets the deleted.
-        /// </summary>
-        public DateTime? Deleted { get; set; }
-
-        /// <summary>
-        /// Gets or sets the deleted by.
-        /// </summary>
-        public string DeletedBy { get; set; }
     }
 }

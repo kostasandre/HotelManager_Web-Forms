@@ -69,7 +69,8 @@
     <Reference Include="DevExpress.Web.v16.2, Version=16.2.3.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="BillingWebForm.aspx" />
+    <Content Include="BillingListForm.aspx" />
+    <Content Include="BillingServicesWebForm.aspx" />
     <Content Include="BookingForm.aspx" />
     <Content Include="Content\bootstrap-theme.css" />
     <Content Include="Content\bootstrap-theme.min.css" />
@@ -82,7 +83,12 @@
     <Content Include="WebForm1.aspx" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Images\searched.jpg" />
+    <Content Include="Images\download %282%29.jpg" />
+    <Content Include="Images\download.png" />
+    <Content Include="Images\edit.png" />
     <Content Include="Images\logos.jpg" />
+    <Content Include="Images\search.jpg" />
     <Content Include="Main.aspx" />
     <Content Include="packages.config" />
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />
@@ -114,12 +120,19 @@
     </None>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="BillingWebForm.aspx.cs">
-      <DependentUpon>BillingWebForm.aspx</DependentUpon>
+    <Compile Include="BillingListForm.aspx.cs">
+      <DependentUpon>BillingListForm.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="BillingWebForm.aspx.designer.cs">
-      <DependentUpon>BillingWebForm.aspx</DependentUpon>
+    <Compile Include="BillingListForm.aspx.designer.cs">
+      <DependentUpon>BillingListForm.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="BillingServicesWebForm.aspx.cs">
+      <DependentUpon>BillingServicesWebForm.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="BillingServicesWebForm.aspx.designer.cs">
+      <DependentUpon>BillingServicesWebForm.aspx</DependentUpon>
     </Compile>
     <Compile Include="BookingForm.aspx.cs">
       <DependentUpon>BookingForm.aspx</DependentUpon>

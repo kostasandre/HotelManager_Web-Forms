@@ -101,7 +101,7 @@ namespace HotelManagerLib.Repositories
         {
             using (var context = new DataBaseContext())
             {
-                return context.BillingServices.Include("Billings").Include("Services").ToList();
+                return context.BillingServices.Include("Billings").ToList();
             }
         }
 
@@ -116,7 +116,7 @@ namespace HotelManagerLib.Repositories
         /// </returns>
         public IQueryable<BillingService> ReadAllQuery(DataBaseContext context)
         {
-            return context.BillingServices.Include("Billings").Include("Services");
+            return context.BillingServices.Include("Billings");
         }
 
         /// <summary>
@@ -132,7 +132,7 @@ namespace HotelManagerLib.Repositories
         {
             using (var context = new DataBaseContext())
             {
-                var billingService = context.BillingServices.Include("Billings").Include("Services").SingleOrDefault(x => x.Id == id);
+                var billingService = context.BillingServices.Include("Billings").SingleOrDefault(x => x.Id == id);
                 return billingService;
             }
         }
