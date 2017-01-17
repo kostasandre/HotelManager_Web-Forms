@@ -40,7 +40,7 @@ namespace HotelManagerLib.Repositories
         {
             using (var context = new DataBaseContext())
             {
-                context.Room.Add(room);
+                context.Rooms.Add(room);
                 if (room.Hotel != null)
                 {
                     context.Entry(room.Hotel).State = EntityState.Unchanged;
@@ -68,13 +68,13 @@ namespace HotelManagerLib.Repositories
         {
             using (var context = new DataBaseContext())
             {
-                var room = context.Room.SingleOrDefault(x => x.Id == id);
+                var room = context.Rooms.SingleOrDefault(x => x.Id == id);
                 if (room == null)
                 {
                     throw new ArgumentNullException($"ArgumentNullException");
                 }
 
-                context.Room.Remove(room);
+                context.Rooms.Remove(room);
                 context.SaveChanges();
             }
         }
@@ -89,7 +89,7 @@ namespace HotelManagerLib.Repositories
         {
             using (var context = new DataBaseContext())
             {
-                return context.Room.Include("Hotel").ToList();
+                return context.Rooms.Include("Hotel").ToList();
             }
         }
 
@@ -104,7 +104,7 @@ namespace HotelManagerLib.Repositories
         /// </returns>
         public IQueryable<Room> ReadAllQuery(DataBaseContext context)
         {
-            return context.Room.Include("Hotel");
+            return context.Rooms.Include("Hotel");
         }
 
         /// <summary>
@@ -120,7 +120,7 @@ namespace HotelManagerLib.Repositories
         {
             using (var context = new DataBaseContext())
             {
-                var room = context.Room.Include("Hotel").SingleOrDefault(x => x.Id == id);
+                var room = context.Rooms.Include("Hotel").SingleOrDefault(x => x.Id == id);
                 return room;
             }
         }
@@ -135,7 +135,7 @@ namespace HotelManagerLib.Repositories
         {
             using (var context = new DataBaseContext())
             {
-                var databaseRoom = context.Room.Include("Hotel").SingleOrDefault(x => x.Id == room.Id);
+                var databaseRoom = context.Rooms.Include("Hotel").SingleOrDefault(x => x.Id == room.Id);
                 if (databaseRoom == null)
                 {
                     return;
@@ -143,7 +143,7 @@ namespace HotelManagerLib.Repositories
 
                 if (room.Hotel != null)
                 {
-                    var databaseHotel = context.Hotel.SingleOrDefault(x => x.Id == room.Hotel.Id);
+                    var databaseHotel = context.Hotels.SingleOrDefault(x => x.Id == room.Hotel.Id);
                     databaseRoom.Hotel = databaseHotel;
                 }
 

@@ -41,7 +41,7 @@ namespace HotelManagerLib.Repositories
         {
             using (var context = new DataBaseContext())
             {
-                context.Hotel.Add(hotel);
+                context.Hotels.Add(hotel);
                 try
                 {
                     context.SaveChanges();
@@ -77,13 +77,13 @@ namespace HotelManagerLib.Repositories
         {
             using (var context = new DataBaseContext())
             {
-                var hotel = context.Hotel.SingleOrDefault(x => x.Id == id);
+                var hotel = context.Hotels.SingleOrDefault(x => x.Id == id);
                 if (hotel == null)
                 {
                     throw new ArgumentNullException();
                 }
 
-                context.Hotel.Remove(hotel);
+                context.Hotels.Remove(hotel);
                 context.SaveChanges();
             }
         }
@@ -98,7 +98,7 @@ namespace HotelManagerLib.Repositories
         {
             using (var context = new DataBaseContext())
             {
-                return context.Hotel.Include("Rooms").ToList();
+                return context.Hotels.Include("Rooms").ToList();
             }
         }
 
@@ -113,7 +113,7 @@ namespace HotelManagerLib.Repositories
         /// </returns>
         public IQueryable<Hotel> ReadAllQuery(DataBaseContext context)
         {
-            return context.Hotel.Include("Rooms");
+            return context.Hotels.Include("Rooms");
         }
 
         /// <summary>
@@ -129,7 +129,7 @@ namespace HotelManagerLib.Repositories
         {
             using (var context = new DataBaseContext())
             {
-                var hotel = context.Hotel.Include("Rooms").SingleOrDefault(x => x.Id == id);
+                var hotel = context.Hotels.Include("Rooms").SingleOrDefault(x => x.Id == id);
                 return hotel;
             }
         }
@@ -144,7 +144,7 @@ namespace HotelManagerLib.Repositories
         {
             using (var context = new DataBaseContext())
             {
-                var databaseHotel = context.Hotel.SingleOrDefault(x => x.Id == hotel.Id);
+                var databaseHotel = context.Hotels.SingleOrDefault(x => x.Id == hotel.Id);
 
                 if (databaseHotel == null)
                 {

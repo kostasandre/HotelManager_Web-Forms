@@ -98,6 +98,7 @@
     <Compile Include="Repositories\HotelRepository.cs" />
     <Compile Include="Repositories\Interfaces\IEntityRepository.cs" />
     <Compile Include="Repositories\RoomRepository.cs" />
+    <Compile Include="Repositories\RoomTypeRepository.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Controllers\Interfaces\" />
