@@ -49,6 +49,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Controllers\HotelController.cs" />
+    <Compile Include="Controllers\Interfaces\IEntityController.cs" />
     <Compile Include="DBContext\Configurations\BillingConfiguration.cs" />
     <Compile Include="DBContext\Configurations\BillingServiceConfiguration.cs" />
     <Compile Include="DBContext\Configurations\BookingConfiguration.cs" />
@@ -101,14 +103,15 @@
     </Compile>
     <Compile Include="Repositories\BookingRepository.cs" />
     <Compile Include="Repositories\CustomerRepository.cs" />
+    <Compile Include="Repositories\BillingEntityRepository.cs" />
+    <Compile Include="Repositories\BillingServiceEntityRepository.cs" />
     <Compile Include="Repositories\HotelRepository.cs" />
     <Compile Include="Repositories\Interfaces\IEntityRepository.cs" />
+    <Compile Include="Repositories\Interfaces\PictureRepository.cs" />
     <Compile Include="Repositories\RoomRepository.cs" />
     <Compile Include="Repositories\RoomTypeRepository.cs" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Controllers\Interfaces\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
