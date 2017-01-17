@@ -30,25 +30,20 @@ namespace HotelManagerLib.Models.Persistant
         public Service()
         {
             this.Hotels = new List<Hotel>();
+            this.BillingServices = new List<BillingService>();
             this.Created = DateTime.Now;
             this.CreatedBy = Environment.UserName;
         }
 
         /// <summary>
-        /// Gets or sets the billing service.
-        /// </summary>
-        public BillingService BillingService { get; set; }
-
-        /// <summary>
-        /// Gets or sets the billing service id.
-        /// </summary>
-        [Browsable(false)]
-        public int? BillingServiceId { get; set; }
-
-        /// <summary>
         /// Gets or sets the code.
         /// </summary>
         public string Code { get; set; }
+
+        /// <summary>
+        /// Gets or sets the billing services.
+        /// </summary>
+        public IList<BillingService> BillingServices { get; set; }
 
         /// <summary>
         /// Gets or sets the created.

@@ -19,23 +19,7 @@
 	<link href="CssClasses/StyleSheet1.css" rel="stylesheet"/>
 	<link href="CssClasses/BookingFormStyleSheet.css" rel="stylesheet" />
 	<script src="Scripts/Script.js"></script>
-	<style type="text/css">
-		.navbar {
-			border-radius: 0;
-			margin-bottom: -1px;
-		}
-
-		#submenu {
-			background-color: #222;
-			margin-bottom: 20px;
-			min-height: 0;
-		}
-
-		.navbar-nav { margin: 0 }
-
-		.collapsing { display: none; }
-
-	</style>
+	
 	<asp:ContentPlaceHolder ID="head" runat="server">
 	</asp:ContentPlaceHolder>
 </head>
@@ -50,8 +34,8 @@
 		</li>
 	  <li class="dropdown"> <a href="#" data-toggle="collapse" data-target="#one">Hotels</a> </li>
 	  <li class="dropdown"> <a href="BookingForm.aspx" data-toggle="collapse" data-target="#">Booking</a> </li>
-	  <li class="dropdown"> <a href="BillingWebForm.aspx" data-toggle="collapse" data-target="#">Billing</a> </li>
-		<li class="dropdown"> <a href="#" data-toggle="collapse" data-target="#three">Reports</a> </li>
+	  <li class="dropdown"> <a href="#" data-toggle="collapse" data-target="#three">Billing</a> </li>
+		<li class="dropdown"> <a href="#" data-toggle="collapse" data-target="#four">Reports</a> </li>
 	</ul>
   </nav>
 </div>
@@ -69,6 +53,10 @@
 	  <li><a href="#" id="">Two sub 3</a></li>
 	</ul>
 	<ul class="nav navbar-nav collapse" id="three">
+	  <li><a href="BillingListForm.aspx" id="">List of billings</a></li>
+	  <li><a href="BillingServicesWebForm.aspx" id="">New billing service</a></li>
+	</ul>
+	  <ul class="nav navbar-nav collapse" id="four">
 	  <li><a href="#" id="">Three sub 1</a></li>
 	  <li><a href="#" id="">Three sub 2</a></li>
 	</ul>
