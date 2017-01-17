@@ -7,19 +7,15 @@
     <div class="MainForm">
         
         <h1>Booking Form</h1>
-        <div>
-           
-             <div class="dropdown">
-                 <label>Room Type</label>
-                <button class="btn btn-default dropdown-toggle" type="button" data-toggle="dropdown">Tutorials
-                <span class="caret"></span></button>
-                <ul class="dropdown-menu">
-                  <li><a href="#">Normal</a></li>
-                  <li class="disabled"><a href="#">Disabled</a></li>
-                  <li class="active"><a href="#">Active</a></li>
-                  <li><a href="#">Normal</a></li>
-                </ul>
-              </div>
+        
+            <div style="width: 10%; float: left">
+               <label>Room Type</label> 
+            </div>
+            <div style="width: 50%;">
+                <dx:ASPxDropDownEdit ID=ASPxDropDownEdit1 runat="server"></dx:ASPxDropDownEdit> 
+            </div>
+            
+               
         </div>
-    </div>
+    
 </asp:Content>

@@ -11,7 +11,8 @@ namespace HotelManagerProject
     {
         protected void Page_Load(object sender , EventArgs e)
         {
-
+            
+            //this.ASPxDropDownEdit1.DataSource
         }
     }
 }
