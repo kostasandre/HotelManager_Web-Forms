@@ -12,7 +12,7 @@
                <label>Room Type</label> 
             </div>
             <div style="width: 50%;">
-                <dx:ASPxDropDownEdit ID=ASPxDropDownEdit1 runat="server"></dx:ASPxDropDownEdit> 
+                <dx:ASPxComboBox ID=ASPxComboBox1 runat="server" ValueType="System.String"></dx:ASPxComboBox>  
             </div>
             
                
