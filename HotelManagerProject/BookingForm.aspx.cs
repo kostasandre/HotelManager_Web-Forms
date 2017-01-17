@@ -43,27 +43,19 @@ namespace HotelManagerProject
             var dateFrom = this.dateFromCalendar.Value;
             var dateTo = this.dateToCalendar.Value;
             var roomType = this.roomTypeComboBox.Text;
-            if (dateFrom != null && dateTo != null && roomType != String.Empty)
+            if (dateFrom != null && dateTo != null && roomType != string.Empty)
             {
-                //showAvailableRooms
                 var rooms = this.roomController.RefreshEntities();
                 var bookings = this.bookingController.RefreshEntities();
                 bookedRoomsInDaysGiven.AddRange(bookings.Where(booking => booking.From == Convert.ToDateTime(dateFrom) && booking.To == Convert.ToDateTime(dateTo)));
-                foreach (var room in rooms)
-                {
-                   var isAvailable = this.bookingController.IsRoomAvailable(room, bookedRoomsInDaysGiven);
-                    if (isAvailable)
-                    {
-                        availableRooms.Add(room);
-                    }
-                }
+                availableRooms.AddRange(from room in rooms let isAvailable = this.bookingController.IsRoomAvailable(room, bookedRoomsInDaysGiven) where isAvailable select room);
             }
             else
             {
                 return;
             }
-            //var availableRooms = this.roomController.Repository.ReadAllQuery();
-            //    this.availableRoomsGridView.DataSource
+            
+            this.availableRoomsGridView.DataSource = availableRooms;
         }
     }
 }
