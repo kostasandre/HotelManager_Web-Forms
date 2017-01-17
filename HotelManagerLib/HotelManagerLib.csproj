@@ -71,9 +71,9 @@
     <Compile Include="Migrations\201701161004010_FirstRefactoringsTk.Designer.cs">
       <DependentUpon>201701161004010_FirstRefactoringsTk.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201701161253081_second.cs" />
-    <Compile Include="Migrations\201701161253081_second.Designer.cs">
-      <DependentUpon>201701161253081_second.cs</DependentUpon>
+    <Compile Include="Migrations\201701161508104_third.cs" />
+    <Compile Include="Migrations\201701161508104_third.Designer.cs">
+      <DependentUpon>201701161508104_third.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Persistant\Billing.cs" />
@@ -95,10 +95,13 @@
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
       <DependentUpon>Settings.settings</DependentUpon>
     </Compile>
+    <Compile Include="Repositories\HotelRepository.cs" />
+    <Compile Include="Repositories\Interfaces\IEntityRepository.cs" />
+    <Compile Include="Repositories\RoomRepository.cs" />
+    <Compile Include="Repositories\RoomTypeRepository.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Controllers\Interfaces\" />
-    <Folder Include="Repositories\Interfaces\" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
@@ -114,8 +117,8 @@
     <EmbeddedResource Include="Migrations\201701161004010_FirstRefactoringsTk.resx">
       <DependentUpon>201701161004010_FirstRefactoringsTk.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201701161253081_second.resx">
-      <DependentUpon>201701161253081_second.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201701161508104_third.resx">
+      <DependentUpon>201701161508104_third.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
