@@ -149,6 +149,12 @@
   <ItemGroup>
     <EmbeddedResource Include="Properties\licenses.licx" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\HotelManagerLib\HotelManagerLib.csproj">
+      <Project>{5a8b3cd2-b6f2-4635-b0fa-f37287627b27}</Project>
+      <Name>HotelManagerLib</Name>
+    </ProjectReference>
+  </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
     <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
