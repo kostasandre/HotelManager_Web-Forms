@@ -164,5 +164,28 @@ namespace HotelManagerLib.Repositories
                 context.SaveChanges();
             }
         }
+
+        /// <summary>
+        /// The un link.
+        /// </summary>
+        /// <param name="id">
+        /// The id.
+        /// </param>
+        public void UnLink(int id)
+        {
+            using (var context = new DataBaseContext())
+            {
+                var databaseHotel = context.Hotels.SingleOrDefault(x => x.Id == id);
+
+                if (databaseHotel == null)
+                {
+                    return;
+                }
+
+                databaseHotel.Picture = null;
+                databaseHotel.PictureId = null;
+                context.SaveChanges();
+            }
+        }
     }
 }
