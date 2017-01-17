@@ -1,40 +1,51 @@
 ﻿.background-img {
-	background-image: url('/Images/logos.jpg');
-	background-attachment: scroll;
-	background-repeat: repeat-y;
-	background-size: cover;
-	height: 100%;
-	min-width: 400px;
-	width: auto !important;
+    background-image: url('/Images/logos.jpg');
+    background-attachment: scroll;
+    background-repeat: repeat-y;
+    background-size: cover;
+    height: 100%;
+    min-width: 400px;
+    width: auto !important;
 }
 
 
 
 @media screen and (max-width: 768px) {
-	.helpdiv {
-		text-align: left;
-	}
+    .helpdiv {
+        text-align: left;
+    }
 
-	.background-img {
-		background-image: url('/Images/logos.jpg');
-		background-attachment: scroll;
-		background-repeat: repeat-y;
-		background-size: auto;
-		height: 100%;
-		width: 100% !important;
-	}
+    .background-img {
+        background-image: url('/Images/logos.jpg');
+        background-attachment: scroll;
+        background-repeat: repeat-y;
+        background-size: auto;
+        height: 100%;
+        width: 100% !important;
+    }
 }
 
 .navbar {
-			margin-bottom:-1px;
-			border-radius:0;
-		}
-		#submenu {
-			background-color: #222;
-			margin-bottom:20px;
-			min-height:0;
-		}
-		.navbar-nav{margin:0}
-		.collapsing {
-			display:none;
-		}
+    margin-bottom: -1px;
+    border-radius: 0;
+}
+
+#submenu {
+    background-color: #222;
+    margin-bottom: 20px;
+    min-height: 0;
+}
+
+.navbar-nav {
+    margin: 0;
+}
+
+.collapsing {
+    display: none;
+}
+
+.navbar-nav > li > a {
+    padding-top: 30px;
+    margin-left: 100px;
+    font-size: 16px;
+}
