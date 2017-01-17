@@ -49,6 +49,10 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Controllers\BillingEntityController.cs" />
+    <Compile Include="Controllers\BillingServiceEntityController.cs" />
+    <Compile Include="Controllers\BookingController.cs" />
+    <Compile Include="Controllers\CustomerController.cs" />
     <Compile Include="Controllers\HotelController.cs" />
     <Compile Include="Controllers\Interfaces\IEntityController.cs" />
     <Compile Include="Controllers\PictureController.cs" />
@@ -105,6 +109,8 @@
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
       <DependentUpon>Settings.settings</DependentUpon>
     </Compile>
+    <Compile Include="Repositories\BookingRepository.cs" />
+    <Compile Include="Repositories\CustomerRepository.cs" />
     <Compile Include="Repositories\BillingEntityRepository.cs" />
     <Compile Include="Repositories\BillingServiceEntityRepository.cs" />
     <Compile Include="Repositories\HotelRepository.cs" />

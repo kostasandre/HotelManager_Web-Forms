@@ -49,3 +49,31 @@
     margin-left: 100px;
     font-size: 16px;
 }
+
+.billingdiv {
+    align-self: center;
+    margin-left: 300px;
+    margin-top: 80px;
+    width: 30%;
+}
+
+.Text {
+    font-size: large;
+    margin-right: 10px;
+}
+
+.Text2 {
+    font-size: large;
+    margin-right: 55px;
+}
+
+.billingTextBox {
+    display: flex;
+    float: right;
+    width: 320px;
+    margin: 20px 0px 20px 20px;
+}
+
+.billingCheckBox {
+    margin: 80px 10px;
+}

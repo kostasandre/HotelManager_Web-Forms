@@ -10,15 +10,24 @@
 namespace HotelManagerProject {
     
     
-    public partial class BookingForm {
+    public partial class BillingWebForm {
         
         /// <summary>
-        /// ASPxComboBox1 control.
+        /// BillingGridView control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::DevExpress.Web.ASPxComboBox ASPxComboBox1;
+        protected global::DevExpress.Web.ASPxGridView BillingGridView;
+        
+        /// <summary>
+        /// editButton control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::DevExpress.Web.GridViewCommandColumnCustomButton editButton;
     }
 }
