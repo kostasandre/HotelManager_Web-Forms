@@ -25,8 +25,16 @@
 	}
 }
 
-.navbar-nav > li > a {
-    padding-top: 30px;
-    margin-left: 100px;
-    font-size: 16px;
-}
+.navbar {
+			margin-bottom:-1px;
+			border-radius:0;
+		}
+		#submenu {
+			background-color: #222;
+			margin-bottom:20px;
+			min-height:0;
+		}
+		.navbar-nav{margin:0}
+		.collapsing {
+			display:none;
+		}
