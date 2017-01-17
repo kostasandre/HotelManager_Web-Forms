@@ -1,27 +1,43 @@
 ﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="MasterPage.master.cs" Inherits="HotelManagerProject.MasterPage" %>
-
-<%@ Register Assembly="DevExpress.Web.ASPxTreeList.v16.2, Version=16.2.3.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" Namespace="DevExpress.Web.ASPxTreeList" TagPrefix="dx" %>
-
 <%@ Import Namespace="System.Web.DynamicData" %>
 <%@ Import Namespace="System.Web.UI" %>
 <%@ Import Namespace="System.Web.UI.WebControls" %>
 <%@ Import Namespace="System.Web.UI.WebControls" %>
 <%@ Import Namespace="System.Web.UI.WebControls.Expressions" %>
 <%@ Import Namespace="System.Web.UI.WebControls.WebParts" %>
+<%@ Import Namespace="DevExpress.Web" %>
+<%@ Import Namespace="DevExpress.Web.ASPxTreeList" %>
 
 <!DOCTYPE html>
 
 <html>
 <head runat="server">
-	<title></title>
-	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
-	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-	<script src="Scripts/Script.js"></script>
-	<link href="CssClasses/StyleSheet1.css" rel="stylesheet" />
-	
-	<asp:ContentPlaceHolder ID="head" runat="server">
-	</asp:ContentPlaceHolder>
+    <title></title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <link href="CssClasses/StyleSheet1.css" rel="stylesheet"/>
+    <link href="CssClasses/BookingFormStyleSheet.css" rel="stylesheet" />
+    <script src="Scripts/Script.js"></script>
+    <style type="text/css">
+        .navbar {
+            border-radius: 0;
+            margin-bottom: -1px;
+        }
+
+        #submenu {
+            background-color: #222;
+            margin-bottom: 20px;
+            min-height: 0;
+        }
+
+        .navbar-nav { margin: 0 }
+
+        .collapsing { display: none; }
+
+    </style>
+    <asp:ContentPlaceHolder ID="head" runat="server">
+    </asp:ContentPlaceHolder>
 </head>
 <body class="background-img">
 
