@@ -14,6 +14,8 @@ namespace HotelManagerLib.Models.Persistant
     using System;
     using System.ComponentModel;
 
+    using HotelManagerLib.Enums;
+
     using Interfaces;
 
     #endregion
@@ -33,9 +35,14 @@ namespace HotelManagerLib.Models.Persistant
         }
 
         /// <summary>
-        /// Gets or sets the billable entity.
+        /// Gets or sets the billable entity id.
         /// </summary>
-        public IBillableEntity BillableEntity { get; set; }
+        public int BillableEntityId { get; set; }
+
+        /// <summary>
+        /// Gets or sets the type of billable entity.
+        /// </summary>
+        public TypeOfBillableEntity TypeOfBillableEntity { get; set; }
         
         /// <summary>
         /// Gets or sets the id.

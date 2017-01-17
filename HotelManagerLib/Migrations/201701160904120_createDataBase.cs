@@ -13,18 +13,18 @@ namespace HotelManagerLib.Migrations
                     {
                         Id = c.Int(nullable: false, identity: true),
                         Address = c.String(nullable: false),
-                        Created = c.DateTime(nullable: false),
-                        CreatedBy = c.String(),
-                        Deleted = c.DateTime(),
-                        DeletedBy = c.String(),
                         Email = c.String(),
                         Manager = c.String(nullable: false),
                         Name = c.String(nullable: false),
                         Phone = c.String(nullable: false),
                         TaxId = c.String(nullable: false),
+                        Created = c.DateTime(nullable: false),
+                        CreatedBy = c.String(),
                         Updated = c.DateTime(),
                         UpdatedBy = c.String(),
-                    })
+                        Deleted = c.DateTime(),
+                        DeletedBy = c.String(),
+                })
                 .PrimaryKey(t => t.Id);
             
             CreateTable(
@@ -34,15 +34,16 @@ namespace HotelManagerLib.Migrations
                         Id = c.Int(nullable: false, identity: true),
                         Code = c.String(),
                         Content = c.Binary(),
-                        Created = c.DateTime(nullable: false),
-                        CreatedBy = c.String(),
-                        Deleted = c.DateTime(),
-                        DeletedBy = c.String(),
+                        
                         HotelId = c.Int(),
                         RoomId = c.Int(),
-                        Updated = c.DateTime(),
-                        UpdatedBy = c.String(),
-                    })
+                        Created = c.DateTime(nullable: false) ,
+                        CreatedBy = c.String() ,
+                        Updated = c.DateTime() ,
+                        UpdatedBy = c.String() ,
+                        Deleted = c.DateTime() ,
+                        DeletedBy = c.String() ,
+                })
                 .PrimaryKey(t => t.Id)
                 .ForeignKey("dbo.Room", t => t.RoomId)
                 .ForeignKey("dbo.Hotel", t => t.Id)
@@ -55,15 +56,15 @@ namespace HotelManagerLib.Migrations
                     {
                         Id = c.Int(nullable: false, identity: true),
                         Code = c.String(nullable: false),
-                        Created = c.DateTime(nullable: false),
-                        CreatedBy = c.String(),
-                        Deleted = c.DateTime(),
-                        DeletedBy = c.String(),
                         HotelId = c.Int(nullable: false),
                         RoomTypeId = c.Int(nullable: false),
-                        Updated = c.DateTime(),
-                        UpdatedBy = c.String(),
-                    })
+                        Created = c.DateTime(nullable: false) ,
+                        CreatedBy = c.String() ,
+                        Updated = c.DateTime() ,
+                        UpdatedBy = c.String() ,
+                        Deleted = c.DateTime() ,
+                        DeletedBy = c.String() ,
+                })
                 .PrimaryKey(t => t.Id)
                 .ForeignKey("dbo.RoomType", t => t.RoomTypeId, cascadeDelete: true)
                 .ForeignKey("dbo.Hotel", t => t.HotelId, cascadeDelete: true)
@@ -77,17 +78,17 @@ namespace HotelManagerLib.Migrations
                         Id = c.Int(nullable: false, identity: true),
                         BedType = c.Int(nullable: false),
                         Code = c.String(nullable: false),
-                        Created = c.DateTime(nullable: false),
-                        CreatedBy = c.String(),
-                        Deleted = c.DateTime(),
-                        DeletedBy = c.String(),
                         Sauna = c.Boolean(nullable: false),
                         Tv = c.Boolean(nullable: false),
-                        Updated = c.DateTime(),
-                        UpdatedBy = c.String(),
                         View = c.Int(nullable: false),
                         WiFi = c.Boolean(nullable: false),
-                    })
+                        Created = c.DateTime(nullable: false) ,
+                        CreatedBy = c.String() ,
+                        Updated = c.DateTime() ,
+                        UpdatedBy = c.String() ,
+                        Deleted = c.DateTime() ,
+                        DeletedBy = c.String() ,
+                })
                 .PrimaryKey(t => t.Id);
             
         }

@@ -31,6 +31,7 @@ namespace HotelManagerLib.Models.Persistant
         public RoomType()
         {
             this.Rooms = new List<Room>();
+            
             this.Created = DateTime.Now;
             this.CreatedBy = Environment.UserName;
         }
@@ -55,7 +56,7 @@ namespace HotelManagerLib.Models.Persistant
         /// Gets or sets the rooms.
         /// </summary>
         public virtual List<Room> Rooms { get; set; }
-
+        
         /// <summary>
         /// Gets or sets a value indicating whether sauna.
         /// </summary>

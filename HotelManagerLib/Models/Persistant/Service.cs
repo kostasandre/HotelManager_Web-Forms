@@ -59,7 +59,7 @@ namespace HotelManagerLib.Models.Persistant
         /// Gets or sets the hotels.
         /// </summary>
         public virtual List<Hotel> Hotels { get; set; }
-
+        
         /// <summary>
         /// Gets or sets the id.
         /// </summary>
