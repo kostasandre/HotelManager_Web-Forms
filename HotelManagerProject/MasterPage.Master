@@ -41,19 +41,20 @@
 <body class="background-img">
 
     <form id="form1" runat="server">
-        <div class="container">
+        <div style="width: 100%" class="container">
   <nav class="navbar navbar-inverse" role="navigation" id="topmenu">
     <ul class="nav navbar-nav">
         <li>
-              <h1>DC HotelaManager</h1>
+            <a style="font-size: 40px; padding-top: 20px; margin-left: 20px;" href="#" data-toggle="collapse" data-target="#">Hotel Manager</a>
         </li>
-      <li class="dropdown"> <a href="#" data-toggle="collapse" data-target="#one">One</a> </li>
-      <li class="dropdown"> <a href="#" data-toggle="collapse" data-target="#two">Two</a> </li>
-      <li class="dropdown"> <a href="#" data-toggle="collapse" data-target="#three">Three</a> </li>
+      <li class="dropdown"> <a href="#" data-toggle="collapse" data-target="#one">Hotels</a> </li>
+      <li class="dropdown"> <a href="#" data-toggle="collapse" data-target="#">Booking</a> </li>
+      <li class="dropdown"> <a href="#" data-toggle="collapse" data-target="#">Billing</a> </li>
+        <li class="dropdown"> <a href="#" data-toggle="collapse" data-target="#three">Reports</a> </li>
     </ul>
   </nav>
 </div>
-<div class="container">
+<div style="width: 100%" class="container">
   <nav class="navbar navbar-inverse" role="navigation" id="submenu">
     <ul class="nav navbar-nav navbar-inverse collapse" id="one">
       <li><a href="#" id="">One sub 1</a></li>
