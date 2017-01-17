@@ -16,6 +16,7 @@ namespace HotelManagerLib.Controllers
 
     using HotelManagerLib.Controllers.Interfaces;
     using HotelManagerLib.Models.Persistant;
+    using HotelManagerLib.Repositories;
     using HotelManagerLib.Repositories.Interfaces;
 
     #endregion
@@ -25,6 +26,14 @@ namespace HotelManagerLib.Controllers
     /// </summary>
     public class RoomTypeController : IEntityController<RoomType>
     {
+        /// <summary>
+        /// Initializes a new instance of the <see cref="RoomTypeController"/> class.
+        /// </summary>
+        public RoomTypeController()
+        {
+            this.Repository = new RoomTypeRepository();
+        }
+
         /// <summary>
         /// Gets or sets the repository.
         /// </summary>

@@ -14,6 +14,8 @@ namespace HotelManagerLib.Controllers
     using System;
     using System.Collections.Generic;
 
+    using HotelManagerLib.Repositories;
+
     using Interfaces;
     using Models.Persistant;
     using Repositories.Interfaces;
@@ -25,6 +27,14 @@ namespace HotelManagerLib.Controllers
     /// </summary>
     public class HotelController : IEntityController<Hotel>
     {
+        /// <summary>
+        /// Initializes a new instance of the <see cref="HotelController"/> class.
+        /// </summary>
+        public HotelController()
+        {
+                this.Repository = new HotelRepository();
+        }
+
         /// <summary>
         /// Gets or sets the repository.
         /// </summary>
