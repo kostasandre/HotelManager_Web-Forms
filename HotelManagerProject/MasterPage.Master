@@ -21,58 +21,63 @@
     <script src="Scripts/Script.js"></script>
     <style type="text/css">
         .navbar {
-	        margin-bottom:-1px;
-            border-radius:0;
-        }
-        #submenu {
-            background-color: #222;
-            margin-bottom:20px;
-	        min-height:0;
-        }
-        .navbar-nav{margin:0}
-        .collapsing {
-	        display:none;
+            margin-bottom: -1px;
+            border-radius: 0;
         }
 
-</style>
+        #submenu {
+            background-color: #222;
+            margin-bottom: 20px;
+            min-height: 0;
+        }
+
+        .navbar-nav {
+            margin: 0;
+        }
+
+        .collapsing {
+            display: none;
+        }
+    </style>
     <asp:ContentPlaceHolder ID="head" runat="server">
     </asp:ContentPlaceHolder>
 </head>
 <body class="background-img">
 
     <form id="form1" runat="server">
-        <div class="container">
-  <nav class="navbar navbar-inverse" role="navigation" id="topmenu">
-    <ul class="nav navbar-nav">
-        <li>
-              <h1>DC HotelaManager</h1>
-        </li>
-      <li class="dropdown"> <a href="#" data-toggle="collapse" data-target="#one">One</a> </li>
-      <li class="dropdown"> <a href="#" data-toggle="collapse" data-target="#two">Two</a> </li>
-      <li class="dropdown"> <a href="#" data-toggle="collapse" data-target="#three">Three</a> </li>
-    </ul>
-  </nav>
-</div>
-<div class="container">
-  <nav class="navbar navbar-inverse" role="navigation" id="submenu">
-    <ul class="nav navbar-nav navbar-inverse collapse" id="one">
-      <li><a href="#" id="">One sub 1</a></li>
-      <li><a href="#" id="">One sub 2</a></li>
-      <li><a href="#" id="">One sub 3</a></li>
-      <li><a href="#" id="">One sub 4</a></li>
-    </ul>
-    <ul class="nav navbar-nav collapse" id="two">
-      <li><a href="#" id="">Two sub 1</a></li>
-      <li><a href="#" id="">Two sub 2</a></li>
-      <li><a href="#" id="">Two sub 3</a></li>
-    </ul>
-    <ul class="nav navbar-nav collapse" id="three">
-      <li><a href="#" id="">Three sub 1</a></li>
-      <li><a href="#" id="">Three sub 2</a></li>
-    </ul>
-  </nav>
-</div>
-        
+        <div class="container" style="width: 100%">
+            <nav class="navbar navbar-inverse" role="navigation" id="topmenu">
+                <ul class="nav navbar-nav">
+                    <li>
+                        <h1>DC HotelaManager</h1>
+                    </li>
+                    <li class="dropdown"><a href="#" data-toggle="collapse" data-target="#one">Hotels</a> </li>
+                    <li class="dropdown"><a href="#" data-toggle="collapse" data-target="#two">Booking</a> </li>
+                    <li class="dropdown"><a href="#" data-toggle="collapse" data-target="#three">Billing</a> </li>
+                    <li class="dropdown"><a href="#" data-toggle="collapse" data-target="#three">Reports</a> </li>
+                </ul>
+            </nav>
+        </div>
+        <div class="container" style="width: 100%">
+            <nav class="navbar navbar-inverse" role="navigation" id="submenu">
+                <ul class="nav navbar-nav navbar-inverse collapse" id="one">
+                    <li><a href="#" id="">One sub 1</a></li>
+                    <li><a href="#" id="">One sub 2</a></li>
+                    <li><a href="#" id="">One sub 3</a></li>
+                    <li><a href="#" id="">One sub 4</a></li>
+                </ul>
+                <ul class="nav navbar-nav collapse" id="two">
+                    <li><a href="#" id="">Two sub 1</a></li>
+                    <li><a href="#" id="">Two sub 2</a></li>
+                    <li><a href="#" id="">Two sub 3</a></li>
+                </ul>
+                <ul class="nav navbar-nav collapse" id="three">
+                    <li><a href="#" id="">Three sub 1</a></li>
+                    <li><a href="#" id="">Three sub 2</a></li>
+                </ul>
+            </nav>
+        </div>
+
     </form>
 </body>
 </html>
