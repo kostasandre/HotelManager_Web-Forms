@@ -31,7 +31,6 @@ namespace HotelManagerLib.Models.Persistant
         public RoomType()
         {
             this.Rooms = new List<Room>();
-            
             this.Created = DateTime.Now;
             this.CreatedBy = Environment.UserName;
         }
