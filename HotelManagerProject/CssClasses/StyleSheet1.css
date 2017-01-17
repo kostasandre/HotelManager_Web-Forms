@@ -24,3 +24,9 @@
 		width: 100% !important;
 	}
 }
+
+.navbar-nav > li > a {
+    padding-top: 30px;
+    margin-left: 100px;
+    font-size: 16px;
+}
