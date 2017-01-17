@@ -1,6 +1,6 @@
 ﻿// --------------------------------------------------------------------------------------------------------------------
-// <copyright file="RoomTypeConfiguration.cs" company="">
-//   
+// <copyright file="RoomTypeConfiguration.cs" company="Data Communication">
+//   Hotel Manager
 // </copyright>
 // <summary>
 //   The room type configuration.
@@ -14,7 +14,7 @@ namespace HotelManagerLib.DBContext.Configurations
     using System.ComponentModel.DataAnnotations.Schema;
     using System.Data.Entity.ModelConfiguration;
 
-    using HotelManagerLib.Models.Persistant;
+    using Models.Persistant;
 
     #endregion
 
@@ -36,7 +36,6 @@ namespace HotelManagerLib.DBContext.Configurations
 
             // Foreign Keys
             this.HasMany(x => x.Rooms).WithRequired(x => x.RoomType).HasForeignKey(x => x.RoomTypeId);
-            
 
             // Required Entities
             this.Property(x => x.Code).IsRequired().HasMaxLength(150);

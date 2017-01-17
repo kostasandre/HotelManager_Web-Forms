@@ -56,8 +56,10 @@
     <Compile Include="Controllers\HotelController.cs" />
     <Compile Include="Controllers\Interfaces\IEntityController.cs" />
     <Compile Include="Controllers\PictureController.cs" />
+    <Compile Include="Controllers\PricingListController.cs" />
     <Compile Include="Controllers\RoomController.cs" />
     <Compile Include="Controllers\RoomTypeController.cs" />
+    <Compile Include="Controllers\ServiceController.cs" />
     <Compile Include="DBContext\Configurations\BillingConfiguration.cs" />
     <Compile Include="DBContext\Configurations\BillingServiceConfiguration.cs" />
     <Compile Include="DBContext\Configurations\BookingConfiguration.cs" />
@@ -71,6 +73,7 @@
     <Compile Include="DBContext\DataBaseContext.cs" />
     <Compile Include="Enums\BedType.cs" />
     <Compile Include="Enums\Status.cs" />
+    <Compile Include="Enums\TypeOfBillableEntity.cs" />
     <Compile Include="Enums\View.cs" />
     <Compile Include="Migrations\201701160904120_createDataBase.cs" />
     <Compile Include="Migrations\201701160904120_createDataBase.Designer.cs">
@@ -119,8 +122,10 @@
     <Compile Include="Repositories\HotelRepository.cs" />
     <Compile Include="Repositories\Interfaces\IEntityRepository.cs" />
     <Compile Include="Repositories\PictureRepository.cs" />
+    <Compile Include="Repositories\PricingListRepository.cs" />
     <Compile Include="Repositories\RoomRepository.cs" />
     <Compile Include="Repositories\RoomTypeRepository.cs" />
+    <Compile Include="Repositories\ServiceRepository.cs" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>

@@ -24,6 +24,8 @@ namespace HotelManagerLib.DBContext.Configurations
             // Required Entities
             this.Property(x => x.Price).IsRequired();
             this.Property(x => x.VatPrc).IsRequired();
+            this.Property(x => x.BillableEntityId).IsRequired();
+            this.Property(x => x.TypeOfBillableEntity).IsRequired();
         }
     }
 }

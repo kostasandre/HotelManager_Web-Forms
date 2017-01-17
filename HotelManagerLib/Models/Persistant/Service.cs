@@ -46,6 +46,22 @@ namespace HotelManagerLib.Models.Persistant
         public IList<BillingService> BillingServices { get; set; }
 
         /// <summary>
+        /// Gets or sets the description.
+        /// </summary>
+        public string Description { get; set; }
+
+        /// <summary>
+        /// Gets or sets the hotels.
+        /// </summary>
+        public virtual List<Hotel> Hotels { get; set; }
+        
+        /// <summary>
+        /// Gets or sets the id.
+        /// </summary>
+        [Browsable(false)]
+        public int Id { get; set; }
+
+        /// <summary>
         /// Gets or sets the created.
         /// </summary>
         public DateTime Created { get; set; }
@@ -56,32 +72,6 @@ namespace HotelManagerLib.Models.Persistant
         public string CreatedBy { get; set; }
 
         /// <summary>
-        /// Gets or sets the deleted.
-        /// </summary>
-        public DateTime? Deleted { get; set; }
-
-        /// <summary>
-        /// Gets or sets the deleted by.
-        /// </summary>
-        public string DeletedBy { get; set; }
-
-        /// <summary>
-        /// Gets or sets the description.
-        /// </summary>
-        public string Description { get; set; }
-
-        /// <summary>
-        /// Gets or sets the hotels.
-        /// </summary>
-        public virtual List<Hotel> Hotels { get; set; }
-
-        /// <summary>
-        /// Gets or sets the id.
-        /// </summary>
-        [Browsable(false)]
-        public int Id { get; set; }
-
-        /// <summary>
         /// Gets or sets the updated.
         /// </summary>
         public DateTime? Updated { get; set; }
@@ -90,5 +80,15 @@ namespace HotelManagerLib.Models.Persistant
         /// Gets or sets the updated by.
         /// </summary>
         public string UpdatedBy { get; set; }
+
+        /// <summary>
+        /// Gets or sets the deleted.
+        /// </summary>
+        public DateTime? Deleted { get; set; }
+
+        /// <summary>
+        /// Gets or sets the deleted by.
+        /// </summary>
+        public string DeletedBy { get; set; }
     }
 }
