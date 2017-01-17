@@ -7,7 +7,7 @@
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
 
-namespace HotelManagerLib.Repositories.Interfaces
+namespace HotelManagerLib.Repositories
 {
     #region
 
@@ -17,8 +17,9 @@ namespace HotelManagerLib.Repositories.Interfaces
     using System.Diagnostics;
     using System.Linq;
 
-    using DBContext;
-    using Models.Persistant;
+    using HotelManagerLib.DBContext;
+    using HotelManagerLib.Models.Persistant;
+    using HotelManagerLib.Repositories.Interfaces;
 
     #endregion
 
