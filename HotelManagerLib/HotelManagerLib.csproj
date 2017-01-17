@@ -101,6 +101,8 @@
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
       <DependentUpon>Settings.settings</DependentUpon>
     </Compile>
+    <Compile Include="Repositories\BillingEntityRepository.cs" />
+    <Compile Include="Repositories\BillingServiceEntityRepository.cs" />
     <Compile Include="Repositories\HotelRepository.cs" />
     <Compile Include="Repositories\Interfaces\IEntityRepository.cs" />
     <Compile Include="Repositories\Interfaces\PictureRepository.cs" />
