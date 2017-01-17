@@ -1,6 +1,6 @@
 ﻿// --------------------------------------------------------------------------------------------------------------------
-// <copyright file="IEntity.cs" company="">
-//   
+// <copyright file="IEntity.cs" company="Data Communication">
+//   Hotel Manager
 // </copyright>
 // <summary>
 //   The Entity interface.

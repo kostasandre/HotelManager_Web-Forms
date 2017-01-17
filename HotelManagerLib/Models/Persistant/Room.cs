@@ -1,6 +1,6 @@
 ﻿// --------------------------------------------------------------------------------------------------------------------
-// <copyright file="Room.cs" company="">
-//   
+// <copyright file="Room.cs" company="Data Communication">
+//   Hotel Manager
 // </copyright>
 // <summary>
 //   The room.

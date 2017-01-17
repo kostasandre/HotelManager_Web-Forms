@@ -1,6 +1,6 @@
 ﻿// --------------------------------------------------------------------------------------------------------------------
-// <copyright file="Billing.cs" company="">
-//   
+// <copyright file="Billing.cs" company="Data Communication">
+//   Hotel Manager
 // </copyright>
 // <summary>
 //   The billing.
@@ -33,8 +33,6 @@ namespace HotelManagerLib.Models.Persistant
             this.Created = DateTime.Now;
             this.CreatedBy = Environment.UserName;
         }
-
-
 
         /// <summary>
         /// Gets or sets the billing services.

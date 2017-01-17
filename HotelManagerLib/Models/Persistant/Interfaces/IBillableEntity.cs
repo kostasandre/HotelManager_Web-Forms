@@ -1,6 +1,6 @@
 ﻿// --------------------------------------------------------------------------------------------------------------------
-// <copyright file="IBillableEntity.cs" company="">
-//   
+// <copyright file="IBillableEntity.cs" company="Data Communication">
+//   Hotel Manager
 // </copyright>
 // <summary>
 //   The BillableEntity interface.

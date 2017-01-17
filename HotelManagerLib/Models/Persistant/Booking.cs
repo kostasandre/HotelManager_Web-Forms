@@ -1,6 +1,6 @@
 ﻿// --------------------------------------------------------------------------------------------------------------------
-// <copyright file="Booking.cs" company="">
-//   
+// <copyright file="Booking.cs" company="Data Communication">
+//   Hotel Manager
 // </copyright>
 // <summary>
 //   The booking.
