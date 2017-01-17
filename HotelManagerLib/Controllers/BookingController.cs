@@ -13,8 +13,11 @@ namespace HotelManagerLib.Controllers
 
     using System;
     using System.Collections.Generic;
+    using System.Linq;
 
     using HotelManagerLib.Controllers.Interfaces;
+    using HotelManagerLib.DBContext;
+    using HotelManagerLib.Enums;
     using HotelManagerLib.Models.Persistant;
     using HotelManagerLib.Repositories.Interfaces;
 
@@ -25,6 +28,8 @@ namespace HotelManagerLib.Controllers
     /// </summary>
     public class BookingController : IEntityController<Booking>
     {
+        
+
         /// <summary>
         /// Gets or sets the repository.
         /// </summary>
@@ -110,6 +115,42 @@ namespace HotelManagerLib.Controllers
         {
             var bookingList = this.Repository.ReadAllList();
             return bookingList;
+        }
+
+        /// <summary>
+        /// The is room available.
+        /// </summary>
+        /// <param name="room">
+        /// The room.
+        /// </param>
+        /// <param name="bookings">
+        /// The bookings.
+        /// </param>
+        /// <param name="dateFrom">
+        /// The date from.
+        /// </param>
+        /// <param name="dateTo">
+        /// The date to.
+        /// </param>
+        /// <returns>
+        /// The <see cref="bool"/>.
+        /// </returns>
+        public bool IsRoomAvailable(Room room, IList<Booking> bookedRoomsList)
+        {
+            var isAvailable = false;
+            foreach (var booking in bookedRoomsList)
+            {
+                if (booking.Room.Id == room.Id && booking.Status != Status.Cancelled)
+                {
+                    isAvailable = false;
+                }
+                else
+                {
+                    isAvailable = true;
+                }
+            }
+            return isAvailable;
+
         }
     }
 }
