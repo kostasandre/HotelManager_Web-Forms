@@ -29,7 +29,6 @@ namespace HotelManagerLib.Models.Persistant
         /// </summary>
         public BillingService()
         {
-            this.Services = new List<Service>();
             this.Created = DateTime.Now;
             this.CreatedBy = Environment.UserName;
         }
@@ -84,7 +83,9 @@ namespace HotelManagerLib.Models.Persistant
         /// <summary>
         /// Gets or sets the service.
         /// </summary>
-        public List<Service> Services { get; set; }
+        public Service Service { get; set; }
+
+        public int ServiceId { get; set; }
 
         /// <summary>
         /// Gets or sets the updated.

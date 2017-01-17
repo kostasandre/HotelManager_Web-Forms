@@ -31,6 +31,7 @@ namespace HotelManagerLib.Models.Persistant
         public RoomType()
         {
             this.Rooms = new List<Room>();
+            
             this.Created = DateTime.Now;
             this.CreatedBy = Environment.UserName;
         }
@@ -44,6 +45,37 @@ namespace HotelManagerLib.Models.Persistant
         /// Gets or sets the code.
         /// </summary>
         public string Code { get; set; }
+        
+        /// <summary>
+        /// Gets or sets the id.
+        /// </summary>
+        [Browsable(false)]
+        public int Id { get; set; }
+
+        /// <summary>
+        /// Gets or sets the rooms.
+        /// </summary>
+        public virtual List<Room> Rooms { get; set; }
+        
+        /// <summary>
+        /// Gets or sets a value indicating whether sauna.
+        /// </summary>
+        public bool Sauna { get; set; }
+
+        /// <summary>
+        /// Gets or sets a value indicating whether Television.
+        /// </summary>
+        public bool Tv { get; set; }
+        
+        /// <summary>
+        /// Gets or sets the view.
+        /// </summary>
+        public View View { get; set; }
+
+        /// <summary>
+        /// Gets or sets a value indicating whether wi fi.
+        /// </summary>
+        public bool WiFi { get; set; }
 
         /// <summary>
         /// Gets or sets the created.
@@ -56,37 +88,6 @@ namespace HotelManagerLib.Models.Persistant
         public string CreatedBy { get; set; }
 
         /// <summary>
-        /// Gets or sets the deleted.
-        /// </summary>
-        public DateTime? Deleted { get; set; }
-
-        /// <summary>
-        /// Gets or sets the deleted by.
-        /// </summary>
-        public string DeletedBy { get; set; }
-
-        /// <summary>
-        /// Gets or sets the id.
-        /// </summary>
-        [Browsable(false)]
-        public int Id { get; set; }
-
-        /// <summary>
-        /// Gets or sets the rooms.
-        /// </summary>
-        public virtual List<Room> Rooms { get; set; }
-
-        /// <summary>
-        /// Gets or sets a value indicating whether sauna.
-        /// </summary>
-        public bool Sauna { get; set; }
-
-        /// <summary>
-        /// Gets or sets a value indicating whether Television.
-        /// </summary>
-        public bool Tv { get; set; }
-
-        /// <summary>
         /// Gets or sets the updated.
         /// </summary>
         public DateTime? Updated { get; set; }
@@ -97,13 +98,13 @@ namespace HotelManagerLib.Models.Persistant
         public string UpdatedBy { get; set; }
 
         /// <summary>
-        /// Gets or sets the view.
+        /// Gets or sets the deleted.
         /// </summary>
-        public View View { get; set; }
+        public DateTime? Deleted { get; set; }
 
         /// <summary>
-        /// Gets or sets a value indicating whether wi fi.
+        /// Gets or sets the deleted by.
         /// </summary>
-        public bool WiFi { get; set; }
+        public string DeletedBy { get; set; }
     }
 }

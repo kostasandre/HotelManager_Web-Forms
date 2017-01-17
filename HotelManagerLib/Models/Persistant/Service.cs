@@ -30,25 +30,36 @@ namespace HotelManagerLib.Models.Persistant
         public Service()
         {
             this.Hotels = new List<Hotel>();
+            this.BillingServices = new List<BillingService>();
             this.Created = DateTime.Now;
             this.CreatedBy = Environment.UserName;
         }
 
         /// <summary>
-        /// Gets or sets the billing service.
-        /// </summary>
-        public BillingService BillingService { get; set; }
-
-        /// <summary>
-        /// Gets or sets the billing service id.
-        /// </summary>
-        [Browsable(false)]
-        public int? BillingServiceId { get; set; }
-
-        /// <summary>
         /// Gets or sets the code.
         /// </summary>
         public string Code { get; set; }
+
+        /// <summary>
+        /// Gets or sets the billing services.
+        /// </summary>
+        public IList<BillingService> BillingServices { get; set; }
+
+        /// <summary>
+        /// Gets or sets the description.
+        /// </summary>
+        public string Description { get; set; }
+
+        /// <summary>
+        /// Gets or sets the hotels.
+        /// </summary>
+        public virtual List<Hotel> Hotels { get; set; }
+        
+        /// <summary>
+        /// Gets or sets the id.
+        /// </summary>
+        [Browsable(false)]
+        public int Id { get; set; }
 
         /// <summary>
         /// Gets or sets the created.
@@ -61,32 +72,6 @@ namespace HotelManagerLib.Models.Persistant
         public string CreatedBy { get; set; }
 
         /// <summary>
-        /// Gets or sets the deleted.
-        /// </summary>
-        public DateTime? Deleted { get; set; }
-
-        /// <summary>
-        /// Gets or sets the deleted by.
-        /// </summary>
-        public string DeletedBy { get; set; }
-
-        /// <summary>
-        /// Gets or sets the description.
-        /// </summary>
-        public string Description { get; set; }
-
-        /// <summary>
-        /// Gets or sets the hotels.
-        /// </summary>
-        public virtual List<Hotel> Hotels { get; set; }
-
-        /// <summary>
-        /// Gets or sets the id.
-        /// </summary>
-        [Browsable(false)]
-        public int Id { get; set; }
-
-        /// <summary>
         /// Gets or sets the updated.
         /// </summary>
         public DateTime? Updated { get; set; }
@@ -95,5 +80,15 @@ namespace HotelManagerLib.Models.Persistant
         /// Gets or sets the updated by.
         /// </summary>
         public string UpdatedBy { get; set; }
+
+        /// <summary>
+        /// Gets or sets the deleted.
+        /// </summary>
+        public DateTime? Deleted { get; set; }
+
+        /// <summary>
+        /// Gets or sets the deleted by.
+        /// </summary>
+        public string DeletedBy { get; set; }
     }
 }

@@ -43,27 +43,7 @@ namespace HotelManagerLib.Models.Persistant
         /// Gets or sets the bookings.
         /// </summary>
         public virtual Booking Booking { get; set; }
-
-        /// <summary>
-        /// Gets or sets the created.
-        /// </summary>
-        public DateTime Created { get; set; }
-
-        /// <summary>
-        /// Gets or sets the created by.
-        /// </summary>
-        public string CreatedBy { get; set; }
-
-        /// <summary>
-        /// Gets or sets the deleted.
-        /// </summary>
-        public DateTime? Deleted { get; set; }
-
-        /// <summary>
-        /// Gets or sets the deleted by.
-        /// </summary>
-        public string DeletedBy { get; set; }
-
+        
         /// <summary>
         /// Gets or sets the id.
         /// </summary>
@@ -89,6 +69,16 @@ namespace HotelManagerLib.Models.Persistant
         /// Gets or sets the total price.
         /// </summary>
         public double TotalPrice { get; set; }
+        
+        /// <summary>
+        /// Gets or sets the created.
+        /// </summary>
+        public DateTime Created { get; set; }
+
+        /// <summary>
+        /// Gets or sets the created by.
+        /// </summary>
+        public string CreatedBy { get; set; }
 
         /// <summary>
         /// Gets or sets the updated.
@@ -99,5 +89,15 @@ namespace HotelManagerLib.Models.Persistant
         /// Gets or sets the updated by.
         /// </summary>
         public string UpdatedBy { get; set; }
+
+        /// <summary>
+        /// Gets or sets the deleted.
+        /// </summary>
+        public DateTime? Deleted { get; set; }
+
+        /// <summary>
+        /// Gets or sets the deleted by.
+        /// </summary>
+        public string DeletedBy { get; set; }
     }
 }

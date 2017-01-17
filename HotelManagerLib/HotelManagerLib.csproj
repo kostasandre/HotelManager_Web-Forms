@@ -49,13 +49,17 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Controllers\BillingEntityController.cs" />
+    <Compile Include="Controllers\BillingServiceEntityController.cs" />
     <Compile Include="Controllers\BookingController.cs" />
     <Compile Include="Controllers\CustomerController.cs" />
     <Compile Include="Controllers\HotelController.cs" />
     <Compile Include="Controllers\Interfaces\IEntityController.cs" />
     <Compile Include="Controllers\PictureController.cs" />
+    <Compile Include="Controllers\PricingListController.cs" />
     <Compile Include="Controllers\RoomController.cs" />
     <Compile Include="Controllers\RoomTypeController.cs" />
+    <Compile Include="Controllers\ServiceController.cs" />
     <Compile Include="DBContext\Configurations\BillingConfiguration.cs" />
     <Compile Include="DBContext\Configurations\BillingServiceConfiguration.cs" />
     <Compile Include="DBContext\Configurations\BookingConfiguration.cs" />
@@ -69,6 +73,7 @@
     <Compile Include="DBContext\DataBaseContext.cs" />
     <Compile Include="Enums\BedType.cs" />
     <Compile Include="Enums\Status.cs" />
+    <Compile Include="Enums\TypeOfBillableEntity.cs" />
     <Compile Include="Enums\View.cs" />
     <Compile Include="Migrations\201701160904120_createDataBase.cs" />
     <Compile Include="Migrations\201701160904120_createDataBase.Designer.cs">
@@ -85,6 +90,10 @@
     <Compile Include="Migrations\201701170807076_fourth.cs" />
     <Compile Include="Migrations\201701170807076_fourth.Designer.cs">
       <DependentUpon>201701170807076_fourth.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201701171541092_sixth.cs" />
+    <Compile Include="Migrations\201701171541092_sixth.Designer.cs">
+      <DependentUpon>201701171541092_sixth.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Persistant\Billing.cs" />
@@ -113,8 +122,10 @@
     <Compile Include="Repositories\HotelRepository.cs" />
     <Compile Include="Repositories\Interfaces\IEntityRepository.cs" />
     <Compile Include="Repositories\PictureRepository.cs" />
+    <Compile Include="Repositories\PricingListRepository.cs" />
     <Compile Include="Repositories\RoomRepository.cs" />
     <Compile Include="Repositories\RoomTypeRepository.cs" />
+    <Compile Include="Repositories\ServiceRepository.cs" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>
@@ -136,6 +147,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201701170807076_fourth.resx">
       <DependentUpon>201701170807076_fourth.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201701171541092_sixth.resx">
+      <DependentUpon>201701171541092_sixth.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
