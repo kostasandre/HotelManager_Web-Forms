@@ -1,6 +1,6 @@
 ﻿// --------------------------------------------------------------------------------------------------------------------
-// <copyright file="Status.cs" company="">
-//   
+// <copyright file="Status.cs" company="Data Communication">
+//   Hotel Manager
 // </copyright>
 // <summary>
 //   The status.

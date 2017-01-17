@@ -1,6 +1,6 @@
 ﻿// --------------------------------------------------------------------------------------------------------------------
-// <copyright file="Customer.cs" company="">
-//   
+// <copyright file="Customer.cs" company="Data Communication">
+//   Hotel Manager
 // </copyright>
 // <summary>
 //   The customer.
