@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 14
 VisualStudioVersion = 14.0.25420.1
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HotelManagerProjectWeb", "HotelManagerProject\HotelManagerProjectWeb.csproj", "{CA20B204-828A-4E3F-875F-F3A3E8AE47D8}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HotelManagerProject", "HotelManagerProject\HotelManagerProject.csproj", "{CA20B204-828A-4E3F-875F-F3A3E8AE47D8}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HotelManagerLib", "HotelManagerLib\HotelManagerLib.csproj", "{5A8B3CD2-B6F2-4635-B0FA-F37287627B27}"
 EndProject
