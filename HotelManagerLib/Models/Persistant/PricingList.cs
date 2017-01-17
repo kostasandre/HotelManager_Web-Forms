@@ -14,7 +14,7 @@ namespace HotelManagerLib.Models.Persistant
     using System;
     using System.ComponentModel;
 
-    using HotelManagerLib.Models.Persistant.Interfaces;
+    using Interfaces;
 
     #endregion
 
@@ -36,27 +36,7 @@ namespace HotelManagerLib.Models.Persistant
         /// Gets or sets the billable entity.
         /// </summary>
         public IBillableEntity BillableEntity { get; set; }
-
-        /// <summary>
-        /// Gets or sets the created.
-        /// </summary>
-        public DateTime Created { get; set; }
-
-        /// <summary>
-        /// Gets or sets the created by.
-        /// </summary>
-        public string CreatedBy { get; set; }
-
-        /// <summary>
-        /// Gets or sets the deleted.
-        /// </summary>
-        public DateTime? Deleted { get; set; }
-
-        /// <summary>
-        /// Gets or sets the deleted by.
-        /// </summary>
-        public string DeletedBy { get; set; }
-
+        
         /// <summary>
         /// Gets or sets the id.
         /// </summary>
@@ -67,17 +47,7 @@ namespace HotelManagerLib.Models.Persistant
         /// Gets or sets the price.
         /// </summary>
         public double Price { get; set; }
-
-        /// <summary>
-        /// Gets or sets the updated.
-        /// </summary>
-        public DateTime? Updated { get; set; }
-
-        /// <summary>
-        /// Gets or sets the updated by.
-        /// </summary>
-        public string UpdatedBy { get; set; }
-
+        
         /// <summary>
         /// Gets or sets the valid from.
         /// </summary>
@@ -92,5 +62,35 @@ namespace HotelManagerLib.Models.Persistant
         /// Gets or sets the vat price.
         /// </summary>
         public double VatPrc { get; set; }
+
+        /// <summary>
+        /// Gets or sets the created.
+        /// </summary>
+        public DateTime Created { get; set; }
+
+        /// <summary>
+        /// Gets or sets the created by.
+        /// </summary>
+        public string CreatedBy { get; set; }
+
+        /// <summary>
+        /// Gets or sets the updated.
+        /// </summary>
+        public DateTime? Updated { get; set; }
+
+        /// <summary>
+        /// Gets or sets the updated by.
+        /// </summary>
+        public string UpdatedBy { get; set; }
+
+        /// <summary>
+        /// Gets or sets the deleted.
+        /// </summary>
+        public DateTime? Deleted { get; set; }
+
+        /// <summary>
+        /// Gets or sets the deleted by.
+        /// </summary>
+        public string DeletedBy { get; set; }
     }
 }
