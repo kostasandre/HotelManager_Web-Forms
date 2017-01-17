@@ -1,6 +1,6 @@
 ﻿// --------------------------------------------------------------------------------------------------------------------
-// <copyright file="PricingList.cs" company="">
-//   
+// <copyright file="PricingList.cs" company="Data Communication">
+//   Hotel Manager
 // </copyright>
 // <summary>
 //   The pricing list.
@@ -89,7 +89,7 @@ namespace HotelManagerLib.Models.Persistant
         public DateTime ValidTo { get; set; }
 
         /// <summary>
-        /// Gets or sets the vat prc.
+        /// Gets or sets the vat price.
         /// </summary>
         public double VatPrc { get; set; }
     }

@@ -1,6 +1,6 @@
 ﻿// --------------------------------------------------------------------------------------------------------------------
-// <copyright file="Service.cs" company="">
-//   
+// <copyright file="Service.cs" company="Data Communication">
+//   Hotel Manager
 // </copyright>
 // <summary>
 //   The services.

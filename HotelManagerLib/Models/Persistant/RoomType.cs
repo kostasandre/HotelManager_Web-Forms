@@ -1,6 +1,6 @@
 ﻿// --------------------------------------------------------------------------------------------------------------------
-// <copyright file="RoomType.cs" company="">
-//   
+// <copyright file="RoomType.cs" company="Data Communication">
+//   Hotel Manager
 // </copyright>
 // <summary>
 //   The room type.

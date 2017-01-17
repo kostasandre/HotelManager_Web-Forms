@@ -1,6 +1,6 @@
 ﻿// --------------------------------------------------------------------------------------------------------------------
-// <copyright file="Picture.cs" company="">
-//   
+// <copyright file="Picture.cs" company="Data Communication">
+//   Hotel Manager
 // </copyright>
 // <summary>
 //   The picture.
@@ -13,7 +13,6 @@ namespace HotelManagerLib.Models.Persistant
 
     using System;
     using System.ComponentModel;
-    using System.ComponentModel.DataAnnotations.Schema;
 
     using HotelManagerLib.Models.Persistant.Interfaces;
 

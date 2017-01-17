@@ -1,6 +1,6 @@
 ﻿// --------------------------------------------------------------------------------------------------------------------
-// <copyright file="DataBaseContext.cs" company="">
-//   
+// <copyright file="DataBaseContext.cs" company="Data Communication">
+//   Hotel Manager
 // </copyright>
 // <summary>
 //   The data base context.
