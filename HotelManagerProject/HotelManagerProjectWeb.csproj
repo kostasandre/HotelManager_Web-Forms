@@ -69,6 +69,7 @@
     <Reference Include="DevExpress.Web.v16.2, Version=16.2.3.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="BillingWebForm.aspx" />
     <Content Include="BookingForm.aspx" />
     <Content Include="Content\bootstrap-theme.css" />
     <Content Include="Content\bootstrap-theme.min.css" />
@@ -111,6 +112,13 @@
     </None>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="BillingWebForm.aspx.cs">
+      <DependentUpon>BillingWebForm.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="BillingWebForm.aspx.designer.cs">
+      <DependentUpon>BillingWebForm.aspx</DependentUpon>
+    </Compile>
     <Compile Include="BookingForm.aspx.cs">
       <DependentUpon>BookingForm.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
