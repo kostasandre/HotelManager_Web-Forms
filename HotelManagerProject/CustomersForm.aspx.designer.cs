@@ -10,70 +10,25 @@
 namespace HotelManagerProject {
     
     
-    public partial class BookingForm {
+    public partial class CustomersForm {
         
         /// <summary>
-        /// ASPxButton1 control.
+        /// createCustomerButton control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::DevExpress.Web.ASPxButton ASPxButton1;
+        protected global::DevExpress.Web.ASPxButton createCustomerButton;
         
         /// <summary>
-        /// roomTypeComboBox control.
+        /// customersListGridView control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::DevExpress.Web.ASPxComboBox roomTypeComboBox;
-        
-        /// <summary>
-        /// dateFromCalendar control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::DevExpress.Web.ASPxDateEdit dateFromCalendar;
-        
-        /// <summary>
-        /// dateToCalendar control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::DevExpress.Web.ASPxDateEdit dateToCalendar;
-        
-        /// <summary>
-        /// calculateRoomTypePriceButton control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::DevExpress.Web.ASPxButton calculateRoomTypePriceButton;
-        
-        /// <summary>
-        /// roomTypePriceTextBox control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::DevExpress.Web.ASPxTextBox roomTypePriceTextBox;
-        
-        /// <summary>
-        /// availableRoomsGridView control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::DevExpress.Web.ASPxGridView availableRoomsGridView;
+        protected global::DevExpress.Web.ASPxGridView customersListGridView;
         
         /// <summary>
         /// createUserPopUp control.
@@ -139,6 +94,15 @@ namespace HotelManagerProject {
         protected global::DevExpress.Web.ASPxTextBox emailTextBox;
         
         /// <summary>
+        /// addressTextBox control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::DevExpress.Web.ASPxTextBox addressTextBox;
+        
+        /// <summary>
         /// phoneTextBox control.
         /// </summary>
         /// <remarks>
@@ -166,21 +130,21 @@ namespace HotelManagerProject {
         protected global::DevExpress.Web.ASPxTextBox createdByTextBox;
         
         /// <summary>
-        /// btOK control.
+        /// saveButton control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::DevExpress.Web.ASPxButton btOK;
+        protected global::DevExpress.Web.ASPxButton saveButton;
         
         /// <summary>
-        /// btCancel control.
+        /// cancelButton control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::DevExpress.Web.ASPxButton btCancel;
+        protected global::DevExpress.Web.ASPxButton cancelButton;
     }
 }

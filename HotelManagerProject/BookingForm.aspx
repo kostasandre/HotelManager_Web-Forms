@@ -4,11 +4,17 @@
 </asp:Content>
 
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
+    <script type="text/javascript">
+        function ShowLoginWindow() {
+            createUserPopUp.Show();
+        }
+
+    </script>
     <div class="MainForm">
         
         <h1>Booking Form</h1>
         <dx:ASPxButton ID="ASPxButton1" runat="server" Text="ASPxButton">
-            <ClientSideEvents Click="function(s, e) {	popup.ShowWindow(popup.GetWindowByName('createUserPopUp'));  }" />
+            <ClientSideEvents Click="function(s, e) { ShowLoginWindow(); }" />
         </dx:ASPxButton>
         
         <div class="container" style="width: 100%">
@@ -83,24 +89,93 @@
         </div>
 
     </div>
-    <dx:ASPxPopupControl ClientInstanceName="ASPxPopupClientControl" Width="330px" Height="250px"
+    <dx:ASPxPopupControl ClientInstanceName="createUserPopUp" Width="330px" Height="250px"
         MaxWidth="800px" MaxHeight="800px" MinHeight="150px" MinWidth="150px" ID="createUserPopUp"
-        ShowFooter="True" FooterText="Runtime: 142 min" PopupElementID="imgButton" HeaderText="Area of Countries"
-        runat="server" EnableViewState="false" PopupHorizontalAlign="LeftSides" PopupVerticalAlign="Below" EnableHierarchyRecreation="True">
+        ShowFooter="True" FooterText="Runtime: 142 min" PopupElementID="imgButton" HeaderText="Customer Form"
+        runat="server" EnableViewState="false" PopupHorizontalAlign="WindowCenter" PopupVerticalAlign="WindowCenter" EnableHierarchyRecreation="True" AllowDragging= "True" PopupAnimationType="Fade" Modal="True">
+        <modalbackgroundstyle backcolor="Black">
+        </modalbackgroundstyle>
         <ContentCollection>
             <dx:PopupControlContentControl runat="server">
                 <asp:Panel ID="Panel1" runat="server">
-                    <div class="container" style="width: 100%">
-                        <div class="row">
-                            <div class="col-xs-1">
-                                 <label>Room Type:</label> 
-                            </div>
-                        </div>
-                    </div>
+                    <table>
+                        <tr>
+                            <td>
+                                <label>Name:  </label>
+                            </td>
+                            <td>
+                                <dx:ASPxTextBox ID= "nameTextBox" runat="server" Width="170px"></dx:ASPxTextBox> 
+                            </td>
+                        </tr>
+                        <tr>
+                             <td>
+                                <label>Surname:  </label>
+                            </td>
+                            <td>
+                                <dx:ASPxTextBox ID= "surNameTextBox" runat="server" Width="170px"></dx:ASPxTextBox> 
+                            </td>
+                        </tr>
+                        <tr>
+                             <td>
+                                <label>Tax Id:  </label>
+                            </td>
+                            <td>
+                                <dx:ASPxTextBox ID= "taxIdTextBox" runat="server" Width="170px"></dx:ASPxTextBox> 
+                            </td>
+                        </tr>
+                        <tr>
+                             <td>
+                                <label>Id Number:  </label>
+                            </td>
+                            <td>
+                                <dx:ASPxTextBox ID= "idNumberTextBox" runat="server" Width="170px"></dx:ASPxTextBox> 
+                            </td>
+                        </tr>
+                        <tr>
+                             <td>
+                                <label>Email:  </label>
+                            </td>
+                            <td>
+                                <dx:ASPxTextBox ID= "emailTextBox" runat="server" Width="170px"></dx:ASPxTextBox> 
+                            </td>
+                        </tr>
+                        <tr>
+                             <td>
+                                <label>Phone:  </label>
+                            </td>
+                            <td>
+                                <dx:ASPxTextBox ID= "phoneTextBox" runat="server" Width="170px"></dx:ASPxTextBox> 
+                            </td>
+                        </tr>
+                        <tr>
+                             <td>
+                                <label>Created:  </label>
+                            </td>
+                            <td>
+                                <dx:ASPxTextBox ID= "createdTextBox" runat="server" Width="170px"></dx:ASPxTextBox> 
+                            </td>
+                        </tr>
+                        <tr>
+                             <td>
+                                <label>Created By:  </label>
+                            </td>
+                            <td>
+                                <dx:ASPxTextBox ID= "createdByTextBox" runat="server" Width="170px"></dx:ASPxTextBox> 
+                            </td>
+                        </tr>
+                    </table>
+                    <br/>
+                    <div class="pcmButton">
+                                            <dx:ASPxButton ID="btOK" runat="server" Text="Save" Width="80px" AutoPostBack="False" Style="float: left; margin-right: 8px">
+                                                <ClientSideEvents Click="function(s, e) { if(ASPxClientEdit.ValidateGroup('entryGroup')) createUserPopUp.Hide(); }" />
+                                            </dx:ASPxButton>
+                                            <dx:ASPxButton ID="btCancel" runat="server" Text="Cancel" Width="80px" AutoPostBack="False" Style="float: left; margin-right: 8px">
+                                                <ClientSideEvents Click="function(s, e) { createUserPopUp.Hide(); }" />
+                                            </dx:ASPxButton>
+                                        </div>
                 </asp:Panel>
             </dx:PopupControlContentControl>
         </ContentCollection>
-        <ClientSideEvents CloseUp="function(s, e) { SetImageState(false); }" PopUp="function(s, e) { SetImageState(true); }" />
     </dx:ASPxPopupControl>
 
 </asp:Content>

@@ -1,24 +1,56 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-using System.Web.UI;
-using System.Web.UI.WebControls;
+﻿// --------------------------------------------------------------------------------------------------------------------
+// <copyright file="BookingsListForm.aspx.cs" company="">
+//   
+// </copyright>
+// <summary>
+//   The bookings list form.
+// </summary>
+// --------------------------------------------------------------------------------------------------------------------
 
 namespace HotelManagerProject
 {
+    #region
+
+    using System;
+    using System.Web.UI;
+
     using HotelManagerLib.Controllers;
 
-    public partial class BookingsListForm : System.Web.UI.Page
-    {
-        private BookingController bookingController;
-        protected void Page_Load(object sender , EventArgs e)
-        {
-            this.bookingController = new BookingController();
+    #endregion
 
-            var bookingsList = this.bookingController.RefreshEntities();
-            this.bookingsGridView.DataSource = bookingsList;
-            this.bookingsGridView.DataBind();
+    /// <summary>
+    /// The bookings list form.
+    /// </summary>
+    public partial class BookingsListForm : Page
+    {
+        /// <summary>
+        /// The booking controller.
+        /// </summary>
+        private BookingController bookingController;
+
+        /// <summary>
+        /// The customer controller.
+        /// </summary>
+        private CustomerController customerController;
+
+        /// <summary>
+        /// The page_ load.
+        /// </summary>
+        /// <param name="sender">
+        /// The sender.
+        /// </param>
+        /// <param name="e">
+        /// The e.
+        /// </param>
+        protected void Page_Load(object sender, EventArgs e)
+        {
+            if (!this.Page.IsPostBack)
+            {
+                this.bookingController = new BookingController();
+                var bookingsList = this.bookingController.RefreshEntities();
+                this.bookingsGridView.DataSource = bookingsList;
+                this.bookingsGridView.DataBind();
+            }
         }
     }
 }
