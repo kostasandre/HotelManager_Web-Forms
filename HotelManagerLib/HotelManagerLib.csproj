@@ -91,9 +91,13 @@
     <Compile Include="Migrations\201701170807076_fourth.Designer.cs">
       <DependentUpon>201701170807076_fourth.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201701171541092_sixth.cs" />
-    <Compile Include="Migrations\201701171541092_sixth.Designer.cs">
-      <DependentUpon>201701171541092_sixth.cs</DependentUpon>
+    <Compile Include="Migrations\201701180805202_eightth.cs" />
+    <Compile Include="Migrations\201701180805202_eightth.Designer.cs">
+      <DependentUpon>201701180805202_eightth.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201701180833315_10th.cs" />
+    <Compile Include="Migrations\201701180833315_10th.Designer.cs">
+      <DependentUpon>201701180833315_10th.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Persistant\Billing.cs" />
@@ -148,8 +152,11 @@
     <EmbeddedResource Include="Migrations\201701170807076_fourth.resx">
       <DependentUpon>201701170807076_fourth.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201701171541092_sixth.resx">
-      <DependentUpon>201701171541092_sixth.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201701180805202_eightth.resx">
+      <DependentUpon>201701180805202_eightth.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201701180833315_10th.resx">
+      <DependentUpon>201701180833315_10th.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

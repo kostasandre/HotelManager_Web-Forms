@@ -48,7 +48,7 @@
                                 </dx:GridViewCommandColumnCustomButton>
                             </CustomButtons>
                         </dx:GridViewCommandColumn>
-                        <dx:GridViewDataTextColumn FieldName="CompanyName" VisibleIndex="2">
+                        <dx:GridViewDataTextColumn FieldName="Service Type" VisibleIndex="2">
                         </dx:GridViewDataTextColumn>
                         <dx:GridViewDataTextColumn FieldName="Id" VisibleIndex="4" Visible="False">
                         </dx:GridViewDataTextColumn>
