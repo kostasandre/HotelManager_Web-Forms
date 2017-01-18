@@ -4,18 +4,13 @@
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
     <div class="MainForm">
 
-        <h1>Hotel Form</h1>
+        <h1>Service Form</h1>
         <dx:ASPxGridView ID=ServiceGridView runat="server" AutoGenerateColumns="False" Theme="BlackGlass" EnableTheming="True">
             <Settings ShowFilterRow="True" ShowGroupPanel="True" />
             <SettingsSearchPanel Visible="True" />
             <Columns>
-                <dx:GridViewCommandColumn ShowClearFilterButton="True" VisibleIndex="0" ButtonRenderMode="Image">
-                    <CustomButtons>
-                        <dx:GridViewCommandColumnCustomButton ID="editButton">
-                            <Image Url="Images/edit.png" ToolTip="Edit"></Image>
-                        </dx:GridViewCommandColumnCustomButton>
-                    </CustomButtons>
-                </dx:GridViewCommandColumn>
+                <dx:GridViewCommandColumn ShowClearFilterButton="True" VisibleIndex="0" ShowEditButton="True">
+                        </dx:GridViewCommandColumn>
                 <dx:GridViewDataTextColumn FieldName="Id" VisibleIndex="1" Visible="False">
                 </dx:GridViewDataTextColumn>
                 <dx:GridViewDataTextColumn FieldName="Description" VisibleIndex="2">
