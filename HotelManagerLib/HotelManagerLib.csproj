@@ -75,9 +75,9 @@
     <Compile Include="Enums\Status.cs" />
     <Compile Include="Enums\TypeOfBillableEntity.cs" />
     <Compile Include="Enums\View.cs" />
-    <Compile Include="Migrations\201701160904120_createDataBase.cs" />
-    <Compile Include="Migrations\201701160904120_createDataBase.Designer.cs">
-      <DependentUpon>201701160904120_createDataBase.cs</DependentUpon>
+    <Compile Include="Migrations\201701171636349_fifth.cs" />
+    <Compile Include="Migrations\201701171636349_fifth.Designer.cs">
+      <DependentUpon>201701171636349_fifth.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\201701161004010_FirstRefactoringsTk.cs" />
     <Compile Include="Migrations\201701161004010_FirstRefactoringsTk.Designer.cs">
@@ -131,7 +131,11 @@
     <Compile Include="Repositories\RoomTypeRepository.cs" />
     <Compile Include="Repositories\ServiceRepository.cs" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <EmbeddedResource Include="Migrations\201701171636349_fifth.resx">
+      <DependentUpon>201701171636349_fifth.cs</DependentUpon>
+    </EmbeddedResource>
+  </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
