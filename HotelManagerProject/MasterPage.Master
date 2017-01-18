@@ -1,4 +1,5 @@
 ﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="MasterPage.master.cs" Inherits="HotelManagerProject.MasterPage" %>
+
 <%@ Import Namespace="System.Web.DynamicData" %>
 <%@ Import Namespace="System.Web.UI" %>
 <%@ Import Namespace="System.Web.UI.WebControls" %>
@@ -12,59 +13,61 @@
 
 <html>
 <head runat="server">
-	<title></title>
-	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
-	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-	<link href="CssClasses/StyleSheet1.css" rel="stylesheet"/>
-	<link href="CssClasses/BookingFormStyleSheet.css" rel="stylesheet" />
-	<script src="Scripts/Script.js"></script>
-	
-	<asp:ContentPlaceHolder ID="head" runat="server">
-	</asp:ContentPlaceHolder>
+    <title></title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <link href="CssClasses/StyleSheet1.css" rel="stylesheet" />
+    <link href="CssClasses/BookingFormStyleSheet.css" rel="stylesheet" />
+    <script src="Scripts/Script.js"></script>
+
+    <asp:ContentPlaceHolder ID="head" runat="server">
+    </asp:ContentPlaceHolder>
 </head>
 <body class="background-img">
 
-	<form id="form1" runat="server">
-		<div style="width: 100%" class="container">
-  <nav class="navbar navbar-inverse" role="navigation" id="topmenu">
-	<ul class="nav navbar-nav">
-		<li>
-			<a style="font-size: 40px; padding-top: 20px; margin-left: 20px;" href="Main.aspx" data-toggle="collapse" data-target="#">Hotel Manager</a>
-		</li>
-	  <li class="dropdown"> <a href="#" data-toggle="collapse" data-target="#one">Hotels</a> </li>
-	  <li class="dropdown"> <a href="#" data-toggle="collapse" data-target="#two">Booking</a> </li>
-	  <li class="dropdown"> <a href="#" data-toggle="collapse" data-target="#three">Billing</a> </li>
-		<li class="dropdown"> <a href="#" data-toggle="collapse" data-target="#four">Reports</a> </li>
-	</ul>
-  </nav>
-</div>
-<div style="width: 100%" class="container">
-  <nav class="navbar navbar-inverse" role="navigation" id="submenu">
-	<ul class="nav navbar-nav navbar-inverse collapse" id="one">
-	  <li><a href="#" id="">One sub 1</a></li>
-	  <li><a href="#" id="">One sub 2</a></li>
-	  <li><a href="#" id="">One sub 3</a></li>
-	  <li><a href="#" id="">One sub 4</a></li>
-	</ul>
-	<ul class="nav navbar-nav collapse" id="two">
-	  <li><a href="BookingsListForm.aspx" id="">Bookings</a></li>
-	  <li><a href="BookingForm.aspx" id="">New Booking</a></li>
-	  
-	</ul>
-	<ul class="nav navbar-nav collapse" id="three">
-	  <li><a href="BillingListForm.aspx" id="">List of billings</a></li>
-	  <li><a href="BillingServicesWebForm.aspx" id="">New billing service</a></li>
-	</ul>
-	  <ul class="nav navbar-nav collapse" id="four">
-	  <li><a href="#" id="">Three sub 1</a></li>
-	  <li><a href="#" id="">Three sub 2</a></li>
-	</ul>
-  </nav>
-</div>
-		 <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
-					</asp:ContentPlaceHolder>
-		
-	</form>
+    <form id="form1" runat="server">
+        <div style="width: 100%" class="container">
+            <nav class="navbar navbar-inverse" role="navigation" id="topmenu">
+                <ul class="nav navbar-nav">
+                    <li>
+                        <a style="font-size: 40px; padding-top: 20px; margin-left: 20px;" href="Main.aspx" data-toggle="collapse" data-target="#">Hotel Manager</a>
+                    </li>
+                    <li class="dropdown"><a href="#" data-toggle="collapse" data-target="#one">Hotels</a> </li>
+                    <li class="dropdown"><a href="#" data-toggle="collapse" data-target="#two">Booking</a> </li>
+                    <li class="dropdown"><a href="#" data-toggle="collapse" data-target="#three">Billing</a> </li>
+                    <li class="dropdown"><a href="#" data-toggle="collapse" data-target="#four">Reports</a> </li>
+                </ul>
+            </nav>
+        </div>
+        <div style="width: 100%" class="container">
+            <nav class="navbar navbar-inverse" role="navigation" id="submenu">
+                <ul class="nav navbar-nav navbar-inverse collapse" id="one">
+                    <li><a href="HotelWebForm.aspx" id="">Hotels</a></li>
+                    <li><a href="RoomWebForm.aspx" id="">Rooms</a></li>
+                    <li><a href="RoomTypeWebForm.aspx" id="">Room Types</a></li>
+                    <li><a href="#" id="">Pictures</a></li>
+                    <li><a href="ServiceWebForm.aspx" id="">Services</a></li>
+                    <li><a href="PricingListWebForm.aspx" id="">Pricing List</a></li>
+                </ul>
+                <ul class="nav navbar-nav collapse" id="two">
+                    <li><a href="BookingsListForm.aspx" id="">Bookings</a></li>
+                    <li><a href="BookingForm.aspx" id="">New Booking</a></li>
+
+                </ul>
+                <ul class="nav navbar-nav collapse" id="three">
+                    <li><a href="BillingListForm.aspx" id="">List of billings</a></li>
+                    <li><a href="BillingServicesWebForm.aspx" id="">New billing service</a></li>
+                </ul>
+                <ul class="nav navbar-nav collapse" id="four">
+                    <li><a href="#" id="">Three sub 1</a></li>
+                    <li><a href="#" id="">Three sub 2</a></li>
+                </ul>
+            </nav>
+        </div>
+        <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
+        </asp:ContentPlaceHolder>
+
+    </form>
 </body>
 </html>
