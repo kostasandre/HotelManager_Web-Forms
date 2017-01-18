@@ -37,6 +37,10 @@ namespace HotelManagerLib.DBContext.Configurations
             // Required Entities
             this.Property(x => x.Price).IsRequired();
             this.Property(x => x.Quantity).IsRequired();
+
+            // Foreign Keys
+            this.HasRequired(x => x.Service).WithMany(x => x.BillingServices).HasForeignKey(x => x.ServiceId);
+            this.HasRequired(x => x.Billing).WithMany(x => x.BillingServices).HasForeignKey(x => x.BillingId);
         }
     }
 }

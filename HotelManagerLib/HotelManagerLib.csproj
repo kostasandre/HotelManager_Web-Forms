@@ -75,6 +75,10 @@
     <Compile Include="Enums\Status.cs" />
     <Compile Include="Enums\TypeOfBillableEntity.cs" />
     <Compile Include="Enums\View.cs" />
+    <Compile Include="Migrations\201701180909495_Initial.cs" />
+    <Compile Include="Migrations\201701180909495_Initial.Designer.cs">
+      <DependentUpon>201701180909495_Initial.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Persistant\Billing.cs" />
     <Compile Include="Models\Persistant\BillingService.cs" />
@@ -113,6 +117,11 @@
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
     </None>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Migrations\201701180909495_Initial.resx">
+      <DependentUpon>201701180909495_Initial.cs</DependentUpon>
+    </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

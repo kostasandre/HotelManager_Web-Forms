@@ -81,6 +81,7 @@
     <Content Include="CssClasses\StyleSheet1.css" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
+    <Content Include="HotelWebForm.aspx" />
     <Content Include="WebForm1.aspx" />
   </ItemGroup>
   <ItemGroup>
@@ -151,6 +152,13 @@
     </Compile>
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
+    </Compile>
+    <Compile Include="HotelWebForm.aspx.cs">
+      <DependentUpon>HotelWebForm.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="HotelWebForm.aspx.designer.cs">
+      <DependentUpon>HotelWebForm.aspx</DependentUpon>
     </Compile>
     <Compile Include="Main.aspx.cs">
       <DependentUpon>Main.aspx</DependentUpon>
