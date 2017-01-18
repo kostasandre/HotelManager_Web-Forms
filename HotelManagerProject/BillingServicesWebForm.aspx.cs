@@ -14,6 +14,8 @@ namespace HotelManagerProject
     using System;
     using System.Web.UI;
 
+    using HotelManagerLib.Controllers;
+
     #endregion
 
     /// <summary>
@@ -21,6 +23,18 @@ namespace HotelManagerProject
     /// </summary>
     public partial class BillingWebForm : Page
     {
+        /// <summary>
+        /// The billing entity controller.
+        /// </summary>
+        private BillingEntityController billingEntityController;
+
+        /// <summary>
+        /// The billing service entity controller.
+        /// </summary>
+        private BillingServiceEntityController billingServiceEntityController;
+
+        private ServiceController serviceController;
+
         /// <summary>
         /// The page_ init.
         /// </summary>
@@ -32,7 +46,9 @@ namespace HotelManagerProject
         /// </param>
         protected void Page_Init(object sender, EventArgs e)
         {
-            
+            this.serviceController = new ServiceController();
+            this.BillingGridView.DataSource = this.serviceController.RefreshEntities();
+            this.BillingGridView.DataBind();
         }
 
         /// <summary>

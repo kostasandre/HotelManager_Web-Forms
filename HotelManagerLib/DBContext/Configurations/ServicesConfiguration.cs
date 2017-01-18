@@ -35,7 +35,7 @@ namespace HotelManagerLib.DBContext.Configurations
             this.Property(x => x.Id).HasDatabaseGeneratedOption(DatabaseGeneratedOption.Identity);
 
             // Foreign Keys
-            this.HasOptional(x => x.Hotels).WithMany().WillCascadeOnDelete(false);
+            this.HasMany(x => x.Hotels).WithMany(x => x.Services);
             this.HasMany(x => x.BillingServices).WithRequired(x => x.Service).HasForeignKey(x => x.ServiceId);
 
             // Required Entities

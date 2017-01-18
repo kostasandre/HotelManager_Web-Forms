@@ -90,7 +90,6 @@ namespace HotelManagerLib.DBContext
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);
-
             modelBuilder.Configurations.Add(new HotelConfiguration());
             modelBuilder.Configurations.Add(new RoomConfiguration());
             modelBuilder.Configurations.Add(new RoomTypeConfiguration());
