@@ -19,6 +19,7 @@ namespace HotelManagerLib.Controllers
     using HotelManagerLib.DBContext;
     using HotelManagerLib.Enums;
     using HotelManagerLib.Models.Persistant;
+    using HotelManagerLib.Repositories;
     using HotelManagerLib.Repositories.Interfaces;
 
     #endregion
@@ -28,7 +29,10 @@ namespace HotelManagerLib.Controllers
     /// </summary>
     public class BookingController : IEntityController<Booking>
     {
-        
+        public BookingController()
+        {
+            this.Repository = new BookingRepository();
+        }
 
         /// <summary>
         /// Gets or sets the repository.

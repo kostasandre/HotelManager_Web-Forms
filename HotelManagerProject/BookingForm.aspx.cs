@@ -22,6 +22,8 @@ namespace HotelManagerProject
         private RoomController roomController;
 
         private RoomTypeController roomTypeController;
+
+
         protected void Page_Load(object sender , EventArgs e)
         {
             this.bookingController = new BookingController();
@@ -56,6 +58,7 @@ namespace HotelManagerProject
             }
             
             this.availableRoomsGridView.DataSource = availableRooms;
+            this.availableRoomsGridView.DataBind();
         }
     }
 }

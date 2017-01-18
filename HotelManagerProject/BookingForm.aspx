@@ -15,7 +15,7 @@
                          <label>Room Type:</label> 
                     </div>
                     <div class="col-xs-1">
-                       <dx:ASPxComboBox ID="roomTypeComboBox" NullText="Select Room Type" runat="server" ValueField="Id" TextField="Code" OnInit="roomTypeComboBox_OnInit" IncrementalFilteringMode=None DropDownStyle=DropDown>
+                       <dx:ASPxComboBox ID="roomTypeComboBox" NullText="Select Room Type" runat="server" ValueField="Id" TextField="Code" OnInit="roomTypeComboBox_OnInit" IncrementalFilteringMode=None DropDownStyle=DropDownList>
                         </dx:ASPxComboBox>
                     </div>
                 </div>
