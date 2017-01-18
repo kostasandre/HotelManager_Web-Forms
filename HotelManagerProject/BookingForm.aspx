@@ -15,7 +15,7 @@
                          <label>Room Type:</label> 
                     </div>
                     <div class="col-xs-1">
-                       <dx:ASPxComboBox ID="roomTypeComboBox" NullText="Select Room Type" runat="server" ValueField="Id" TextField="Code" OnInit="roomTypeComboBox_OnInit" IncrementalFilteringMode=None DropDownStyle=DropDownList>
+                       <dx:ASPxComboBox ID="roomTypeComboBox" NullText="Select Room Type" runat="server" ValueField="Id" TextField="Code" OnInit="roomTypeComboBox_OnInit" IncrementalFilteringMode= "None" DropDownStyle= "DropDownList">
                         </dx:ASPxComboBox>
                     </div>
                 </div>
@@ -67,9 +67,9 @@
                         </dx:GridViewDataTextColumn>
                         <dx:GridViewDataTextColumn FieldName="Id" VisibleIndex="4" Visible="False">
                         </dx:GridViewDataTextColumn>
-                        <dx:GridViewDataTextColumn FieldName="Hotel Id" VisibleIndex="3">
+                        <dx:GridViewDataTextColumn FieldName="HotelId" VisibleIndex="3">
                         </dx:GridViewDataTextColumn>
-                        <dx:GridViewDataTextColumn FieldName="Room Type Id" VisibleIndex="4">
+                        <dx:GridViewDataTextColumn FieldName="RoomTypeId" VisibleIndex="4">
                         </dx:GridViewDataTextColumn>
                         </Columns>
                     </dx:ASPxGridView>
