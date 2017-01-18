@@ -33,10 +33,11 @@
                     <li>
                         <a style="font-size: 40px; padding-top: 20px; margin-left: 20px;" href="Main.aspx" data-toggle="collapse" data-target="#">Hotel Manager</a>
                     </li>
-                    <li class="dropdown"><a href="#" data-toggle="collapse" data-target="#one">Hotels</a> </li>
-                    <li class="dropdown"><a href="#" data-toggle="collapse" data-target="#two">Booking</a> </li>
-                    <li class="dropdown"><a href="#" data-toggle="collapse" data-target="#three">Billing</a> </li>
-                    <li class="dropdown"><a href="#" data-toggle="collapse" data-target="#four">Reports</a> </li>
+                    <li class="dropdown"> <a href="#" data-toggle="collapse" data-target="#one">Hotels</a> </li>
+	  <li class="dropdown"> <a href="#" data-toggle="collapse" data-target="#two">Booking</a> </li>
+	  <li class="dropdown"> <a href="#" data-toggle="collapse" data-target="#three">Billing</a> </li>
+        <li class="dropdown"> <a href="CustomersForm.aspx" data-toggle="collapse" data-target="#five">Customers</a> </li>
+		<li class="dropdown"> <a href="#" data-toggle="collapse" data-target="#four">Reports</a> </li>
                 </ul>
             </nav>
         </div>
