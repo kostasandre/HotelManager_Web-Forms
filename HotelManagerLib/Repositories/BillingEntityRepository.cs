@@ -96,7 +96,7 @@ namespace HotelManagerLib.Repositories
         {
             using (var context = new DataBaseContext())
             {
-                return context.Billings.Include("Bookings").ToList();
+                return context.Billings.Include("BillingServices").ToList();
             }
         }
 
@@ -111,7 +111,7 @@ namespace HotelManagerLib.Repositories
         /// </returns>
         public IQueryable<Billing> ReadAllQuery(DataBaseContext context)
         {
-            return context.Billings.Include("Bookings");
+            return context.Billings.Include("BillingServices");
         }
 
         /// <summary>

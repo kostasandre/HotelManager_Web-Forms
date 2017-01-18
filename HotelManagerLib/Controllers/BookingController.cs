@@ -29,6 +29,9 @@ namespace HotelManagerLib.Controllers
     /// </summary>
     public class BookingController : IEntityController<Booking>
     {
+        /// <summary>
+        /// Initializes a new instance of the <see cref="BookingController"/> class.
+        /// </summary>
         public BookingController()
         {
             this.Repository = new BookingRepository();

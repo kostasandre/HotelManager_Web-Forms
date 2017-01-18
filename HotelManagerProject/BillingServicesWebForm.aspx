@@ -3,6 +3,12 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
+    <script type="text/javascript">
+        function ShowLoginWindow() {
+            BookingList.Show();
+        }
+
+    </script>
     <div class="container" style="width: 100%">
 
         <div class="row">
@@ -11,18 +17,19 @@
             <div class="col-xs-1">
                 <dx:ASPxButton ID="SearchButton" runat="server" ToolTip="Search for your desired booking." Theme="BlackGlass">
                     <Image Width="50px" Height="20px" Url="Images/searched.jpg"></Image>
+                    <ClientSideEvents Click="function(s, e) { ShowLoginWindow(); }" />
                 </dx:ASPxButton>
             </div>
             <div class="col-xs-2 billingdiv2">
                 <dx:ASPxLabel CssClass="Text" ForeColor="AquaMarine" runat="server" Text="Booking :" Theme="BlackGlass"></dx:ASPxLabel>
                 <dx:ASPxTextBox runat="server"></dx:ASPxTextBox>
             </div>
-            <div class="col-xs-2 billingdiv2" >
-                 <dx:ASPxLabel CssClass="Text" ForeColor="AquaMarine" runat="server" Text="Price :" Theme="BlackGlass"></dx:ASPxLabel>
+            <div class="col-xs-2 billingdiv2">
+                <dx:ASPxLabel CssClass="Text" ForeColor="AquaMarine" runat="server" Text="Price :" Theme="BlackGlass"></dx:ASPxLabel>
                 <dx:ASPxTextBox runat="server"></dx:ASPxTextBox>
             </div>
-             <div class="col-xs-2 billingdiv2" >
-                 <dx:ASPxLabel CssClass="Text" ForeColor="AquaMarine" runat="server" Text="Customer :" Theme="BlackGlass"></dx:ASPxLabel>
+            <div class="col-xs-2 billingdiv2">
+                <dx:ASPxLabel CssClass="Text" ForeColor="AquaMarine" runat="server" Text="Customer :" Theme="BlackGlass"></dx:ASPxLabel>
                 <dx:ASPxTextBox runat="server"></dx:ASPxTextBox>
             </div>
         </div>
@@ -41,22 +48,15 @@
                     <SettingsSearchPanel Visible="True" />
                     <Columns>
 
-                        <dx:GridViewCommandColumn ShowClearFilterButton="True" VisibleIndex="1" ButtonRenderMode="Image">
-                            <CustomButtons>
-                                <dx:GridViewCommandColumnCustomButton ID="editButton">
-                                    <Image Url="Images/edit.png" ToolTip="Edit"></Image>
-                                </dx:GridViewCommandColumnCustomButton>
-                            </CustomButtons>
+                        <dx:GridViewCommandColumn ShowClearFilterButton="True" VisibleIndex="1" ShowEditButton="True">
                         </dx:GridViewCommandColumn>
-                        <dx:GridViewDataTextColumn FieldName="Service Type" VisibleIndex="2">
+                        <dx:GridViewDataTextColumn FieldName="Description" VisibleIndex="2" ReadOnly="True">
                         </dx:GridViewDataTextColumn>
                         <dx:GridViewDataTextColumn FieldName="Id" VisibleIndex="4" Visible="False">
                         </dx:GridViewDataTextColumn>
-                        <dx:GridViewDataTextColumn FieldName="Quantity" VisibleIndex="3">
+                        <dx:GridViewDataTextColumn VisibleIndex="3" Name="Quantity">
                         </dx:GridViewDataTextColumn>
-                        <dx:GridViewDataTextColumn FieldName="Price" VisibleIndex="5">
-                        </dx:GridViewDataTextColumn>
-                        <dx:GridViewDataTextColumn FieldName="Created" VisibleIndex="7">
+                        <dx:GridViewDataTextColumn VisibleIndex="5" Name="Price">
                         </dx:GridViewDataTextColumn>
                     </Columns>
                 </dx:ASPxGridView>
@@ -75,7 +75,7 @@
             <div class="col-xs-3">
             </div>
             <div class="col-xs-1 billingdiv2">
-                 <dx:ASPxLabel CssClass="Text" ForeColor="AquaMarine" runat="server" Text="Paid :" Theme="BlackGlass"></dx:ASPxLabel>
+                <dx:ASPxLabel CssClass="Text" ForeColor="AquaMarine" runat="server" Text="Paid :" Theme="BlackGlass"></dx:ASPxLabel>
                 <dx:ASPxCheckBox runat="server"></dx:ASPxCheckBox>
             </div>
             <div class="col-xs-3 billingdiv">
@@ -99,5 +99,72 @@
 
 
     </div>
+    <dx:ASPxPopupControl ID="BookingList" runat="server" CloseAction="CloseButton" CloseOnEscape="True" Modal="True"
+        PopupHorizontalAlign="WindowCenter" PopupVerticalAlign="WindowCenter" ClientInstanceName="BookingList"
+        HeaderText="Bookings" AllowDragging="True" PopupAnimationType="Fade" EnableViewState="False" EnableTheming="True" Theme="BlackGlass">
+        <ClientSideEvents PopUp="function(s, e) { ASPxClientEdit.ClearGroup('entryGroup');}" />
+        <ContentCollection>
+            <dx:PopupControlContentControl runat="server">
+                <dx:ASPxPanel ID="Panel1" runat="server" DefaultButton="btOK">
+                    <PanelCollection>
+                        <dx:PanelContent runat="server">
+                            <table>
+                                <tr>
+                                    <td rowspan="4">
+                                        <div class="pcmSideSpacer">
+                                        </div>
+                                    </td>
+                                    <td class="pcmCellText">
+                                        <dx:ASPxGridView runat="server" ID="BookingListGridview" AutoGenerateColumns="False" KeyFieldName="Id" Theme="BlackGlass">
+                                            <Settings ShowFilterRow="True" ShowGroupPanel="True" />
+                                            <SettingsSearchPanel Visible="True" />
+                                            <Columns>
+                                                <dx:GridViewCommandColumn SelectAllCheckboxMode="Page" ShowClearFilterButton="True" ShowInCustomizationForm="True" ShowSelectCheckbox="True" VisibleIndex="0">
+                                                </dx:GridViewCommandColumn>
+                                                <dx:GridViewDataTextColumn FieldName="Comments" VisibleIndex="2" ReadOnly="True">
+                                                </dx:GridViewDataTextColumn>
+                                                <dx:GridViewDataTextColumn FieldName="Id" VisibleIndex="5" Visible="False">
+                                                </dx:GridViewDataTextColumn>
+                                                <dx:GridViewDataTextColumn FieldName="From" VisibleIndex="4" ReadOnly="True">
+                                                </dx:GridViewDataTextColumn>
+                                                <dx:GridViewDataTextColumn FieldName="To" VisibleIndex="6" ReadOnly="True">
+                                                </dx:GridViewDataTextColumn>
+                                                <dx:GridViewDataTextColumn FieldName="SystemPrice" VisibleIndex="7" ReadOnly="True">
+                                                </dx:GridViewDataTextColumn>
+                                                <dx:GridViewDataTextColumn FieldName="AgreedPrice" VisibleIndex="3" ReadOnly="True">
+                                                </dx:GridViewDataTextColumn>
+                                            </Columns>
+                                        </dx:ASPxGridView>
+                                    </td>
+                                    <td rowspan="4">
+                                        <div class="pcmSideSpacer">
+                                        </div>
+                                    </td>
+                                </tr>
+
+
+                                <tr>
+                                    <td colspan="2">
+                                        <div class="pcmButton">
+                                            <dx:ASPxButton ID="btOK" runat="server" Text="OK" Width="80px" AutoPostBack="False" Style="float: left; margin-right: 8px">
+                                                <ClientSideEvents Click="function(s, e) { if(ASPxClientEdit.ValidateGroup('entryGroup')) BookingList.Hide(); }" />
+                                            </dx:ASPxButton>
+                                            <dx:ASPxButton ID="btCancel" runat="server" Text="Cancel" Width="80px" AutoPostBack="False" Style="float: left; margin-right: 8px">
+                                                <ClientSideEvents Click="function(s, e) { BookingList.Hide(); }" />
+                                            </dx:ASPxButton>
+                                        </div>
+                                    </td>
+                                </tr>
+                            </table>
+                        </dx:PanelContent>
+                    </PanelCollection>
+                </dx:ASPxPanel>
+            </dx:PopupControlContentControl>
+        </ContentCollection>
+        <ContentStyle>
+            <Paddings PaddingBottom="5px" />
+        </ContentStyle>
+    </dx:ASPxPopupControl>
+    
 
 </asp:Content>
