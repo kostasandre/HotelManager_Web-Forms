@@ -116,7 +116,7 @@ namespace HotelManagerLib.Repositories
         {
             using (var context = new DataBaseContext())
             {
-                return context.Bookings.ToList();
+                return context.Bookings.Include("Room").ToList();
             }
         }
 

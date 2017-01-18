@@ -22,6 +22,8 @@ namespace HotelManagerProject
         private RoomController roomController;
 
         private RoomTypeController roomTypeController;
+
+
         protected void Page_Load(object sender , EventArgs e)
         {
             this.bookingController = new BookingController();
@@ -33,7 +35,9 @@ namespace HotelManagerProject
             this.roomTypeController = new RoomTypeController();
             var roomTypes = this.roomTypeController.RefreshEntities();
             this.roomTypeComboBox.DataSource = roomTypes;
+            
             this.roomTypeComboBox.DataBind();
+
         }
 
         protected void calculateRoomTypePriceButton_OnClick(object sender, EventArgs e)
@@ -43,6 +47,7 @@ namespace HotelManagerProject
             var dateFrom = this.dateFromCalendar.Value;
             var dateTo = this.dateToCalendar.Value;
             var roomType = this.roomTypeComboBox.Text;
+            var roomTypeId = this.roomTypeComboBox.Value;
             if (dateFrom != null && dateTo != null && roomType != string.Empty)
             {
                 var rooms = this.roomController.RefreshEntities();
@@ -56,6 +61,7 @@ namespace HotelManagerProject
             }
             
             this.availableRoomsGridView.DataSource = availableRooms;
+            this.availableRoomsGridView.DataBind();
         }
     }
 }
