@@ -127,11 +127,8 @@ namespace HotelManagerLib.Controllers
         /// <summary>
         /// The is room available.
         /// </summary>
-        /// <param name="room">
-        /// The room.
-        /// </param>
-        /// <param name="bookings">
-        /// The bookings.
+        /// <param name="roomType">
+        /// The room Type.
         /// </param>
         /// <param name="dateFrom">
         /// The date from.
@@ -142,25 +139,20 @@ namespace HotelManagerLib.Controllers
         /// <returns>
         /// The <see cref="bool"/>.
         /// </returns>
-        public bool IsRoomAvailable(Room room, IList<Booking> bookedRoomsList)
+        public List<Room> AvailableRooms(object roomType, object dateFrom, object dateTo )
         {
-            
-            foreach (var booking in bookedRoomsList)
+            var roomController = new RoomController();
+            var availableRooms = new List<Room>();
+            var rooms = roomController.RefreshEntities().Where(x => x.RoomTypeId == Convert.ToInt32(roomType));
+            foreach (var room in rooms)
             {
-                if (booking.Room.Id == room.Id && booking.Status != Status.Cancelled)
+                var isAvailable = !this.RefreshEntities().Any(x => x.RoomId == room.Id && x.Status != Status.Cancelled && ((x.To >= Convert.ToDateTime(dateFrom)) && (Convert.ToDateTime(dateTo) >= x.From)));
+                if (isAvailable)
                 {
-                    
-                    return false;
-                }
-                else if (booking.Room.Id == room.Id && booking.Status == Status.Cancelled)
-                {
-                    
-                    return true;
+                    availableRooms.Add(room);
                 }
             }
-            return true;
-
-
+            return availableRooms;
         }
     }
 }

@@ -55,31 +55,20 @@ namespace HotelManagerProject
         /// </param>
         protected void calculateRoomTypePriceButton_OnClick(object sender, EventArgs e)
         {
-            var bookedRoomsInDaysGiven = new List<Booking>();
             var availableRooms = new List<Room>();
+            
             var dateFrom = this.dateFromCalendar.Value;
             var dateTo = this.dateToCalendar.Value;
             var roomType = this.roomTypeComboBox.Text;
             var roomTypeId = this.roomTypeComboBox.Value;
             if ((dateFrom != null) && (dateTo != null) && (roomType != string.Empty))
             {
-                var rooms = this.roomController.RefreshEntities().Where(x => x.RoomTypeId == Convert.ToInt32(roomTypeId));
-                foreach (var room in rooms)
-                {
-                    var isAvailable = !this.bookingController.RefreshEntities().Any(x => x.RoomId == room.Id && x.Status != Status.Cancelled && ((x.To >= Convert.ToDateTime(dateFrom)) && (Convert.ToDateTime(dateTo) >= x.From)));
-                    if (isAvailable)
-                    {
-                        availableRooms.Add(room);
-                    }
-                }
+                availableRooms = this.bookingController.AvailableRooms(roomTypeId, dateFrom, dateTo);
             }
-            else
-            {
-                return;
-            }
-
+            
             this.availableRoomsGridView.DataSource = availableRooms;
             this.availableRoomsGridView.DataBind();
+            
         }
 
         /// <summary>
