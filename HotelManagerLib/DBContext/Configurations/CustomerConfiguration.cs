@@ -34,9 +34,6 @@ namespace HotelManagerLib.DBContext.Configurations
             this.HasKey(x => x.Id);
             this.Property(x => x.Id).HasDatabaseGeneratedOption(DatabaseGeneratedOption.Identity);
 
-            // Foreign Keys
-            this.HasMany(x => x.Bookings).WithRequired(x => x.Customer).HasForeignKey(x => x.CustomerId);
-
             // Required Entities
             this.Property(x => x.Name).IsRequired().HasMaxLength(150);
             this.Property(x => x.Surname).IsRequired().HasMaxLength(150);

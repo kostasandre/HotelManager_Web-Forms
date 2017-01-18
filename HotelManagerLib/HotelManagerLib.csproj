@@ -75,29 +75,9 @@
     <Compile Include="Enums\Status.cs" />
     <Compile Include="Enums\TypeOfBillableEntity.cs" />
     <Compile Include="Enums\View.cs" />
-    <Compile Include="Migrations\201701171636349_fifth.cs" />
-    <Compile Include="Migrations\201701171636349_fifth.Designer.cs">
-      <DependentUpon>201701171636349_fifth.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201701161004010_FirstRefactoringsTk.cs" />
-    <Compile Include="Migrations\201701161004010_FirstRefactoringsTk.Designer.cs">
-      <DependentUpon>201701161004010_FirstRefactoringsTk.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201701161508104_third.cs" />
-    <Compile Include="Migrations\201701161508104_third.Designer.cs">
-      <DependentUpon>201701161508104_third.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201701170807076_fourth.cs" />
-    <Compile Include="Migrations\201701170807076_fourth.Designer.cs">
-      <DependentUpon>201701170807076_fourth.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201701180805202_eightth.cs" />
-    <Compile Include="Migrations\201701180805202_eightth.Designer.cs">
-      <DependentUpon>201701180805202_eightth.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201701180833315_10th.cs" />
-    <Compile Include="Migrations\201701180833315_10th.Designer.cs">
-      <DependentUpon>201701180833315_10th.cs</DependentUpon>
+    <Compile Include="Migrations\201701180909495_Initial.cs" />
+    <Compile Include="Migrations\201701180909495_Initial.Designer.cs">
+      <DependentUpon>201701180909495_Initial.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Persistant\Billing.cs" />
@@ -132,11 +112,6 @@
     <Compile Include="Repositories\ServiceRepository.cs" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201701171636349_fifth.resx">
-      <DependentUpon>201701171636349_fifth.cs</DependentUpon>
-    </EmbeddedResource>
-  </ItemGroup>
-  <ItemGroup>
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
@@ -144,23 +119,8 @@
     </None>
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201701160904120_createDataBase.resx">
-      <DependentUpon>201701160904120_createDataBase.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201701161004010_FirstRefactoringsTk.resx">
-      <DependentUpon>201701161004010_FirstRefactoringsTk.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201701161508104_third.resx">
-      <DependentUpon>201701161508104_third.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201701170807076_fourth.resx">
-      <DependentUpon>201701170807076_fourth.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201701180805202_eightth.resx">
-      <DependentUpon>201701180805202_eightth.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201701180833315_10th.resx">
-      <DependentUpon>201701180833315_10th.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201701180909495_Initial.resx">
+      <DependentUpon>201701180909495_Initial.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
