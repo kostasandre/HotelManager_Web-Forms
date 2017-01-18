@@ -13,6 +13,7 @@ namespace HotelManagerProject
 
     using HotelManagerLib.Controllers;
     using HotelManagerLib.DBContext;
+    using HotelManagerLib.Enums;
     using HotelManagerLib.Models.Persistant;
 
     public partial class BookingForm : System.Web.UI.Page
@@ -50,10 +51,17 @@ namespace HotelManagerProject
             var roomTypeId = this.roomTypeComboBox.Value;
             if (dateFrom != null && dateTo != null && roomType != string.Empty)
             {
-                var rooms = this.roomController.RefreshEntities();
-                var bookings = this.bookingController.RefreshEntities();
-                bookedRoomsInDaysGiven.AddRange(bookings.Where(booking => booking.From == Convert.ToDateTime(dateFrom) && booking.To == Convert.ToDateTime(dateTo)));
-                availableRooms.AddRange(from room in rooms let isAvailable = this.bookingController.IsRoomAvailable(room, bookedRoomsInDaysGiven) where isAvailable select room);
+                var rooms = this.roomController.RefreshEntities().Where(x => x.RoomTypeId == Convert.ToInt32(roomTypeId));
+                var bookings = this.bookingController.RefreshEntities().Where(x => x.From == Convert.ToDateTime(dateFrom) && x.To == Convert.ToDateTime(dateTo));
+                foreach (var room in rooms)
+                {
+                    var isAvailable = this.bookingController.IsRoomAvailable(room, bookings.ToList());
+                    if (isAvailable)
+                    {
+                        availableRooms.Add(room);
+                    }
+                }
+                
             }
             else
             {

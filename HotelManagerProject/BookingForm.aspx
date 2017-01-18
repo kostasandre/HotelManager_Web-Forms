@@ -7,6 +7,9 @@
     <div class="MainForm">
         
         <h1>Booking Form</h1>
+        <dx:ASPxButton ID="ASPxButton1" runat="server" Text="ASPxButton">
+            <ClientSideEvents Click="function(s, e) {	popup.ShowWindow(popup.GetWindowByName('createUserPopUp'));  }" />
+        </dx:ASPxButton>
         
         <div class="container" style="width: 100%">
 
@@ -80,4 +83,24 @@
         </div>
 
     </div>
+    <dx:ASPxPopupControl ClientInstanceName="ASPxPopupClientControl" Width="330px" Height="250px"
+        MaxWidth="800px" MaxHeight="800px" MinHeight="150px" MinWidth="150px" ID="createUserPopUp"
+        ShowFooter="True" FooterText="Runtime: 142 min" PopupElementID="imgButton" HeaderText="Area of Countries"
+        runat="server" EnableViewState="false" PopupHorizontalAlign="LeftSides" PopupVerticalAlign="Below" EnableHierarchyRecreation="True">
+        <ContentCollection>
+            <dx:PopupControlContentControl runat="server">
+                <asp:Panel ID="Panel1" runat="server">
+                    <div class="container" style="width: 100%">
+                        <div class="row">
+                            <div class="col-xs-1">
+                                 <label>Room Type:</label> 
+                            </div>
+                        </div>
+                    </div>
+                </asp:Panel>
+            </dx:PopupControlContentControl>
+        </ContentCollection>
+        <ClientSideEvents CloseUp="function(s, e) { SetImageState(false); }" PopUp="function(s, e) { SetImageState(true); }" />
+    </dx:ASPxPopupControl>
+
 </asp:Content>

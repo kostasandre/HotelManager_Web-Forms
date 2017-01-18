@@ -141,19 +141,22 @@ namespace HotelManagerLib.Controllers
         /// </returns>
         public bool IsRoomAvailable(Room room, IList<Booking> bookedRoomsList)
         {
-            var isAvailable = false;
+            
             foreach (var booking in bookedRoomsList)
             {
                 if (booking.Room.Id == room.Id && booking.Status != Status.Cancelled)
                 {
-                    isAvailable = false;
+                    
+                    return false;
                 }
-                else
+                else if (booking.Room.Id == room.Id && booking.Status == Status.Cancelled)
                 {
-                    isAvailable = true;
+                    
+                    return true;
                 }
             }
-            return isAvailable;
+            return true;
+
 
         }
     }
