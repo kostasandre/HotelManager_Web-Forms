@@ -15,6 +15,8 @@ namespace HotelManagerProject
     using System.Web.UI;
 
     using HotelManagerLib.Controllers;
+    using HotelManagerLib.Controllers.Interfaces;
+    using HotelManagerLib.Models.Persistant;
 
     #endregion
 
@@ -26,14 +28,20 @@ namespace HotelManagerProject
         /// <summary>
         /// The billing entity controller.
         /// </summary>
-        private BillingEntityController billingEntityController;
+        private IEntityController<Billing> billingEntityController;
+
+        private IEntityController<Booking> bookingEntityController;
 
         /// <summary>
         /// The billing service entity controller.
         /// </summary>
-        private BillingServiceEntityController billingServiceEntityController;
+        private IEntityController<BillingService> billingServiceEntityController;
 
-        private ServiceController serviceController;
+        /// <summary>
+        /// The service controller.
+        /// </summary>
+        private IEntityController<Service> serviceController;
+       
 
         /// <summary>
         /// The page_ init.
@@ -46,9 +54,13 @@ namespace HotelManagerProject
         /// </param>
         protected void Page_Init(object sender, EventArgs e)
         {
+            this.bookingEntityController = new BookingController();
             this.serviceController = new ServiceController();
             this.BillingGridView.DataSource = this.serviceController.RefreshEntities();
             this.BillingGridView.DataBind();
+            this.BillingGridView.Visible = false;
+            this.BookingListGridview.DataSource = this.bookingEntityController.RefreshEntities();
+            this.BookingListGridview.DataBind();
         }
 
         /// <summary>
