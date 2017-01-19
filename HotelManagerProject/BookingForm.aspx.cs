@@ -18,6 +18,7 @@ namespace HotelManagerProject
 
     using HotelManagerLib.Controllers;
     using HotelManagerLib.Enums;
+    using HotelManagerLib.Exceptions;
     using HotelManagerLib.Models.Persistant;
 
     #endregion

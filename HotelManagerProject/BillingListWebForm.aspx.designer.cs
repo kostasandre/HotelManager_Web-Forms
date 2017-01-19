@@ -22,6 +22,15 @@ namespace HotelManagerProject {
         protected global::DevExpress.Web.ASPxButton CreateBillingButton;
         
         /// <summary>
+        /// DeleteBillingButon control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::DevExpress.Web.ASPxButton DeleteBillingButon;
+        
+        /// <summary>
         /// BillingListGridView control.
         /// </summary>
         /// <remarks>
@@ -29,6 +38,15 @@ namespace HotelManagerProject {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::DevExpress.Web.ASPxGridView BillingListGridView;
+        
+        /// <summary>
+        /// editButton control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::DevExpress.Web.GridViewCommandColumnCustomButton editButton;
         
         /// <summary>
         /// createBillingPopUp control.

@@ -10,44 +10,51 @@
         }
 
     </script>
-	<div class="container" style="width: 100%">
-	   <br />
-		<br />
-		<br />
-		<div class="row">
-			<div class="col-lg-1 col-sm-2 col-md-2 col-xs-4">
-				<dx:ASPxButton id="CreateBillingServiceButton" CssClass="button" tooltip="Creates a new Billing" ForeColor="AquaMarine" Theme="BlackGlass" runat="server" Text="Create Billing Service">
+    <div class="container" style="width: 100%">
+       <br />
+        <br />
+        <br />
+        <div class="row">
+            <div class="col-lg-1 col-sm-2 col-md-2 col-xs-4">
+                <dx:ASPxButton id="CreateBillingServiceButton" CssClass="button" tooltip="Creates a new Billing" ForeColor="AquaMarine" Theme="BlackGlass" runat="server" Text="Create Billing Service">
                 <ClientSideEvents Click="function(s, e) { ShowLoginWindow(); }" />
                     </dx:ASPxButton>
-			</div>
-			<div class="col-lg-3 col-sm-2 col-xs-4">
-				<dx:ASPxButton runat="server" CssClass="button" tooltip="Deletes the selected Billing" ForeColor="AquaMarine" Theme="BlackGlass" Text="Delete Billing" />
-			</div>
-		
+            </div>
+            <div class="col-lg-3 col-sm-2 col-xs-4">
+                <dx:ASPxButton runat="server" CssClass="button" tooltip="Deletes the selected Billing" ForeColor="AquaMarine" Theme="BlackGlass" Text="Delete Billing"  OnClick="DeleteBillingButtonClick"/>
+            </div>
+        
 
-		
-			<div class="col-xs-12 col-lg-4 col-sm-4">
-				<dx:ASPxGridView ID="BillingServiceListGridView" runat="server" Theme="BlackGlass" AutoGenerateColumns="False">
-					<Settings ShowGroupPanel="True" ShowFilterRow="True"></Settings>
-					<SettingsSearchPanel Visible="True"></SettingsSearchPanel>
-					<Columns>
-						<dx:GridViewCommandColumn ShowClearFilterButton="True" VisibleIndex="1" SelectAllCheckboxMode="Page" ShowSelectCheckbox="True">
-						</dx:GridViewCommandColumn>
-						<dx:GridViewDataTextColumn FieldName="Id" VisibleIndex="2">
-						</dx:GridViewDataTextColumn>
-						<dx:GridViewDataTextColumn FieldName="BillingId" VisibleIndex="3" ReadOnly="True">
-						</dx:GridViewDataTextColumn>
-						<dx:GridViewDataTextColumn FieldName="ServiceId" VisibleIndex="4">
-						</dx:GridViewDataTextColumn>
-						<dx:GridViewDataTextColumn FieldName="Quantity" VisibleIndex="5">
-						</dx:GridViewDataTextColumn>
-						<dx:GridViewDataTextColumn FieldName="Price" VisibleIndex="6">
-						</dx:GridViewDataTextColumn>
-					</Columns>
-				</dx:ASPxGridView>
-			</div>
-		</div>
-	</div>
+        
+            <div class="col-xs-12 col-lg-4 col-sm-4">
+                <dx:ASPxGridView ID="BillingServiceListGridView" runat="server" Theme="BlackGlass" AutoGenerateColumns="False" KeyFieldName="Id">
+                    <Settings ShowGroupPanel="True" ShowFilterRow="True"></Settings>
+                    <SettingsSearchPanel Visible="True"></SettingsSearchPanel>
+                    <Columns>
+                          <dx:GridViewCommandColumn SelectAllCheckboxMode="Page" ShowClearFilterButton="True" ShowSelectCheckbox="True" VisibleIndex="0" ShowEditButton="True">
+                        </dx:GridViewCommandColumn>
+                        <dx:GridViewCommandColumn ShowClearFilterButton="True" VisibleIndex="1" ButtonRenderMode="Image">
+                            <CustomButtons>
+                                <dx:GridViewCommandColumnCustomButton ID="editButton">
+                                    <Image Url="Images/edit.png" Width="35px" ToolTip="Edit"></Image>
+                                </dx:GridViewCommandColumnCustomButton>
+                            </CustomButtons>
+                        </dx:GridViewCommandColumn>
+                        <dx:GridViewDataTextColumn FieldName="Id" VisibleIndex="2">
+                        </dx:GridViewDataTextColumn>
+                        <dx:GridViewDataTextColumn FieldName="BillingId" VisibleIndex="3" ReadOnly="True">
+                        </dx:GridViewDataTextColumn>
+                        <dx:GridViewDataTextColumn FieldName="ServiceId" VisibleIndex="4">
+                        </dx:GridViewDataTextColumn>
+                        <dx:GridViewDataTextColumn FieldName="Quantity" VisibleIndex="5">
+                        </dx:GridViewDataTextColumn>
+                        <dx:GridViewDataTextColumn FieldName="Price" VisibleIndex="6">
+                        </dx:GridViewDataTextColumn>
+                    </Columns>
+                </dx:ASPxGridView>
+            </div>
+        </div>
+    </div>
     <dx:ASPxPopupControl ClientInstanceName="createBillingServicePopUp" Width="330px" Height="250px" Modal="True"
         MaxWidth="800px" MaxHeight="800px" MinHeight="150px" MinWidth="150px" ID="createBillingServicePopUp"
         ShowFooter="True" FooterText="Runtime: 142 min" PopupElementID="imgButton" HeaderText="Billing Details"
