@@ -76,6 +76,24 @@ namespace HotelManagerProject {
         protected global::DevExpress.Web.ASPxGridView availableRoomsGridView;
         
         /// <summary>
+        /// customerSearchComboBox control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::DevExpress.Web.ASPxComboBox customerSearchComboBox;
+        
+        /// <summary>
+        /// ASPxTextBox1 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::DevExpress.Web.ASPxTextBox ASPxTextBox1;
+        
+        /// <summary>
         /// createUserPopUp control.
         /// </summary>
         /// <remarks>

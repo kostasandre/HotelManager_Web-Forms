@@ -57,12 +57,12 @@
             <br/>
             <div class="row">
                         <div class="col-xs-12">
-                           <h3 style="text-align: center">Available Rooms</h3>
+                           <h3>Available Rooms</h3>
                         </div>
                         
-                    </div>
+            </div>
             <br/>
-            <div class="row" style="align-content: center">
+            <div class="row">
                 <div class="col-xs-12">
                     <dx:ASPxGridView ID="availableRoomsGridView" runat="server" Theme="BlackGlass">
                         <Settings ShowFilterRow="True"></Settings>
@@ -83,6 +83,39 @@
                         </Columns>
                     </dx:ASPxGridView>
                 </div>
+                        
+            </div>
+            <br/>
+              <div class="row">
+                        <div class="col-xs-1">
+                           <label>Search Customer:</label>
+                        </div>
+                        <div class="col-xs-4">
+                           <dx:ASPxComboBox ID="customerSearchComboBox"
+                                    runat="server"
+                                    ValueType="System.String"
+                                    IncrementalFilteringMode="StartsWith"
+                                    DropDownStyle="DropDown"
+                                    TextField="ProductName"
+                                    ValueField="ProductID"
+                                    ClientInstanceName="productsCombo"
+                                    OnCallback="customerSearchComboBoxOnCallBack"
+                                    NullText="Search..."
+                                    EnableFocusedStyle="false" Width="100%">
+                                    <DropDownButton Visible="false"></DropDownButton>
+                                    <ButtonStyle CssClass="search"></ButtonStyle>
+                                    <Buttons>
+                                        <dx:EditButton Image-SpriteProperties-CssClass="size"></dx:EditButton>
+                                    </Buttons>
+                                    <ClientSideEvents Init="OnInit" SelectedIndexChanged="OnProductChanged" ButtonClick="OnSearchButtonClick" />
+                                </dx:ASPxComboBox>
+                        </div>
+                        <div class="col-xs-1">
+                           <label>Agreed Price:</label>
+                        </div>
+                        <div class="col-xs-4">
+                            <dx:ASPxTextBox ID=ASPxTextBox1 runat="server" Width="170px"></dx:ASPxTextBox>
+                        </div>
                         
             </div>
 

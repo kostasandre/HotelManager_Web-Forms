@@ -16,6 +16,8 @@ namespace HotelManagerProject
     using System.Globalization;
     using System.Web.UI;
 
+    using DevExpress.Web;
+
     using HotelManagerLib.Controllers;
     using HotelManagerLib.Models.Persistant;
 
@@ -40,6 +42,8 @@ namespace HotelManagerProject
         /// The room type controller.
         /// </summary>
         private RoomTypeController roomTypeController;
+
+        private CustomerController customerController;
 
         /// <summary>
         /// The calculate room type price button_ on click.
@@ -82,8 +86,13 @@ namespace HotelManagerProject
         /// </param>
         protected void Page_Load(object sender, EventArgs e)
         {
-            this.bookingController = new BookingController();
-            this.roomController = new RoomController();
+            if (!this.Page.IsPostBack)
+            {
+                this.bookingController = new BookingController();
+                this.roomController = new RoomController();
+                this.customerController = new CustomerController();
+            }
+           
         }
 
         /// <summary>
@@ -102,6 +111,13 @@ namespace HotelManagerProject
             this.roomTypeComboBox.DataSource = roomTypes;
 
             this.roomTypeComboBox.DataBind();
+        }
+
+        protected void customerSearchComboBoxOnCallBack(object sender, CallbackEventArgsBase e)
+        {
+            var customerList = this.customerController.RefreshEntities();
+            this.customerSearchComboBox.DataSource = customerList;
+            this.customerSearchComboBox.DataBind();
         }
     }
 }
