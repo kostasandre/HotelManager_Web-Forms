@@ -101,7 +101,7 @@ namespace HotelManagerLib.Repositories
         {
             using (var context = new DataBaseContext())
             {
-                return context.BillingServices.Include("Billings").ToList();
+                return context.BillingServices.ToList();
             }
         }
 

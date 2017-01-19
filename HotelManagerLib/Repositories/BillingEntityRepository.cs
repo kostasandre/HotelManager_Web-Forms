@@ -127,7 +127,7 @@ namespace HotelManagerLib.Repositories
         {
             using (var context = new DataBaseContext())
             {
-                var billing = context.Billings.Include("Bookings").SingleOrDefault(x => x.Id == id);
+                var billing = context.Billings.Include("BillingServices").SingleOrDefault(x => x.Id == id);
                 return billing;
             }
         }

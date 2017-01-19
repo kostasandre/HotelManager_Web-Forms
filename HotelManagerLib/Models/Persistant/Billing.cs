@@ -14,6 +14,7 @@ namespace HotelManagerLib.Models.Persistant
     using System;
     using System.Collections.Generic;
     using System.ComponentModel;
+    using System.ComponentModel.DataAnnotations.Schema;
 
     using HotelManagerLib.Models.Persistant.Interfaces;
 
@@ -43,6 +44,10 @@ namespace HotelManagerLib.Models.Persistant
         /// Gets or sets the bookings.
         /// </summary>
         public virtual Booking Booking { get; set; }
+
+        [Browsable(false)]
+        [ForeignKey("Booking")]
+        public int BookingId { get; set; }
         
         /// <summary>
         /// Gets or sets the id.

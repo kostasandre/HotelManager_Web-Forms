@@ -12,6 +12,7 @@ namespace HotelManagerLib.Models.Persistant
     #region
 
     using System;
+    using System.Collections.Generic;
     using System.ComponentModel;
     using System.ComponentModel.DataAnnotations.Schema;
 
@@ -30,6 +31,7 @@ namespace HotelManagerLib.Models.Persistant
         /// </summary>
         public Booking()
         {
+            this.Billings = new List<Billing>(); 
             this.Created = DateTime.Now;
             this.CreatedBy = Environment.UserName;
         }
@@ -66,6 +68,10 @@ namespace HotelManagerLib.Models.Persistant
         [Browsable(false)]
         public int Id { get; set; }
 
+        /// <summary>
+        /// Gets or sets the billings.
+        /// </summary>
+        public List<Billing> Billings { get; set; }
         /// <summary>
         /// Gets or sets the room.
         /// </summary>
