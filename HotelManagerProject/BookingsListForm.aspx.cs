@@ -68,7 +68,7 @@ namespace HotelManagerProject
                 errorlabel.Text = string.Empty;
                 if (this.bookingsGridView.VisibleRowCount == 0)
                 {
-                    errorlabel.Text = @"There are no companies to delete";
+                    errorlabel.Text = @"There are no bookings to delete";
                 }
 
                 var firstRun = true;
@@ -79,7 +79,7 @@ namespace HotelManagerProject
                     "Id");
                 if ((selectedRowKeys == null) || (selectedRowKeys.Count == 0))
                 {
-                    errorlabel.Text = @"Please select a billing first to delete";
+                    errorlabel.Text = @"Please select a bookings first to delete";
                     return;
                 }
 
