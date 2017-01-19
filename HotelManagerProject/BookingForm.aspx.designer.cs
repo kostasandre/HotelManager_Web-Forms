@@ -13,15 +13,6 @@ namespace HotelManagerProject {
     public partial class BookingForm {
         
         /// <summary>
-        /// ASPxButton1 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::DevExpress.Web.ASPxButton ASPxButton1;
-        
-        /// <summary>
         /// roomTypeComboBox control.
         /// </summary>
         /// <remarks>
@@ -74,6 +65,42 @@ namespace HotelManagerProject {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::DevExpress.Web.ASPxGridView availableRoomsGridView;
+        
+        /// <summary>
+        /// customerComboBox control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::DevExpress.Web.ASPxComboBox customerComboBox;
+        
+        /// <summary>
+        /// agreedPriceTextBox control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::DevExpress.Web.ASPxTextBox agreedPriceTextBox;
+        
+        /// <summary>
+        /// createCustomerButton control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::DevExpress.Web.ASPxButton createCustomerButton;
+        
+        /// <summary>
+        /// saveBookingButton control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::DevExpress.Web.ASPxButton saveBookingButton;
         
         /// <summary>
         /// createUserPopUp control.
@@ -130,6 +157,15 @@ namespace HotelManagerProject {
         protected global::DevExpress.Web.ASPxTextBox idNumberTextBox;
         
         /// <summary>
+        /// addressTextBox control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::DevExpress.Web.ASPxTextBox addressTextBox;
+        
+        /// <summary>
         /// emailTextBox control.
         /// </summary>
         /// <remarks>
@@ -166,13 +202,13 @@ namespace HotelManagerProject {
         protected global::DevExpress.Web.ASPxTextBox createdByTextBox;
         
         /// <summary>
-        /// btOK control.
+        /// customersPopUpSaveButton control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::DevExpress.Web.ASPxButton btOK;
+        protected global::DevExpress.Web.ASPxButton customersPopUpSaveButton;
         
         /// <summary>
         /// btCancel control.

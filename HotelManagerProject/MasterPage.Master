@@ -54,6 +54,7 @@
                 <ul class="nav navbar-nav collapse" id="two">
                     <li><a href="BookingsListForm.aspx" id="">Bookings</a></li>
                     <li><a href="BookingForm.aspx" id="">New Booking</a></li>
+                    <li><a href="CustomersForm.aspx" id="">Customers</a></li>
 
                 </ul>
                 <ul class="nav navbar-nav collapse" id="three">

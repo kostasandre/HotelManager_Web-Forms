@@ -8,10 +8,10 @@
   <br />
   <div class="row">
    <div class="col-lg-1 col-sm-2 col-md-2 col-xs-4">
-    <dx:ASPxButton id="createBookingButton" CssClass="button" tooltip="Creates a new Booking" ForeColor="AquaMarine" Theme="BlackGlass" runat="server" Text="Create Booking"/>
+    <dx:ASPxButton OnClick="createBookingButton_OnClick" id="createBookingButton" CssClass="button" tooltip="Creates a new Booking" ForeColor="AquaMarine" Theme="BlackGlass" runat="server" Text="Create Booking"/>
    </div>
    <div class="col-lg-1 col-sm-1 col-xs-4">
-    <dx:ASPxButton runat="server" CssClass="button" tooltip="Deletes the selected Booking" ForeColor="AquaMarine" Theme="BlackGlass" Text="Delete Booking" />
+    <dx:ASPxButton OnClick="deleteBookingButton_OnClick" ID="deleteBookingButton" runat="server" CssClass="button" tooltip="Deletes the selected Booking" ForeColor="AquaMarine" Theme="BlackGlass" Text="Delete Booking" />
    </div>
   </div>
 
@@ -20,7 +20,7 @@
    </div>
    <div class="col-xs-4">
         <h1 style="background-color: red; color: white;">Bookings List</h1>
-        <dx:ASPxGridView ID="bookingsGridView" runat="server" Theme="BlackGlass" AutoGenerateColumns="False">
+       <dx:ASPxGridView ID="bookingsGridView" runat="server" Theme="BlackGlass" AutoGenerateColumns="False" KeyFieldName="Id">
             <Settings ShowFilterRow="True"></Settings>
             <SettingsDataSecurity AllowInsert="False" AllowDelete="False" AllowEdit="False"></SettingsDataSecurity>
             <Columns>
