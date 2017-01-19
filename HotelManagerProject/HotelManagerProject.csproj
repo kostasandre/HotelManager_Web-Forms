@@ -84,6 +84,7 @@
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="HotelWebForm.aspx" />
+    <Content Include="Images\edit.png" />
     <Content Include="PricingListWebForm.aspx" />
     <Content Include="RoomTypeWebForm.aspx" />
     <Content Include="RoomWebForm.aspx" />
@@ -94,7 +95,7 @@
     <Content Include="Images\searched.jpg" />
     <Content Include="Images\download %282%29.jpg" />
     <Content Include="Images\download.png" />
-    <Content Include="Images\edit.png" />
+    <Content Include="Images\edit2.png" />
     <Content Include="Images\logos.jpg" />
     <Content Include="Images\search.jpg" />
     <Content Include="Main.aspx" />

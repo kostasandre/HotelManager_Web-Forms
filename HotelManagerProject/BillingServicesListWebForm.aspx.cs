@@ -12,7 +12,9 @@ namespace HotelManagerProject
     #region
 
     using System;
+    using System.Data.SqlClient;
     using System.Web.UI;
+    using System.Web.UI.WebControls;
 
     using HotelManagerLib.Controllers;
     using HotelManagerLib.Controllers.Interfaces;
@@ -26,9 +28,19 @@ namespace HotelManagerProject
     public partial class BillingServicesListForm : Page
     {
         /// <summary>
+        /// The billing.
+        /// </summary>
+        private Billing billing;
+
+        /// <summary>
         /// The billing entity controller.
         /// </summary>
         private IEntityController<Billing> billingEntityController;
+
+        /// <summary>
+        /// The billing service.
+        /// </summary>
+        private BillingService billingService;
 
         /// <summary>
         /// The billing service entity controller.
@@ -39,10 +51,6 @@ namespace HotelManagerProject
         /// The service.
         /// </summary>
         private Service service;
-
-        private Billing billing;
-
-        private BillingService billingService;
 
         /// <summary>
         /// The service entity controller.
@@ -68,17 +76,80 @@ namespace HotelManagerProject
             this.billing = this.billingEntityController.GetEntity(myBilling);
 
             this.billingService = new BillingService
-            {
-               
-                Service = this.service,
-                ServiceId = this.service.Id,
-                Billing = this.billing,
-                Price = Convert.ToDouble(this.priceTextBox.Text),
-                Quantity = Convert.ToInt32(this.quantityTextBox.Text),
-              };
+                                      {
+                                          Service = this.service,
+                                          ServiceId = this.service.Id,
+                                          Billing = this.billing,
+                                          Price = Convert.ToDouble(this.priceTextBox.Text),
+                                          Quantity = Convert.ToInt32(this.quantityTextBox.Text),
+                                      };
             this.billingServiceEntityController.CreateOrUpdateEntity(this.billingService);
             this.BillingServiceListGridView.DataSource = this.billingServiceEntityController.RefreshEntities();
             this.BillingServiceListGridView.DataBind();
+        }
+
+        /// <summary>
+        /// The unnamed 1_ click.
+        /// </summary>
+        /// <param name="sender">
+        /// The sender.
+        /// </param>
+        /// <param name="e">
+        /// The e.
+        /// </param>
+        protected void DeleteBillingButtonClick(object sender , EventArgs e)
+        {
+            var errorlabel = this.Master?.FindControl("form1").FindControl("divErrorMessage") as Label;
+            if (errorlabel != null)
+            {
+                errorlabel.Text = string.Empty;
+                if (this.BillingServiceListGridView.VisibleRowCount == 0)
+                {
+                    errorlabel.Text = @"There are no companies to delete";
+                }
+
+                var firstRun = true;
+                this.Session["errorMessage"] = string.Empty;
+
+                var selectedRowKeys = this.BillingServiceListGridView.GetSelectedFieldValues(
+                    this.BillingServiceListGridView.KeyFieldName,
+                    "Id");
+                if ((selectedRowKeys == null) || (selectedRowKeys.Count == 0))
+                {
+                    errorlabel.Text = @"Please select a billing service first to delete";
+                    return;
+                }
+
+                foreach (object[] row in selectedRowKeys)
+                {
+                    var id = Convert.ToInt32(row[0]);
+                    var myBillingService = new BillingService { Id = id };
+                    try
+                    {
+                        this.billingServiceEntityController.DeleteEntity(myBillingService);
+                    }
+                    catch (ArgumentNullException)
+                    {
+                        if (firstRun)
+                        {
+                            errorlabel.Text = @"You can't delete ";
+                            firstRun = false;
+                        }
+
+                        errorlabel.Text += $@"'{myBillingService.Id}', ";
+                        this.BillingServiceListGridView.Selection.UnselectRowByKey(id);
+                    }
+                    catch (SqlException ex)
+                    {
+                        return;
+                    }
+                }
+
+                errorlabel.Text = errorlabel.Text.TrimEnd(' ', ',');
+                this.Session["errorMessage"] = errorlabel.Text;
+                this.BillingServiceListGridView.DataSource = this.billingServiceEntityController.RefreshEntities();
+                this.BillingServiceListGridView.DataBind();
+            }
         }
 
         /// <summary>
@@ -98,8 +169,10 @@ namespace HotelManagerProject
             this.BillingServiceListGridView.DataSource = this.billingServiceEntityController.RefreshEntities();
             this.BillingServiceListGridView.DataBind();
             this.billingComboBox.DataSource = this.billingEntityController.RefreshEntities();
+            this.billingComboBox.SelectedIndex = 0;
             this.billingComboBox.DataBind();
             this.serviceComboBox.DataSource = this.serviceEntityController.RefreshEntities();
+            this.serviceComboBox.SelectedIndex = 0;
             this.serviceComboBox.DataBind();
         }
 
