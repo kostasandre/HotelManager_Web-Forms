@@ -33,42 +33,11 @@
                     <li>
                         <a style="font-size: 40px; padding-top: 20px; margin-left: 20px;" href="Main.aspx" data-toggle="collapse" data-target="#">Hotel Manager</a>
                     </li>
-                    <li class="dropdown"> <a href="#" data-toggle="collapse" data-target="#one">Hotels</a> </li>
-	  <li class="dropdown"> <a href="#" data-toggle="collapse" data-target="#two">Booking</a> </li>
-	  <li class="dropdown"> <a href="#" data-toggle="collapse" data-target="#three">Billing</a> </li>
-        <li class="dropdown"> <a href="#" data-toggle="collapse" data-target="#five">Customers</a> </li>
-		<li class="dropdown"> <a href="#" data-toggle="collapse" data-target="#four">Reports</a> </li>
-	</ul>
-  </nav>
-</div>
-<div style="width: 100%" class="container">
-  <nav class="navbar navbar-inverse" role="navigation" id="submenu">
-	<ul class="nav navbar-nav navbar-inverse collapse" id="one">
-	  <li><a href="#" id="">One sub 1</a></li>
-	  <li><a href="#" id="">One sub 2</a></li>
-	  <li><a href="#" id="">One sub 3</a></li>
-	  <li><a href="#" id="">One sub 4</a></li>
-	</ul>
-	<ul class="nav navbar-nav collapse" id="two">
-	  <li><a href="BookingsListForm.aspx" id="">Bookings</a></li>
-	  <li><a href="BookingForm.aspx" id="">New Booking</a></li>
-	  
-	</ul>
-	<ul class="nav navbar-nav collapse" id="three">
-	  <li><a href="BillingListWebForm.aspx" id="">List of Billings</a></li>
-	   <li><a href="BillingServicesListWebForm.aspx" id="">List of Billing Services</a></li>
-	  <li><a href="BillingAndBillingServicesWebForm.aspx" id="">Create a new Billing with Billing Service</a></li>
-	</ul>
-	  <ul class="nav navbar-nav collapse" id="four">
-	  <li><a href="#" id="">Three sub 1</a></li>
-	  <li><a href="#" id="">Three sub 2</a></li>
-	</ul>
-  </nav>
-</div>
-		 <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
-					</asp:ContentPlaceHolder>
-		
-	</form>
+                    <li class="dropdown"><a href="#" data-toggle="collapse" data-target="#one">Hotels</a> </li>
+                    <li class="dropdown"><a href="#" data-toggle="collapse" data-target="#two">Booking</a> </li>
+                    <li class="dropdown"><a href="#" data-toggle="collapse" data-target="#three">Billing</a> </li>
+                    <li class="dropdown"><a href="#" data-toggle="collapse" data-target="#five">Customers</a> </li>
+                    <li class="dropdown"><a href="#" data-toggle="collapse" data-target="#four">Reports</a> </li>
                 </ul>
             </nav>
         </div>
@@ -88,8 +57,9 @@
 
                 </ul>
                 <ul class="nav navbar-nav collapse" id="three">
-                    <li><a href="BillingListForm.aspx" id="">List of billings</a></li>
-                    <li><a href="BillingServicesWebForm.aspx" id="">New billing service</a></li>
+                    <li><a href="BillingListWebForm.aspx" id="">List of Billings</a></li>
+                    <li><a href="BillingServicesListWebForm.aspx" id="">List of Billing Services</a></li>
+                    <li><a href="BillingAndBillingServicesWebForm.aspx" id="">Create a new Billing with Billing Service</a></li>
                 </ul>
                 <ul class="nav navbar-nav collapse" id="four">
                     <li><a href="#" id="">Three sub 1</a></li>
@@ -97,6 +67,7 @@
                 </ul>
             </nav>
         </div>
+               
         <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
         </asp:ContentPlaceHolder>
 
