@@ -17,6 +17,7 @@ namespace HotelManagerProject
     using System.Web.UI;
 
     using HotelManagerLib.Controllers;
+    using HotelManagerLib.Exceptions;
     using HotelManagerLib.Models.Persistant;
 
     #endregion
@@ -54,17 +55,31 @@ namespace HotelManagerProject
         {
             var availableRooms = new List<Room>();
             var pricingListController = new PricingListController();
-            
 
-            var dateFrom = this.dateFromCalendar.Value;
-            var dateTo = this.dateToCalendar.Value;
-            var roomType = this.roomTypeComboBox.Text;
-            var roomTypeId = this.roomTypeComboBox.Value;
-            var roomPrice = pricingListController.RoomPricing(Convert.ToDateTime(dateFrom), Convert.ToDateTime(dateTo), Convert.ToInt32(roomTypeId));
-            this.roomTypePriceTextBox.Text = roomPrice.ToString(CultureInfo.InvariantCulture);
-            if ((dateFrom != null) && (dateTo != null) && (roomType != string.Empty))
+            try
             {
-                availableRooms = this.bookingController.AvailableRooms(roomTypeId, dateFrom, dateTo);
+                var dateFrom = this.dateFromCalendar.Value;
+                var dateTo = this.dateToCalendar.Value;
+                var roomType = this.roomTypeComboBox.Text;
+                var roomTypeId = this.roomTypeComboBox.Value;
+                var roomPrice = pricingListController.RoomPricing(Convert.ToDateTime(dateFrom) , Convert.ToDateTime(dateTo) , Convert.ToInt32(roomTypeId));
+                this.roomTypePriceTextBox.Text = roomPrice.ToString(CultureInfo.InvariantCulture);
+                if ((dateFrom != null) && (dateTo != null) && (roomType != string.Empty))
+                {
+                    availableRooms = this.bookingController.AvailableRooms(roomTypeId , dateFrom , dateTo);
+                }
+            }
+            catch (WrongGivenPeriodException exp)
+            {
+
+            }
+            catch (PricingPeriodDuplicateException exp)
+            {
+
+            }
+            catch (Exception exp)
+            {
+
             }
 
             this.availableRoomsGridView.DataSource = availableRooms;

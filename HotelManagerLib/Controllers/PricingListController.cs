@@ -16,13 +16,11 @@ namespace HotelManagerLib.Controllers
     using System.Data;
     using System.Linq;
 
-    using HotelManagerLib.DBContext;
-    using HotelManagerLib.Enums;
-
+    using DBContext;
+    using Enums;
+    using Exceptions;
     using Interfaces;
-
     using Models.Persistant;
-
     using Repositories;
     using Repositories.Interfaces;
 
@@ -124,22 +122,34 @@ namespace HotelManagerLib.Controllers
         /// <param name="dateTo">
         /// The date to.
         /// </param>
-        /// <param name="roomId">
-        /// The room id.
+        /// <param name="roomTypeId">
+        /// The room type id.
         /// </param>
         /// <returns>
         /// The <see cref="double"/>.
         /// </returns>
+        /// <exception cref="WrongGivenPeriodException">
+        /// The given period is wrong
+        /// </exception>
+        /// <exception cref="DataException">
+        /// Can;t read from database
+        /// </exception>
+        /// <exception cref="NullReferenceException">
+        /// Pricing list for tha days given is null
+        /// </exception>
+        /// <exception cref="PricingPeriodDuplicateException">
+        /// Duplicate pricing period
+        /// </exception>
         public double RoomPricing(DateTime dateFrom, DateTime dateTo, int roomTypeId)
         {
             if (dateFrom > dateTo)
             {
-                throw new ArgumentException("Given From date is larger than given To date!");
+                throw new WrongGivenPeriodException("Given From date is larger than given To date!");
             }
+
             List<PricingList> pricingListsOfTheRoomForWholeYear;
             double sum = 0;
             
-            IEntityRepository<Room> roomRepository = new RoomRepository();
             try
             {
                 using (var context = new DataBaseContext())
@@ -156,10 +166,8 @@ namespace HotelManagerLib.Controllers
             }
             catch (Exception exception)
             {
-                
                 throw new DataException($" Error retreiving data!", exception);
             }
-            
 
             if (pricingListsOfTheRoomForWholeYear == null || pricingListsOfTheRoomForWholeYear.Count == 0)
             {
@@ -168,13 +176,18 @@ namespace HotelManagerLib.Controllers
 
             for (DateTime date = dateFrom; date.Date <= dateTo.Date; date = date.AddDays(1))
             {
+                var flag = 0;
                 foreach (var pricingListOfTheRoomForOnePeriod in pricingListsOfTheRoomForWholeYear)
                 {
-
                     if (date >= pricingListOfTheRoomForOnePeriod.ValidFrom && date <= pricingListOfTheRoomForOnePeriod.ValidTo)
                     {
                         sum += pricingListOfTheRoomForOnePeriod.Price
                                 + (pricingListOfTheRoomForOnePeriod.Price * pricingListOfTheRoomForOnePeriod.VatPrc);
+                        flag++;
+                        if (flag > 1)
+                        {
+                            throw new PricingPeriodDuplicateException($"At least one of the given days is in two Pricing Lists", new List<PricingList> { pricingListOfTheRoomForOnePeriod });
+                        }
                     }
                 }
             }
@@ -212,15 +225,15 @@ namespace HotelManagerLib.Controllers
                                     && x.TypeOfBillableEntity == TypeOfBillableEntity.Service
                                     && (dateFrom >= x.ValidFrom && dateFrom <= x.ValidTo));
                 }
-                catch (ArgumentNullException)
+                catch (Exception exception)
                 {
-                    throw new ArgumentNullException();
+                    throw new DataException("",exception);
                 }
             }
 
             if (tempPricingList == null)
             {
-                throw new ArgumentNullException();
+                throw new NullReferenceException($"No pricing list for given days!");
             }
 
             return tempPricingList.Price + (tempPricingList.Price * tempPricingList.VatPrc);
