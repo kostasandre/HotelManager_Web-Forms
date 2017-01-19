@@ -80,9 +80,14 @@
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="CssClasses\BookingFormStyleSheet.css" />
     <Content Include="CssClasses\StyleSheet1.css" />
+    <Content Include="CustomersForm.aspx" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="HotelWebForm.aspx" />
+    <Content Include="PricingListWebForm.aspx" />
+    <Content Include="RoomTypeWebForm.aspx" />
+    <Content Include="RoomWebForm.aspx" />
+    <Content Include="ServiceWebForm.aspx" />
     <Content Include="WebForm1.aspx" />
   </ItemGroup>
   <ItemGroup>
@@ -158,6 +163,13 @@
     <Compile Include="BookingsListForm.aspx.designer.cs">
       <DependentUpon>BookingsListForm.aspx</DependentUpon>
     </Compile>
+    <Compile Include="CustomersForm.aspx.cs">
+      <DependentUpon>CustomersForm.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="CustomersForm.aspx.designer.cs">
+      <DependentUpon>CustomersForm.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -182,11 +194,39 @@
     <Compile Include="MasterPage.Master.designer.cs">
       <DependentUpon>MasterPage.Master</DependentUpon>
     </Compile>
+    <Compile Include="PricingListWebForm.aspx.cs">
+      <DependentUpon>PricingListWebForm.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="PricingListWebForm.aspx.designer.cs">
+      <DependentUpon>PricingListWebForm.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Properties\Settings.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
       <DependentUpon>Settings.settings</DependentUpon>
+    </Compile>
+    <Compile Include="RoomTypeWebForm.aspx.cs">
+      <DependentUpon>RoomTypeWebForm.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="RoomTypeWebForm.aspx.designer.cs">
+      <DependentUpon>RoomTypeWebForm.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="RoomWebForm.aspx.cs">
+      <DependentUpon>RoomWebForm.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="RoomWebForm.aspx.designer.cs">
+      <DependentUpon>RoomWebForm.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="ServiceWebForm.aspx.cs">
+      <DependentUpon>ServiceWebForm.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ServiceWebForm.aspx.designer.cs">
+      <DependentUpon>ServiceWebForm.aspx</DependentUpon>
     </Compile>
     <Compile Include="WebForm1.aspx.cs">
       <DependentUpon>WebForm1.aspx</DependentUpon>

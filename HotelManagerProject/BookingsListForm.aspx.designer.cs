@@ -13,6 +13,15 @@ namespace HotelManagerProject {
     public partial class BookingsListForm {
         
         /// <summary>
+        /// createBookingButton control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::DevExpress.Web.ASPxButton createBookingButton;
+        
+        /// <summary>
         /// bookingsGridView control.
         /// </summary>
         /// <remarks>

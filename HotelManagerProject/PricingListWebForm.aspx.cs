@@ -1,9 +1,9 @@
 ﻿// --------------------------------------------------------------------------------------------------------------------
-// <copyright file="HotelWebForm.aspx.cs" company="Data Communication">
+// <copyright file="PricingListWebForm.aspx.cs" company="Data Communication">
 //   Hotel Manager
 // </copyright>
 // <summary>
-//   The hotel web form.
+//   The pricing list web form.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
 
@@ -21,17 +21,17 @@ namespace HotelManagerProject
     #endregion
 
     /// <summary>
-    /// The hotel web form.
+    /// The pricing list web form.
     /// </summary>
-    public partial class HotelWebForm : Page
+    public partial class PricingListWebForm : Page
     {
         /// <summary>
-        /// The hotel controller.
+        /// The pricing list controller.
         /// </summary>
-        private IEntityController<Hotel> hotelController;
+        private IEntityController<PricingList> pricingListController;
 
         /// <summary>
-        /// The page initialize.
+        /// The page_ initialize.
         /// </summary>
         /// <param name="sender">
         /// The sender.
@@ -41,15 +41,9 @@ namespace HotelManagerProject
         /// </param>
         protected void Page_Init(object sender, EventArgs e)
         {
-            this.hotelController = new HotelController();
-            this.HotelGridView.DataSource = this.hotelController.RefreshEntities();
-            this.HotelGridView.DataBind();
-
-            //var controller = new PricingListController();
-            //var datefrom = Convert.ToDateTime("25/05/2017");
-            //var dateto = Convert.ToDateTime("05/06/2017");
-            //var sum = controller.RoomPricing(datefrom, dateto, 2);
-
+            this.pricingListController = new PricingListController();
+            this.PricingListGridView.DataSource = this.pricingListController.RefreshEntities();
+            this.PricingListGridView.DataBind();
         }
 
         /// <summary>

@@ -1,9 +1,9 @@
 ﻿// --------------------------------------------------------------------------------------------------------------------
-// <copyright file="BookingsListForm.aspx.cs" company="">
-//   
+// <copyright file="RoomTypeWebForm.aspx.cs" company="Data Communication">
+//   Hotel Manager
 // </copyright>
 // <summary>
-//   The bookings list form.
+//   The room type web form.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
 
@@ -15,23 +15,36 @@ namespace HotelManagerProject
     using System.Web.UI;
 
     using HotelManagerLib.Controllers;
+    using HotelManagerLib.Controllers.Interfaces;
+    using HotelManagerLib.Models.Persistant;
 
     #endregion
 
     /// <summary>
-    /// The bookings list form.
+    /// The room type web form.
     /// </summary>
-    public partial class BookingsListForm : Page
+    public partial class RoomTypeWebForm : Page
     {
         /// <summary>
-        /// The booking controller.
+        /// The room type controller.
         /// </summary>
-        private BookingController bookingController;
+        private IEntityController<RoomType> roomTypeController;
 
         /// <summary>
-        /// The customer controller.
+        /// The initialize
         /// </summary>
-        private CustomerController customerController;
+        /// <param name="sender">
+        /// The sender.
+        /// </param>
+        /// <param name="e">
+        /// The e.
+        /// </param>
+        protected void Page_Init(object sender, EventArgs e)
+        {
+            this.roomTypeController = new RoomTypeController();
+            this.RoomTypeGridView.DataSource = this.roomTypeController.RefreshEntities();
+            this.RoomTypeGridView.DataBind();
+        }
 
         /// <summary>
         /// The page_ load.
@@ -44,13 +57,6 @@ namespace HotelManagerProject
         /// </param>
         protected void Page_Load(object sender, EventArgs e)
         {
-            if (!this.Page.IsPostBack)
-            {
-                this.bookingController = new BookingController();
-                var bookingsList = this.bookingController.RefreshEntities();
-                this.bookingsGridView.DataSource = bookingsList;
-                this.bookingsGridView.DataBind();
-            }
         }
     }
 }

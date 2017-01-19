@@ -13,6 +13,10 @@ namespace HotelManagerLib.Controllers
 
     using System;
     using System.Collections.Generic;
+    using System.Linq;
+
+    using HotelManagerLib.DBContext;
+    using HotelManagerLib.Enums;
 
     using Interfaces;
     using Models.Persistant;
@@ -106,6 +110,100 @@ namespace HotelManagerLib.Controllers
         public IList<PricingList> RefreshEntities()
         {
             return this.Repository.ReadAllList();
+        }
+
+        /// <summary>
+        /// The room pricing.
+        /// </summary>
+        /// <param name="dateFrom">
+        /// The date from.
+        /// </param>
+        /// <param name="dateTo">
+        /// The date to.
+        /// </param>
+        /// <param name="roomId">
+        /// The room id.
+        /// </param>
+        /// <returns>
+        /// The <see cref="double"/>.
+        /// </returns>
+        public double RoomPricing(DateTime dateFrom, DateTime dateTo, int roomTypeId)
+        {
+            List<PricingList> pricingListsOfTheRoomForWholeYear;
+            double sum = 0;
+            IEntityRepository<Room> roomRepository = new RoomRepository();
+
+            using (var context = new DataBaseContext())
+            {
+                //var roomTypeId = roomRepository.ReadOne(roomId).RoomTypeId;
+                pricingListsOfTheRoomForWholeYear =
+                    this.Repository.ReadAllQuery(context)
+                        .Where(
+                            x =>
+                                x.BillableEntityId == roomTypeId
+                                && x.TypeOfBillableEntity == TypeOfBillableEntity.RoomType
+                                && (x.ValidTo >= dateFrom && x.ValidFrom <= dateTo))
+                        .ToList();
+            }
+            
+            for (DateTime date = dateFrom; date.Date <= dateTo.Date; date = date.AddDays(1))
+            {
+                foreach (var pricingListOfTheRoomForOnePeriod in pricingListsOfTheRoomForWholeYear)
+                {
+                    if (date.Ticks >= pricingListOfTheRoomForOnePeriod.ValidFrom.Ticks
+                        && date.Ticks <= pricingListOfTheRoomForOnePeriod.ValidTo.Ticks)
+                    {
+                        sum += pricingListOfTheRoomForOnePeriod.Price
+                                + (pricingListOfTheRoomForOnePeriod.Price * pricingListOfTheRoomForOnePeriod.VatPrc);
+                    }
+                }
+            }
+
+            return sum;
+        }
+
+        /// <summary>
+        /// The service pricing.
+        /// </summary>
+        /// <param name="dateFrom">
+        /// The date from.
+        /// </param>
+        /// <param name="serviceId">
+        /// The service id.
+        /// </param>
+        /// <returns>
+        /// The <see cref="double"/>.
+        /// </returns>
+        /// <exception cref="ArgumentNullException">
+        /// The Pricing List is null
+        /// </exception>
+        public double ServicePricing(DateTime dateFrom, int serviceId)
+        {
+            PricingList tempPricingList;
+            using (var context = new DataBaseContext())
+            {
+                try
+                {
+                    tempPricingList =
+                        this.Repository.ReadAllQuery(context)
+                            .FirstOrDefault(
+                                x =>
+                                    x.BillableEntityId == serviceId
+                                    && x.TypeOfBillableEntity == TypeOfBillableEntity.Service
+                                    && (dateFrom >= x.ValidFrom && dateFrom <= x.ValidTo));
+                }
+                catch (ArgumentNullException)
+                {
+                    throw new ArgumentNullException();
+                }
+            }
+
+            if (tempPricingList == null)
+            {
+                throw new ArgumentNullException();
+            }
+
+            return tempPricingList.Price + (tempPricingList.Price * tempPricingList.VatPrc);
         }
     }
 }
