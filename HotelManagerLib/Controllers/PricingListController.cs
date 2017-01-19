@@ -13,13 +13,16 @@ namespace HotelManagerLib.Controllers
 
     using System;
     using System.Collections.Generic;
+    using System.Data;
     using System.Linq;
 
     using HotelManagerLib.DBContext;
     using HotelManagerLib.Enums;
 
     using Interfaces;
+
     using Models.Persistant;
+
     using Repositories;
     using Repositories.Interfaces;
 
@@ -129,32 +132,45 @@ namespace HotelManagerLib.Controllers
         /// </returns>
         public double RoomPricing(DateTime dateFrom, DateTime dateTo, int roomTypeId)
         {
-            //if (dateFrom > dateTo)
-            //{
-            //    throw NullReferenceException
-            //}
+            if (dateFrom > dateTo)
+            {
+                throw new ArgumentException("Given From date is larger than given To date!");
+            }
             List<PricingList> pricingListsOfTheRoomForWholeYear;
             double sum = 0;
+            
             IEntityRepository<Room> roomRepository = new RoomRepository();
-
-            using (var context = new DataBaseContext())
+            try
             {
-                pricingListsOfTheRoomForWholeYear =
-                    this.Repository.ReadAllQuery(context)
-                        .Where(
-                            x =>
-                                x.BillableEntityId == roomTypeId
-                                && x.TypeOfBillableEntity == TypeOfBillableEntity.RoomType
-                                && (x.ValidTo >= dateFrom && x.ValidFrom <= dateTo))
-                        .ToList();
+                using (var context = new DataBaseContext())
+                {
+                    pricingListsOfTheRoomForWholeYear =
+                        this.Repository.ReadAllQuery(context)
+                            .Where(
+                                x =>
+                                    x.BillableEntityId == roomTypeId
+                                    && x.TypeOfBillableEntity == TypeOfBillableEntity.RoomType
+                                    && (x.ValidTo >= dateFrom && x.ValidFrom <= dateTo))
+                            .ToList();
+                }
+            }
+            catch (Exception exception)
+            {
+                
+                throw new DataException($" Error retreiving data!", exception);
             }
             
+
+            if (pricingListsOfTheRoomForWholeYear == null || pricingListsOfTheRoomForWholeYear.Count == 0)
+            {
+                throw new NullReferenceException($"No pricing list for given days!");
+            }
+
             for (DateTime date = dateFrom; date.Date <= dateTo.Date; date = date.AddDays(1))
             {
                 foreach (var pricingListOfTheRoomForOnePeriod in pricingListsOfTheRoomForWholeYear)
                 {
-                    //if (date.Ticks >= pricingListOfTheRoomForOnePeriod.ValidFrom.Ticks
-                    //    && date.Ticks <= pricingListOfTheRoomForOnePeriod.ValidTo.Ticks)
+
                     if (date >= pricingListOfTheRoomForOnePeriod.ValidFrom && date <= pricingListOfTheRoomForOnePeriod.ValidTo)
                     {
                         sum += pricingListOfTheRoomForOnePeriod.Price
