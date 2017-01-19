@@ -60,7 +60,7 @@
             </div>
             <br/>
             <div class="row">
-                <div class="col-xs-12">
+                <div class="col-xs-6">
                     <dx:ASPxGridView ID="availableRoomsGridView" runat="server" Theme="BlackGlass" AutoGenerateColumns="False" KeyFieldName="Id">
                         <Settings ShowFilterRow="True"></Settings>
                         <SettingsBehavior AllowFocusedRow="True"></SettingsBehavior>
@@ -81,6 +81,9 @@
                         </Columns>
                     </dx:ASPxGridView>
                 </div>
+                <div class="col-xs-6">
+                    <dx:ASPxMemo ID= "commentMemoBox" runat="server" Height="71px" Width="170px"></dx:ASPxMemo>
+                </div>
                         
             </div>
             <br/>
@@ -90,6 +93,11 @@
                         </div>
                         <div class="col-xs-4">
                             <dx:ASPxComboBox ID="customerComboBox" NullText="Search Customer" runat="server" ValueField="Id" TextField="Name" IncrementalFilteringMode= "Contains" DropDownStyle= "DropDown">
+                                 <Columns>
+                                <dx:ListBoxColumn FieldName="Name" Visible="True" Caption="Name"/>
+                                <dx:ListBoxColumn Caption="Surname" FieldName="Surname" />
+                                
+                            </Columns>
                             </dx:ASPxComboBox>
                         </div>
                         <div class="col-xs-1">

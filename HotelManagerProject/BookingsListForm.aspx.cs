@@ -16,6 +16,9 @@ namespace HotelManagerProject
     using System.Web.UI;
     using System.Web.UI.WebControls;
 
+    using DevExpress.Utils;
+    using DevExpress.Web;
+
     using HotelManagerLib.Controllers;
     using HotelManagerLib.Models.Persistant;
 
@@ -144,5 +147,11 @@ namespace HotelManagerProject
         protected void Page_Load(object sender, EventArgs e)
         {
         }
+
+        protected void bookingsGridView_OnCustomButtonCallback(object sender,ASPxGridViewCustomButtonCallbackEventArgs e)
+        {
+
+        }
     }
+
 }

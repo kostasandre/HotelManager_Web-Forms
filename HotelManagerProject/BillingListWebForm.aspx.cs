@@ -173,5 +173,10 @@ namespace HotelManagerProject
                 this.BillingListGridView.DataBind();
             }
         }
+
+        protected void createBillingPopUp_OnInit(object sender, EventArgs e)
+        {
+            
+        }
     }
 }
