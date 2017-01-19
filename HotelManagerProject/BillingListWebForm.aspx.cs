@@ -12,7 +12,9 @@ namespace HotelManagerProject
     #region
 
     using System;
+    using System.Data.SqlClient;
     using System.Web.UI;
+    using System.Web.UI.WebControls;
 
     using HotelManagerLib.Controllers;
     using HotelManagerLib.Controllers.Interfaces;
@@ -40,6 +42,9 @@ namespace HotelManagerProject
         /// </summary>
         private IEntityController<Booking> bookingEntityController;
 
+        /// <summary>
+        /// The booking.
+        /// </summary>
         private Booking booking;
 
         /// <summary>
@@ -61,7 +66,6 @@ namespace HotelManagerProject
           
             this.billing = new Billing
                                {
-                //Id = 5,
                                    Booking = this.booking,
                                    Paid = this.paidCheckBox.Checked,
                                    PriceForRoom = Convert.ToDouble(this.priceForRoomTextBox.Text),
@@ -72,7 +76,7 @@ namespace HotelManagerProject
             this.BillingListGridView.DataSource = this.billingEntityController.RefreshEntities();
             this.BillingListGridView.DataBind();
         }
-
+      
         /// <summary>
         /// The page_ init.
         /// </summary>
@@ -104,6 +108,70 @@ namespace HotelManagerProject
         /// </param>
         protected void Page_Load(object sender, EventArgs e)
         {
+        }
+
+        /// <summary>
+        /// The unnamed 1_ click.
+        /// </summary>
+        /// <param name="sender">
+        /// The sender.
+        /// </param>
+        /// <param name="e">
+        /// The e.
+        /// </param>
+        protected void DeleteBillingButtonClick(object sender , EventArgs e)
+        {
+            var errorlabel = this.Master?.FindControl("form1").FindControl("divErrorMessage") as Label;
+            if (errorlabel != null)
+            {
+                errorlabel.Text = string.Empty;
+                if (this.BillingListGridView.VisibleRowCount == 0)
+                {
+                    errorlabel.Text = @"There are no companies to delete";
+                }
+
+                var firstRun = true;
+                this.Session["errorMessage"] = string.Empty;
+
+                var selectedRowKeys = this.BillingListGridView.GetSelectedFieldValues(
+                    this.BillingListGridView.KeyFieldName,
+                    "Id");
+                if ((selectedRowKeys == null) || (selectedRowKeys.Count == 0))
+                {
+                    errorlabel.Text = @"Please select a billing first to delete";
+                    return;
+                }
+
+                foreach (object[] row in selectedRowKeys)
+                {
+                    var id = Convert.ToInt32(row[0]);
+                    var myBilling = new Billing { Id = id };
+                    try
+                    {
+                        this.billingEntityController.DeleteEntity(myBilling);
+                    }
+                    catch (ArgumentNullException)
+                    {
+                        if (firstRun)
+                        {
+                            errorlabel.Text = @"You can't delete ";
+                            firstRun = false;
+                        }
+
+                        errorlabel.Text += $@"'{myBilling.Id}', ";
+                        this.BillingListGridView.Selection.UnselectRowByKey(id);
+                    }
+                    catch (SqlException ex)
+                    {
+                        return;
+                    }
+                }
+
+                errorlabel.Text = errorlabel.Text.TrimEnd(' ', ',');
+                this.Session["errorMessage"] = errorlabel.Text;
+                this.BillingListGridView.DataSource = this.billingEntityController.RefreshEntities();
+                this.BillingListGridView.DataBind();
+            }
         }
     }
 }

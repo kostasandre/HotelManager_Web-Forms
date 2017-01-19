@@ -67,6 +67,10 @@
                 </ul>
             </nav>
         </div>
+         <div style="height: 25px; text-align: center;">
+            <asp:Label Style="width: 100%; font-size: x-large; color: red; text-align: center; vertical-align: bottom; background-color: #ffffff; background-color: rgba(255,255,255,0.5)" ID="divErrorMessage" ClientIDMode="Static" runat="server"></asp:Label>
+        </div>
+        <br />
                
         <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
         </asp:ContentPlaceHolder>
