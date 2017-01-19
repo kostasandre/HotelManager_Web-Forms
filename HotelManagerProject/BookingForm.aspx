@@ -13,9 +13,6 @@
     <div class="MainForm">
         
         <h1>Booking Form</h1>
-        <dx:ASPxButton ID="ASPxButton1" runat="server" Text="ASPxButton">
-            <ClientSideEvents Click="function(s, e) { ShowLoginWindow(); }" />
-        </dx:ASPxButton>
         
         <div class="container" style="width: 100%">
 
@@ -24,7 +21,7 @@
                          <label>Room Type:</label> 
                     </div>
                     <div class="col-xs-1">
-                       <dx:ASPxComboBox ID="roomTypeComboBox" NullText="Select Room Type" runat="server" ValueField="Id" TextField="Code" OnInit="roomTypeComboBox_OnInit" IncrementalFilteringMode= "None" DropDownStyle= "DropDownList">
+                       <dx:ASPxComboBox ID="roomTypeComboBox" NullText="Select Room Type" runat="server" ValueField="Id" TextField="Code"  IncrementalFilteringMode= "None" DropDownStyle= "DropDownList">
                         </dx:ASPxComboBox>
                     </div>
                 </div>
@@ -48,7 +45,7 @@
             <br/>
                 <div class="row">
                         <div class="col-xs-1">
-                            <dx:ASPxButton OnClick="calculateRoomTypePriceButton_OnClick" ID= "calculateRoomTypePriceButton" runat="server" Text="Calculate" ToolTip="Calculates the price of the selected room"></dx:ASPxButton>  
+                            <dx:ASPxButton OnClick="CalculateAvailableRoomsButton" ID= "calculateRoomTypePriceButton" runat="server" Text="Calculate Price" ToolTip="Calculates the price of the selected room"></dx:ASPxButton>  
                         </div>
                         <div class="col-xs-1">
                             <dx:ASPxTextBox ID= "roomTypePriceTextBox" runat="server" Width="170px"></dx:ASPxTextBox>
@@ -64,21 +61,22 @@
             <br/>
             <div class="row">
                 <div class="col-xs-12">
-                    <dx:ASPxGridView ID="availableRoomsGridView" runat="server" Theme="BlackGlass">
+                    <dx:ASPxGridView ID="availableRoomsGridView" runat="server" Theme="BlackGlass" AutoGenerateColumns="False" KeyFieldName="Id">
                         <Settings ShowFilterRow="True"></Settings>
+                        <SettingsBehavior AllowFocusedRow="True"></SettingsBehavior>
+
                         <SettingsDataSecurity AllowEdit="False" AllowInsert="False" AllowDelete="False"></SettingsDataSecurity>
                         <Columns>
 
-                        <dx:GridViewCommandColumn ShowClearFilterButton="True" VisibleIndex="1" ButtonRenderMode="Image">
-                            
-                        </dx:GridViewCommandColumn>
-                        <dx:GridViewDataTextColumn FieldName="Code" VisibleIndex="2">
-                        </dx:GridViewDataTextColumn>
-                        <dx:GridViewDataTextColumn FieldName="Id" VisibleIndex="4" Visible="False">
-                        </dx:GridViewDataTextColumn>
-                        <dx:GridViewDataTextColumn FieldName="HotelId" VisibleIndex="3">
-                        </dx:GridViewDataTextColumn>
-                        <dx:GridViewDataTextColumn FieldName="RoomTypeId" VisibleIndex="4">
+                            <dx:GridViewCommandColumn ShowClearFilterButton="True" VisibleIndex="1" ButtonRenderMode="Image">
+                            </dx:GridViewCommandColumn>
+                            <dx:GridViewDataTextColumn FieldName="Code" VisibleIndex="2">
+                            </dx:GridViewDataTextColumn>
+                            <dx:GridViewDataTextColumn FieldName="Id" VisibleIndex="4" Visible="False">
+                            </dx:GridViewDataTextColumn>
+                            <dx:GridViewDataTextColumn FieldName="HotelId" VisibleIndex="3">
+                            </dx:GridViewDataTextColumn>
+                            <dx:GridViewDataTextColumn FieldName="RoomTypeId" VisibleIndex="5">
                         </dx:GridViewDataTextColumn>
                         </Columns>
                     </dx:ASPxGridView>
@@ -91,34 +89,36 @@
                            <label>Search Customer:</label>
                         </div>
                         <div class="col-xs-4">
-                           <dx:ASPxComboBox ID="customerSearchComboBox"
-                                    runat="server"
-                                    ValueType="System.String"
-                                    IncrementalFilteringMode="StartsWith"
-                                    DropDownStyle="DropDown"
-                                    TextField="ProductName"
-                                    ValueField="ProductID"
-                                    ClientInstanceName="productsCombo"
-                                    OnCallback="customerSearchComboBoxOnCallBack"
-                                    NullText="Search..."
-                                    EnableFocusedStyle="false" Width="100%">
-                                    <DropDownButton Visible="false"></DropDownButton>
-                                    <ButtonStyle CssClass="search"></ButtonStyle>
-                                    <Buttons>
-                                        <dx:EditButton Image-SpriteProperties-CssClass="size"></dx:EditButton>
-                                    </Buttons>
-                                    <ClientSideEvents Init="OnInit" SelectedIndexChanged="OnProductChanged" ButtonClick="OnSearchButtonClick" />
-                                </dx:ASPxComboBox>
+                            <dx:ASPxComboBox ID="customerComboBox" NullText="Search Customer" runat="server" ValueField="Id" TextField="Name" IncrementalFilteringMode= "Contains" DropDownStyle= "DropDown">
+                            </dx:ASPxComboBox>
                         </div>
                         <div class="col-xs-1">
                            <label>Agreed Price:</label>
                         </div>
                         <div class="col-xs-4">
-                            <dx:ASPxTextBox ID=ASPxTextBox1 runat="server" Width="170px"></dx:ASPxTextBox>
+                            <dx:ASPxTextBox ID= "agreedPriceTextBox" runat="server" Width="170px"></dx:ASPxTextBox>
                         </div>
                         
             </div>
+            <br/>
+             <dx:ASPxButton ID="createCustomerButton" runat="server" Text="Create Customer">
+                <ClientSideEvents Click="function(s, e) { ShowLoginWindow(); }" />
+            </dx:ASPxButton>
+            
+            <br/>
+            <br/>
+            <div class="row">
+                <div class="col-xs-6">
+                    
+                </div>
+                <div class="col-xs-6" style="text-align: right">
+                    <dx:ASPxButton OnClick="saveBookingButton_OnClick" ID= "saveBookingButton" runat="server" Text="Save Booking"></dx:ASPxButton>
+                </div>
+                <br/>
+                <br/>
+                
 
+            </div>
         </div>
 
     </div>
@@ -164,6 +164,14 @@
                                 <dx:ASPxTextBox ID= "idNumberTextBox" runat="server" Width="170px"></dx:ASPxTextBox> 
                             </td>
                         </tr>
+                         <tr>
+                             <td>
+                                <label>Address:  </label>
+                            </td>
+                            <td>
+                                <dx:ASPxTextBox ID= "addressTextBox" runat="server" Width="170px"></dx:ASPxTextBox> 
+                            </td>
+                        </tr>
                         <tr>
                              <td>
                                 <label>Email:  </label>
@@ -199,7 +207,7 @@
                     </table>
                     <br/>
                     <div class="pcmButton">
-                                            <dx:ASPxButton ID="btOK" runat="server" Text="Save" Width="80px" AutoPostBack="False" Style="float: left; margin-right: 8px">
+                                            <dx:ASPxButton OnClick="customersPopUpSaveButton_OnClick"  ID="customersPopUpSaveButton" runat="server" Text="Save" Width="80px" AutoPostBack="False" Style="float: left; margin-right: 8px">
                                                 <ClientSideEvents Click="function(s, e) { if(ASPxClientEdit.ValidateGroup('entryGroup')) createUserPopUp.Hide(); }" />
                                             </dx:ASPxButton>
                                             <dx:ASPxButton ID="btCancel" runat="server" Text="Cancel" Width="80px" AutoPostBack="False" Style="float: left; margin-right: 8px">

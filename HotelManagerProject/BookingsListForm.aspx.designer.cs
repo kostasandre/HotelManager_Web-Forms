@@ -22,6 +22,15 @@ namespace HotelManagerProject {
         protected global::DevExpress.Web.ASPxButton createBookingButton;
         
         /// <summary>
+        /// deleteBookingButton control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::DevExpress.Web.ASPxButton deleteBookingButton;
+        
+        /// <summary>
         /// bookingsGridView control.
         /// </summary>
         /// <remarks>
