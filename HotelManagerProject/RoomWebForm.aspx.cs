@@ -1,9 +1,9 @@
 ﻿// --------------------------------------------------------------------------------------------------------------------
-// <copyright file="HotelWebForm.aspx.cs" company="Data Communication">
+// <copyright file="RoomWebForm.aspx.cs" company="Data Communication">
 //   Hotel Manager
 // </copyright>
 // <summary>
-//   The hotel web form.
+//   The room web form.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
 
@@ -21,17 +21,17 @@ namespace HotelManagerProject
     #endregion
 
     /// <summary>
-    /// The hotel web form.
+    /// The room web form.
     /// </summary>
-    public partial class HotelWebForm : Page
+    public partial class RoomWebForm : Page
     {
         /// <summary>
-        /// The hotel controller.
+        /// The room controller.
         /// </summary>
-        private IEntityController<Hotel> hotelController;
+        private IEntityController<Room> roomController;
 
         /// <summary>
-        /// The page initialize.
+        /// The page_ initialize
         /// </summary>
         /// <param name="sender">
         /// The sender.
@@ -41,15 +41,9 @@ namespace HotelManagerProject
         /// </param>
         protected void Page_Init(object sender, EventArgs e)
         {
-            this.hotelController = new HotelController();
-            this.HotelGridView.DataSource = this.hotelController.RefreshEntities();
-            this.HotelGridView.DataBind();
-
-            //var controller = new PricingListController();
-            //var datefrom = Convert.ToDateTime("25/05/2017");
-            //var dateto = Convert.ToDateTime("05/06/2017");
-            //var sum = controller.RoomPricing(datefrom, dateto, 2);
-
+            this.roomController = new RoomController();
+            this.RoomGridView.DataSource = this.roomController.RefreshEntities();
+            this.RoomGridView.DataBind();
         }
 
         /// <summary>

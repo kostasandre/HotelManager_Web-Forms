@@ -53,6 +53,11 @@ namespace HotelManagerLib.Models.Persistant
         public int HotelId { get; set; }
 
         /// <summary>
+        /// The hotel name.
+        /// </summary>
+        public string HotelName => this.Hotel.Name;
+
+        /// <summary>
         /// Gets or sets the id.
         /// </summary>
         [Browsable(false)]
@@ -74,7 +79,7 @@ namespace HotelManagerLib.Models.Persistant
         [Browsable(false)]
         [ForeignKey("RoomType")]
         public int RoomTypeId { get; set; }
-
+        
         /// <summary>
         /// Gets or sets the created.
         /// </summary>

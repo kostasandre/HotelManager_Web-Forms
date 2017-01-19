@@ -1,6 +1,6 @@
 ﻿// --------------------------------------------------------------------------------------------------------------------
-// <copyright file="BookingForm.aspx.cs" company="">
-//   
+// <copyright file="BookingForm.aspx.cs" company="Data Communication">
+//   Hotel Manager
 // </copyright>
 // <summary>
 //   The booking form.
@@ -69,6 +69,39 @@ namespace HotelManagerProject
             this.availableRoomsGridView.DataSource = availableRooms;
             this.availableRoomsGridView.DataBind();
             
+        }
+
+        /// <summary>
+        /// The page_ load.
+        /// </summary>
+        /// <param name="sender">
+        /// The sender.
+        /// </param>
+        /// <param name="e">
+        /// The e.
+        /// </param>
+        protected void Page_Load(object sender, EventArgs e)
+        {
+            this.bookingController = new BookingController();
+            this.roomController = new RoomController();
+        }
+
+        /// <summary>
+        /// The room type combo box_ on init.
+        /// </summary>
+        /// <param name="sender">
+        /// The sender.
+        /// </param>
+        /// <param name="e">
+        /// The e.
+        /// </param>
+        protected void roomTypeComboBox_OnInit(object sender, EventArgs e)
+        {
+            this.roomTypeController = new RoomTypeController();
+            var roomTypes = this.roomTypeController.RefreshEntities();
+            this.roomTypeComboBox.DataSource = roomTypes;
+
+            this.roomTypeComboBox.DataBind();
         }
 
         /// <summary>

@@ -10,15 +10,15 @@
 namespace HotelManagerProject {
     
     
-    public partial class HotelWebForm {
+    public partial class RoomTypeWebForm {
         
         /// <summary>
-        /// HotelGridView control.
+        /// RoomTypeGridView control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::DevExpress.Web.ASPxGridView HotelGridView;
+        protected global::DevExpress.Web.ASPxGridView RoomTypeGridView;
     }
 }

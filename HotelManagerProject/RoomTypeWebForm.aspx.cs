@@ -1,9 +1,9 @@
 ﻿// --------------------------------------------------------------------------------------------------------------------
-// <copyright file="HotelWebForm.aspx.cs" company="Data Communication">
+// <copyright file="RoomTypeWebForm.aspx.cs" company="Data Communication">
 //   Hotel Manager
 // </copyright>
 // <summary>
-//   The hotel web form.
+//   The room type web form.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
 
@@ -21,17 +21,17 @@ namespace HotelManagerProject
     #endregion
 
     /// <summary>
-    /// The hotel web form.
+    /// The room type web form.
     /// </summary>
-    public partial class HotelWebForm : Page
+    public partial class RoomTypeWebForm : Page
     {
         /// <summary>
-        /// The hotel controller.
+        /// The room type controller.
         /// </summary>
-        private IEntityController<Hotel> hotelController;
+        private IEntityController<RoomType> roomTypeController;
 
         /// <summary>
-        /// The page initialize.
+        /// The initialize
         /// </summary>
         /// <param name="sender">
         /// The sender.
@@ -41,15 +41,9 @@ namespace HotelManagerProject
         /// </param>
         protected void Page_Init(object sender, EventArgs e)
         {
-            this.hotelController = new HotelController();
-            this.HotelGridView.DataSource = this.hotelController.RefreshEntities();
-            this.HotelGridView.DataBind();
-
-            //var controller = new PricingListController();
-            //var datefrom = Convert.ToDateTime("25/05/2017");
-            //var dateto = Convert.ToDateTime("05/06/2017");
-            //var sum = controller.RoomPricing(datefrom, dateto, 2);
-
+            this.roomTypeController = new RoomTypeController();
+            this.RoomTypeGridView.DataSource = this.roomTypeController.RefreshEntities();
+            this.RoomTypeGridView.DataBind();
         }
 
         /// <summary>
