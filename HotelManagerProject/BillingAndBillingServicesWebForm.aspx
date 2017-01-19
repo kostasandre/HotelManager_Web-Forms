@@ -1,4 +1,4 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/MasterPage.Master" AutoEventWireup="true" CodeBehind="BillingServicesWebForm.aspx.cs" Inherits="HotelManagerProject.BillingWebForm" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/MasterPage.Master" AutoEventWireup="true" CodeBehind="BillingAndBillingServicesWebForm.aspx.cs" Inherits="HotelManagerProject.BillingWebForm" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 </asp:Content>
@@ -20,15 +20,15 @@
                     <ClientSideEvents Click="function(s, e) { ShowLoginWindow(); }" />
                 </dx:ASPxButton>
             </div>
-            <div class="col-xs-2 billingdiv2">
+            <div class="col-xs-12 billingdiv2">
                 <dx:ASPxLabel CssClass="Text" ForeColor="AquaMarine" runat="server" Text="Booking :" Theme="BlackGlass"></dx:ASPxLabel>
                 <dx:ASPxTextBox runat="server"></dx:ASPxTextBox>
             </div>
-            <div class="col-xs-2 billingdiv2">
+            <div class="col-xs-12 billingdiv2">
                 <dx:ASPxLabel CssClass="Text" ForeColor="AquaMarine" runat="server" Text="Price :" Theme="BlackGlass"></dx:ASPxLabel>
                 <dx:ASPxTextBox runat="server"></dx:ASPxTextBox>
             </div>
-            <div class="col-xs-2 billingdiv2">
+            <div class="col-xs-12 billingdiv2">
                 <dx:ASPxLabel CssClass="Text" ForeColor="AquaMarine" runat="server" Text="Customer :" Theme="BlackGlass"></dx:ASPxLabel>
                 <dx:ASPxTextBox runat="server"></dx:ASPxTextBox>
             </div>
