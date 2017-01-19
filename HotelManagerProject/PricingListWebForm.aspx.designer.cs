@@ -13,6 +13,24 @@ namespace HotelManagerProject {
     public partial class PricingListWebForm {
         
         /// <summary>
+        /// createPricingListButton control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::DevExpress.Web.ASPxButton createPricingListButton;
+        
+        /// <summary>
+        /// deletePricingListButton control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::DevExpress.Web.ASPxButton deletePricingListButton;
+        
+        /// <summary>
         /// PricingListGridView control.
         /// </summary>
         /// <remarks>

@@ -227,7 +227,7 @@ namespace HotelManagerLib.Controllers
                 }
                 catch (Exception exception)
                 {
-                    throw new DataException("",exception);
+                    throw new DataException(" ", exception);
                 }
             }
 

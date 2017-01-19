@@ -13,6 +13,24 @@ namespace HotelManagerProject {
     public partial class RoomWebForm {
         
         /// <summary>
+        /// createRoomButton control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::DevExpress.Web.ASPxButton createRoomButton;
+        
+        /// <summary>
+        /// deleteRoomButton control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::DevExpress.Web.ASPxButton deleteRoomButton;
+        
+        /// <summary>
         /// RoomGridView control.
         /// </summary>
         /// <remarks>
