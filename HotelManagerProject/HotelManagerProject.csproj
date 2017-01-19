@@ -69,8 +69,9 @@
     <Reference Include="DevExpress.Web.v16.2, Version=16.2.3.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="BillingListForm.aspx" />
-    <Content Include="BillingServicesWebForm.aspx" />
+    <Content Include="BillingListWebForm.aspx" />
+    <Content Include="BillingServicesListWebForm.aspx" />
+    <Content Include="BillingAndBillingServicesWebForm.aspx" />
     <Content Include="BookingForm.aspx" />
     <Content Include="BookingsListForm.aspx" />
     <Content Include="Content\bootstrap-theme.css" />
@@ -122,19 +123,26 @@
     </None>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="BillingListForm.aspx.cs">
-      <DependentUpon>BillingListForm.aspx</DependentUpon>
+    <Compile Include="BillingListWebForm.aspx.cs">
+      <DependentUpon>BillingListWebForm.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="BillingListForm.aspx.designer.cs">
-      <DependentUpon>BillingListForm.aspx</DependentUpon>
+    <Compile Include="BillingListWebForm.aspx.designer.cs">
+      <DependentUpon>BillingListWebForm.aspx</DependentUpon>
     </Compile>
-    <Compile Include="BillingServicesWebForm.aspx.cs">
-      <DependentUpon>BillingServicesWebForm.aspx</DependentUpon>
+    <Compile Include="BillingServicesListWebForm.aspx.cs">
+      <DependentUpon>BillingServicesListWebForm.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="BillingServicesWebForm.aspx.designer.cs">
-      <DependentUpon>BillingServicesWebForm.aspx</DependentUpon>
+    <Compile Include="BillingServicesListWebForm.aspx.designer.cs">
+      <DependentUpon>BillingServicesListWebForm.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="BillingAndBillingServicesWebForm.aspx.cs">
+      <DependentUpon>BillingAndBillingServicesWebForm.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="BillingAndBillingServicesWebForm.aspx.designer.cs">
+      <DependentUpon>BillingAndBillingServicesWebForm.aspx</DependentUpon>
     </Compile>
     <Compile Include="BookingForm.aspx.cs">
       <DependentUpon>BookingForm.aspx</DependentUpon>

@@ -85,6 +85,9 @@ namespace HotelManagerLib.Models.Persistant
         /// </summary>
         public Service Service { get; set; }
 
+        /// <summary>
+        /// Gets or sets the service id.
+        /// </summary>
         public int ServiceId { get; set; }
 
         /// <summary>
