@@ -127,7 +127,7 @@ namespace HotelManagerLib.Controllers
         /// <returns>
         /// The <see cref="double"/>.
         /// </returns>
-        public double RoomPricing(DateTime dateFrom, DateTime dateTo, int roomId)
+        public double RoomPricing(DateTime dateFrom, DateTime dateTo, int roomTypeId)
         {
             List<PricingList> pricingListsOfTheRoomForWholeYear;
             double sum = 0;
@@ -135,7 +135,7 @@ namespace HotelManagerLib.Controllers
 
             using (var context = new DataBaseContext())
             {
-                var roomTypeId = roomRepository.ReadOne(roomId).RoomTypeId;
+                //var roomTypeId = roomRepository.ReadOne(roomId).RoomTypeId;
                 pricingListsOfTheRoomForWholeYear =
                     this.Repository.ReadAllQuery(context)
                         .Where(
@@ -150,8 +150,8 @@ namespace HotelManagerLib.Controllers
             {
                 foreach (var pricingListOfTheRoomForOnePeriod in pricingListsOfTheRoomForWholeYear)
                 {
-                    if (date.Ticks > pricingListOfTheRoomForOnePeriod.ValidFrom.Ticks
-                        && date.Ticks < pricingListOfTheRoomForOnePeriod.ValidTo.Ticks)
+                    if (date.Ticks >= pricingListOfTheRoomForOnePeriod.ValidFrom.Ticks
+                        && date.Ticks <= pricingListOfTheRoomForOnePeriod.ValidTo.Ticks)
                     {
                         sum += pricingListOfTheRoomForOnePeriod.Price
                                 + (pricingListOfTheRoomForOnePeriod.Price * pricingListOfTheRoomForOnePeriod.VatPrc);
