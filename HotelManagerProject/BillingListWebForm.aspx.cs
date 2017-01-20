@@ -16,6 +16,8 @@ namespace HotelManagerProject
     using System.Web.UI;
     using System.Web.UI.WebControls;
 
+    using DevExpress.Web;
+
     using HotelManagerLib.Controllers;
     using HotelManagerLib.Controllers.Interfaces;
     using HotelManagerLib.Models.Persistant;
@@ -174,9 +176,5 @@ namespace HotelManagerProject
             }
         }
 
-        protected void createBillingPopUp_OnInit(object sender, EventArgs e)
-        {
-            
-        }
     }
 }
