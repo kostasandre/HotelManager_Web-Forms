@@ -3,10 +3,21 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
+    
+    <script type="text/javascript">
+        function ShowLoginWindow() {
+            PricingListDetailView.Show();
+        }
+    </script>
+
     <div class="container" style="width: 100%">
         <div class="row">
             <div class="col-lg-2 col-md-2 col-sm-2 col-md-2 col-xs-4">
-                <dx:ASPxButton ID="createPricingListButton" CssClass="button" ToolTip="Creates a new PricingList" ForeColor="AquaMarine" Theme="BlackGlass" runat="server" Text="Create PricingList" />
+                <dx:ASPxButton ID="createPricingListButton" CssClass="button" ToolTip="Creates a new PricingList" ForeColor="AquaMarine" Theme="BlackGlass" runat="server" Text="Create PricingList" >
+                    <ClientSideEvents Click="function(s, e) {
+	{ ShowLoginWindow(); }
+}"></ClientSideEvents>
+                </dx:ASPxButton>
             </div>
             <div class="col-lg-2 col-md-2 col-sm-2 col-xs-4">
                 <dx:ASPxButton ID="deletePricingListButton" CssClass="button" ToolTip="Deletes the selected PricingList" ForeColor="AquaMarine" Theme="BlackGlass" runat="server" Text="Delete PricingList" />
@@ -37,4 +48,125 @@
             </div>
         </div>
     </div>
+    
+    <dx:ASPxPopupControl ID="PricingListDetailView" runat="server" CloseAction="CloseButton" Width="350px" Height="250px" CloseOnEscape="True" Modal="True"
+        MaxWidth="800px" MaxHeight="800px" MinHeight="150px" MinWidth="150px"
+        PopupHorizontalAlign="WindowCenter" PopupVerticalAlign="WindowCenter" ClientInstanceName="PricingListDetailView"
+        HeaderText="Bookings" AllowDragging="True" PopupAnimationType="Fade" EnableViewState="False" EnableTheming="True" Theme="BlackGlass">
+        <ClientSideEvents PopUp="function(s, e) { ASPxClientEdit.ClearGroup('entryGroup');}" />
+        <ContentCollection>
+            <dx:PopupControlContentControl runat="server">
+                <dx:ASPxPanel ID="Panel1" runat="server" DefaultButton="btOK">
+                    <PanelCollection>
+                        <dx:PanelContent runat="server">
+                            <table>
+                                <tr>
+                                    <td rowspan="4">
+                                        <div class="pcmSideSpacer">
+                                        </div>
+                                    </td>
+                                    <td class="pcmCellText">
+
+                                        <div class="container" style="width: 100%">
+
+                                            <div class="row">
+                                                <div class="col-xs-4">
+                                                    <dx:ASPxLabel ID="typeOfLabel" runat="server" Text="Type Of Service"></dx:ASPxLabel>
+                                                </div>
+                                                <div class="col-xs-6">
+                                                    <dx:ASPxRadioButtonList ID="typeOFRadioButtonList" runat="server" OnSelectedIndexChanged="typeOFRadioButtonList_OnSelectedIndexChanged" OnValueChanged="typeOFRadioButtonList_OnValueChanged">
+                                                        <ClientSideEvents SelectedIndexChanged="function(s, e) {
+	//{ e.processOnServer=true;}
+	//{typeOFRadioButtonList_OnSelectedIndexChanged(object sender, EventArgs e);}
+{typeOFRadioButtonList_OnSelectedIndexChanged(s, e);}
+}"></ClientSideEvents>
+                                                    </dx:ASPxRadioButtonList>
+                                                    <asp:RadioButton ID=RadioButton1 runat="server" />
+                                                </div>
+                                            </div>
+                                            
+                                            <div class="row">
+                                                <div class="col-xs-4">
+                                                    <dx:ASPxLabel ID="roomTypeLabel" runat="server" Text="Room Type"></dx:ASPxLabel>
+                                                </div>
+                                                <div class="col-xs-6">
+                                                    <dx:ASPxComboBox ID="roomTypeComboBox" NullText="Select Room Type" ValueField="Id" TextField="Code" runat="server" IncrementalFilteringMode="None" DropDownStyle="DropDownList"></dx:ASPxComboBox>
+                                                </div>
+                                            </div>
+                                            
+                                            <div class="row">
+                                                <div class="col-xs-4">
+                                                    <dx:ASPxLabel ID="serviceLabel" runat="server" Text="Service"></dx:ASPxLabel>
+                                                </div>
+                                                <div class="col-xs-6">
+                                                    <dx:ASPxComboBox ID="serviceComboBox" NullText="Select Service" ValueField="Id" TextField="Description" runat="server" IncrementalFilteringMode="None" DropDownStyle="DropDownList"></dx:ASPxComboBox>
+                                                </div>
+                                            </div>
+                                            
+                                            <div class="row">
+                                                <div class="col-xs-4">
+                                                    <dx:ASPxLabel ID="ValidFrom" runat="server" Text="ValidFrom"></dx:ASPxLabel>
+                                                </div>
+                                                <div class="col-xs-6">
+                                                    <dx:ASPxDateEdit ID=ASPxDateEdit1 runat="server"></dx:ASPxDateEdit>
+                                                </div>
+                                            </div>
+                                            
+                                            <div class="row">
+                                                <div class="col-xs-4">
+                                                    <dx:ASPxLabel ID="ValidTo" runat="server" Text="ValidTo"></dx:ASPxLabel>
+                                                </div>
+                                                <div class="col-xs-6">
+                                                    <dx:ASPxDateEdit ID=ASPxDateEdit2 runat="server"></dx:ASPxDateEdit>
+                                                </div>
+                                            </div>
+                                            
+                                            <div class="row">
+                                                <div class="col-xs-4">
+                                                    <dx:ASPxLabel ID="priceLabel" runat="server" Text="Price"></dx:ASPxLabel>
+                                                </div>
+                                                <div class="col-xs-6">
+                                                    <dx:ASPxSpinEdit ID="priceSpinEdit" runat="server" Number="0">
+                                                    </dx:ASPxSpinEdit>
+                                                </div>
+                                            </div>
+                                            
+                                            <div class="row">
+                                                <div class="col-xs-4">
+                                                    <dx:ASPxLabel ID="VatPrcLabel1" runat="server" Text="Vat Prc"></dx:ASPxLabel>
+                                                </div>
+                                                <div class="col-xs-6">
+                                                    <dx:ASPxSpinEdit ID="VatPrcSpinEdit1" runat="server" Number="0">
+                                                    </dx:ASPxSpinEdit>
+                                                </div>
+                                            </div>
+
+                                        </div>
+
+                                        <br />
+                                    </td>
+                                    <td rowspan="4">
+                                        <div class="pcmSideSpacer">
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td colspan="2">
+                                        <div class="pcmButton">
+                                            <dx:ASPxButton ID="btOK" runat="server" Text="OK" Width="80px" AutoPostBack="False" Style="float: left; margin-right: 8px">
+                                                <ClientSideEvents Click="function(s, e) { if(ASPxClientEdit.ValidateGroup('entryGroup')) PricingListDetailView.Hide(); }" />
+                                            </dx:ASPxButton>
+                                            <dx:ASPxButton ID="btCancel" runat="server" Text="Cancel" Width="80px" AutoPostBack="False" Style="float: left; margin-right: 8px">
+                                                <ClientSideEvents Click="function(s, e) { PricingListDetailView.Hide(); }" />
+                                            </dx:ASPxButton>
+                                        </div>
+                                    </td>
+                                </tr>
+                            </table>
+                        </dx:PanelContent>
+                    </PanelCollection>
+                </dx:ASPxPanel>
+            </dx:PopupControlContentControl>
+        </ContentCollection>
+    </dx:ASPxPopupControl>
 </asp:Content>

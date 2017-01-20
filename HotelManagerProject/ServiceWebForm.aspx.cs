@@ -30,6 +30,8 @@ namespace HotelManagerProject
         /// </summary>
         private IEntityController<Service> serviceController;
 
+        private Service service;
+
         /// <summary>
         /// The page_ init.
         /// </summary>
@@ -57,6 +59,16 @@ namespace HotelManagerProject
         /// </param>
         protected void Page_Load(object sender, EventArgs e)
         {
+        }
+
+        protected void btOK_OnClick(object sender, EventArgs e)
+        {
+            this.service = new Service();
+            this.serviceController = new ServiceController();
+            this.service.Code = this.codeTextBox.Text;
+            this.service.Description = this.descriptionTextBox.Text;
+            this.serviceController.CreateOrUpdateEntity(this.service);
+            this.Page.Response.Redirect(this.Page.Request.Url.ToString() , true);
         }
     }
 }

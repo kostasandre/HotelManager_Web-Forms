@@ -41,13 +41,21 @@ namespace HotelManagerLib.Repositories
             using (var context = new DataBaseContext())
             {
                 context.Rooms.Add(room);
-                if (room.Hotel != null)
-                {
-                    context.Entry(room.Hotel).State = EntityState.Unchanged;
-                    room.Hotel.Rooms.Where(x => x.Id > 0)
-                        .ToList()
-                        .ForEach(x => context.Entry(x).State = EntityState.Unchanged);
-                }
+                //if (room.Hotel != null)
+                //{
+                //    context.Entry(room.Hotel).State = EntityState.Unchanged;
+                //    room.Hotel.Rooms.Where(x => x.Id > 0)
+                //        .ToList()
+                //        .ForEach(x => context.Entry(x).State = EntityState.Unchanged);
+                //}
+
+                //if (room.RoomType != null)
+                //{
+                //    context.Entry(room.RoomType).State = EntityState.Unchanged;
+                //    room.RoomType.Rooms.Where(x => x.Id > 0)
+                //        .ToList()
+                //        .ForEach(x => context.Entry(x).State = EntityState.Unchanged);
+                //}
 
                 context.SaveChanges();
             }

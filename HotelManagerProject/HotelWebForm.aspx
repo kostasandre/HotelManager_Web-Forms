@@ -3,12 +3,13 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
+
     <script type="text/javascript">
         function ShowLoginWindow() {
             HotelDetailView.Show();
         }
-
     </script>
+
     <div class="container" style="width: 100%">
         <div class="row">
             <div class="col-lg-1 col-md-2 col-sm-2 col-xs-4">
@@ -53,7 +54,8 @@
         </div>
     </div>
 
-    <dx:ASPxPopupControl ID="HotelDetailView" runat="server" CloseAction="CloseButton" CloseOnEscape="True" Modal="True"
+    <dx:ASPxPopupControl ID="HotelDetailView" runat="server" CloseAction="CloseButton" Width="350px" Height="250px" CloseOnEscape="True" Modal="True"
+        MaxWidth="800px" MaxHeight="800px" MinHeight="150px" MinWidth="150px"
         PopupHorizontalAlign="WindowCenter" PopupVerticalAlign="WindowCenter" ClientInstanceName="HotelDetailView"
         HeaderText="Bookings" AllowDragging="True" PopupAnimationType="Fade" EnableViewState="False" EnableTheming="True" Theme="BlackGlass">
         <ClientSideEvents PopUp="function(s, e) { ASPxClientEdit.ClearGroup('entryGroup');}" />
@@ -69,84 +71,67 @@
                                         </div>
                                     </td>
                                     <td class="pcmCellText">
-                                        <%--<dx:ASPxGridView runat="server" ID="BookingListGridview" AutoGenerateColumns="False" KeyFieldName="Id" Theme="BlackGlass">
-                                            <Settings ShowFilterRow="True" ShowGroupPanel="True" />
-                                            <SettingsSearchPanel Visible="True" />
-                                            <Columns>
-                                                <dx:GridViewCommandColumn SelectAllCheckboxMode="Page" ShowClearFilterButton="True" ShowInCustomizationForm="True" ShowSelectCheckbox="True" VisibleIndex="0">
-                                                </dx:GridViewCommandColumn>
-                                                <dx:GridViewDataTextColumn FieldName="Comments" VisibleIndex="2" ReadOnly="True">
-                                                </dx:GridViewDataTextColumn>
-                                                <dx:GridViewDataTextColumn FieldName="Id" VisibleIndex="5" Visible="False">
-                                                </dx:GridViewDataTextColumn>
-                                                <dx:GridViewDataTextColumn FieldName="From" VisibleIndex="4" ReadOnly="True">
-                                                </dx:GridViewDataTextColumn>
-                                                <dx:GridViewDataTextColumn FieldName="To" VisibleIndex="6" ReadOnly="True">
-                                                </dx:GridViewDataTextColumn>
-                                                <dx:GridViewDataTextColumn FieldName="SystemPrice" VisibleIndex="7" ReadOnly="True">
-                                                </dx:GridViewDataTextColumn>
-                                                <dx:GridViewDataTextColumn FieldName="AgreedPrice" VisibleIndex="3" ReadOnly="True">
-                                                </dx:GridViewDataTextColumn>
-                                            </Columns>
-                                        </dx:ASPxGridView>--%>
+
                                         <div class="container" style="width: 100%">
 
                                             <div class="row">
-                                                <div class="col-xs-6">
+                                                <div class="col-xs-4">
                                                     <dx:ASPxLabel ID="nameLabel" runat="server" Text="Name"></dx:ASPxLabel>
                                                 </div>
                                                 <div class="col-xs-6">
                                                     <dx:ASPxTextBox ID="nameTextBox" runat="server" Width="170px"></dx:ASPxTextBox>
                                                 </div>
                                             </div>
-                                        </div>
 
-                                        <div class="row">
-                                            <div class="col-xs-6">
-                                                <dx:ASPxLabel ID="addressLabel" runat="server" Text="Address"></dx:ASPxLabel>
-                                            </div>
-                                            <div class="col-xs-6">
-                                                <dx:ASPxTextBox ID="addressTextBox" runat="server" Width="170px"></dx:ASPxTextBox>
-                                            </div>
-                                        </div>
 
-                                        <div class="row">
-                                            <div class="col-xs-6">
-                                                <dx:ASPxLabel ID="managerLabel" runat="server" Text="Manager"></dx:ASPxLabel>
+                                            <div class="row">
+                                                <div class="col-xs-4">
+                                                    <dx:ASPxLabel ID="addressLabel" runat="server" Text="Address"></dx:ASPxLabel>
+                                                </div>
+                                                <div class="col-xs-6">
+                                                    <dx:ASPxTextBox ID="addressTextBox" runat="server" Width="170px"></dx:ASPxTextBox>
+                                                </div>
                                             </div>
-                                            <div class="col-xs-6">
-                                                <dx:ASPxTextBox ID="managerTextBox" runat="server" Width="170px"></dx:ASPxTextBox>
-                                            </div>
-                                        </div>
 
-                                        <div class="row">
-                                            <div class="col-xs-6">
-                                                <dx:ASPxLabel ID="emailLabel" runat="server" Text="Email"></dx:ASPxLabel>
+                                            <div class="row">
+                                                <div class="col-xs-4">
+                                                    <dx:ASPxLabel ID="managerLabel" runat="server" Text="Manager"></dx:ASPxLabel>
+                                                </div>
+                                                <div class="col-xs-6">
+                                                    <dx:ASPxTextBox ID="managerTextBox" runat="server" Width="170px"></dx:ASPxTextBox>
+                                                </div>
                                             </div>
-                                            <div class="col-xs-6">
-                                                <dx:ASPxTextBox ID="emailTextBox" runat="server" Width="170px"></dx:ASPxTextBox>
-                                            </div>
-                                        </div>
 
-                                        <div class="row">
-                                            <div class="col-xs-6">
-                                                <dx:ASPxLabel ID="phoneLabel" runat="server" Text="Phone"></dx:ASPxLabel>
+                                            <div class="row">
+                                                <div class="col-xs-4">
+                                                    <dx:ASPxLabel ID="emailLabel" runat="server" Text="Email"></dx:ASPxLabel>
+                                                </div>
+                                                <div class="col-xs-6">
+                                                    <dx:ASPxTextBox ID="emailTextBox" runat="server" Width="170px"></dx:ASPxTextBox>
+                                                </div>
                                             </div>
-                                            <div class="col-xs-6">
-                                                <dx:ASPxTextBox ID="phoneTextBox" runat="server" Width="170px"></dx:ASPxTextBox>
-                                            </div>
-                                        </div>
 
-                                        <div class="row">
-                                            <div class="col-xs-6">
-                                                <dx:ASPxLabel ID="taxIdLabel" runat="server" Text="Tax Id"></dx:ASPxLabel>
+                                            <div class="row">
+                                                <div class="col-xs-4">
+                                                    <dx:ASPxLabel ID="phoneLabel" runat="server" Text="Phone"></dx:ASPxLabel>
+                                                </div>
+                                                <div class="col-xs-6">
+                                                    <dx:ASPxTextBox ID="phoneTextBox" runat="server" Width="170px"></dx:ASPxTextBox>
+                                                </div>
                                             </div>
-                                            <div class="col-xs-6">
-                                                <dx:ASPxSpinEdit ID="taxIdSpinEdit" runat="server" Number="0" MaxLength="9">
-                                                </dx:ASPxSpinEdit>
-                                            </div>
-                                        </div>
 
+                                            <div class="row">
+                                                <div class="col-xs-4">
+                                                    <dx:ASPxLabel ID="taxIdLabel" runat="server" Text="Tax Id"></dx:ASPxLabel>
+                                                </div>
+                                                <div class="col-xs-6">
+                                                    <dx:ASPxSpinEdit ID="taxIdSpinEdit" runat="server" Number="0" MaxLength="9">
+                                                    </dx:ASPxSpinEdit>
+                                                </div>
+                                            </div>
+                                            <br />
+                                        </div>
+                                        <br />
                                     </td>
                                     <td rowspan="4">
                                         <div class="pcmSideSpacer">
@@ -156,7 +141,7 @@
                                 <tr>
                                     <td colspan="2">
                                         <div class="pcmButton">
-                                            <dx:ASPxButton ID="btOK" runat="server" Text="OK" Width="80px" AutoPostBack="False" Style="float: left; margin-right: 8px">
+                                            <dx:ASPxButton ID="btOK" runat="server" Text="OK" Width="80px" AutoPostBack="False" Style="float: left; margin-right: 8px" OnClick="btOK_OnClick">
                                                 <ClientSideEvents Click="function(s, e) { if(ASPxClientEdit.ValidateGroup('entryGroup')) HotelDetailView.Hide(); }" />
                                             </dx:ASPxButton>
                                             <dx:ASPxButton ID="btCancel" runat="server" Text="Cancel" Width="80px" AutoPostBack="False" Style="float: left; margin-right: 8px">
