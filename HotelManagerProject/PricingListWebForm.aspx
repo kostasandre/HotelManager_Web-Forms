@@ -74,14 +74,10 @@
                                                     <dx:ASPxLabel ID="typeOfLabel" runat="server" Text="Type Of Service"></dx:ASPxLabel>
                                                 </div>
                                                 <div class="col-xs-6">
-                                                    <dx:ASPxRadioButtonList ID="typeOFRadioButtonList" runat="server" OnSelectedIndexChanged="typeOFRadioButtonList_OnSelectedIndexChanged" OnValueChanged="typeOFRadioButtonList_OnValueChanged">
-                                                        <ClientSideEvents SelectedIndexChanged="function(s, e) {
-	//{ e.processOnServer=true;}
-	//{typeOFRadioButtonList_OnSelectedIndexChanged(object sender, EventArgs e);}
-{typeOFRadioButtonList_OnSelectedIndexChanged(s, e);}
-}"></ClientSideEvents>
-                                                    </dx:ASPxRadioButtonList>
-                                                    <asp:RadioButton ID=RadioButton1 runat="server" />
+
+                                                    <asp:RadioButtonList ID="typeOFRadioButtonList" runat="server" OnSelectedIndexChanged="typeOFRadioButtonList_OnSelectedIndexChanged" AutoPostBack="True">
+                                                    </asp:RadioButtonList>
+
                                                 </div>
                                             </div>
                                             
@@ -108,7 +104,7 @@
                                                     <dx:ASPxLabel ID="ValidFrom" runat="server" Text="ValidFrom"></dx:ASPxLabel>
                                                 </div>
                                                 <div class="col-xs-6">
-                                                    <dx:ASPxDateEdit ID=ASPxDateEdit1 runat="server"></dx:ASPxDateEdit>
+                                                    <dx:ASPxDateEdit ID="validFromDateEdit" runat="server"></dx:ASPxDateEdit>
                                                 </div>
                                             </div>
                                             
@@ -117,7 +113,7 @@
                                                     <dx:ASPxLabel ID="ValidTo" runat="server" Text="ValidTo"></dx:ASPxLabel>
                                                 </div>
                                                 <div class="col-xs-6">
-                                                    <dx:ASPxDateEdit ID=ASPxDateEdit2 runat="server"></dx:ASPxDateEdit>
+                                                    <dx:ASPxDateEdit ID="validToDateEdit" runat="server"></dx:ASPxDateEdit>
                                                 </div>
                                             </div>
                                             
@@ -133,10 +129,10 @@
                                             
                                             <div class="row">
                                                 <div class="col-xs-4">
-                                                    <dx:ASPxLabel ID="VatPrcLabel1" runat="server" Text="Vat Prc"></dx:ASPxLabel>
+                                                    <dx:ASPxLabel ID="VatPrcLabel" runat="server" Text="Vat Prc"></dx:ASPxLabel>
                                                 </div>
                                                 <div class="col-xs-6">
-                                                    <dx:ASPxSpinEdit ID="VatPrcSpinEdit1" runat="server" Number="0">
+                                                    <dx:ASPxSpinEdit ID="VatPrcSpinEdit" runat="server" Number="0">
                                                     </dx:ASPxSpinEdit>
                                                 </div>
                                             </div>
@@ -153,7 +149,7 @@
                                 <tr>
                                     <td colspan="2">
                                         <div class="pcmButton">
-                                            <dx:ASPxButton ID="btOK" runat="server" Text="OK" Width="80px" AutoPostBack="False" Style="float: left; margin-right: 8px">
+                                            <dx:ASPxButton ID="btOK" runat="server" Text="OK" Width="80px" AutoPostBack="False" Style="float: left; margin-right: 8px" OnClick="btOK_OnClick">
                                                 <ClientSideEvents Click="function(s, e) { if(ASPxClientEdit.ValidateGroup('entryGroup')) PricingListDetailView.Hide(); }" />
                                             </dx:ASPxButton>
                                             <dx:ASPxButton ID="btCancel" runat="server" Text="Cancel" Width="80px" AutoPostBack="False" Style="float: left; margin-right: 8px">

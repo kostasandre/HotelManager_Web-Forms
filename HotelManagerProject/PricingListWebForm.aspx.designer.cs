@@ -73,16 +73,7 @@ namespace HotelManagerProject {
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::DevExpress.Web.ASPxRadioButtonList typeOFRadioButtonList;
-        
-        /// <summary>
-        /// RadioButton1 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.RadioButton RadioButton1;
+        protected global::System.Web.UI.WebControls.RadioButtonList typeOFRadioButtonList;
         
         /// <summary>
         /// roomTypeLabel control.
@@ -130,13 +121,13 @@ namespace HotelManagerProject {
         protected global::DevExpress.Web.ASPxLabel ValidFrom;
         
         /// <summary>
-        /// ASPxDateEdit1 control.
+        /// validFromDateEdit control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::DevExpress.Web.ASPxDateEdit ASPxDateEdit1;
+        protected global::DevExpress.Web.ASPxDateEdit validFromDateEdit;
         
         /// <summary>
         /// ValidTo control.
@@ -148,13 +139,13 @@ namespace HotelManagerProject {
         protected global::DevExpress.Web.ASPxLabel ValidTo;
         
         /// <summary>
-        /// ASPxDateEdit2 control.
+        /// validToDateEdit control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::DevExpress.Web.ASPxDateEdit ASPxDateEdit2;
+        protected global::DevExpress.Web.ASPxDateEdit validToDateEdit;
         
         /// <summary>
         /// priceLabel control.
@@ -175,22 +166,22 @@ namespace HotelManagerProject {
         protected global::DevExpress.Web.ASPxSpinEdit priceSpinEdit;
         
         /// <summary>
-        /// VatPrcLabel1 control.
+        /// VatPrcLabel control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::DevExpress.Web.ASPxLabel VatPrcLabel1;
+        protected global::DevExpress.Web.ASPxLabel VatPrcLabel;
         
         /// <summary>
-        /// VatPrcSpinEdit1 control.
+        /// VatPrcSpinEdit control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::DevExpress.Web.ASPxSpinEdit VatPrcSpinEdit1;
+        protected global::DevExpress.Web.ASPxSpinEdit VatPrcSpinEdit;
         
         /// <summary>
         /// btOK control.
