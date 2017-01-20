@@ -55,10 +55,18 @@ namespace HotelManagerProject
             var gridviewIndex = e.VisibleIndex;
             var row = this.bookingsGridView.GetRow(gridviewIndex) as Booking;
             var booking = this.bookingController.GetEntity(row.Id);
+            this.bookingsGridView.JSProperties["cp_text"] = booking.Status.ToString();
+            this.bookingsGridView.JSProperties["cp_text1"] = booking.Comments;
+            this.bookingsGridView.JSProperties["cp_text2"] = Convert.ToString(booking.From);
+            this.bookingsGridView.JSProperties["cp_text3"] = Convert.ToString(booking.To);
+            this.bookingsGridView.JSProperties["cp_text4"] = Convert.ToString(booking.SystemPrice);
+            this.bookingsGridView.JSProperties["cp_text5"] = Convert.ToString(booking.AgreedPrice);
+            this.bookingsGridView.JSProperties["cp_text6"] = booking.Created.ToString();
+            this.bookingsGridView.JSProperties["cp_text7"] = booking.CreatedBy;
+            this.bookingsGridView.JSProperties["cp_text8"] = booking.Id.ToString();
 
-            this.commentsTextBoxTextBox.Text = booking.Comments;
-            this.statusComboBox.DataSource = roomTypesController.RefreshEntities();
-
+            //this.commentsTextBox.Text = "test";
+            //this.statusComboBox.DataSource = roomTypesController.RefreshEntities();
         }
 
         /// <summary>
@@ -90,6 +98,7 @@ namespace HotelManagerProject
             var errorlabel = this.Master?.FindControl("form1").FindControl("divErrorMessage") as Label;
             if (errorlabel != null)
             {
+                
                 errorlabel.Text = string.Empty;
                 if (this.bookingsGridView.VisibleRowCount == 0)
                 {
@@ -168,7 +177,21 @@ namespace HotelManagerProject
         /// </param>
         protected void Page_Load(object sender, EventArgs e)
         {
-            //this.commentsTextBoxTextBox.Text = "text";
+            var names = Enum.GetNames(typeof(Status));
+            this.statusComboBox.DataSource = names;
+            this.statusComboBox.DataBind();
+        }
+
+        protected void Save_OnClick(object sender, EventArgs e)
+        {
+            this.bookingController = new BookingController();
+            
+            var bookingId = this.iDtextBox.Text;
+            var booking = this.bookingController.GetEntity(Convert.ToInt32(bookingId));
+            booking.AgreedPrice = Convert.ToDouble(this.agreedPriceTextBox.Text);
+            booking.SystemPrice = Convert.ToDouble(this.systemPriceTextBox.Text);
+            booking.Comments = this.commentsTextBox.Text;
+            
         }
     }
 }
