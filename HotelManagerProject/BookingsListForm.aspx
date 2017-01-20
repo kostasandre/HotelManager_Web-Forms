@@ -24,50 +24,57 @@
   <div class="row">
    <div class="col-xs-0 col-sm-3 col-lg-4">
    </div>
-   <div class="col-xs-4">
-        <h1 style="background-color: red; color: white;">Bookings List</h1>
-       <dx:ASPxGridView  OnCustomButtonCallback="bookingsGridView_OnCustomButtonCallback" ID="bookingsGridView" runat="server" Theme="BlackGlass" AutoGenerateColumns="False" KeyFieldName="Id">
-            <Settings ShowFilterRow="True"></Settings>
-           <SettingsDataSecurity AllowInsert="False" AllowDelete="False" AllowEdit="False"></SettingsDataSecurity>
-           <ClientSideEvents CustomButtonClick="function(s, e) { ShowLoginWindow(); }" />
-            <Columns>
+   <div class="col-xs-12">
+       <div class="MainForm" style="width: 1370px">
+            <h1>Bookings List</h1>
+           <dx:ASPxGridView  OnCustomButtonCallback="bookingsGridView_OnCustomButtonCallback" ID="bookingsGridView" runat="server" Theme="BlackGlass" AutoGenerateColumns="False" KeyFieldName="Id">
+
+              
+
+               <Settings ShowFilterRow="True"></Settings>
+               <SettingsDataSecurity AllowInsert="False" AllowDelete="False" AllowEdit="False"></SettingsDataSecurity>
+               <ClientSideEvents CustomButtonClick="function(s, e) {
+                   e.processOnServer = true;
+                    ShowLoginWindow(); }" />
+                <Columns>
            
-                <dx:GridViewCommandColumn ShowClearFilterButton="True" VisibleIndex="1" SelectAllCheckboxMode="Page" ShowSelectCheckbox="True">
-                </dx:GridViewCommandColumn>
-                <dx:GridViewCommandColumn>
-                    <CustomButtons>
-                        <dx:GridViewCommandColumnCustomButton ID="editButton">
-                            <Image Url="Images/edit.png" Width="35px" ToolTip="Edit"></Image>
-                        </dx:GridViewCommandColumnCustomButton>
-                    </CustomButtons>
-                </dx:GridViewCommandColumn>
-                <dx:GridViewDataTextColumn FieldName="Status" VisibleIndex="4">
+                    <dx:GridViewCommandColumn ShowClearFilterButton="True" VisibleIndex="1" SelectAllCheckboxMode="Page" ShowSelectCheckbox="True">
+                    </dx:GridViewCommandColumn>
+                    <dx:GridViewCommandColumn>
+                        <CustomButtons>
+                            <dx:GridViewCommandColumnCustomButton ID="editButton">
+                                <Image Url="Images/edit.png" Width="35px" ToolTip="Edit"></Image>
+                            </dx:GridViewCommandColumnCustomButton>
+                        </CustomButtons>
+                    </dx:GridViewCommandColumn>
+                    <dx:GridViewDataTextColumn FieldName="Status" VisibleIndex="4">
+                    </dx:GridViewDataTextColumn>
+                    <dx:GridViewDataTextColumn FieldName="Room.Code" VisibleIndex="6">
+                    </dx:GridViewDataTextColumn>
+                    <dx:GridViewDataTextColumn FieldName="From" VisibleIndex="7">
+                    </dx:GridViewDataTextColumn>
+                    <dx:GridViewDataTextColumn FieldName="To" VisibleIndex="8">
+                    </dx:GridViewDataTextColumn>
+                    <dx:GridViewDataTextColumn FieldName="SystemPrice" VisibleIndex="12">
+                    </dx:GridViewDataTextColumn>
+                    <dx:GridViewDataTextColumn FieldName="AgreedPrice" VisibleIndex="13">
+                    </dx:GridViewDataTextColumn>
+                    <dx:GridViewDataTextColumn FieldName="Comments" VisibleIndex="9">
+                    </dx:GridViewDataTextColumn>
+                    <dx:GridViewDataTextColumn FieldName="Created" VisibleIndex="10">
+                    </dx:GridViewDataTextColumn>
+                    <dx:GridViewDataTextColumn FieldName="CreatedBy" VisibleIndex="11">
                 </dx:GridViewDataTextColumn>
-                <dx:GridViewDataTextColumn FieldName="Room.Code" VisibleIndex="6">
-                </dx:GridViewDataTextColumn>
-                <dx:GridViewDataTextColumn FieldName="From" VisibleIndex="7">
-                </dx:GridViewDataTextColumn>
-                <dx:GridViewDataTextColumn FieldName="To" VisibleIndex="8">
-                </dx:GridViewDataTextColumn>
-                <dx:GridViewDataTextColumn FieldName="SystemPrice" VisibleIndex="12">
-                </dx:GridViewDataTextColumn>
-                <dx:GridViewDataTextColumn FieldName="AgreedPrice" VisibleIndex="13">
-                </dx:GridViewDataTextColumn>
-                <dx:GridViewDataTextColumn FieldName="Comments" VisibleIndex="9">
-                </dx:GridViewDataTextColumn>
-                <dx:GridViewDataTextColumn FieldName="Created" VisibleIndex="10">
-                </dx:GridViewDataTextColumn>
-                <dx:GridViewDataTextColumn FieldName="CreatedBy" VisibleIndex="11">
-            </dx:GridViewDataTextColumn>
-            </Columns>
-        </dx:ASPxGridView>
+                </Columns>
+            </dx:ASPxGridView>
+           </div>
         <br/>
         
        </div>
       </div>
 
     </div>
-    <dx:ASPxPopupControl ClientInstanceName="createBookingPopUp" Width="330px" Height="250px" Modal="True"
+    <dx:ASPxPopupControl  ClientInstanceName="createBookingPopUp" Width="330px" Height="250px" Modal="True"
         MaxWidth="800px" MaxHeight="800px" MinHeight="150px" MinWidth="150px" ID="createBookingPopUp"
         ShowFooter="True" FooterText="Runtime: 142 min" PopupElementID="imgButton" HeaderText="Billing Details"
         runat="server" EnableViewState="false" PopupHorizontalAlign="WindowCenter" PopupVerticalAlign="WindowCenter" EnableHierarchyRecreation="True" AllowDragging="True" Theme="BlackGlass">
@@ -87,11 +94,11 @@
                         <tr>
                             <td>
                                 <label>
-                                    Code:
+                                    Comments:
                                 </label>
                             </td>
                             <td>
-                                <dx:ASPxTextBox ID="codeTextBox" runat="server" Width="170px"></dx:ASPxTextBox>
+                                <dx:ASPxTextBox ID="commentsTextBoxTextBox" runat="server" Width="170px"></dx:ASPxTextBox>
                             </td>
                             <tr>
                                 <td>
@@ -123,14 +130,6 @@
                             </td>
                             <td>
                                 <dx:ASPxTextBox ID="agreedPriceTextBox" runat="server" Width="170px"></dx:ASPxTextBox>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>
-                                <label>Commnets:  </label>
-                            </td>
-                            <td>
-                                <dx:ASPxTextBox ID="commentsTextBox" runat="server" Width="170px"></dx:ASPxTextBox>
                             </td>
                         </tr>
                         <tr>
