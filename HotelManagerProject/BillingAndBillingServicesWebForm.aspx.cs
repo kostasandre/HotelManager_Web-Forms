@@ -129,6 +129,10 @@ namespace HotelManagerProject
                         {
                             this.price = 0;
                         }
+                        catch (NullReferenceException ex)
+                        {
+                            this.price = 0;
+                        }
 
                         {
                             var myBillingService = new BillingService
