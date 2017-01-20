@@ -84,6 +84,7 @@
       <DependentUpon>201701190755509_11th.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
+    <Compile Include="Models\BillingServiceWithServiceDescription.cs" />
     <Compile Include="Models\Persistant\Billing.cs" />
     <Compile Include="Models\Persistant\BillingService.cs" />
     <Compile Include="Models\Persistant\Booking.cs" />
