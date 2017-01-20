@@ -1,6 +1,6 @@
 ﻿// --------------------------------------------------------------------------------------------------------------------
-// <copyright file="BookingForm.aspx.cs" company="">
-//   
+// <copyright file="BookingForm.aspx.cs" company="Data Communication">
+//   Dc Hotel Manager
 // </copyright>
 // <summary>
 //   The booking form.
@@ -20,7 +20,6 @@ namespace HotelManagerProject
 
     using HotelManagerLib.Controllers;
     using HotelManagerLib.Enums;
-    using HotelManagerLib.Exceptions;
     using HotelManagerLib.Models.Persistant;
 
     #endregion
@@ -30,7 +29,10 @@ namespace HotelManagerProject
     /// </summary>
     public partial class BookingForm : Page
     {
-        public List<Room> AvailableRooms { get; set; }
+        /// <summary>
+        /// The booking.
+        /// </summary>
+        private Booking booking;
 
         /// <summary>
         /// The booking controller.
@@ -48,27 +50,14 @@ namespace HotelManagerProject
         private CustomerController customerController;
 
         /// <summary>
-        /// The room controller.
-        /// </summary>
-        private RoomController roomController;
-
-        /// <summary>
         /// The room type controller.
         /// </summary>
         private RoomTypeController roomTypeController;
 
-        private Booking booking;
-
-        protected void Page_Init(object sender , EventArgs e)
-        {
-            this.AvailableRooms = this.Session["AvailableRooms"] as List<Room>;
-            this.customerComboBoxDataBind();
-            if (this.AvailableRooms != null && AvailableRooms.ToList().Count > 0)
-            {
-                this.availableRoomsGridView.DataSource = this.AvailableRooms;
-                this.availableRoomsGridView.DataBind();
-            }
-        }
+        /// <summary>
+        /// Gets or sets the available rooms.
+        /// </summary>
+        public List<Room> AvailableRooms { get; set; }
 
         /// <summary>
         /// The calculate room type price button_ on click.
@@ -81,7 +70,7 @@ namespace HotelManagerProject
         /// </param>
         protected void CalculateAvailableRoomsButton(object sender, EventArgs e)
         {
-            double roomPrice = 0;
+            double roomPrice;
             var pricingListController = new PricingListController();
             this.bookingController = new BookingController();
             var errorlabel = this.Master?.FindControl("form1").FindControl("divErrorMessage") as Label;
@@ -96,15 +85,20 @@ namespace HotelManagerProject
             var roomTypeId = this.roomTypeComboBox.Value;
             try
             {
-                roomPrice = pricingListController.RoomPricing(
-                    Convert.ToDateTime(dateFrom),
-                    Convert.ToDateTime(dateTo),
-                    Convert.ToInt32(roomTypeId));
+                roomPrice = pricingListController.RoomPricing(dateFrom, dateTo, Convert.ToInt32(roomTypeId));
             }
             catch (Exception ex)
             {
-                errorlabel.Text = ex.Message;
+                if (errorlabel != null)
+                {
+                    errorlabel.Text = ex.Message;
+                }
+                    
                 this.AvailableRooms = null;
+                this.availableRoomsGridView.DataSource = this.AvailableRooms;
+                this.availableRoomsGridView.DataBind();
+                this.roomTypePriceTextBox.Text = string.Empty;
+                return;
             }
 
             this.roomTypePriceTextBox.Text = roomPrice.ToString(CultureInfo.InvariantCulture);
@@ -113,7 +107,7 @@ namespace HotelManagerProject
                 this.AvailableRooms = this.bookingController.GetAvailableRooms(roomTypeId, dateFrom, dateTo);
                 this.Session["AvailableRooms"] = this.AvailableRooms;
             }
-            
+
             this.availableRoomsGridView.DataSource = this.AvailableRooms;
             this.availableRoomsGridView.DataBind();
         }
@@ -127,10 +121,17 @@ namespace HotelManagerProject
         /// <param name="e">
         /// The e.
         /// </param>
-        protected void customersPopUpSaveButton_OnClick(object sender, EventArgs e)
+        protected void CustomersPopUpSaveButton(object sender, EventArgs e)
         {
+            var errorlabel = this.Master?.FindControl("form1").FindControl("divErrorMessage") as Label;
+            if (errorlabel != null)
+            {
+                errorlabel.Text = string.Empty;
+            }
             this.customer = new Customer();
             this.customerController = new CustomerController();
+           
+
             this.customer.Name = this.nameTextBox.Text;
             this.customer.Surname = this.surNameTextBox.Text;
             this.customer.IdNumber = this.idNumberTextBox.Text;
@@ -138,7 +139,6 @@ namespace HotelManagerProject
             this.customer.Email = this.emailTextBox.Text;
             this.customer.Address = this.addressTextBox.Text;
             this.customer.Phone = this.phoneTextBox.Text;
-            
 
             try
             {
@@ -147,11 +147,30 @@ namespace HotelManagerProject
                 this.customerComboBox.Value = this.customer;
                 this.customerComboBox.Text = this.customer.Name;
             }
-            catch (ArgumentException)
+            catch (Exception ex)
             {
-                
+                errorlabel.Text = ex.Message;
             }
-            
+        }
+
+        /// <summary>
+        /// The page initialize.
+        /// </summary>
+        /// <param name="sender">
+        /// The sender.
+        /// </param>
+        /// <param name="e">
+        /// The e.
+        /// </param>
+        protected void Page_Init(object sender, EventArgs e)
+        {
+            this.AvailableRooms = this.Session["AvailableRooms"] as List<Room>;
+            this.customerComboBoxDataBind();
+            if ((this.AvailableRooms != null) && (this.AvailableRooms.ToList().Count > 0))
+            {
+                this.availableRoomsGridView.DataSource = this.AvailableRooms;
+                this.availableRoomsGridView.DataBind();
+            }
         }
 
         /// <summary>
@@ -169,19 +188,16 @@ namespace HotelManagerProject
             {
                 this.customerController = new CustomerController();
                 this.roomTypeController = new RoomTypeController();
-                
 
                 var roomTypes = this.roomTypeController.RefreshEntities();
                 this.roomTypeComboBox.DataSource = roomTypes;
                 this.customerComboBoxDataBind();
                 this.roomTypeComboBox.DataBind();
             }
-            
-
         }
 
         /// <summary>
-        /// The room type combo box_ on init.
+        /// The save booking button_ on click.
         /// </summary>
         /// <param name="sender">
         /// The sender.
@@ -189,19 +205,6 @@ namespace HotelManagerProject
         /// <param name="e">
         /// The e.
         /// </param>
-        //protected void roomTypeComboBox_OnInit(object sender, EventArgs e)
-        //{
-           
-        //}
-
-        private void customerComboBoxDataBind()
-        {
-            this.customerController = new CustomerController();
-            var customers = this.customerController.RefreshEntities();
-            this.customerComboBox.DataSource = customers;
-            this.customerComboBox.DataBind();
-        }
-
         protected void saveBookingButton_OnClick(object sender, EventArgs e)
         {
             var errorlabel = this.Master?.FindControl("form1").FindControl("divErrorMessage") as Label;
@@ -214,7 +217,7 @@ namespace HotelManagerProject
             this.roomTypeController = new RoomTypeController();
             this.customerController = new CustomerController();
             this.bookingController = new BookingController();
-           
+
             var dateFrom = this.dateFromCalendar.Text;
             var dateTo = this.dateToCalendar.Text;
             var price = this.roomTypePriceTextBox.Text;
@@ -223,20 +226,22 @@ namespace HotelManagerProject
                 errorlabel.Text = "Please calculate price first";
                 return;
             }
+
             var row = this.availableRoomsGridView.FocusedRowIndex;
             var selectedRoom = (Room)this.availableRoomsGridView.GetRow(row);
             if (selectedRoom == null)
             {
                 errorlabel.Text = "Please select a room first";
                 return;
-                ;
             }
+
             var customerId = this.customerComboBox.Value;
             if (customerId == null)
             {
                 errorlabel.Text = "Please select a customer first";
                 return;
             }
+
             var customer = this.customerController.GetEntity(Convert.ToInt32(customerId));
 
             var agreedPrice = this.agreedPriceTextBox.Text;
@@ -261,12 +266,23 @@ namespace HotelManagerProject
             try
             {
                 this.bookingController.CreateOrUpdateEntity(this.booking);
-                Response.Redirect("BookingsListForm.aspx");
+                this.Response.Redirect("BookingsListForm.aspx");
             }
             catch (Exception ex)
             {
                 errorlabel.Text = ex.Message;
             }
+        }
+
+        /// <summary>
+        /// The customer combo box data bind.
+        /// </summary>
+        private void customerComboBoxDataBind()
+        {
+            this.customerController = new CustomerController();
+            var customers = this.customerController.RefreshEntities();
+            this.customerComboBox.DataSource = customers;
+            this.customerComboBox.DataBind();
         }
     }
 }

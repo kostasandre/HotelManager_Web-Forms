@@ -16,10 +16,10 @@ namespace HotelManagerProject
     using System.Web.UI;
     using System.Web.UI.WebControls;
 
-    using DevExpress.Utils;
     using DevExpress.Web;
 
     using HotelManagerLib.Controllers;
+    using HotelManagerLib.Enums;
     using HotelManagerLib.Models.Persistant;
 
     #endregion
@@ -38,6 +38,28 @@ namespace HotelManagerProject
         /// The customer controller.
         /// </summary>
         private CustomerController customerController;
+
+        /// <summary>
+        /// The bookings grid view_ on custom button callback.
+        /// </summary>
+        /// <param name="sender">
+        /// The sender.
+        /// </param>
+        /// <param name="e">
+        /// The e.
+        /// </param>
+        protected void bookingsGridView_OnCustomButtonCallback(object sender, ASPxGridViewCustomButtonCallbackEventArgs e)
+        {
+            this.bookingController = new BookingController();
+            var roomTypesController = new RoomTypeController();
+            var gridviewIndex = e.VisibleIndex;
+            var row = this.bookingsGridView.GetRow(gridviewIndex) as Booking;
+            var booking = this.bookingController.GetEntity(row.Id);
+
+            this.commentsTextBoxTextBox.Text = booking.Comments;
+            this.statusComboBox.DataSource = roomTypesController.RefreshEntities();
+
+        }
 
         /// <summary>
         /// The create booking button_ on click.
@@ -146,12 +168,7 @@ namespace HotelManagerProject
         /// </param>
         protected void Page_Load(object sender, EventArgs e)
         {
-        }
-
-        protected void bookingsGridView_OnCustomButtonCallback(object sender,ASPxGridViewCustomButtonCallbackEventArgs e)
-        {
-
+            //this.commentsTextBoxTextBox.Text = "text";
         }
     }
-
 }
