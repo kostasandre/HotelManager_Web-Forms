@@ -139,7 +139,7 @@ namespace HotelManagerLib.Controllers
         /// <returns>
         /// The <see cref="bool"/>.
         /// </returns>
-        public List<Room> AvailableRooms(object roomTypeId, object dateFrom, object dateTo )
+        public List<Room> GetAvailableRooms(object roomTypeId, object dateFrom, object dateTo )
         {
             var roomController = new RoomController();
             var availableRooms = new List<Room>();

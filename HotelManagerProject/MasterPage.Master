@@ -36,7 +36,6 @@
                     <li class="dropdown"><a href="#" data-toggle="collapse" data-target="#one">Hotels</a> </li>
                     <li class="dropdown"><a href="#" data-toggle="collapse" data-target="#two">Booking</a> </li>
                     <li class="dropdown"><a href="#" data-toggle="collapse" data-target="#three">Billing</a> </li>
-                    <li class="dropdown"><a href="#" data-toggle="collapse" data-target="#five">Customers</a> </li>
                     <li class="dropdown"><a href="#" data-toggle="collapse" data-target="#four">Reports</a> </li>
                 </ul>
             </nav>
@@ -54,6 +53,7 @@
                 <ul class="nav navbar-nav collapse" id="two">
                     <li><a href="BookingsListForm.aspx" id="">Bookings</a></li>
                     <li><a href="BookingForm.aspx" id="">New Booking</a></li>
+                    <li><a href="CustomersForm.aspx" id="">Customers</a></li>
 
                 </ul>
                 <ul class="nav navbar-nav collapse" id="three">

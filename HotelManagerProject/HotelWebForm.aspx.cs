@@ -44,12 +44,6 @@ namespace HotelManagerProject
             this.hotelController = new HotelController();
             this.HotelGridView.DataSource = this.hotelController.RefreshEntities();
             this.HotelGridView.DataBind();
-
-            //var controller = new PricingListController();
-            //var datefrom = Convert.ToDateTime("25/05/2017");
-            //var dateto = Convert.ToDateTime("05/06/2017");
-            //var sum = controller.RoomPricing(datefrom, dateto, 2);
-
         }
 
         /// <summary>

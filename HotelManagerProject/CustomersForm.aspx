@@ -35,7 +35,7 @@
             </div>
             <div class="col-xs-4">
                 <h1>Customer List</h1>
-        <dx:ASPxGridView ID="customersListGridView" runat="server" Theme="BlackGlass" AutoGenerateColumns="False">
+                <dx:ASPxGridView ID="customersListGridView" runat="server" Theme="BlackGlass" AutoGenerateColumns="False" KeyFieldName="Id">
             <Settings ShowFilterRow="True"></Settings>
             <SettingsDataSecurity AllowInsert="False" AllowDelete="False" AllowEdit="False"></SettingsDataSecurity>
             <Columns>

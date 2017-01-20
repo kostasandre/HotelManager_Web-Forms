@@ -14,9 +14,13 @@ namespace HotelManagerProject
     using System;
     using System.Collections.Generic;
     using System.Globalization;
+    using System.Linq;
     using System.Web.UI;
+    using System.Web.UI.WebControls;
 
     using HotelManagerLib.Controllers;
+    using HotelManagerLib.Enums;
+    using HotelManagerLib.Exceptions;
     using HotelManagerLib.Models.Persistant;
 
     #endregion
@@ -26,10 +30,22 @@ namespace HotelManagerProject
     /// </summary>
     public partial class BookingForm : Page
     {
+        public List<Room> AvailableRooms { get; set; }
+
         /// <summary>
         /// The booking controller.
         /// </summary>
         private BookingController bookingController;
+
+        /// <summary>
+        /// The customer.
+        /// </summary>
+        private Customer customer;
+
+        /// <summary>
+        /// The customer controller.
+        /// </summary>
+        private CustomerController customerController;
 
         /// <summary>
         /// The room controller.
@@ -41,6 +57,19 @@ namespace HotelManagerProject
         /// </summary>
         private RoomTypeController roomTypeController;
 
+        private Booking booking;
+
+        protected void Page_Init(object sender , EventArgs e)
+        {
+            this.AvailableRooms = this.Session["AvailableRooms"] as List<Room>;
+            this.customerComboBoxDataBind();
+            if (this.AvailableRooms != null && AvailableRooms.ToList().Count > 0)
+            {
+                this.availableRoomsGridView.DataSource = this.AvailableRooms;
+                this.availableRoomsGridView.DataBind();
+            }
+        }
+
         /// <summary>
         /// The calculate room type price button_ on click.
         /// </summary>
@@ -50,25 +79,79 @@ namespace HotelManagerProject
         /// <param name="e">
         /// The e.
         /// </param>
-        protected void calculateRoomTypePriceButton_OnClick(object sender, EventArgs e)
+        protected void CalculateAvailableRoomsButton(object sender, EventArgs e)
         {
-            var availableRooms = new List<Room>();
+            double roomPrice = 0;
             var pricingListController = new PricingListController();
-            
+            this.bookingController = new BookingController();
+            var errorlabel = this.Master?.FindControl("form1").FindControl("divErrorMessage") as Label;
+            if (errorlabel != null)
+            {
+                errorlabel.Text = string.Empty;
+            }
 
             var dateFrom = this.dateFromCalendar.Value;
             var dateTo = this.dateToCalendar.Value;
             var roomType = this.roomTypeComboBox.Text;
             var roomTypeId = this.roomTypeComboBox.Value;
-            var roomPrice = pricingListController.RoomPricing(Convert.ToDateTime(dateFrom), Convert.ToDateTime(dateTo), Convert.ToInt32(roomTypeId));
+            try
+            {
+                roomPrice = pricingListController.RoomPricing(
+                    Convert.ToDateTime(dateFrom),
+                    Convert.ToDateTime(dateTo),
+                    Convert.ToInt32(roomTypeId));
+            }
+            catch (Exception ex)
+            {
+                errorlabel.Text = ex.Message;
+                this.AvailableRooms = null;
+            }
+
             this.roomTypePriceTextBox.Text = roomPrice.ToString(CultureInfo.InvariantCulture);
             if ((dateFrom != null) && (dateTo != null) && (roomType != string.Empty))
             {
-                availableRooms = this.bookingController.AvailableRooms(roomTypeId, dateFrom, dateTo);
+                this.AvailableRooms = this.bookingController.GetAvailableRooms(roomTypeId, dateFrom, dateTo);
+                this.Session["AvailableRooms"] = this.AvailableRooms;
             }
-
-            this.availableRoomsGridView.DataSource = availableRooms;
+            
+            this.availableRoomsGridView.DataSource = this.AvailableRooms;
             this.availableRoomsGridView.DataBind();
+        }
+
+        /// <summary>
+        /// The customers pop up save button_ on click.
+        /// </summary>
+        /// <param name="sender">
+        /// The sender.
+        /// </param>
+        /// <param name="e">
+        /// The e.
+        /// </param>
+        protected void customersPopUpSaveButton_OnClick(object sender, EventArgs e)
+        {
+            this.customer = new Customer();
+            this.customerController = new CustomerController();
+            this.customer.Name = this.nameTextBox.Text;
+            this.customer.Surname = this.surNameTextBox.Text;
+            this.customer.IdNumber = this.idNumberTextBox.Text;
+            this.customer.TaxId = this.taxIdTextBox.Text;
+            this.customer.Email = this.emailTextBox.Text;
+            this.customer.Address = this.addressTextBox.Text;
+            this.customer.Phone = this.phoneTextBox.Text;
+            
+
+            try
+            {
+                this.customerController.CreateOrUpdateEntity(this.customer);
+                this.customerComboBoxDataBind();
+                this.customerComboBox.Value = this.customer;
+                this.customerComboBox.Text = this.customer.Name;
+            }
+            catch (ArgumentException)
+            {
+                
+            }
+            
         }
 
         /// <summary>
@@ -82,8 +165,19 @@ namespace HotelManagerProject
         /// </param>
         protected void Page_Load(object sender, EventArgs e)
         {
-            this.bookingController = new BookingController();
-            this.roomController = new RoomController();
+            if (!this.Page.IsPostBack)
+            {
+                this.customerController = new CustomerController();
+                this.roomTypeController = new RoomTypeController();
+                
+
+                var roomTypes = this.roomTypeController.RefreshEntities();
+                this.roomTypeComboBox.DataSource = roomTypes;
+                this.customerComboBoxDataBind();
+                this.roomTypeComboBox.DataBind();
+            }
+            
+
         }
 
         /// <summary>
@@ -95,13 +189,84 @@ namespace HotelManagerProject
         /// <param name="e">
         /// The e.
         /// </param>
-        protected void roomTypeComboBox_OnInit(object sender, EventArgs e)
-        {
-            this.roomTypeController = new RoomTypeController();
-            var roomTypes = this.roomTypeController.RefreshEntities();
-            this.roomTypeComboBox.DataSource = roomTypes;
+        //protected void roomTypeComboBox_OnInit(object sender, EventArgs e)
+        //{
+           
+        //}
 
-            this.roomTypeComboBox.DataBind();
+        private void customerComboBoxDataBind()
+        {
+            this.customerController = new CustomerController();
+            var customers = this.customerController.RefreshEntities();
+            this.customerComboBox.DataSource = customers;
+            this.customerComboBox.DataBind();
+        }
+
+        protected void saveBookingButton_OnClick(object sender, EventArgs e)
+        {
+            var errorlabel = this.Master?.FindControl("form1").FindControl("divErrorMessage") as Label;
+            if (errorlabel != null)
+            {
+                errorlabel.Text = string.Empty;
+            }
+
+            this.booking = new Booking();
+            this.roomTypeController = new RoomTypeController();
+            this.customerController = new CustomerController();
+            this.bookingController = new BookingController();
+           
+            var dateFrom = this.dateFromCalendar.Text;
+            var dateTo = this.dateToCalendar.Text;
+            var price = this.roomTypePriceTextBox.Text;
+            if (price == string.Empty)
+            {
+                errorlabel.Text = "Please calculate price first";
+                return;
+            }
+            var row = this.availableRoomsGridView.FocusedRowIndex;
+            var selectedRoom = (Room)this.availableRoomsGridView.GetRow(row);
+            if (selectedRoom == null)
+            {
+                errorlabel.Text = "Please select a room first";
+                return;
+                ;
+            }
+            var customerId = this.customerComboBox.Value;
+            if (customerId == null)
+            {
+                errorlabel.Text = "Please select a customer first";
+                return;
+            }
+            var customer = this.customerController.GetEntity(Convert.ToInt32(customerId));
+
+            var agreedPrice = this.agreedPriceTextBox.Text;
+            if (agreedPrice == string.Empty)
+            {
+                agreedPrice = price;
+            }
+
+            this.booking.Room = selectedRoom;
+            this.booking.RoomId = selectedRoom.Id;
+            this.booking.AgreedPrice = Convert.ToDouble(agreedPrice);
+            this.booking.SystemPrice = Convert.ToDouble(price);
+            this.booking.Created = DateTime.Now;
+            this.booking.CreatedBy = Environment.UserName;
+            this.booking.Customer = customer;
+            this.booking.CustomerId = customer.Id;
+            this.booking.From = Convert.ToDateTime(dateFrom);
+            this.booking.To = Convert.ToDateTime(dateTo);
+            this.booking.Status = Status.New;
+            this.booking.Comments = this.commentMemoBox.Text;
+
+            try
+            {
+                this.bookingController.CreateOrUpdateEntity(this.booking);
+                Response.Redirect("BookingsListForm.aspx");
+            }
+            catch (Exception ex)
+            {
+                errorlabel.Text = ex.Message;
+            }
         }
     }
 }

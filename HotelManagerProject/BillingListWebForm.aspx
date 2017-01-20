@@ -17,7 +17,7 @@
         <div class="row">
             <div class="col-lg-1 col-sm-2 col-md-2 col-xs-4">
                 <dx:ASPxButton ID="CreateBillingButton" CssClass="button" ToolTip="Creates a new Billing" ForeColor="AquaMarine" Theme="BlackGlass" runat="server" Text="Create Billing">
-                    <ClientSideEvents Click="function(s, e) { ShowLoginWindow(); }" />
+                    <ClientSideEvents Click="function(s, e) { ShowLoginWindow(); e.processOnServer = true; }" />
                 </dx:ASPxButton>
             </div>
             <div class="col-lg-3 col-sm-2 col-xs-4">
@@ -29,10 +29,10 @@
 
 
             <div class="col-xs-12 col-lg-4 col-sm-4">
-                <dx:ASPxGridView ID="BillingListGridView" runat="server" Theme="BlackGlass" AutoGenerateColumns="False" KeyFieldName="Id">
+                <dx:ASPxGridView  ID="BillingListGridView" runat="server" Theme="BlackGlass" AutoGenerateColumns="False" KeyFieldName="Id">
                     <Settings ShowGroupPanel="True" ShowFilterRow="True"></Settings>
                     <SettingsSearchPanel Visible="True"></SettingsSearchPanel>
-                    <ClientSideEvents CustomButtonClick="function(s, e) { ShowLoginWindow(); }" />
+                    <ClientSideEvents CustomButtonClick="function(s, e) { ShowLoginWindow(); e.processOnServer = true; }" />
                     <Columns>
                         <dx:GridViewCommandColumn SelectAllCheckboxMode="Page" ShowClearFilterButton="True" ShowSelectCheckbox="True" VisibleIndex="0" ShowEditButton="True">
                         </dx:GridViewCommandColumn>
@@ -58,7 +58,7 @@
             </div>
         </div>
     </div>
-    <dx:ASPxPopupControl ClientInstanceName="createBillingPopUp" Width="330px" Height="250px" Modal="True"
+    <dx:ASPxPopupControl OnInit="createBillingPopUp_OnInit" ClientInstanceName="createBillingPopUp" Width="330px" Height="250px" Modal="True"
         MaxWidth="800px" MaxHeight="800px" MinHeight="150px" MinWidth="150px" ID="createBillingPopUp"
         ShowFooter="True" FooterText="Runtime: 142 min" PopupElementID="imgButton" HeaderText="Billing Details"
         runat="server" EnableViewState="false" PopupHorizontalAlign="WindowCenter" PopupVerticalAlign="WindowCenter" EnableHierarchyRecreation="True" AllowDragging="True" Theme="BlackGlass">

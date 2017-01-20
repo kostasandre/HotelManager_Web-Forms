@@ -75,6 +75,8 @@
     <Compile Include="Enums\Status.cs" />
     <Compile Include="Enums\TypeOfBillableEntity.cs" />
     <Compile Include="Enums\View.cs" />
+    <Compile Include="Exceptions\PricingPeriodDuplicateException.cs" />
+    <Compile Include="Exceptions\WrongGivenPeriodException.cs" />
     <Compile Include="Migrations\201701180909495_Initial.cs" />
     <Compile Include="Migrations\201701180909495_Initial.Designer.cs">
       <DependentUpon>201701180909495_Initial.cs</DependentUpon>

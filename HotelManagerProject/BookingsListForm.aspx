@@ -2,16 +2,22 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
+    <script type="text/javascript">
+        function ShowLoginWindow() {
+            createBookingPopUp.Show();
+        }
+
+    </script>
     <div class="container" style="width: 100%">
     <br />
   <br />
   <br />
   <div class="row">
    <div class="col-lg-1 col-sm-2 col-md-2 col-xs-4">
-    <dx:ASPxButton id="createBookingButton" CssClass="button" tooltip="Creates a new Booking" ForeColor="AquaMarine" Theme="BlackGlass" runat="server" Text="Create Booking"/>
+    <dx:ASPxButton OnClick="createBookingButton_OnClick" id="createBookingButton" CssClass="button" tooltip="Creates a new Booking" ForeColor="AquaMarine" Theme="BlackGlass" runat="server" Text="Create Booking"/>
    </div>
    <div class="col-lg-1 col-sm-1 col-xs-4">
-    <dx:ASPxButton runat="server" CssClass="button" tooltip="Deletes the selected Booking" ForeColor="AquaMarine" Theme="BlackGlass" Text="Delete Booking" />
+    <dx:ASPxButton OnClick="deleteBookingButton_OnClick" ID="deleteBookingButton" runat="server" CssClass="button" tooltip="Deletes the selected Booking" ForeColor="AquaMarine" Theme="BlackGlass" Text="Delete Booking" />
    </div>
   </div>
 
@@ -20,16 +26,22 @@
    </div>
    <div class="col-xs-4">
         <h1 style="background-color: red; color: white;">Bookings List</h1>
-        <dx:ASPxGridView ID="bookingsGridView" runat="server" Theme="BlackGlass" AutoGenerateColumns="False">
+       <dx:ASPxGridView  OnCustomButtonCallback="bookingsGridView_OnCustomButtonCallback" ID="bookingsGridView" runat="server" Theme="BlackGlass" AutoGenerateColumns="False" KeyFieldName="Id">
             <Settings ShowFilterRow="True"></Settings>
-            <SettingsDataSecurity AllowInsert="False" AllowDelete="False" AllowEdit="False"></SettingsDataSecurity>
+           <SettingsDataSecurity AllowInsert="False" AllowDelete="False" AllowEdit="False"></SettingsDataSecurity>
+           <ClientSideEvents CustomButtonClick="function(s, e) { ShowLoginWindow(); }" />
             <Columns>
-
+           
                 <dx:GridViewCommandColumn ShowClearFilterButton="True" VisibleIndex="1" SelectAllCheckboxMode="Page" ShowSelectCheckbox="True">
                 </dx:GridViewCommandColumn>
+                <dx:GridViewCommandColumn>
+                    <CustomButtons>
+                        <dx:GridViewCommandColumnCustomButton ID="editButton">
+                            <Image Url="Images/edit.png" Width="35px" ToolTip="Edit"></Image>
+                        </dx:GridViewCommandColumnCustomButton>
+                    </CustomButtons>
+                </dx:GridViewCommandColumn>
                 <dx:GridViewDataTextColumn FieldName="Status" VisibleIndex="4">
-                </dx:GridViewDataTextColumn>
-                <dx:GridViewDataTextColumn FieldName="Customer.Name" VisibleIndex="5">
                 </dx:GridViewDataTextColumn>
                 <dx:GridViewDataTextColumn FieldName="Room.Code" VisibleIndex="6">
                 </dx:GridViewDataTextColumn>
@@ -55,4 +67,100 @@
       </div>
 
     </div>
+    <dx:ASPxPopupControl ClientInstanceName="createBookingPopUp" Width="330px" Height="250px" Modal="True"
+        MaxWidth="800px" MaxHeight="800px" MinHeight="150px" MinWidth="150px" ID="createBookingPopUp"
+        ShowFooter="True" FooterText="Runtime: 142 min" PopupElementID="imgButton" HeaderText="Billing Details"
+        runat="server" EnableViewState="false" PopupHorizontalAlign="WindowCenter" PopupVerticalAlign="WindowCenter" EnableHierarchyRecreation="True" AllowDragging="True" Theme="BlackGlass">
+        <ClientSideEvents PopUp="function(s, e) { ASPxClientEdit.ClearGroup('entryGroup');}" />
+        <ContentCollection>
+            <dx:PopupControlContentControl runat="server">
+                <asp:Panel ID="Panel1" runat="server">
+                    <table>
+                        <tr>
+                            <td>
+                                <label>Status : </label>
+                            </td>
+                            <td>
+                                <dx:ASPxComboBox ValueField="Id" TextField="Id" ID="statusComboBox" runat="server" Width="170px" Theme="BlackGlass" EnableTheming="True"></dx:ASPxComboBox>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <label>
+                                    Code:
+                                </label>
+                            </td>
+                            <td>
+                                <dx:ASPxTextBox ID="codeTextBox" runat="server" Width="170px"></dx:ASPxTextBox>
+                            </td>
+                            <tr>
+                                <td>
+                                    <label>Date From:  </label>
+                                </td>
+                                <td>
+                                    <dx:ASPxTextBox ID="dateFromTextBox" runat="server" Width="170px"></dx:ASPxTextBox>
+                                </td>
+                            </tr>
+                        <tr>
+                            <td>
+                                <label>Date To:  </label>
+                            </td>
+                            <td>
+                                <dx:ASPxTextBox ID="dateToTextBox" runat="server" Width="170px"></dx:ASPxTextBox>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <label>System Price:  </label>
+                            </td>
+                            <td>
+                                <dx:ASPxTextBox ID="systemPriceTextBox" runat="server" Width="170px"></dx:ASPxTextBox>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <label>Agreed Price:  </label>
+                            </td>
+                            <td>
+                                <dx:ASPxTextBox ID="agreedPriceTextBox" runat="server" Width="170px"></dx:ASPxTextBox>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <label>Commnets:  </label>
+                            </td>
+                            <td>
+                                <dx:ASPxTextBox ID="commentsTextBox" runat="server" Width="170px"></dx:ASPxTextBox>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <label>Created:  </label>
+                            </td>
+                            <td>
+                                <dx:ASPxTextBox ID="createdTextBox" runat="server" Width="170px"></dx:ASPxTextBox>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <label>Created By:  </label>
+                            </td>
+                            <td>
+                                <dx:ASPxTextBox ID="createdByTextBox" runat="server" Width="170px"></dx:ASPxTextBox>
+                            </td>
+                        </tr>
+                    </table>
+                    <br />
+                    <div class="pcmButton">
+                        <dx:ASPxButton ID="Save" runat="server" Text="Save" Width="80px" AutoPostBack="False" Style="float: left; margin-right: 8px">
+                            <ClientSideEvents Click="function(s, e) { if(ASPxClientEdit.ValidateGroup('entryGroup')) createBookingPopUp.Hide(); }" />
+                        </dx:ASPxButton>
+                        <dx:ASPxButton ID="btCancel" runat="server" Text="Cancel" Width="80px" AutoPostBack="False" Style="float: left; margin-right: 8px">
+                            <ClientSideEvents Click="function(s, e) { createBookingPopUp.Hide(); }" />
+                        </dx:ASPxButton>
+                    </div>
+                </asp:Panel>
+            </dx:PopupControlContentControl>
+        </ContentCollection>
+    </dx:ASPxPopupControl>
 </asp:Content>
