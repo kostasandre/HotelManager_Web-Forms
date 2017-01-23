@@ -16,6 +16,8 @@ namespace HotelManagerProject
     using System.Web.UI;
     using System.Web.UI.WebControls;
 
+    using DevExpress.Web;
+
     using HotelManagerLib.Controllers;
     using HotelManagerLib.Controllers.Interfaces;
     using HotelManagerLib.Enums;
@@ -40,6 +42,19 @@ namespace HotelManagerProject
         /// </summary>
         private RoomType roomType;
 
+        protected void Page_Init(object sender, EventArgs e)
+        {
+            this.roomTypeController = new RoomTypeController();
+            this.RoomTypeGridView.DataSource = this.roomTypeController.RefreshEntities();
+            this.RoomTypeGridView.DataBind();
+
+            this.bedTypeComboBox.Items.AddRange(typeof(BedType).GetEnumValues());
+            this.bedTypeComboBox.DataBind();
+
+            this.ViewComboBox.Items.AddRange(typeof(View).GetEnumValues());
+            this.ViewComboBox.DataBind();
+        }
+
         /// <summary>
         /// The page_ load.
         /// </summary>
@@ -51,15 +66,6 @@ namespace HotelManagerProject
         /// </param>
         protected void Page_Load(object sender, EventArgs e)
         {
-            this.roomTypeController = new RoomTypeController();
-            this.RoomTypeGridView.DataSource = this.roomTypeController.RefreshEntities();
-            this.RoomTypeGridView.DataBind();
-
-            this.bedTypeComboBox.Items.AddRange(typeof(BedType).GetEnumValues());
-            this.bedTypeComboBox.DataBind();
-
-            this.ViewComboBox.Items.AddRange(typeof(View).GetEnumValues());
-            this.ViewComboBox.DataBind();
         }
 
         /// <summary>
@@ -75,6 +81,12 @@ namespace HotelManagerProject
         {
             this.roomType = new RoomType();
             this.roomTypeController = new RoomTypeController();
+
+            this.roomType.Id = Convert.ToInt32(this.idTextBox.Text);
+
+
+
+
             this.roomType.Code = this.codeTextBox.Text;
             this.roomType.BedType = (BedType)Enum.Parse(typeof(BedType), this.bedTypeComboBox.SelectedItem.Text);
             this.roomType.View = (View)Enum.Parse(typeof(View), this.ViewComboBox.SelectedItem.Text);
@@ -150,6 +162,22 @@ namespace HotelManagerProject
                     this.RoomTypeGridView.DataBind();
                 }
             }
+        }
+
+        protected void RoomTypeGridView_OnCustomButtonCallback(object sender, ASPxGridViewCustomButtonCallbackEventArgs e)
+        {
+            this.roomTypeController = new RoomTypeController();
+            var gridviewIndex = e.VisibleIndex;
+            var row = this.RoomTypeGridView.GetRow(gridviewIndex) as RoomType;
+            var myRoomType = this.roomTypeController.GetEntity(row.Id);
+
+            this.RoomTypeGridView.JSProperties["cp_text1"] = myRoomType.Id;
+            this.RoomTypeGridView.JSProperties["cp_text2"] = myRoomType.Code;
+            this.RoomTypeGridView.JSProperties["cp_text3"] = myRoomType.BedType.ToString();
+            this.RoomTypeGridView.JSProperties["cp_text4"] = myRoomType.View.ToString();
+            this.RoomTypeGridView.JSProperties["cp_text5"] = myRoomType.Sauna;
+            this.RoomTypeGridView.JSProperties["cp_text6"] = myRoomType.Tv;
+            this.RoomTypeGridView.JSProperties["cp_text7"] = myRoomType.WiFi;
         }
     }
 }

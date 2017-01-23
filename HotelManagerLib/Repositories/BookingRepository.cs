@@ -115,8 +115,7 @@ namespace HotelManagerLib.Repositories
         {
             using (var context = new DataBaseContext())
             {
-                var pap = context.Bookings.Include("Room").Include("Customer").ToList();
-                return pap;
+                return context.Bookings.Include("Room").Include("Customer").ToList();
             }
         }
 
@@ -172,7 +171,6 @@ namespace HotelManagerLib.Repositories
                 
                 booking.AgreedPrice = entity.AgreedPrice;
                 booking.Comments = entity.Comments;
-                booking.Customer = entity.Customer;
                 booking.CustomerId = entity.CustomerId;
                 booking.From = entity.From;
                 booking.To = entity.To;

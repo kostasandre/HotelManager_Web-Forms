@@ -6,16 +6,34 @@
 
     <script type="text/javascript">
         function ShowLoginWindow() {
+            if (createHotelButton) {
+                idTextBox.SetText("0");
+                nameTextBox.SetText("");
+                addressTextBox.SetText("");
+                managerTextBox.SetText("");
+                emailTextBox.SetText("");
+                phoneTextBox.SetText("");
+                taxIdSpinEdit.SetText("");
+            }
             HotelDetailView.Show();
+        }
+        function EndCallback(s, e) {
+            idTextBox.SetText(s.cp_text1);
+            nameTextBox.SetText(s.cp_text2);
+            addressTextBox.SetText(s.cp_text3);
+            managerTextBox.SetText(s.cp_text4);
+            emailTextBox.SetText(s.cp_text5);
+            phoneTextBox.SetText(s.cp_text6);
+            taxIdSpinEdit.SetText(s.cp_text7);
         }
     </script>
 
     <div class="container" style="width: 100%">
         <div class="row">
             <div class="col-lg-1 col-md-2 col-sm-2 col-xs-4">
-                <dx:ASPxButton ID="createHotelButton" CssClass="button" ToolTip="Creates a new Hotel" ForeColor="AquaMarine" Theme="BlackGlass" runat="server" Text="Create Hotel">
+                <dx:ASPxButton ID="createHotelButton" ClientIDMode="Static" CssClass="button" ToolTip="Creates a new Hotel" ForeColor="AquaMarine" Theme="BlackGlass" runat="server" Text="Create Hotel">
                     <ClientSideEvents Click="function(s, e) {
-	{ ShowLoginWindow(); }
+	{ ShowLoginWindow();  e.processOnServer = true;}
 }"></ClientSideEvents>
                 </dx:ASPxButton>
 
@@ -24,7 +42,13 @@
                 <dx:ASPxButton ID="deleteHotelButton" CssClass="button" ToolTip="Deletes the selected Hotel" ForeColor="AquaMarine" Theme="BlackGlass" runat="server" Text="Delete Hotel" OnClick="DeleteHotelButtonClick" />
             </div>
             <div class="col-lg-10 col-md-8 col-sm-8 col-xs-12">
-                <dx:ASPxGridView ID="HotelGridView" runat="server" AutoGenerateColumns="False" Theme="BlackGlass" EnableTheming="True" KeyFieldName="Id">
+                <dx:ASPxGridView ID="HotelGridView" runat="server" AutoGenerateColumns="False" Theme="BlackGlass" EnableTheming="True" OnCustomButtonCallback="HotelGridView_OnCustomButtonCallback" KeyFieldName="Id">
+                    <ClientSideEvents CustomButtonClick="function(s, e) {
+	 ShowLoginWindow(); e.processOnServer = true; 
+}"
+                        EndCallback="EndCallback
+"></ClientSideEvents>
+
                     <Settings ShowFilterRow="True" ShowGroupPanel="True" />
                     <SettingsSearchPanel Visible="True" />
                     <Columns>
@@ -61,7 +85,7 @@
         </div>
     </div>
 
-    <dx:ASPxPopupControl ID="HotelDetailView" runat="server" CloseAction="CloseButton" Width="350px" Height="250px" CloseOnEscape="True" Modal="True"
+    <dx:ASPxPopupControl ID="HotelDetailView" ClientIDMode="Static" runat="server" CloseAction="CloseButton" Width="350px" Height="250px" CloseOnEscape="True" Modal="True"
         MaxWidth="800px" MaxHeight="800px" MinHeight="150px" MinWidth="150px"
         PopupHorizontalAlign="WindowCenter" PopupVerticalAlign="WindowCenter" ClientInstanceName="HotelDetailView"
         HeaderText="Hotels" AllowDragging="True" PopupAnimationType="Fade" EnableViewState="False" EnableTheming="True" Theme="BlackGlass">
@@ -80,13 +104,22 @@
                                     <td class="pcmCellText">
 
                                         <div class="container" style="width: 100%">
+                                            
+                                            <div class="row">
+                                                <div class="col-xs-4">
+                                                    <dx:ASPxLabel ID="idLabel" CssClass="hidden" runat="server" Text="Name"></dx:ASPxLabel>
+                                                </div>
+                                                <div class="col-xs-6">
+                                                    <dx:ASPxTextBox ID="idTextBox" CssClass="hidden" runat="server" Width="170px" ClientIDMode="Static"></dx:ASPxTextBox>
+                                                </div>
+                                            </div>
 
                                             <div class="row">
                                                 <div class="col-xs-4">
                                                     <dx:ASPxLabel ID="nameLabel" runat="server" Text="Name"></dx:ASPxLabel>
                                                 </div>
                                                 <div class="col-xs-6">
-                                                    <dx:ASPxTextBox ID="nameTextBox" runat="server" Width="170px"></dx:ASPxTextBox>
+                                                    <dx:ASPxTextBox ID="nameTextBox" runat="server" Width="170px" ClientIDMode="Static"></dx:ASPxTextBox>
                                                 </div>
                                             </div>
 
@@ -96,7 +129,7 @@
                                                     <dx:ASPxLabel ID="addressLabel" runat="server" Text="Address"></dx:ASPxLabel>
                                                 </div>
                                                 <div class="col-xs-6">
-                                                    <dx:ASPxTextBox ID="addressTextBox" runat="server" Width="170px"></dx:ASPxTextBox>
+                                                    <dx:ASPxTextBox ID="addressTextBox" runat="server" Width="170px" ClientIDMode="Static"></dx:ASPxTextBox>
                                                 </div>
                                             </div>
 
@@ -105,7 +138,7 @@
                                                     <dx:ASPxLabel ID="managerLabel" runat="server" Text="Manager"></dx:ASPxLabel>
                                                 </div>
                                                 <div class="col-xs-6">
-                                                    <dx:ASPxTextBox ID="managerTextBox" runat="server" Width="170px"></dx:ASPxTextBox>
+                                                    <dx:ASPxTextBox ID="managerTextBox" runat="server" Width="170px" ClientIDMode="Static"></dx:ASPxTextBox>
                                                 </div>
                                             </div>
 
@@ -114,7 +147,7 @@
                                                     <dx:ASPxLabel ID="emailLabel" runat="server" Text="Email"></dx:ASPxLabel>
                                                 </div>
                                                 <div class="col-xs-6">
-                                                    <dx:ASPxTextBox ID="emailTextBox" runat="server" Width="170px"></dx:ASPxTextBox>
+                                                    <dx:ASPxTextBox ID="emailTextBox" runat="server" Width="170px" ClientIDMode="Static"></dx:ASPxTextBox>
                                                 </div>
                                             </div>
 
@@ -123,7 +156,7 @@
                                                     <dx:ASPxLabel ID="phoneLabel" runat="server" Text="Phone"></dx:ASPxLabel>
                                                 </div>
                                                 <div class="col-xs-6">
-                                                    <dx:ASPxTextBox ID="phoneTextBox" runat="server" Width="170px"></dx:ASPxTextBox>
+                                                    <dx:ASPxTextBox ID="phoneTextBox" runat="server" Width="170px" ClientIDMode="Static"></dx:ASPxTextBox>
                                                 </div>
                                             </div>
 
@@ -132,7 +165,7 @@
                                                     <dx:ASPxLabel ID="taxIdLabel" runat="server" Text="Tax Id"></dx:ASPxLabel>
                                                 </div>
                                                 <div class="col-xs-6">
-                                                    <dx:ASPxSpinEdit ID="taxIdSpinEdit" runat="server" Number="0" MaxLength="9">
+                                                    <dx:ASPxSpinEdit ID="taxIdSpinEdit" runat="server" Number="0" MaxLength="9" ClientIDMode="Static">
                                                     </dx:ASPxSpinEdit>
                                                 </div>
                                             </div>

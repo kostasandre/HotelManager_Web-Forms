@@ -16,6 +16,7 @@ namespace HotelManagerProject
     using System.Web.UI;
     using System.Web.UI.WebControls;
 
+    using DevExpress.Web;
     using DevExpress.XtraRichEdit.Model.History;
 
     using HotelManagerLib.Controllers;
@@ -39,6 +40,12 @@ namespace HotelManagerProject
         /// </summary>
         private Hotel hotel;
 
+        protected void Page_Init(object sender, EventArgs e)
+        {
+            this.hotelController = new HotelController();
+            this.HotelGridView.DataSource = this.hotelController.RefreshEntities();
+            this.HotelGridView.DataBind();
+        }
 
         /// <summary>
         /// The page_ load.
@@ -49,14 +56,14 @@ namespace HotelManagerProject
         /// <param name="e">
         /// The e.
         /// </param>
-        protected void Page_Load(object sender, EventArgs e)
+        protected void Page_Load(object sender , EventArgs e)
         {
-            if (!this.Page.IsPostBack)
-            {
-                this.hotelController = new HotelController();
-                this.HotelGridView.DataSource = this.hotelController.RefreshEntities();
-                this.HotelGridView.DataBind();
-            }
+            //if (!this.Page.IsPostBack)
+            //{
+            //    this.hotelController = new HotelController();
+            //    this.HotelGridView.DataSource = this.hotelController.RefreshEntities();
+            //    this.HotelGridView.DataBind();
+            //}
         }
 
         /// <summary>
@@ -70,17 +77,40 @@ namespace HotelManagerProject
         /// </param>
         protected void saveButton_OnClick(object sender, EventArgs e)
         {
-            this.hotel = new Hotel();
+            var errorlabel = this.Master?.FindControl("form1").FindControl("divErrorMessage") as Label;
             this.hotelController = new HotelController();
-            this.hotel.Name = this.nameTextBox.Text;
-            this.hotel.Address = this.addressTextBox.Text;
-            this.hotel.Manager = this.managerTextBox.Text;
-            this.hotel.Email = this.emailTextBox.Text;
-            this.hotel.Phone = this.phoneTextBox.Text;
-            this.hotel.TaxId = this.taxIdSpinEdit.Text;
-            this.hotelController.CreateOrUpdateEntity(this.hotel);
-            this.Page.Response.Redirect(this.Page.Request.Url.ToString(), true);
+            //this.hotel = new Hotel();
+            try
+            {
+                this.hotel = new Hotel()
+                                 {
+                                     Id = Convert.ToInt32(this.idTextBox.Text),
+                                     Name = this.nameTextBox.Text,
+                                     Address = this.addressTextBox.Text,
+                                     Manager = this.managerTextBox.Text,
+                                     Email = this.emailTextBox.Text,
+                                     Phone = this.phoneTextBox.Text,
+                                     TaxId = this.taxIdSpinEdit.Text
+                };
 
+                this.hotelController.CreateOrUpdateEntity(this.hotel);
+                this.HotelGridView.DataSource = this.hotelController.RefreshEntities();
+                this.HotelGridView.DataBind();
+            }
+            catch (SqlException exp)
+            {
+                if (errorlabel != null)
+                {
+                    errorlabel.Text = "Something went wrong with the database.Please check the connection string.";
+                }
+            }
+            catch (ArgumentNullException exp)
+            {
+                if (errorlabel != null)
+                {
+                    errorlabel.Text = "Couldn't create the current Hotel";
+                }
+            }
         }
 
         /// <summary>
@@ -146,6 +176,33 @@ namespace HotelManagerProject
                     this.HotelGridView.DataSource = this.hotelController.RefreshEntities();
                     this.HotelGridView.DataBind();
                 }
+            }
+        }
+
+        /// <summary>
+        /// The hotel grid view_ on custom button callback.
+        /// </summary>
+        /// <param name="sender">
+        /// The sender.
+        /// </param>
+        /// <param name="e">
+        /// The e.
+        /// </param>
+        protected void HotelGridView_OnCustomButtonCallback(object sender, ASPxGridViewCustomButtonCallbackEventArgs e)
+        {
+            this.hotelController = new HotelController();
+            var gridviewIndex = e.VisibleIndex;
+            var row = this.HotelGridView.GetRow(gridviewIndex) as Hotel;
+            if (row != null)
+            {
+                var myHotel = this.hotelController.GetEntity(row.Id);
+                this.HotelGridView.JSProperties["cp_text1"] = myHotel.Id;
+                this.HotelGridView.JSProperties["cp_text2"] = myHotel.Name;
+                this.HotelGridView.JSProperties["cp_text3"] = myHotel.Address;
+                this.HotelGridView.JSProperties["cp_text4"] = myHotel.Manager;
+                this.HotelGridView.JSProperties["cp_text5"] = myHotel.Email;
+                this.HotelGridView.JSProperties["cp_text6"] = myHotel.Phone;
+                this.HotelGridView.JSProperties["cp_text7"] = myHotel.TaxId;
             }
         }
     }

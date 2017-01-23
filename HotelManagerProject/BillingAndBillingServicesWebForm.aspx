@@ -11,6 +11,7 @@
             if (s.cp_text !== 0) {
                 sumOfServicesTextBox.SetText(s.cp_text);
                 totalSumTextBox.SetText(s.cp_text2);
+
             }
         }
 

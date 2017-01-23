@@ -76,6 +76,24 @@ namespace HotelManagerProject {
         protected global::DevExpress.Web.ASPxComboBox statusComboBox;
         
         /// <summary>
+        /// nameTextBox control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::DevExpress.Web.ASPxTextBox nameTextBox;
+        
+        /// <summary>
+        /// surnameTextBox control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::DevExpress.Web.ASPxTextBox surnameTextBox;
+        
+        /// <summary>
         /// codeTextBox control.
         /// </summary>
         /// <remarks>
@@ -128,24 +146,6 @@ namespace HotelManagerProject {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::DevExpress.Web.ASPxTextBox commentsTextBox;
-        
-        /// <summary>
-        /// createdTextBox control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::DevExpress.Web.ASPxTextBox createdTextBox;
-        
-        /// <summary>
-        /// createdByTextBox control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::DevExpress.Web.ASPxTextBox createdByTextBox;
         
         /// <summary>
         /// iDtextBox control.
