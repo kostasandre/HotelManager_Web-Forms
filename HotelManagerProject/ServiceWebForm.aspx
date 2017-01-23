@@ -29,7 +29,12 @@
                     <Columns>
                         <dx:GridViewCommandColumn ShowClearFilterButton="True" VisibleIndex="0" SelectAllCheckboxMode="Page" ShowSelectCheckbox="True">
                         </dx:GridViewCommandColumn>
-                        <dx:GridViewCommandColumn ShowClearFilterButton="True" VisibleIndex="1" ShowEditButton="True">
+                        <dx:GridViewCommandColumn ShowClearFilterButton="True" VisibleIndex="1" ButtonRenderMode="Image">
+                            <CustomButtons>
+                                <dx:GridViewCommandColumnCustomButton ID="editButton">
+                                    <Image Url="Images/edit.png" Width="35px" ToolTip="Edit"></Image>
+                                </dx:GridViewCommandColumnCustomButton>
+                            </CustomButtons>
                         </dx:GridViewCommandColumn>
                         <dx:GridViewDataTextColumn FieldName="Id" VisibleIndex="2" Visible="False">
                         </dx:GridViewDataTextColumn>
