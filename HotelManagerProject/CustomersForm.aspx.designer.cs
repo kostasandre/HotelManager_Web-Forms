@@ -31,6 +31,15 @@ namespace HotelManagerProject {
         protected global::DevExpress.Web.ASPxGridView customersListGridView;
         
         /// <summary>
+        /// editButton control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::DevExpress.Web.GridViewCommandColumnCustomButton editButton;
+        
+        /// <summary>
         /// createUserPopUp control.
         /// </summary>
         /// <remarks>
@@ -67,15 +76,6 @@ namespace HotelManagerProject {
         protected global::DevExpress.Web.ASPxTextBox surNameTextBox;
         
         /// <summary>
-        /// taxIdTextBox control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::DevExpress.Web.ASPxTextBox taxIdTextBox;
-        
-        /// <summary>
         /// idNumberTextBox control.
         /// </summary>
         /// <remarks>
@@ -83,6 +83,15 @@ namespace HotelManagerProject {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::DevExpress.Web.ASPxTextBox idNumberTextBox;
+        
+        /// <summary>
+        /// taxIdTextBox control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::DevExpress.Web.ASPxTextBox taxIdTextBox;
         
         /// <summary>
         /// emailTextBox control.
@@ -128,6 +137,15 @@ namespace HotelManagerProject {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::DevExpress.Web.ASPxTextBox createdByTextBox;
+        
+        /// <summary>
+        /// iDtextBox control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::DevExpress.Web.ASPxTextBox iDtextBox;
         
         /// <summary>
         /// saveButton control.

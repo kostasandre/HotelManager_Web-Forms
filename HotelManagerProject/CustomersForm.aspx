@@ -11,7 +11,36 @@
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
     <script type="text/javascript">
         function ShowLoginWindow() {
+            if (createCustomerButton) {
+                nameTextBox.SetText("");
+                surnameText.SetText("");
+                taxIdTextBox.SetText("");
+                idNumberText.SetText("");
+                emailTextBox.SetText("");
+                addressTextBox.SetText("");
+                createdTextBox.SetText("");
+                createdByTextBox.SetText("");
+                iDtextBox.SetText("");
+                phoneTextBox.SetText("");
+                
+            }
             createUserPopUp.Show();
+        }
+
+        function EndCallback(s, e) {
+            if (s.cp_text !== undefined) {
+                nameTextBox.SetText(s.cp_text);
+                surnameText.SetText(s.cp_text1);
+                taxIdTextBox.SetText(s.cp_text2);
+                idNumberText.SetText(s.cp_text3);
+                emailTextBox.SetText(s.cp_text4);
+                addressTextBox.SetText(s.cp_text5);
+                createdTextBox.SetText(s.cp_text6);
+                createdByTextBox.SetText(s.cp_text7);
+                iDtextBox.SetText(s.cp_text8);
+                phoneTextBox.SetText(s.cp_text9);
+                iDtextBox.visible = 'false';
+            }
         }
 
     </script>
@@ -23,7 +52,7 @@
         <br/>
         <div class="row">
             <div class="col-lg-1 col-sm-2 col-md-2 col-xs-4">
-                <dx:ASPxButton ClientSideEvents="" id="createCustomerButton" CssClass="button" tooltip="Creates a new Customer" ForeColor="AquaMarine" Theme="BlackGlass" runat="server" Text="Create Customer ">
+                <dx:ASPxButton ClientIDMode="Static" ClientSideEvents="" id="createCustomerButton" CssClass="button" tooltip="Creates a new Customer" ForeColor="AquaMarine" Theme="BlackGlass" runat="server" Text="Create Customer ">
                     <ClientSideEvents Click="function(s, e) { ShowLoginWindow(); }"/>
                 </dx:ASPxButton>
             </div>
@@ -38,12 +67,23 @@
             <div class="col-xs-12">
                 <div class="MainForm" style="width: 1325px">
                     <h1>Customer List</h1>
-                    <dx:ASPxGridView ID="customersListGridView" runat="server" Theme="BlackGlass" AutoGenerateColumns="False" KeyFieldName="Id">
+                    <dx:ASPxGridView OnCustomButtonCallback="customersListGridView_OnCustomButtonCallback" ID="customersListGridView" runat="server" Theme="BlackGlass" AutoGenerateColumns="False" KeyFieldName="Id">
                         <Settings ShowFilterRow="True"></Settings>
                         <SettingsDataSecurity AllowInsert="False" AllowDelete="False" AllowEdit="False"></SettingsDataSecurity>
+                        <ClientSideEvents EndCallback="EndCallback" CustomButtonClick="function(s, e) {
+                            e.processOnServer = true;
+                            ShowLoginWindow(e.visibleIndex);
+                            }"/>
                         <Columns>
 
                             <dx:GridViewCommandColumn ShowClearFilterButton="True" VisibleIndex="0" SelectAllCheckboxMode="Page" ShowSelectCheckbox="True">
+                            </dx:GridViewCommandColumn>
+                            <dx:GridViewCommandColumn ShowClearFilterButton="True" VisibleIndex="1" ButtonRenderMode="Image">
+                                <CustomButtons>
+                                    <dx:GridViewCommandColumnCustomButton ID="editButton">
+                                        <Image Url="Images/edit.png" Width="35px" ToolTip="Edit"></Image>
+                                    </dx:GridViewCommandColumnCustomButton>
+                                </CustomButtons>
                             </dx:GridViewCommandColumn>
                             <dx:GridViewDataTextColumn FieldName="Name" VisibleIndex="4">
                             </dx:GridViewDataTextColumn>
@@ -81,7 +121,7 @@
                                 <label>Name: </label>
                             </td>
                             <td>
-                                <dx:ASPxTextBox ClientInstanceName="nameTextBox" ValidateRequestMode="Enabled" ID="nameTextBox" runat="server" Width="170px">
+                                <dx:ASPxTextBox ClientIDMode="Static" ClientInstanceName="nameTextBox" ValidateRequestMode="Enabled" ID="nameTextBox" runat="server" Width="170px">
                                     <ValidationSettings EnableCustomValidation="True" ErrorDisplayMode="Text" ErrorTextPosition="Right" SetFocusOnError="true">
                                         <ErrorFrameStyle Font-Size="Large"/>
                                         <RequiredField IsRequired="True" ErrorText="*"/>
@@ -94,8 +134,28 @@
                                 <label>Surname: </label>
                             </td>
                             <td>
-                                <dx:ASPxTextBox ClientInstanceName="surnameText" ValidateRequestMode="Enabled" ID="surNameTextBox" runat="server" Width="170px">
+                                <dx:ASPxTextBox ClientIDMode="Static" ClientInstanceName="surnameText" ValidateRequestMode="Enabled" ID="surNameTextBox" runat="server" Width="170px">
                                     <ValidationSettings EnableCustomValidation="True" ErrorDisplayMode="Text" ErrorTextPosition="Right" SetFocusOnError="true">
+                                        <ErrorFrameStyle Font-Size="Large"/>
+                                        <RequiredField IsRequired="True" ErrorText="*"/>
+                                    </ValidationSettings>
+                                </dx:ASPxTextBox>
+                            </td>
+                        </tr>
+                         <tr>
+                            <td>
+                                <label>Id Number: </label>
+                            </td>
+                            <td>
+                                <dx:ASPxTextBox ClientIDMode="Static" ClientInstanceName="idNumberText" ID="idNumberTextBox" runat="server" Width="170px">
+                                    <dx:ClientSideEvents KeyDown="function(s, e) {
+                                    
+	                                 if (!((e.htmlEvent.keyCode &gt;= 48 &amp;&amp; e.htmlEvent.keyCode &lt;= 57) || 
+                                           (e.htmlEvent.keyCode &gt;= 65 &amp;&amp; e.htmlEvent.keyCode &lt;= 90) || (e.htmlEvent.keyCode &gt;= 8) )) 
+                                        ASPxClientUtils.PreventEventAndBubble(e.htmlEvent); }">
+                                    </dx:ClientSideEvents>
+                                    
+                                   <ValidationSettings EnableCustomValidation="True" ErrorDisplayMode="Text" ErrorTextPosition="Right" SetFocusOnError="true">
                                         <ErrorFrameStyle Font-Size="Large"/>
                                         <RequiredField IsRequired="True" ErrorText="*"/>
                                     </ValidationSettings>
@@ -107,27 +167,16 @@
                                 <label>Tax Id: </label>
                             </td>
                             <td>
-                                <dx:ASPxTextBox ID="taxIdTextBox" runat="server" Width="170px">
+                                <dx:ASPxTextBox ClientIDMode="Static" ID="taxIdTextBox" runat="server" Width="170px">
 
-                                </dx:ASPxTextBox>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>
-                                <label>Id Number: </label>
-                            </td>
-                            <td>
-                                <dx:ASPxTextBox ClientInstanceName="idNumberText" ID="idNumberTextBox" runat="server" Width="170px">
+
                                     <ClientSideEvents KeyDown="function(s, e) {
-	                                 if (!((e.htmlEvent.keyCode &gt;= 48 &amp;&amp; e.htmlEvent.keyCode &lt;= 57) || 
-                                           (e.htmlEvent.keyCode == 8 || e.htmlEvent.keyCode == 46 || e.htmlEvent.keyCode == 37 || 
-                                            e.htmlEvent.keyCode == 39))) 
-                                        ASPxClientUtils.PreventEventAndBubble(e.htmlEvent); }">
+	                                     if (!((e.htmlEvent.keyCode &gt;= 48 &amp;&amp; e.htmlEvent.keyCode &lt;= 57) || 
+                                               (e.htmlEvent.keyCode == 8 || e.htmlEvent.keyCode == 46 || e.htmlEvent.keyCode == 37 || 
+                                                e.htmlEvent.keyCode == 39))) 
+                                            ASPxClientUtils.PreventEventAndBubble(e.htmlEvent);}">
+                                        
                                     </ClientSideEvents>
-                                    <ValidationSettings EnableCustomValidation="True" ErrorDisplayMode="Text" ErrorTextPosition="Right" SetFocusOnError="true">
-                                        <ErrorFrameStyle Font-Size="Large"/>
-                                        <RequiredField IsRequired="True" ErrorText="*"/>
-                                    </ValidationSettings>
                                 </dx:ASPxTextBox>
                             </td>
                         </tr>
@@ -136,7 +185,7 @@
                                 <label>Email: </label>
                             </td>
                             <td>
-                                <dx:ASPxTextBox ID="emailTextBox" runat="server" Width="170px">
+                                <dx:ASPxTextBox ClientIDMode="Static" ID="emailTextBox" runat="server" Width="170px">
                                 </dx:ASPxTextBox>
                             </td>
                         </tr>
@@ -145,7 +194,7 @@
                                 <label>Address: </label>
                             </td>
                             <td>
-                                <dx:ASPxTextBox ID="addressTextBox" runat="server" Width="170px"></dx:ASPxTextBox>
+                                <dx:ASPxTextBox ClientIDMode="Static" ID="addressTextBox" runat="server" Width="170px"></dx:ASPxTextBox>
                             </td>
                         </tr>
                         <tr>
@@ -153,7 +202,7 @@
                                 <label>Phone: </label>
                             </td>
                             <td>
-                                <dx:ASPxTextBox ID="phoneTextBox" runat="server" Width="170px">
+                                <dx:ASPxTextBox ClientIDMode="Static" ID="phoneTextBox" runat="server" Width="170px">
                                     <ClientSideEvents KeyDown="function(s, e) {
 	                                 if (!((e.htmlEvent.keyCode &gt;= 48 &amp;&amp; e.htmlEvent.keyCode &lt;= 57) || 
                                            (e.htmlEvent.keyCode == 8 || e.htmlEvent.keyCode == 46 || e.htmlEvent.keyCode == 37 || 
@@ -168,7 +217,7 @@
                                 <label>Created: </label>
                             </td>
                             <td>
-                                <dx:ASPxTextBox ID="createdTextBox" runat="server" Width="170px" ReadOnly="True"></dx:ASPxTextBox>
+                                <dx:ASPxTextBox ClientIDMode="Static" ID="createdTextBox" runat="server" Width="170px" ReadOnly="True"></dx:ASPxTextBox>
                             </td>
                         </tr>
                         <tr>
@@ -176,8 +225,12 @@
                                 <label>Created By: </label>
                             </td>
                             <td>
-                                <dx:ASPxTextBox ID="createdByTextBox" runat="server" Width="170px"></dx:ASPxTextBox>
+                                <dx:ASPxTextBox ClientIDMode="Static" ID="createdByTextBox" runat="server" Width="170px"></dx:ASPxTextBox>
                             </td>
+                        </tr>
+                         <tr>
+                              <dx:ASPxTextBox  CssClass="hidden" ClientIDMode="Static" ID="iDtextBox" runat="server" Width="170px"></dx:ASPxTextBox>
+                            
                         </tr>
                     </table>
                     <br/>

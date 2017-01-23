@@ -35,11 +35,6 @@ namespace HotelManagerProject
         private BookingController bookingController;
 
         /// <summary>
-        /// The customer controller.
-        /// </summary>
-        private CustomerController customerController;
-
-        /// <summary>
         /// The bookings grid view_ on custom button callback.
         /// </summary>
         /// <param name="sender">
@@ -48,10 +43,11 @@ namespace HotelManagerProject
         /// <param name="e">
         /// The e.
         /// </param>
-        protected void bookingsGridView_OnCustomButtonCallback(object sender, ASPxGridViewCustomButtonCallbackEventArgs e)
+        protected void bookingsGridView_OnCustomButtonCallback(
+            object sender,
+            ASPxGridViewCustomButtonCallbackEventArgs e)
         {
             this.bookingController = new BookingController();
-            var roomTypesController = new RoomTypeController();
             var gridviewIndex = e.VisibleIndex;
             var row = this.bookingsGridView.GetRow(gridviewIndex) as Booking;
             var booking = this.bookingController.GetEntity(row.Id);
@@ -64,9 +60,7 @@ namespace HotelManagerProject
             this.bookingsGridView.JSProperties["cp_text6"] = booking.Created.ToString();
             this.bookingsGridView.JSProperties["cp_text7"] = booking.CreatedBy;
             this.bookingsGridView.JSProperties["cp_text8"] = booking.Id.ToString();
-
-            //this.commentsTextBox.Text = "test";
-            //this.statusComboBox.DataSource = roomTypesController.RefreshEntities();
+            this.bookingsGridView.JSProperties["cp_text9"] = booking.Room.Code;
         }
 
         /// <summary>
@@ -98,7 +92,6 @@ namespace HotelManagerProject
             var errorlabel = this.Master?.FindControl("form1").FindControl("divErrorMessage") as Label;
             if (errorlabel != null)
             {
-                
                 errorlabel.Text = string.Empty;
                 if (this.bookingsGridView.VisibleRowCount == 0)
                 {
@@ -182,16 +175,36 @@ namespace HotelManagerProject
             this.statusComboBox.DataBind();
         }
 
+        /// <summary>
+        /// The save_ on click.
+        /// </summary>
+        /// <param name="sender">
+        /// The sender.
+        /// </param>
+        /// <param name="e">
+        /// The e.
+        /// </param>
         protected void Save_OnClick(object sender, EventArgs e)
         {
             this.bookingController = new BookingController();
-            
+
             var bookingId = this.iDtextBox.Text;
             var booking = this.bookingController.GetEntity(Convert.ToInt32(bookingId));
             booking.AgreedPrice = Convert.ToDouble(this.agreedPriceTextBox.Text);
             booking.SystemPrice = Convert.ToDouble(this.systemPriceTextBox.Text);
             booking.Comments = this.commentsTextBox.Text;
-            
+            booking.Status = (Status)this.statusComboBox.SelectedIndex;
+            booking.Updated = DateTime.Now;
+            booking.UpdatedBy = Environment.UserName;
+
+            try
+            {
+                this.bookingController.CreateOrUpdateEntity(booking);
+                this.Response.Redirect("BookingsListForm.aspx");
+            }
+            catch (Exception ex)
+            {
+            }
         }
     }
 }
