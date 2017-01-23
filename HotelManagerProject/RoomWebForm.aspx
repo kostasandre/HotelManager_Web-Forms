@@ -6,15 +6,24 @@
 
     <script type="text/javascript">
         function ShowLoginWindow() {
+            if (createRoomButton) {
+                idTextBox.SetText("0");
+                codeTextBox.SetText("");
+                hotelComboBox.SetText("");
+                roomTypeComboBox.SetText("");
+            }
             RoomDetailView.Show();
         }
 
         function EndCallback(s, e) {
-            if (s.cp_text !== undefined) {
-                idTextBox.SetText(s.cp_text);
-                codeTextBox.SetText(s.cp_text);
-                hotelComboBox.SetText(s.cp_text);
-                roomTypeComboBox.SetText(s.cp_text);
+            if (s.cp_text4 !== undefined) {
+                idTextBox.SetText(s.cp_text1);
+                codeTextBox.SetText(s.cp_text2);
+                hotelComboBox.SetText(s.cp_text3);
+                roomTypeComboBox.SetText(s.cp_text4);
+                //hotelComboBox.SetEnabled(false);
+                //roomTypeComboBox.SetEnabled(false);
+                idTextBox.visible = 'false';
             }
             
         }
@@ -23,7 +32,7 @@
     <div class="container" style="width: 100%">
         <div class="row">
             <div class="col-lg-1 col-md-2 col-sm-2 col-xs-4">
-                <dx:ASPxButton ID="createRoomButton" CssClass="button" ToolTip="Creates a new Room" ForeColor="AquaMarine" Theme="BlackGlass" runat="server" Text="Create Room">
+                <dx:ASPxButton ID="createRoomButton" ClientIDMode="Static" CssClass="button" ToolTip="Creates a new Room" ForeColor="AquaMarine" Theme="BlackGlass" runat="server" Text="Create Room">
                     <ClientSideEvents Click="function(s, e) {
 	{ ShowLoginWindow(); }
 }"></ClientSideEvents>

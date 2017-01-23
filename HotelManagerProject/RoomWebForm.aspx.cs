@@ -68,6 +68,7 @@ namespace HotelManagerProject
             this.roomTypeComboBox.DataSource = roomTypeList;
             this.roomTypeComboBox.DataBind();
         }
+
         /// <summary>
         /// The page_ load.
         /// </summary>
@@ -103,16 +104,15 @@ namespace HotelManagerProject
         /// </param>
         protected void SaveButton_OnClick(object sender, EventArgs e)
         {
+
             this.room = new Room();
             this.roomController = new RoomController();
 
-            var roomId = Convert.ToInt32(this.idTextBox.Text);
-            if (roomId != 0)
-            {
-                //roomId
-            }
-            var room = this.roomController.GetEntity(Convert.ToInt32(roomId));
+            //var roomId = Convert.ToInt32(this.idTextBox.Text);
 
+            //var room = this.roomController.GetEntity(Convert.ToInt32(roomId));
+
+            this.room.Id = Convert.ToInt32(this.idTextBox.Text);
             this.room.Code = this.codeTextBox.Text;
 
             var hotelList = this.hotelComboBox.DataSource as List<Hotel>;
@@ -132,7 +132,7 @@ namespace HotelManagerProject
             }
 
             this.roomController.CreateOrUpdateEntity(this.room);
-            this.Page.Response.Redirect(this.Page.Request.Url.ToString(), true);
+            this.Page.Response.Redirect(this.Page.Request.Url.ToString() , true);
         }
 
         /// <summary>
@@ -206,10 +206,10 @@ namespace HotelManagerProject
             var gridviewIndex = e.VisibleIndex;
             var row = this.RoomGridView.GetRow(gridviewIndex) as Room;
             var myRoom = this.roomController.GetEntity(row.Id);
-            this.RoomGridView.JSProperties["cp_text1"] = myRoom.HotelName;
-            this.RoomGridView.JSProperties["cp_text2"] = myRoom.RoomType.Code;
-            this.RoomGridView.JSProperties["cp_text3"] = myRoom.Code;
-            this.RoomGridView.JSProperties["cp_text4"] = myRoom.Id;
+            this.RoomGridView.JSProperties["cp_text1"] = myRoom.Id;
+            this.RoomGridView.JSProperties["cp_text2"] = myRoom.Code;
+            this.RoomGridView.JSProperties["cp_text3"] = myRoom.HotelName;
+            this.RoomGridView.JSProperties["cp_text4"] = myRoom.RoomType.Code;
         }
     }
 }
