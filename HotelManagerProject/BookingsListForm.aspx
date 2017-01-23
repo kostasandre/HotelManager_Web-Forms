@@ -71,7 +71,7 @@
                         <Columns>
                             <dx:GridViewCommandColumn ShowClearFilterButton="True" VisibleIndex="1" SelectAllCheckboxMode="Page" ShowSelectCheckbox="True">
                             </dx:GridViewCommandColumn>
-                            <dx:GridViewCommandColumn ShowClearFilterButton="True" VisibleIndex="1" ButtonRenderMode="Image">
+                            <dx:GridViewCommandColumn ShowClearFilterButton="True" VisibleIndex="2" ButtonRenderMode="Image">
                                 <CustomButtons>
                                     <dx:GridViewCommandColumnCustomButton ID="editButton">
                                         <Image Url="Images/edit.png" Width="35px" ToolTip="Edit"></Image>
