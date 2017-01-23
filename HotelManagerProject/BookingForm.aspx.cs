@@ -105,6 +105,14 @@ namespace HotelManagerProject
             if ((dateFrom != null) && (dateTo != null) && (roomType != string.Empty))
             {
                 this.AvailableRooms = this.bookingController.GetAvailableRooms(roomTypeId, dateFrom, dateTo);
+                if (this.AvailableRooms.Count == 0)
+                {
+                    errorlabel.Text = "No available rooms for the selected days";
+                }
+                else
+                {
+                    errorlabel.Text = string.Empty;
+                }
                 this.Session["AvailableRooms"] = this.AvailableRooms;
             }
 
@@ -123,6 +131,7 @@ namespace HotelManagerProject
         /// </param>
         protected void CustomersPopUpSaveButton(object sender, EventArgs e)
         {
+            
             var errorlabel = this.Master?.FindControl("form1").FindControl("divErrorMessage") as Label;
             if (errorlabel != null)
             {
@@ -143,9 +152,11 @@ namespace HotelManagerProject
             try
             {
                 this.customerController.CreateOrUpdateEntity(this.customer);
+                this.booking.CustomerId = this.customer.Id;
+                this.Session["Booking"] = this.booking;
                 this.customerComboBoxDataBind();
                 this.customerComboBox.Value = this.customer;
-                this.customerComboBox.Text = this.customer.Name;
+                this.customerComboBox.Text = this.customer.Name + " " + this.customer.Surname;
             }
             catch (Exception ex)
             {
@@ -186,6 +197,11 @@ namespace HotelManagerProject
         {
             if (!this.Page.IsPostBack)
             {
+                this.AvailableRooms = new List<Room>();
+                this.availableRoomsGridView.DataSource = this.AvailableRooms;
+                this.availableRoomsGridView.DataBind();
+
+                this.Session["Booking"] = new Booking();
                 this.customerController = new CustomerController();
                 this.roomTypeController = new RoomTypeController();
 
@@ -193,6 +209,10 @@ namespace HotelManagerProject
                 this.roomTypeComboBox.DataSource = roomTypes;
                 this.customerComboBoxDataBind();
                 this.roomTypeComboBox.DataBind();
+            }
+            else
+            {
+                this.booking = this.Session["Booking"] as Booking;
             }
         }
 
@@ -207,16 +227,17 @@ namespace HotelManagerProject
         /// </param>
         protected void saveBookingButton_OnClick(object sender, EventArgs e)
         {
+            this.booking = this.Session["Booking"] as Booking;
             var errorlabel = this.Master?.FindControl("form1").FindControl("divErrorMessage") as Label;
             if (errorlabel != null)
             {
                 errorlabel.Text = string.Empty;
             }
-
-            this.booking = new Booking();
+            
             this.roomTypeController = new RoomTypeController();
             this.customerController = new CustomerController();
             this.bookingController = new BookingController();
+            this.customerComboBoxDataBind();
 
             var dateFrom = this.dateFromCalendar.Text;
             var dateTo = this.dateToCalendar.Text;
@@ -231,18 +252,23 @@ namespace HotelManagerProject
             var selectedRoom = (Room)this.availableRoomsGridView.GetRow(row);
             if (selectedRoom == null)
             {
-                errorlabel.Text = "Please select a room first";
+                if (errorlabel != null)
+                {
+                    errorlabel.Text = "Please select a room first";
+                }
+
                 return;
             }
 
-            var customerId = this.customerComboBox.Value;
-            if (customerId == null)
+            if (this.booking.CustomerId == 0)
             {
-                errorlabel.Text = "Please select a customer first";
+                if (errorlabel != null)
+                {
+                    errorlabel.Text = "Please select a customer first";
+                }
+
                 return;
             }
-
-            var customer = this.customerController.GetEntity(Convert.ToInt32(customerId));
 
             var agreedPrice = this.agreedPriceTextBox.Text;
             if (agreedPrice == string.Empty)
@@ -250,14 +276,14 @@ namespace HotelManagerProject
                 agreedPrice = price;
             }
 
-            this.booking.Room = selectedRoom;
+            //this.booking.Room = selectedRoom;
             this.booking.RoomId = selectedRoom.Id;
             this.booking.AgreedPrice = Convert.ToDouble(agreedPrice);
             this.booking.SystemPrice = Convert.ToDouble(price);
             this.booking.Created = DateTime.Now;
             this.booking.CreatedBy = Environment.UserName;
-            this.booking.Customer = customer;
-            this.booking.CustomerId = customer.Id;
+            //this.booking.Customer = customer;
+           
             this.booking.From = Convert.ToDateTime(dateFrom);
             this.booking.To = Convert.ToDateTime(dateTo);
             this.booking.Status = Status.New;
@@ -283,6 +309,25 @@ namespace HotelManagerProject
             var customers = this.customerController.RefreshEntities();
             this.customerComboBox.DataSource = customers;
             this.customerComboBox.DataBind();
+        }
+
+        protected void customerComboBox_OnValueChanged(object sender, EventArgs e)
+        {
+            var errorlabel = this.Master?.FindControl("form1").FindControl("divErrorMessage") as Label;
+            var customerId = this.customerComboBox.Value;
+            try
+            {
+                var localCustomer = this.customerController.GetEntity(Convert.ToInt32(customerId));
+                this.booking.CustomerId = localCustomer.Id;
+                this.Session["Booking"] = this.booking;
+            }
+            catch (Exception ex)
+            {
+                if (errorlabel != null)
+                {
+                    errorlabel.Text = ex.Message;
+                }
+            }
         }
     }
 }

@@ -18,11 +18,8 @@
                 idNumberText.SetText("");
                 emailTextBox.SetText("");
                 addressTextBox.SetText("");
-                createdTextBox.SetText("");
-                createdByTextBox.SetText("");
                 iDtextBox.SetText("");
                 phoneTextBox.SetText("");
-                
             }
             createUserPopUp.Show();
         }
@@ -35,8 +32,6 @@
                 idNumberText.SetText(s.cp_text3);
                 emailTextBox.SetText(s.cp_text4);
                 addressTextBox.SetText(s.cp_text5);
-                createdTextBox.SetText(s.cp_text6);
-                createdByTextBox.SetText(s.cp_text7);
                 iDtextBox.SetText(s.cp_text8);
                 phoneTextBox.SetText(s.cp_text9);
                 iDtextBox.visible = 'false';
@@ -85,21 +80,23 @@
                                     </dx:GridViewCommandColumnCustomButton>
                                 </CustomButtons>
                             </dx:GridViewCommandColumn>
-                            <dx:GridViewDataTextColumn FieldName="Name" VisibleIndex="4">
+                            <dx:GridViewDataTextColumn FieldName="Name" VisibleIndex="3">
                             </dx:GridViewDataTextColumn>
-                            <dx:GridViewDataTextColumn FieldName="Surname" VisibleIndex="5">
+                            <dx:GridViewDataTextColumn FieldName="Surname" VisibleIndex="4">
                             </dx:GridViewDataTextColumn>
                             <dx:GridViewDataTextColumn FieldName="TaxId" VisibleIndex="6">
                             </dx:GridViewDataTextColumn>
-                            <dx:GridViewDataTextColumn FieldName="IdNumber" VisibleIndex="7">
+                            <dx:GridViewDataTextColumn FieldName="Address" VisibleIndex="8">
                             </dx:GridViewDataTextColumn>
-                            <dx:GridViewDataTextColumn FieldName="Email" VisibleIndex="8">
+                            <dx:GridViewDataTextColumn FieldName="Email" VisibleIndex="9">
                             </dx:GridViewDataTextColumn>
-                            <dx:GridViewDataTextColumn FieldName="Phone" VisibleIndex="9">
+                            <dx:GridViewDataTextColumn FieldName="Phone" VisibleIndex="10">
                             </dx:GridViewDataTextColumn>
-                            <dx:GridViewDataTextColumn FieldName="Created" VisibleIndex="10">
+                            <dx:GridViewDataTextColumn FieldName="Created" VisibleIndex="11">
                             </dx:GridViewDataTextColumn>
-                            <dx:GridViewDataTextColumn FieldName="CreatedBy" VisibleIndex="11">
+                            <dx:GridViewDataTextColumn FieldName="CreatedBy" VisibleIndex="12">
+                            </dx:GridViewDataTextColumn>
+                            <dx:GridViewDataTextColumn FieldName="IdNumber" VisibleIndex="5">
                             </dx:GridViewDataTextColumn>
                         </Columns>
                     </dx:ASPxGridView>
@@ -134,7 +131,7 @@
                                 <label>Surname: </label>
                             </td>
                             <td>
-                                <dx:ASPxTextBox ClientIDMode="Static" ClientInstanceName="surnameText" ValidateRequestMode="Enabled" ID="surNameTextBox" runat="server" Width="170px">
+                                <dx:ASPxTextBox ClientIDMode="Static" ClientInstanceName="surnameTextBox" ValidateRequestMode="Enabled" ID="surNameTextBox" runat="server" Width="170px">
                                     <ValidationSettings EnableCustomValidation="True" ErrorDisplayMode="Text" ErrorTextPosition="Right" SetFocusOnError="true">
                                         <ErrorFrameStyle Font-Size="Large"/>
                                         <RequiredField IsRequired="True" ErrorText="*"/>
@@ -180,16 +177,7 @@
                                 </dx:ASPxTextBox>
                             </td>
                         </tr>
-                        <tr>
-                            <td>
-                                <label>Email: </label>
-                            </td>
-                            <td>
-                                <dx:ASPxTextBox ClientIDMode="Static" ID="emailTextBox" runat="server" Width="170px">
-                                </dx:ASPxTextBox>
-                            </td>
-                        </tr>
-                        <tr>
+                         <tr>
                             <td>
                                 <label>Address: </label>
                             </td>
@@ -197,6 +185,19 @@
                                 <dx:ASPxTextBox ClientIDMode="Static" ID="addressTextBox" runat="server" Width="170px"></dx:ASPxTextBox>
                             </td>
                         </tr>
+                        <tr>
+                            <td>
+                                <label>Email: </label>
+                            </td>
+                            <td>
+                                <dx:ASPxTextBox ClientIDMode="Static" ID="emailTextBox" runat="server" Width="170px">
+                                    <ValidationSettings>
+                                        <RegularExpression ErrorText="Invalid mail" ValidationExpression="\w+([-+.']\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*" />
+                                    </ValidationSettings>
+                                </dx:ASPxTextBox>
+                            </td>
+                        </tr>
+                       
                         <tr>
                             <td>
                                 <label>Phone: </label>
@@ -210,22 +211,6 @@
                                         ASPxClientUtils.PreventEventAndBubble(e.htmlEvent); }">
                                     </ClientSideEvents>
                                 </dx:ASPxTextBox>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>
-                                <label>Created: </label>
-                            </td>
-                            <td>
-                                <dx:ASPxTextBox ClientIDMode="Static" ID="createdTextBox" runat="server" Width="170px" ReadOnly="True"></dx:ASPxTextBox>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>
-                                <label>Created By: </label>
-                            </td>
-                            <td>
-                                <dx:ASPxTextBox ClientIDMode="Static" ID="createdByTextBox" runat="server" Width="170px"></dx:ASPxTextBox>
                             </td>
                         </tr>
                          <tr>

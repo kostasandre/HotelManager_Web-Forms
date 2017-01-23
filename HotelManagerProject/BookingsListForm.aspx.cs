@@ -13,6 +13,7 @@ namespace HotelManagerProject
 
     using System;
     using System.Data.SqlClient;
+    using System.Linq;
     using System.Web.UI;
     using System.Web.UI.WebControls;
 
@@ -61,6 +62,9 @@ namespace HotelManagerProject
             this.bookingsGridView.JSProperties["cp_text7"] = booking.CreatedBy;
             this.bookingsGridView.JSProperties["cp_text8"] = booking.Id.ToString();
             this.bookingsGridView.JSProperties["cp_text9"] = booking.Room.Code;
+            //this.bookingsGridView.JSProperties["cp_text10"] = booking.Customer.Name;
+            //this.bookingsGridView.JSProperties["cp_text11"] = booking.Customer.Surname;
+
         }
 
         /// <summary>
@@ -137,7 +141,7 @@ namespace HotelManagerProject
 
                 errorlabel.Text = errorlabel.Text.TrimEnd(' ', ',');
                 this.Session["errorMessage"] = errorlabel.Text;
-                this.bookingsGridView.DataSource = this.bookingController.RefreshEntities();
+                this.bookingsGridView.DataSource = this.bookingController.RefreshEntities().OrderByDescending(x => x.Created);
                 this.bookingsGridView.DataBind();
             }
         }
@@ -154,9 +158,22 @@ namespace HotelManagerProject
         protected void Page_Init(object sender, EventArgs e)
         {
             this.bookingController = new BookingController();
-            var bookingsList = this.bookingController.RefreshEntities();
-            this.bookingsGridView.DataSource = bookingsList;
-            this.bookingsGridView.DataBind();
+            var errorlabel = this.Master?.FindControl("form1").FindControl("divErrorMessage") as Label;
+            try
+            {
+                
+                var bookingsList = this.bookingController.RefreshEntities();
+                this.bookingsGridView.DataSource = bookingsList.OrderByDescending(x => x.Created);
+                this.bookingsGridView.DataBind();
+            }
+            catch (Exception ex)
+            {
+                if (errorlabel != null)
+                {
+                    errorlabel.Text = ex.Message;
+                }
+            }
+            
         }
 
         /// <summary>

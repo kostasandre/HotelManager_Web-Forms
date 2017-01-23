@@ -94,15 +94,6 @@ namespace HotelManagerProject {
         protected global::DevExpress.Web.ASPxTextBox taxIdTextBox;
         
         /// <summary>
-        /// emailTextBox control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::DevExpress.Web.ASPxTextBox emailTextBox;
-        
-        /// <summary>
         /// addressTextBox control.
         /// </summary>
         /// <remarks>
@@ -112,6 +103,15 @@ namespace HotelManagerProject {
         protected global::DevExpress.Web.ASPxTextBox addressTextBox;
         
         /// <summary>
+        /// emailTextBox control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::DevExpress.Web.ASPxTextBox emailTextBox;
+        
+        /// <summary>
         /// phoneTextBox control.
         /// </summary>
         /// <remarks>
@@ -119,24 +119,6 @@ namespace HotelManagerProject {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::DevExpress.Web.ASPxTextBox phoneTextBox;
-        
-        /// <summary>
-        /// createdTextBox control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::DevExpress.Web.ASPxTextBox createdTextBox;
-        
-        /// <summary>
-        /// createdByTextBox control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::DevExpress.Web.ASPxTextBox createdByTextBox;
         
         /// <summary>
         /// iDtextBox control.
