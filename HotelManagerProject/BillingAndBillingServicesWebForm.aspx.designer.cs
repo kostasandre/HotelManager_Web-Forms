@@ -76,6 +76,15 @@ namespace HotelManagerProject {
         protected global::DevExpress.Web.ASPxGridView BillingListGridView;
         
         /// <summary>
+        /// sumOfServicesLabel control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::DevExpress.Web.ASPxLabel sumOfServicesLabel;
+        
+        /// <summary>
         /// sumOfServicesTextBox control.
         /// </summary>
         /// <remarks>
@@ -85,6 +94,15 @@ namespace HotelManagerProject {
         protected global::DevExpress.Web.ASPxTextBox sumOfServicesTextBox;
         
         /// <summary>
+        /// paidLabel control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::DevExpress.Web.ASPxLabel paidLabel;
+        
+        /// <summary>
         /// paidCheckBox control.
         /// </summary>
         /// <remarks>
@@ -92,6 +110,15 @@ namespace HotelManagerProject {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::DevExpress.Web.ASPxCheckBox paidCheckBox;
+        
+        /// <summary>
+        /// totalSumLabel control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::DevExpress.Web.ASPxLabel totalSumLabel;
         
         /// <summary>
         /// totalSumTextBox control.

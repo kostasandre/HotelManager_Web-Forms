@@ -1,11 +1,17 @@
-﻿<%@ page title="" language="C#" masterpagefile="~/MasterPage.Master" autoeventwireup="true" codebehind="BillingServicesListWebForm.aspx.cs" inherits="HotelManagerProject.BillingServicesListForm" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/MasterPage.Master" AutoEventWireup="true" CodeBehind="BillingServicesListWebForm.aspx.cs" Inherits="HotelManagerProject.BillingServicesListForm" %>
 
-<asp:content id="Content1" contentplaceholderid="head" runat="server">
-</asp:content>
-<asp:content id="Content2" contentplaceholderid="ContentPlaceHolder1" runat="server">
+<asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
+</asp:Content>
+<asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
     <link href="CssClasses/StyleSheet1.css" rel="stylesheet" />
-     <script type="text/javascript">
+    <script type="text/javascript">
         function ShowLoginWindow() {
+            if (CreateBillingServiceButton) {
+                quantityTextBox.SetText("");
+                priceTextBox.SetText("");
+                idTextBox.SetText("0");
+
+            }
             createBillingServicePopUp.Show();
         }
         function EndCallback(s, e) {
@@ -19,27 +25,29 @@
         }
     </script>
     <div class="container" style="width: 100%">
-       <br />
+        <br />
         <br />
         <br />
         <div class="row">
             <div class="col-lg-1 col-sm-2 col-md-2 col-xs-4">
-                <dx:ASPxButton id="CreateBillingServiceButton" CssClass="button" tooltip="Creates a new Billing" ForeColor="AquaMarine" Theme="BlackGlass" runat="server" Text="Create Billing Service">
-                <ClientSideEvents Click="function(s, e) { ShowLoginWindow(); }" />
-                    </dx:ASPxButton>
+                <dx:ASPxButton ClientInstanceName="CreateBillingServiceButton" ID="CreateBillingServiceButton" CssClass="button" ToolTip="Creates a new Billing" ForeColor="AquaMarine" Theme="BlackGlass" runat="server" Text="Create Billing Service">
+                    <ClientSideEvents Click="function(s, e) { ShowLoginWindow(); }" />
+                </dx:ASPxButton>
             </div>
             <div class="col-lg-3 col-sm-2 col-xs-4">
-                <dx:ASPxButton runat="server" CssClass="button" tooltip="Deletes the selected Billing" ForeColor="AquaMarine" Theme="BlackGlass" Text="Delete Billing"  OnClick="DeleteBillingButtonClick"/>
+                <dx:ASPxButton runat="server" CssClass="button" ToolTip="Deletes the selected Billing" ForeColor="AquaMarine" Theme="BlackGlass" Text="Delete Billing" OnClick="DeleteBillingButtonClick" />
             </div>
-        
 
-        
+
+
             <div class="col-xs-12 col-lg-4 col-sm-4">
                 <dx:ASPxGridView ID="BillingServiceListGridView" runat="server" Theme="BlackGlass" AutoGenerateColumns="False" OnCustomButtonCallback="BillingServiceListGridViewOnCustomButtonCallback" KeyFieldName="Id">
-                     <ClientSideEvents EndCallback="EndCallback" CustomButtonClick="function(s, e) { ShowLoginWindow(); e.processOnServer = true; }"/>
+                    <ClientSideEvents EndCallback="EndCallback" CustomButtonClick="function(s, e) { ShowLoginWindow(); e.processOnServer = true; }" />
                     <Settings ShowGroupPanel="True" ShowFilterRow="True"></Settings>
                     <SettingsSearchPanel Visible="True"></SettingsSearchPanel>
                     <Columns>
+                        <dx:GridViewCommandColumn ShowClearFilterButton="True" VisibleIndex="0" SelectAllCheckboxMode="Page" ShowSelectCheckbox="True">
+                        </dx:GridViewCommandColumn>
                         <dx:GridViewCommandColumn ShowClearFilterButton="True" VisibleIndex="1" ButtonRenderMode="Image">
                             <CustomButtons>
                                 <dx:GridViewCommandColumnCustomButton ID="editButton">
@@ -76,7 +84,7 @@
                                 <label>Billing : </label>
                             </td>
                             <td>
-                                <dx:ASPxComboBox ValueField="Id" ClientInstanceName="billingComboBox" TextField="Id" ID="billingComboBox" runat="server" Width="170px" Theme="BlackGlass" EnableTheming="True"></dx:ASPxComboBox> 
+                                <dx:ASPxComboBox ValueField="Id" ClientInstanceName="billingComboBox" TextField="Id" ID="billingComboBox" runat="server" Width="170px" Theme="BlackGlass" EnableTheming="True"></dx:ASPxComboBox>
                             </td>
                         </tr>
                         <tr>
@@ -84,42 +92,42 @@
                                 <label>Service : </label>
                             </td>
                             <td>
-                                <dx:ASPxComboBox ValueField="Id" ClientInstanceName="serviceComboBox" TextField="Id" ID="serviceComboBox" runat="server" Width="170px" Theme="BlackGlass" EnableTheming="True"></dx:ASPxComboBox> 
-                            </td>
-                        </tr>
-                         <tr>
-                            <td>
-                                <dx:ASPxTextBox ClientInstanceName="idTextBox" ID="idTextBox" Visible="False" runat="server" Width="170px"></dx:ASPxTextBox> 
+                                <dx:ASPxComboBox ValueField="Id" ClientInstanceName="serviceComboBox" TextField="Id" ID="serviceComboBox" runat="server" Width="170px" Theme="BlackGlass" EnableTheming="True"></dx:ASPxComboBox>
                             </td>
                         </tr>
                         <tr>
-                             <td>
+                            <td>
+                                <dx:ASPxTextBox ClientInstanceName="idTextBox" CssClass="hidden" ID="idTextBox" runat="server" Width="170px"></dx:ASPxTextBox>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
                                 <label>Quantity:  </label>
                             </td>
                             <td>
-                                <dx:ASPxTextBox ClientInstanceName="quantityTextBox" ID="quantityTextBox" runat="server" Width="170px"></dx:ASPxTextBox> 
+                                <dx:ASPxTextBox ClientInstanceName="quantityTextBox" ID="quantityTextBox" runat="server" Width="170px"></dx:ASPxTextBox>
                             </td>
                         </tr>
                         <tr>
-                             <td>
+                            <td>
                                 <label>Price:  </label>
                             </td>
                             <td>
-                                <dx:ASPxTextBox ClientInstanceName="priceTextBox" ID="priceTextBox" runat="server" Width="170px"></dx:ASPxTextBox> 
+                                <dx:ASPxTextBox ClientInstanceName="priceTextBox" ID="priceTextBox" runat="server" Width="170px"></dx:ASPxTextBox>
                             </td>
                         </tr>
                     </table>
-                    <br/>
+                    <br />
                     <div class="pcmButton">
-                                            <dx:ASPxButton ID="btOK" runat="server" Text="Save" Width="80px" AutoPostBack="False" Style="float: left; margin-right: 8px" OnClick="btOK_Click">
-                                                <ClientSideEvents Click="function(s, e) { if(ASPxClientEdit.ValidateGroup('entryGroup')) createBillingServicePopUp.Hide(); }" />
-                                            </dx:ASPxButton>
-                                            <dx:ASPxButton ID="btCancel" runat="server" Text="Cancel" Width="80px" AutoPostBack="False" Style="float: left; margin-right: 8px">
-                                                <ClientSideEvents Click="function(s, e) { createBillingServicePopUp.Hide(); }" />
-                                            </dx:ASPxButton>
-                                        </div>
+                        <dx:ASPxButton ID="btOK" runat="server" Text="Save" Width="80px" AutoPostBack="False" Style="float: left; margin-right: 8px" OnClick="BtOkClick">
+                            <ClientSideEvents Click="function(s, e) { if(ASPxClientEdit.ValidateGroup('entryGroup')) createBillingServicePopUp.Hide(); }" />
+                        </dx:ASPxButton>
+                        <dx:ASPxButton ID="btCancel" runat="server" Text="Cancel" Width="80px" AutoPostBack="False" Style="float: left; margin-right: 8px">
+                            <ClientSideEvents Click="function(s, e) { createBillingServicePopUp.Hide(); }" />
+                        </dx:ASPxButton>
+                    </div>
                 </asp:Panel>
             </dx:PopupControlContentControl>
         </ContentCollection>
     </dx:ASPxPopupControl>
-</asp:content>
+</asp:Content>

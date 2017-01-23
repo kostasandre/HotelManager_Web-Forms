@@ -149,6 +149,7 @@ namespace HotelManagerLib.Repositories
                     return;
                 }
 
+                databaseBilling.BookingId = billing.BookingId;
                 databaseBilling.Paid = billing.Paid;
                 databaseBilling.PriceForRoom = billing.PriceForRoom;
                 databaseBilling.PriceForServices = billing.PriceForServices;

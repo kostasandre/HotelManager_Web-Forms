@@ -36,6 +36,9 @@ namespace HotelManagerProject
     /// </summary>
     public partial class BillingWebForm : Page
     {
+        /// <summary>
+        /// The billing service.
+        /// </summary>
         private BillingService billingService;
 
         /// <summary>
@@ -99,6 +102,7 @@ namespace HotelManagerProject
         /// </param>
         protected void BtOkClick(object sender, EventArgs e)
         {
+            var errorlabel = this.Master?.FindControl("form1").FindControl("divErrorMessage") as Label;
             var selectedRowKeys = this.BookingListGridview.GetSelectedFieldValues(
                 this.BookingListGridview.KeyFieldName,
                 "Id");
@@ -169,6 +173,10 @@ namespace HotelManagerProject
                     this.BillingListGridView.DataBind();
                     this.BillingListGridView.Visible = true;
                     this.saveButton.Enabled = true;
+                    this.totalSumTextBox.Visible = true;
+                    this.totalSumTextBox.Text = this.priceValueTextBox.Text;
+                    this.paidCheckBox.Visible = true;
+                    this.sumOfServicesTextBox.Visible = true;
                 }
             }
         }
@@ -185,6 +193,7 @@ namespace HotelManagerProject
         /// </param>
         protected void Page_Init(object sender, EventArgs e)
         {
+            var errorlabel = this.Master?.FindControl("form1").FindControl("divErrorMessage") as Label;
             if (!this.IsPostBack)
             {
                 this.myBillingServices = new List<BillingServiceWithServiceDescription>();
@@ -201,11 +210,34 @@ namespace HotelManagerProject
             this.BillingListGridView.JSProperties["cp_text2"] = 0;
             this.serviceController = new ServiceController();
             this.bookingEntityController = new BookingController();
-            this.BookingListGridview.DataSource = this.bookingEntityController.RefreshEntities();
-            this.BookingListGridview.DataBind();
-            this.BillingListGridView.DataSource = this.myBillingServices;
-            this.BillingListGridView.DataBind();
+            try
+            {
+                this.BookingListGridview.DataSource = this.bookingEntityController.RefreshEntities();
+                this.BookingListGridview.DataBind();
+                this.BillingListGridView.DataSource = this.myBillingServices;
+                this.BillingListGridView.DataBind();
+            }
+            catch (SqlException ex)
+            {
+                if (errorlabel != null)
+                {
+                    errorlabel.Text = "Something went wrong with the database.Please check the connection string.";
+                }
+            }
+            catch (ArgumentNullException ex)
+            {
+                if (errorlabel != null)
+                {
+                    errorlabel.Text = "Couldn't create the current Billing";
+                }
+            }
             this.saveButton.Enabled = false;
+            this.totalSumTextBox.Visible = false;
+            this.paidCheckBox.Visible = false;
+            this.sumOfServicesTextBox.Visible = false;
+            this.paidLabel.Visible = false;
+            this.totalSumLabel.Visible = false;
+            this.sumOfServicesLabel.Visible = false;
         }
 
         /// <summary>

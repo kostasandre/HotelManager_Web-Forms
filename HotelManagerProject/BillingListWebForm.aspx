@@ -6,6 +6,14 @@
     <link href="CssClasses/StyleSheet1.css" rel="stylesheet" />
     <script type="text/javascript">
         function ShowLoginWindow() {
+            if (CreateBillingButton ) {
+                paidCheckBox.SetChecked(false);
+                priceForRoomTextBox.SetText("");
+                priceForServicesTextBox.SetText("");
+                totalPricerTextBox.SetText("");
+                idTextBox.SetText("0");
+                
+            }
             createBillingPopUp.Show();
         }
         function EndCallback(s, e) {
@@ -13,6 +21,7 @@
             priceForRoomTextBox.SetText(s.cp_text1);
             priceForServicesTextBox.SetText(s.cp_text2);
             totalPricerTextBox.SetText(s.cp_text3);
+            idTextBox.SetText(s.cp_text4);
         }
 
 
@@ -23,7 +32,7 @@
         <br />
         <div class="row">
             <div class="col-lg-1 col-sm-2 col-md-2 col-xs-4">
-                <dx:ASPxButton ID="CreateBillingButton" CssClass="button" ToolTip="Creates a new Billing" ForeColor="AquaMarine" Theme="BlackGlass" runat="server" Text="Create Billing">
+                <dx:ASPxButton ClientInstanceName="CreateBillingButton" ClientIDMode="Static" ID="CreateBillingButton" CssClass="button" ToolTip="Creates a new Billing" ForeColor="AquaMarine" Theme="BlackGlass" runat="server" Text="Create Billing">
                     <ClientSideEvents Click="function(s, e) { ShowLoginWindow(); e.processOnServer = true; }" />
                 </dx:ASPxButton>
             </div>
@@ -39,8 +48,10 @@
                 <dx:ASPxGridView  ID="BillingListGridView" runat="server" Theme="BlackGlass" AutoGenerateColumns="False" OnCustomButtonCallback="BillingListGridView_OnCustomButtonCallback" KeyFieldName="Id">
                     <Settings ShowGroupPanel="True" ShowFilterRow="True"></Settings>
                     <SettingsSearchPanel Visible="True"></SettingsSearchPanel>
-                    <ClientSideEvents EndCallback="EndCallback" CustomButtonClick="function(s, e) { ShowLoginWindow(); e.processOnServer = true; }" />
+                    <ClientSideEvents EndCallback="EndCallback" CustomButtonClick="function(s, e) { ShowLoginWindow(); e.processOnServer = true; }"/>
                     <Columns>
+                        <dx:GridViewCommandColumn ShowClearFilterButton="True" VisibleIndex="0" SelectAllCheckboxMode="Page" ShowSelectCheckbox="True">
+                        </dx:GridViewCommandColumn>
                         <dx:GridViewCommandColumn ShowClearFilterButton="True" VisibleIndex="1" ButtonRenderMode="Image">
                             <CustomButtons>
                                 <dx:GridViewCommandColumnCustomButton ID="editButton">
@@ -90,6 +101,11 @@
                                 <dx:ASPxCheckBox ClientIDMode="Static" ClientInstanceName="paidCheckBox" ID="paidCheckBox" runat="server" CheckState="Unchecked" Width="170px">
                                 </dx:ASPxCheckBox>
                             </td>
+                             <tr>
+                                <td>
+                                    <dx:ASPxTextBox ClientInstanceName="idTextBox" ID="idTextBox" CssClass="hidden" runat="server" Width="170px"></dx:ASPxTextBox>
+                                </td>
+                            </tr>
                             <tr>
                                 <td>
                                     <label>Price For Room:  </label>
@@ -117,7 +133,7 @@
                     </table>
                     <br />
                     <div class="pcmButton">
-                        <dx:ASPxButton ID="btOK" runat="server" Text="Save" Width="80px" AutoPostBack="False" Style="float: left; margin-right: 8px" OnClick="btOK_Click">
+                        <dx:ASPxButton ID="btOK" runat="server" Text="Save" Width="80px" AutoPostBack="False" Style="float: left; margin-right: 8px" OnClick="BtOkClick">
                             <ClientSideEvents Click="function(s, e) { if(ASPxClientEdit.ValidateGroup('entryGroup')) createBillingPopUp.Hide(); }" />
                         </dx:ASPxButton>
                         <dx:ASPxButton ID="btCancel" runat="server" Text="Cancel" Width="80px" AutoPostBack="False" Style="float: left; margin-right: 8px">

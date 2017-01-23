@@ -148,6 +148,8 @@ namespace HotelManagerLib.Repositories
                     return;
                 }
 
+                databaseBillingService.BillingId = billingService.BillingId;
+                databaseBillingService.ServiceId = billingService.ServiceId;
                 databaseBillingService.Price = billingService.Price;
                 databaseBillingService.Quantity = billingService.Quantity;
                 databaseBillingService.Updated = DateTime.Now;
