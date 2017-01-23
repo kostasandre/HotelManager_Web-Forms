@@ -132,7 +132,7 @@ namespace HotelManagerLib.Repositories
         {
             using (var context = new DataBaseContext())
             {
-                var billingService = context.BillingServices.Include("Billings").SingleOrDefault(x => x.Id == id);
+                var billingService = context.BillingServices.SingleOrDefault(x => x.Id == id);
                 return billingService;
             }
         }
@@ -148,6 +148,8 @@ namespace HotelManagerLib.Repositories
                     return;
                 }
 
+                databaseBillingService.BillingId = billingService.BillingId;
+                databaseBillingService.ServiceId = billingService.ServiceId;
                 databaseBillingService.Price = billingService.Price;
                 databaseBillingService.Quantity = billingService.Quantity;
                 databaseBillingService.Updated = DateTime.Now;

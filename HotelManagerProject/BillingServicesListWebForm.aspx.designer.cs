@@ -76,6 +76,15 @@ namespace HotelManagerProject {
         protected global::DevExpress.Web.ASPxComboBox serviceComboBox;
         
         /// <summary>
+        /// idTextBox control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::DevExpress.Web.ASPxTextBox idTextBox;
+        
+        /// <summary>
         /// quantityTextBox control.
         /// </summary>
         /// <remarks>

@@ -11,7 +11,6 @@
             if (s.cp_text !== 0) {
                 sumOfServicesTextBox.SetText(s.cp_text);
                 totalSumTextBox.SetText(s.cp_text2);
-                //saveButton.enabled = true;
             }
         }
 
@@ -88,7 +87,7 @@
                 <div class="col-lg-7 col-md-4 col-sm-3 col-xs-0">
                 </div>
                 <div class="col-lg-2 col-md-3 col-sm-3 col-xs-12">
-                    <dx:ASPxLabel CssClass="Text" ForeColor="Black" Text="Sum of Services :" runat="server" EnableTheming="True" Theme="BlackGlass"></dx:ASPxLabel>
+                    <dx:ASPxLabel CssClass="Text" ForeColor="Black" ID="sumOfServicesLabel" Text="Sum of Services :" runat="server" EnableTheming="True" Theme="BlackGlass"></dx:ASPxLabel>
                     <dx:ASPxTextBox  ClientInstanceName="sumOfServicesTextBox" ID="sumOfServicesTextBox" runat="server"></dx:ASPxTextBox>
                 </div>
 
@@ -97,11 +96,11 @@
                 <div class="col-lg-4 col-md-2 col-sm-1 col-xs-0">
                 </div>
                 <div class="col-lg-3 col-md-2 col-sm-2 col-xs-12">
-                    <dx:ASPxLabel CssClass="Text" ForeColor="Black" runat="server" Text="Paid :" Theme="BlackGlass"></dx:ASPxLabel>
+                    <dx:ASPxLabel CssClass="Text" ID="paidLabel" ForeColor="Black" runat="server" Text="Paid :" Theme="BlackGlass"></dx:ASPxLabel>
                     <dx:ASPxCheckBox ID="paidCheckBox" runat="server"></dx:ASPxCheckBox>
                 </div>
                 <div class="col-lg-2 col-md-3 col-sm-3 col-xs-12">
-                    <dx:ASPxLabel CssClass="Text2" ForeColor="Black" Text="Total Sum :" runat="server" EnableTheming="True" Theme="BlackGlass"></dx:ASPxLabel>
+                    <dx:ASPxLabel CssClass="Text2" ID="totalSumLabel" ForeColor="Black" Text="Total Sum :" runat="server" EnableTheming="True" Theme="BlackGlass"></dx:ASPxLabel>
                     <dx:ASPxTextBox ClientInstanceName="totalSumTextBox" ID="totalSumTextBox" runat="server"></dx:ASPxTextBox>
                 </div>
             </div>
@@ -115,7 +114,7 @@
                     <dx:ASPxButton ClientInstanceName="saveButton" ID="saveButton" CssClass="Text2" ForeColor="Aquamarine" Text="Save" runat="server" EnableTheming="True" Theme="BlackGlass" OnClick="SaveButtonClick"></dx:ASPxButton>
                 </div>
                 <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2">
-                    <dx:ASPxButton runat="server" CssClass="Text2" ForeColor="Aquamarine" Text="Cancel" EnableTheming="True" Theme="BlackGlass"></dx:ASPxButton>
+                    <dx:ASPxButton ID="cancelButton" runat="server" CssClass="Text2" ForeColor="Aquamarine" Text="Cancel" EnableTheming="True" Theme="BlackGlass" OnClick="CancelButtonOnClick"></dx:ASPxButton>
                 </div>
             </div>
         </div>

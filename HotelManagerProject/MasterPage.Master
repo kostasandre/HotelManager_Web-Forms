@@ -1,5 +1,6 @@
 ﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="MasterPage.master.cs" Inherits="HotelManagerProject.MasterPage" %>
 
+
 <%@ Import Namespace="System.Web.DynamicData" %>
 <%@ Import Namespace="System.Web.UI" %>
 <%@ Import Namespace="System.Web.UI.WebControls" %>
@@ -55,6 +56,7 @@
                     <li><a href="BookingForm.aspx" id="">New Booking</a></li>
                     <li><a href="CustomersForm.aspx" id="">Customers</a></li>
 
+
                 </ul>
                 <ul class="nav navbar-nav collapse" id="three">
                     <li><a href="BillingListWebForm.aspx" id="">List of Billings</a></li>
@@ -62,7 +64,7 @@
                     <li><a href="BillingAndBillingServicesWebForm.aspx" id="">Create a new Billing with Billing Service</a></li>
                 </ul>
                 <ul class="nav navbar-nav collapse" id="four">
-                    <li><a href="#" id="">Three sub 1</a></li>
+                    <li><a href="BillingReportForm.aspx" id="">Billing reports</a></li>
                     <li><a href="#" id="">Three sub 2</a></li>
                 </ul>
             </nav>

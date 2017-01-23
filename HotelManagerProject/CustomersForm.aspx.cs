@@ -95,7 +95,7 @@ namespace HotelManagerProject
                 this.Session["errorMessage"] = string.Empty;
 
                 var selectedRowKeys =
-                    this.customersListGridView.GetSelectedFieldValues(this.customersListGridView.KeyFieldName, "Id");
+                    this.customersListGridView.GetSelectedFieldValues(this.customersListGridView.KeyFieldName, "Name", "Surname");
                 if ((selectedRowKeys == null) || (selectedRowKeys.Count == 0))
                 {
                     errorlabel.Text = @"Please select a billing first to delete";
@@ -105,7 +105,9 @@ namespace HotelManagerProject
                 foreach (object[] row in selectedRowKeys)
                 {
                     var id = Convert.ToInt32(row[0]);
-                    var myCustomer = new Customer() { Id = id };
+                    var customerName = row[1].ToString();
+                    var customerSurname = row[2].ToString();
+                    var myCustomer = new Customer() { Id = id, Name = customerName, Surname = customerSurname};
                     try
                     {
                         this.customerController.DeleteEntity(myCustomer);
@@ -118,7 +120,7 @@ namespace HotelManagerProject
                             firstRun = false;
                         }
 
-                        errorlabel.Text += $@"'{myCustomer.Id}', ";
+                        errorlabel.Text += $@"'{myCustomer.Name} {myCustomer.Surname}', ";
                         this.customersListGridView.Selection.UnselectRowByKey(id);
                     }
                     catch (SqlException ex)

@@ -58,25 +58,49 @@ namespace HotelManagerProject
         /// <param name="e">
         /// The e.
         /// </param>
-        protected void btOK_Click(object sender, EventArgs e)
+        protected void BtOkClick(object sender, EventArgs e)
         {
+            var errorlabel = this.Master?.FindControl("form1").FindControl("divErrorMessage") as Label;
             this.billingEntityController = new BillingEntityController();
             this.bookingEntityController = new BookingController();
             this.booking = new Booking();
             var myBooking = Convert.ToInt32(this.bookingComboBox.SelectedItem.Value);
-            this.booking = this.bookingEntityController.GetEntity(myBooking);
-          
-            this.billing = new Billing
-                               {
-                                   Booking = this.booking,
-                                   Paid = this.paidCheckBox.Checked,
-                                   PriceForRoom = Convert.ToDouble(this.priceForRoomTextBox.Text),
-                                   PriceForServices = Convert.ToDouble(this.priceForServicesTextBox.Text),
-                                   TotalPrice = Convert.ToDouble(this.totalPricerTextBox.Text)
-                               };
-            this.billingEntityController.CreateOrUpdateEntity(this.billing);
-            this.BillingListGridView.DataSource = this.billingEntityController.RefreshEntities();
-            this.BillingListGridView.DataBind();
+           
+            try
+            {
+                this.booking = this.bookingEntityController.GetEntity(myBooking);
+                this.billing = new Billing
+                {
+                    Id = Convert.ToInt32(this.idTextBox.Text),
+                    BookingId = this.booking.Id,
+                    Paid = this.paidCheckBox.Checked,
+                    PriceForRoom = Convert.ToDouble(this.priceForRoomTextBox.Text),
+                    PriceForServices = Convert.ToDouble(this.priceForServicesTextBox.Text),
+                    TotalPrice = Convert.ToDouble(this.totalPricerTextBox.Text)
+                };
+
+                this.billingEntityController.CreateOrUpdateEntity(this.billing);
+                this.BillingListGridView.DataSource = this.billingEntityController.RefreshEntities();
+                this.BillingListGridView.DataBind();
+                this.paidCheckBox.Text = string.Empty;
+                this.priceForRoomTextBox.Text = string.Empty;
+                this.totalPricerTextBox.Text = string.Empty;
+                this.priceForServicesTextBox.Text = string.Empty;
+            }
+            catch (SqlException ex)
+            {
+                if (errorlabel != null)
+                {
+                    errorlabel.Text = "Something went wrong with the database.Please check the connection string.";
+                }
+            }
+            catch (ArgumentNullException ex)
+            {
+                if (errorlabel != null)
+                {
+                    errorlabel.Text = "Couldn't create the current Billing";
+                }
+            }
         }
       
         /// <summary>
@@ -97,6 +121,11 @@ namespace HotelManagerProject
             this.bookingComboBox.DataBind();
             this.BillingListGridView.DataSource = this.billingEntityController.RefreshEntities();
             this.BillingListGridView.DataBind();
+            this.BillingListGridView.JSProperties["cp_text5"] = false;
+            this.BillingListGridView.JSProperties["cp_text6"] = string.Empty;
+            this.BillingListGridView.JSProperties["cp_text7"] = string.Empty;
+            this.BillingListGridView.JSProperties["cp_text8"] = string.Empty;
+            this.BillingListGridView.JSProperties["cp_text9"] = 0;
         }
 
         /// <summary>
@@ -176,5 +205,30 @@ namespace HotelManagerProject
             }
         }
 
+        /// <summary>
+        /// The billing list grid view_ on custom button callback.
+        /// </summary>
+        /// <param name="sender">
+        /// The sender.
+        /// </param>
+        /// <param name="e">
+        /// The e.
+        /// </param>
+        protected void BillingListGridView_OnCustomButtonCallback(object sender, ASPxGridViewCustomButtonCallbackEventArgs e)
+        {
+            this.billingEntityController = new BillingEntityController();
+            var gridviewIndex = e.VisibleIndex;
+            var row = this.BillingListGridView.GetRow(gridviewIndex) as Billing;
+            if (row != null)
+            {
+                
+                var myBilling = this.billingEntityController.GetEntity(row.Id);
+                this.BillingListGridView.JSProperties["cp_text"] = myBilling.Paid;
+                this.BillingListGridView.JSProperties["cp_text1"] = myBilling.PriceForServices;
+                this.BillingListGridView.JSProperties["cp_text2"] = myBilling.PriceForRoom;
+                this.BillingListGridView.JSProperties["cp_text3"] = myBilling.TotalPrice;
+                this.BillingListGridView.JSProperties["cp_text4"] = row.Id;
+            }
+        }
     }
 }
