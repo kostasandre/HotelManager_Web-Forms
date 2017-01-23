@@ -1,6 +1,6 @@
 ﻿// --------------------------------------------------------------------------------------------------------------------
-// <copyright file="CustomersForm.aspx.cs" company="">
-//   
+// <copyright file="CustomersForm.aspx.cs" company="Data Communication">
+//   Hotel Manager
 // </copyright>
 // <summary>
 //   The customers form.
@@ -46,8 +46,9 @@ namespace HotelManagerProject
         /// The e.
         /// </param>
         /// <exception cref="NotImplementedException">
+        /// The customer is null
         /// </exception>
-        protected void deleteCustomerButton(object sender, EventArgs e)
+        protected void DeleteCustomerButton(object sender, EventArgs e)
         {
             this.customerController = new CustomerController();
 
@@ -76,7 +77,7 @@ namespace HotelManagerProject
                     var id = Convert.ToInt32(row[0]);
                     var customerName = row[1].ToString();
                     var customerSurname = row[2].ToString();
-                    var myCustomer = new Customer() { Id = id, Name = customerName, Surname = customerSurname};
+                    var myCustomer = new Customer() { Id = id, Name = customerName, Surname = customerSurname };
                     try
                     {
                         this.customerController.DeleteEntity(myCustomer);
@@ -134,7 +135,7 @@ namespace HotelManagerProject
         /// <param name="e">
         /// The e.
         /// </param>
-        protected void saveButton_OnClick(object sender, EventArgs e)
+        protected void SaveButton_OnClick(object sender, EventArgs e)
         {
             this.customer = new Customer();
             this.customerController = new CustomerController();
