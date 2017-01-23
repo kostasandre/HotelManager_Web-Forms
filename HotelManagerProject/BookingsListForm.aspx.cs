@@ -16,10 +16,10 @@ namespace HotelManagerProject
     using System.Web.UI;
     using System.Web.UI.WebControls;
 
-    using DevExpress.Utils;
     using DevExpress.Web;
 
     using HotelManagerLib.Controllers;
+    using HotelManagerLib.Enums;
     using HotelManagerLib.Models.Persistant;
 
     #endregion
@@ -38,6 +38,36 @@ namespace HotelManagerProject
         /// The customer controller.
         /// </summary>
         private CustomerController customerController;
+
+        /// <summary>
+        /// The bookings grid view_ on custom button callback.
+        /// </summary>
+        /// <param name="sender">
+        /// The sender.
+        /// </param>
+        /// <param name="e">
+        /// The e.
+        /// </param>
+        protected void bookingsGridView_OnCustomButtonCallback(object sender, ASPxGridViewCustomButtonCallbackEventArgs e)
+        {
+            this.bookingController = new BookingController();
+            var roomTypesController = new RoomTypeController();
+            var gridviewIndex = e.VisibleIndex;
+            var row = this.bookingsGridView.GetRow(gridviewIndex) as Booking;
+            var booking = this.bookingController.GetEntity(row.Id);
+            this.bookingsGridView.JSProperties["cp_text"] = booking.Status.ToString();
+            this.bookingsGridView.JSProperties["cp_text1"] = booking.Comments;
+            this.bookingsGridView.JSProperties["cp_text2"] = Convert.ToString(booking.From);
+            this.bookingsGridView.JSProperties["cp_text3"] = Convert.ToString(booking.To);
+            this.bookingsGridView.JSProperties["cp_text4"] = Convert.ToString(booking.SystemPrice);
+            this.bookingsGridView.JSProperties["cp_text5"] = Convert.ToString(booking.AgreedPrice);
+            this.bookingsGridView.JSProperties["cp_text6"] = booking.Created.ToString();
+            this.bookingsGridView.JSProperties["cp_text7"] = booking.CreatedBy;
+            this.bookingsGridView.JSProperties["cp_text8"] = booking.Id.ToString();
+
+            //this.commentsTextBox.Text = "test";
+            //this.statusComboBox.DataSource = roomTypesController.RefreshEntities();
+        }
 
         /// <summary>
         /// The create booking button_ on click.
@@ -68,6 +98,7 @@ namespace HotelManagerProject
             var errorlabel = this.Master?.FindControl("form1").FindControl("divErrorMessage") as Label;
             if (errorlabel != null)
             {
+                
                 errorlabel.Text = string.Empty;
                 if (this.bookingsGridView.VisibleRowCount == 0)
                 {
@@ -146,12 +177,21 @@ namespace HotelManagerProject
         /// </param>
         protected void Page_Load(object sender, EventArgs e)
         {
+            var names = Enum.GetNames(typeof(Status));
+            this.statusComboBox.DataSource = names;
+            this.statusComboBox.DataBind();
         }
 
-        protected void bookingsGridView_OnCustomButtonCallback(object sender,ASPxGridViewCustomButtonCallbackEventArgs e)
+        protected void Save_OnClick(object sender, EventArgs e)
         {
-
+            this.bookingController = new BookingController();
+            
+            var bookingId = this.iDtextBox.Text;
+            var booking = this.bookingController.GetEntity(Convert.ToInt32(bookingId));
+            booking.AgreedPrice = Convert.ToDouble(this.agreedPriceTextBox.Text);
+            booking.SystemPrice = Convert.ToDouble(this.systemPriceTextBox.Text);
+            booking.Comments = this.commentsTextBox.Text;
+            
         }
     }
-
 }

@@ -140,8 +140,16 @@ namespace HotelManagerLib.Controllers
         /// <exception cref="PricingPeriodDuplicateException">
         /// Duplicate pricing period
         /// </exception>
-        public double RoomPricing(DateTime dateFrom, DateTime dateTo, int roomTypeId)
+        public double RoomPricing(object dateFromSender, object dateToSender, int roomTypeId)
         {
+            if (dateFromSender == null || dateToSender == null)
+            {
+                throw new ArgumentNullException("Please insert correct dates");
+            }
+
+            var dateFrom = Convert.ToDateTime(dateFromSender);
+            var dateTo = Convert.ToDateTime(dateToSender);
+
             if (dateFrom > dateTo)
             {
                 throw new WrongGivenPeriodException("Given From date is larger than given To date!");
@@ -227,7 +235,7 @@ namespace HotelManagerLib.Controllers
                 }
                 catch (Exception exception)
                 {
-                    throw new DataException("",exception);
+                    throw new DataException(" ", exception);
                 }
             }
 
