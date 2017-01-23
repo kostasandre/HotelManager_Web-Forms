@@ -13,7 +13,7 @@
         function ShowLoginWindow() {
             if (createCustomerButton) {
                 nameTextBox.SetText("");
-                surnameTextBox.SetText("");
+                surnameText.SetText("");
                 taxIdTextBox.SetText("");
                 idNumberText.SetText("");
                 emailTextBox.SetText("");
@@ -27,7 +27,7 @@
         function EndCallback(s, e) {
             if (s.cp_text !== undefined) {
                 nameTextBox.SetText(s.cp_text);
-                surnameTextBox.SetText(s.cp_text1);
+                surnameText.SetText(s.cp_text1);
                 taxIdTextBox.SetText(s.cp_text2);
                 idNumberText.SetText(s.cp_text3);
                 emailTextBox.SetText(s.cp_text4);
@@ -47,7 +47,7 @@
         <br/>
         <div class="row">
             <div class="col-lg-1 col-sm-2 col-md-2 col-xs-4">
-                <dx:ASPxButton ClientIDMode="Static" OnClick="SaveButton_OnClick" id="createCustomerButton" CssClass="button" tooltip="Creates a new Customer" ForeColor="AquaMarine" Theme="BlackGlass" runat="server" Text="Create Customer ">
+                <dx:ASPxButton ClientIDMode="Static"  id="createCustomerButton" CssClass="button" tooltip="Creates a new Customer" ForeColor="AquaMarine" Theme="BlackGlass" runat="server" Text="Create Customer ">
                     <ClientSideEvents Click="function(s, e) { ShowLoginWindow(); }"/>
                 </dx:ASPxButton>
             </div>
@@ -131,7 +131,7 @@
                                 <label>Surname: </label>
                             </td>
                             <td>
-                                <dx:ASPxTextBox ClientIDMode="Static" ClientInstanceName="surnameTextBox" ValidateRequestMode="Enabled" ID="surNameTextBox" runat="server" Width="170px">
+                                <dx:ASPxTextBox ClientIDMode="Static" ClientInstanceName="surnameText" ValidateRequestMode="Enabled" ID="surNameTextBox" runat="server" Width="170px">
                                     <ValidationSettings EnableCustomValidation="True" ErrorDisplayMode="Text" ErrorTextPosition="Right" SetFocusOnError="true">
                                         <ErrorFrameStyle Font-Size="Large"/>
                                         <RequiredField IsRequired="True" ErrorText="*"/>
