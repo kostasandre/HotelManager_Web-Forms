@@ -12,7 +12,7 @@
     <script type="text/javascript">
         function ShowLoginWindow(visibleIndex) {
             createBookingPopUp.Show();
-            bookingsGridView.GetRowValues(visibleIndex, 'SystemPrice', OnGetRowValues);
+            //bookingsGridView.GetRowValues(visibleIndex, 'SystemPrice', OnGetRowValues);
 
         }
 
@@ -27,19 +27,16 @@
                 createdTextBox.SetText(s.cp_text6);
                 createdByTextBox.SetText(s.cp_text7);
                 iDtextBox.SetText(s.cp_text8);
+                codeTextBox.SetText(s.cp_text9);
                 iDtextBox.visible = 'false';
 
-                statusComboBox.AddItem("Test");
-                //saveButton.enabled = true;
+                
             }
         }
 
-        function OnGetRowValues(Value) {
-            // Right code 
-            systemPriceTextBox.SetText(Value);
-            // This code will cause an error 
-            // alert(Value[0]); 
-        }
+        //function OnGetRowValues(Value) {
+        //    systemPriceTextBox.SetText(Value);
+        //}
     </script>
 
     <div class="container" style="width: 100%">
@@ -67,13 +64,14 @@
                         <Settings ShowFilterRow="True"></Settings>
                         <SettingsDataSecurity AllowInsert="False" AllowDelete="False" AllowEdit="False"></SettingsDataSecurity>
                         <ClientSideEvents EndCallback="EndCallback" CustomButtonClick="function(s, e) {
-                   e.processOnServer = true;
-                    ShowLoginWindow(e.visibleIndex); }"/>
-                        <Columns>
+                            e.processOnServer = true;
+                            ShowLoginWindow(e.visibleIndex);
+                            }"/>
 
+                        <Columns>
                             <dx:GridViewCommandColumn ShowClearFilterButton="True" VisibleIndex="1" SelectAllCheckboxMode="Page" ShowSelectCheckbox="True">
                             </dx:GridViewCommandColumn>
-                            <dx:GridViewCommandColumn>
+                            <dx:GridViewCommandColumn ShowClearFilterButton="True" VisibleIndex="1" ButtonRenderMode="Image">
                                 <CustomButtons>
                                     <dx:GridViewCommandColumnCustomButton ID="editButton">
                                         <Image Url="Images/edit.png" Width="35px" ToolTip="Edit"></Image>
@@ -130,18 +128,18 @@
                         <tr>
                         <td>
                             <label>
-                                Comments:
+                                Code:
                             </label>
                         </td>
                         <td>
-                            <dx:ASPxTextBox ID="commentsTextBox" runat="server" Width="170px" ClientIDMode="Static"></dx:ASPxTextBox>
+                            <dx:ASPxTextBox ID="codeTextBox" runat="server" Width="170px" ClientIDMode="Static" ReadOnly=True></dx:ASPxTextBox>
                         </td>
                         <tr>
                             <td>
                                 <label>Date From: </label>
                             </td>
                             <td>
-                                <dx:ASPxTextBox ClientIDMode="Static" ID="dateFromTextBox" runat="server" Width="170px"></dx:ASPxTextBox>
+                                <dx:ASPxTextBox ClientIDMode="Static" ID="dateFromTextBox" runat="server" Width="170px" ReadOnly=True></dx:ASPxTextBox>
                             </td>
                         </tr>
                         <tr>
@@ -149,7 +147,7 @@
                                 <label>Date To: </label>
                             </td>
                             <td>
-                                <dx:ASPxTextBox ClientIDMode="Static" ID="dateToTextBox" runat="server" Width="170px"></dx:ASPxTextBox>
+                                <dx:ASPxTextBox ClientIDMode="Static" ID="dateToTextBox" runat="server" Width="170px" ReadOnly=True></dx:ASPxTextBox>
                             </td>
                         </tr>
                         <tr>
@@ -157,7 +155,7 @@
                                 <label>System Price: </label>
                             </td>
                             <td>
-                                <dx:ASPxTextBox ID="systemPriceTextBox" runat="server" Width="170px" ClientIDMode="Static"></dx:ASPxTextBox>
+                                <dx:ASPxTextBox ID="systemPriceTextBox" runat="server" Width="170px" ClientIDMode="Static" ReadOnly=True></dx:ASPxTextBox>
                             </td>
                         </tr>
                         <tr>
@@ -168,12 +166,22 @@
                                 <dx:ASPxTextBox ClientIDMode="Static" ID="agreedPriceTextBox" runat="server" Width="170px"></dx:ASPxTextBox>
                             </td>
                         </tr>
+                              <tr>
+                        <td>
+                            <label>
+                                Comments:
+                            </label>
+                        </td>
+                        <td>
+                            <dx:ASPxTextBox ID="commentsTextBox" runat="server" Width="170px" ClientIDMode="Static"></dx:ASPxTextBox>
+                        </td>
+                        <tr>
                         <tr>
                             <td>
                                 <label>Created: </label>
                             </td>
                             <td>
-                                <dx:ASPxTextBox ID="createdTextBox" runat="server" Width="170px" ClientIDMode="Static"></dx:ASPxTextBox>
+                                <dx:ASPxTextBox ID="createdTextBox" runat="server" Width="170px" ClientIDMode="Static" ReadOnly=True></dx:ASPxTextBox>
                             </td>
                         </tr>
                         <tr>
@@ -181,7 +189,7 @@
                                 <label>Created By: </label>
                             </td>
                             <td>
-                                <dx:ASPxTextBox ClientIDMode="Static" ID="createdByTextBox" runat="server" Width="170px"></dx:ASPxTextBox>
+                                <dx:ASPxTextBox ClientIDMode="Static" ID="createdByTextBox" runat="server" Width="170px" ReadOnly=True></dx:ASPxTextBox>
                             </td>
                         </tr>
                         <tr>

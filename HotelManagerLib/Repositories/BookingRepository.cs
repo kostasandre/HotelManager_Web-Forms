@@ -151,7 +151,7 @@ namespace HotelManagerLib.Repositories
         {
             using (var context = new DataBaseContext())
             {
-                var booking = context.Bookings.SingleOrDefault(x => x.Id == id);
+                var booking = context.Bookings.Include("Room").SingleOrDefault(x => x.Id == id);
                 return booking;
             }
         }
@@ -169,7 +169,7 @@ namespace HotelManagerLib.Repositories
             using (var context = new DataBaseContext())
             {
                 var booking = context.Bookings.SingleOrDefault(x => x.Id == entity.Id);
-                booking.Room = entity.Room;
+                
                 booking.AgreedPrice = entity.AgreedPrice;
                 booking.Comments = entity.Comments;
                 booking.Customer = entity.Customer;

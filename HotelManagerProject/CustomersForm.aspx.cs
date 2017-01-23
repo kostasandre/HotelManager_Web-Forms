@@ -16,6 +16,8 @@ namespace HotelManagerProject
     using System.Web.UI;
     using System.Web.UI.WebControls;
 
+    using DevExpress.Web;
+
     using HotelManagerLib.Controllers;
     using HotelManagerLib.Models.Persistant;
 
@@ -35,6 +37,35 @@ namespace HotelManagerProject
         /// The customer controller.
         /// </summary>
         private CustomerController customerController;
+
+        /// <summary>
+        /// The customers list grid view_ on custom button callback.
+        /// </summary>
+        /// <param name="sender">
+        /// The sender.
+        /// </param>
+        /// <param name="e">
+        /// The e.
+        /// </param>
+        protected void customersListGridView_OnCustomButtonCallback(
+            object sender,
+            ASPxGridViewCustomButtonCallbackEventArgs e)
+        {
+            this.customerController = new CustomerController();
+            var gridviewIndex = e.VisibleIndex;
+            var row = this.customersListGridView.GetRow(gridviewIndex) as Customer;
+            var customer = this.customerController.GetEntity(row.Id);
+            this.customersListGridView.JSProperties["cp_text"] = customer.Name;
+            this.customersListGridView.JSProperties["cp_text1"] = customer.Surname;
+            this.customersListGridView.JSProperties["cp_text2"] = customer.TaxId;
+            this.customersListGridView.JSProperties["cp_text3"] = customer.IdNumber;
+            this.customersListGridView.JSProperties["cp_text4"] = customer.Email;
+            this.customersListGridView.JSProperties["cp_text5"] = customer.Address;
+            this.customersListGridView.JSProperties["cp_text6"] = customer.Created.ToString();
+            this.customersListGridView.JSProperties["cp_text7"] = customer.CreatedBy;
+            this.customersListGridView.JSProperties["cp_text8"] = customer.Id.ToString();
+            this.customersListGridView.JSProperties["cp_text9"] = customer.Phone;
+        }
 
         /// <summary>
         /// The delete customer button.
@@ -104,6 +135,23 @@ namespace HotelManagerProject
         }
 
         /// <summary>
+        /// The page_ init.
+        /// </summary>
+        /// <param name="sender">
+        /// The sender.
+        /// </param>
+        /// <param name="e">
+        /// The e.
+        /// </param>
+        protected void Page_Init(object sender, EventArgs e)
+        {
+            this.customerController = new CustomerController();
+            var customerList = this.customerController.RefreshEntities();
+            this.customersListGridView.DataSource = customerList;
+            this.customersListGridView.DataBind();
+        }
+
+        /// <summary>
         /// The page_ load.
         /// </summary>
         /// <param name="sender">
@@ -114,13 +162,6 @@ namespace HotelManagerProject
         /// </param>
         protected void Page_Load(object sender, EventArgs e)
         {
-            if (!this.Page.IsPostBack)
-            {
-                this.customerController = new CustomerController();
-                var customerList = this.customerController.RefreshEntities();
-                this.customersListGridView.DataSource = customerList;
-                this.customersListGridView.DataBind();
-            }
         }
 
         /// <summary>
@@ -136,6 +177,8 @@ namespace HotelManagerProject
         {
             this.customer = new Customer();
             this.customerController = new CustomerController();
+            var customerId = this.iDtextBox.Text;
+            this.customer.Id = customerId == string.Empty ? 0 : Convert.ToInt32(customerId);
             this.customer.Name = this.nameTextBox.Text;
             this.customer.Surname = this.surNameTextBox.Text;
             this.customer.IdNumber = this.idNumberTextBox.Text;
@@ -144,8 +187,14 @@ namespace HotelManagerProject
             this.customer.Address = this.addressTextBox.Text;
             this.customer.Phone = this.phoneTextBox.Text;
 
-            this.customerController.CreateOrUpdateEntity(this.customer);
-            this.Page.Response.Redirect(this.Page.Request.Url.ToString(), true);
+            try
+            {
+                this.customerController.CreateOrUpdateEntity(this.customer);
+                this.Page.Response.Redirect(this.Page.Request.Url.ToString(), true);
+            }
+            catch (Exception ex)
+            {
+            }
         }
     }
 }

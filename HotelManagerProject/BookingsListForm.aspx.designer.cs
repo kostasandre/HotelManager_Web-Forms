@@ -76,13 +76,13 @@ namespace HotelManagerProject {
         protected global::DevExpress.Web.ASPxComboBox statusComboBox;
         
         /// <summary>
-        /// commentsTextBox control.
+        /// codeTextBox control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::DevExpress.Web.ASPxTextBox commentsTextBox;
+        protected global::DevExpress.Web.ASPxTextBox codeTextBox;
         
         /// <summary>
         /// dateFromTextBox control.
@@ -119,6 +119,15 @@ namespace HotelManagerProject {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::DevExpress.Web.ASPxTextBox agreedPriceTextBox;
+        
+        /// <summary>
+        /// commentsTextBox control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::DevExpress.Web.ASPxTextBox commentsTextBox;
         
         /// <summary>
         /// createdTextBox control.
