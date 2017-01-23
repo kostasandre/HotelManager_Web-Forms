@@ -10,9 +10,8 @@
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
     <script type="text/javascript">
-        function ShowLoginWindow(visibleIndex) {
+        function ShowLoginWindow() {
             createBookingPopUp.Show();
-            //bookingsGridView.GetRowValues(visibleIndex, 'SystemPrice', OnGetRowValues);
 
         }
 
@@ -24,8 +23,6 @@
                 dateToTextBox.SetText(s.cp_text3);
                 systemPriceTextBox.SetText(s.cp_text4);
                 agreedPriceTextBox.SetText(s.cp_text5);
-                createdTextBox.SetText(s.cp_text6);
-                createdByTextBox.SetText(s.cp_text7);
                 iDtextBox.SetText(s.cp_text8);
                 codeTextBox.SetText(s.cp_text9);
                 iDtextBox.visible = 'false';
@@ -33,10 +30,6 @@
                 
             }
         }
-
-        //function OnGetRowValues(Value) {
-        //    systemPriceTextBox.SetText(Value);
-        //}
     </script>
 
     <div class="container" style="width: 100%">
@@ -80,21 +73,25 @@
                             </dx:GridViewCommandColumn>
                             <dx:GridViewDataTextColumn FieldName="Status" VisibleIndex="4">
                             </dx:GridViewDataTextColumn>
-                            <dx:GridViewDataTextColumn FieldName="Room.Code" VisibleIndex="6">
+                            <dx:GridViewDataTextColumn FieldName="Customer.Name" VisibleIndex="5">
                             </dx:GridViewDataTextColumn>
-                            <dx:GridViewDataTextColumn FieldName="From" VisibleIndex="7">
+                            <dx:GridViewDataTextColumn FieldName="Customer.Surname" VisibleIndex="6">
                             </dx:GridViewDataTextColumn>
-                            <dx:GridViewDataTextColumn FieldName="To" VisibleIndex="8">
+                            <dx:GridViewDataTextColumn FieldName="Room.Code" VisibleIndex="7">
                             </dx:GridViewDataTextColumn>
-                            <dx:GridViewDataTextColumn FieldName="SystemPrice" VisibleIndex="12">
+                            <dx:GridViewDataTextColumn FieldName="From" VisibleIndex="8">
                             </dx:GridViewDataTextColumn>
-                            <dx:GridViewDataTextColumn FieldName="AgreedPrice" VisibleIndex="13">
+                            <dx:GridViewDataTextColumn FieldName="To" VisibleIndex="9">
                             </dx:GridViewDataTextColumn>
-                            <dx:GridViewDataTextColumn FieldName="Comments" VisibleIndex="9">
+                            <dx:GridViewDataTextColumn FieldName="SystemPrice" VisibleIndex="10">
                             </dx:GridViewDataTextColumn>
-                            <dx:GridViewDataTextColumn FieldName="Created" VisibleIndex="10">
+                            <dx:GridViewDataTextColumn FieldName="AgreedPrice" VisibleIndex="11">
                             </dx:GridViewDataTextColumn>
-                            <dx:GridViewDataTextColumn FieldName="CreatedBy" VisibleIndex="11">
+                            <dx:GridViewDataTextColumn FieldName="Comments" VisibleIndex="12">
+                            </dx:GridViewDataTextColumn>
+                            <dx:GridViewDataTextColumn FieldName="Created" VisibleIndex="13">
+                            </dx:GridViewDataTextColumn>
+                            <dx:GridViewDataTextColumn FieldName="CreatedBy" VisibleIndex="14">
                             </dx:GridViewDataTextColumn>
                         </Columns>
                     </dx:ASPxGridView>
@@ -125,6 +122,32 @@
                                 </dx:ASPxComboBox>
                             </td>
                         </tr>
+                         <tr>
+                        <td>
+                            <label>
+                                Name:
+                            </label>
+                        </td>
+                        <td>
+                            <dx:ASPxTextBox ID="nameTextBox" runat="server" Width="170px" ClientIDMode="Static" ReadOnly=True>
+                                <ReadOnlyStyle BackColor="#999999">
+                                </ReadOnlyStyle>
+                            </dx:ASPxTextBox>
+                        </td>
+                        </tr>
+                         <tr>
+                        <td>
+                            <label>
+                                Surname:
+                            </label>
+                        </td>
+                        <td>
+                            <dx:ASPxTextBox ID="surnameTextBox" runat="server" Width="170px" ClientIDMode="Static" ReadOnly=True>
+                                <ReadOnlyStyle BackColor="#999999">
+                                </ReadOnlyStyle>
+                            </dx:ASPxTextBox>
+                        </td>
+                        </tr>
                         <tr>
                         <td>
                             <label>
@@ -132,14 +155,21 @@
                             </label>
                         </td>
                         <td>
-                            <dx:ASPxTextBox ID="codeTextBox" runat="server" Width="170px" ClientIDMode="Static" ReadOnly=True></dx:ASPxTextBox>
+                            <dx:ASPxTextBox ID="codeTextBox" runat="server" Width="170px" ClientIDMode="Static" ReadOnly=True>
+                                <ReadOnlyStyle BackColor="#999999">
+                                </ReadOnlyStyle>
+                            </dx:ASPxTextBox>
                         </td>
+                        </tr>
                         <tr>
                             <td>
                                 <label>Date From: </label>
                             </td>
                             <td>
-                                <dx:ASPxTextBox ClientIDMode="Static" ID="dateFromTextBox" runat="server" Width="170px" ReadOnly=True></dx:ASPxTextBox>
+                                <dx:ASPxTextBox ClientIDMode="Static" ID="dateFromTextBox" runat="server" Width="170px" ReadOnly=True>
+                                    <ReadOnlyStyle BackColor="#999999">
+                                </ReadOnlyStyle>
+                                </dx:ASPxTextBox>
                             </td>
                         </tr>
                         <tr>
@@ -147,7 +177,10 @@
                                 <label>Date To: </label>
                             </td>
                             <td>
-                                <dx:ASPxTextBox ClientIDMode="Static" ID="dateToTextBox" runat="server" Width="170px" ReadOnly=True></dx:ASPxTextBox>
+                                <dx:ASPxTextBox ClientIDMode="Static" ID="dateToTextBox" runat="server" Width="170px" ReadOnly=True>
+                                    <ReadOnlyStyle BackColor="#999999">
+                                </ReadOnlyStyle>
+                                </dx:ASPxTextBox>
                             </td>
                         </tr>
                         <tr>
@@ -155,7 +188,10 @@
                                 <label>System Price: </label>
                             </td>
                             <td>
-                                <dx:ASPxTextBox ID="systemPriceTextBox" runat="server" Width="170px" ClientIDMode="Static" ReadOnly=True></dx:ASPxTextBox>
+                                <dx:ASPxTextBox ID="systemPriceTextBox" runat="server" Width="170px" ClientIDMode="Static" ReadOnly=True>
+                                    <ReadOnlyStyle BackColor="#999999">
+                                </ReadOnlyStyle>
+                                </dx:ASPxTextBox>
                             </td>
                         </tr>
                         <tr>
@@ -166,7 +202,7 @@
                                 <dx:ASPxTextBox ClientIDMode="Static" ID="agreedPriceTextBox" runat="server" Width="170px"></dx:ASPxTextBox>
                             </td>
                         </tr>
-                              <tr>
+                        <tr>
                         <td>
                             <label>
                                 Comments:
@@ -175,23 +211,8 @@
                         <td>
                             <dx:ASPxTextBox ID="commentsTextBox" runat="server" Width="170px" ClientIDMode="Static"></dx:ASPxTextBox>
                         </td>
-                        <tr>
-                        <tr>
-                            <td>
-                                <label>Created: </label>
-                            </td>
-                            <td>
-                                <dx:ASPxTextBox ID="createdTextBox" runat="server" Width="170px" ClientIDMode="Static" ReadOnly=True></dx:ASPxTextBox>
-                            </td>
                         </tr>
-                        <tr>
-                            <td>
-                                <label>Created By: </label>
-                            </td>
-                            <td>
-                                <dx:ASPxTextBox ClientIDMode="Static" ID="createdByTextBox" runat="server" Width="170px" ReadOnly=True></dx:ASPxTextBox>
-                            </td>
-                        </tr>
+                       
                         <tr>
                               <dx:ASPxTextBox  CssClass="hidden" ClientIDMode="Static" ID="iDtextBox" runat="server" Width="170px"></dx:ASPxTextBox>
                             

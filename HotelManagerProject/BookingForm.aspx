@@ -93,11 +93,10 @@
                            <label>Search Customer:</label>
                         </div>
                         <div style="height: 45px;" class="col-xs-8 col-sm-4 col-md-3 col-lg-3">
-                            <dx:ASPxComboBox ID="customerComboBox" NullText="Search Customer" runat="server" ValueField="Id" TextField="Name" IncrementalFilteringMode= "Contains" DropDownStyle= "DropDown">
+                            <dx:ASPxComboBox OnValueChanged="customerComboBox_OnValueChanged" ID="customerComboBox" NullText="Search Customer" runat="server" ValueField="Id" TextField="Name" IncrementalFilteringMode= "Contains" DropDownStyle= "DropDown">
                                  <Columns>
                                 <dx:ListBoxColumn FieldName="Name" Visible="True" Caption="Name"/>
                                 <dx:ListBoxColumn Caption="Surname" FieldName="Surname" />
-                                
                             </Columns>
                             </dx:ASPxComboBox>
                         </div>
@@ -220,31 +219,15 @@
                                 <dx:ASPxTextBox ID= "phoneTextBox" runat="server" Width="170px"></dx:ASPxTextBox> 
                             </td>
                         </tr>
-                        <tr>
-                             <td>
-                                <label>Created:  </label>
-                            </td>
-                            <td>
-                                <dx:ASPxTextBox ID= "createdTextBox" runat="server" Width="170px"></dx:ASPxTextBox> 
-                            </td>
-                        </tr>
-                        <tr>
-                             <td>
-                                <label>Created By:  </label>
-                            </td>
-                            <td>
-                                <dx:ASPxTextBox ID= "createdByTextBox" runat="server" Width="170px"></dx:ASPxTextBox> 
-                            </td>
-                        </tr>
                     </table>
                     <br/>
                     <div class="pcmButton">
                                             <dx:ASPxButton OnClick="CustomersPopUpSaveButton"  ID="customersPopUpSaveButton" runat="server" Text="Save" Width="80px" AutoPostBack="False" Style="float: left; margin-right: 8px">
                                                 <ClientSideEvents Click="function(s, e) {if (eval(&#39;nameTextBox&#39;).lastChangedValue == null || eval(&#39;surnameText&#39;).lastChangedValue == null || eval(&#39;idNumberText&#39;).lastChangedValue == null) {
-return false;
-}
- if(ASPxClientEdit.ValidateGroup(&#39;entryGroup&#39;)) createUserPopUp.Hide(); 
-}" />
+                                                    return false;
+                                                            }
+                                                 if(ASPxClientEdit.ValidateGroup(&#39;entryGroup&#39;)) createUserPopUp.Hide(); 
+                                                }" />
                                             </dx:ASPxButton>
                                             <dx:ASPxButton ID="btCancel" runat="server" Text="Cancel" Width="80px" AutoPostBack="False" Style="float: left; margin-right: 8px">
                                                 <ClientSideEvents Click="function(s, e) { createUserPopUp.Hide(); }" />

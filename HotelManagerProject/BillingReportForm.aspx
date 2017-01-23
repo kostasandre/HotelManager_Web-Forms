@@ -5,6 +5,6 @@
 </asp:content>
 <asp:content id="Content2" contentplaceholderid="ContentPlaceHolder1" runat="server">
      <div>
-         <dx:ASPxWebDocumentViewer ID='ASPxBillingWebDocumentViewer' runat="server"></dx:ASPxWebDocumentViewer>
+         <dx:ASPxWebDocumentViewer ID="ASPxBillingWebDocumentViewer" runat="server"></dx:ASPxWebDocumentViewer>
             </div>
 </asp:content>
