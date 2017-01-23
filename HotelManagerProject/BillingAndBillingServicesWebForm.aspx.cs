@@ -15,9 +15,11 @@ namespace HotelManagerProject
     using System.Collections;
     using System.Collections.Generic;
     using System.Data;
+    using System.Data.SqlClient;
     using System.Globalization;
     using System.Linq;
     using System.Web.UI;
+    using System.Web.UI.WebControls;
 
     using DevExpress.Web;
     using DevExpress.Web.Data;
@@ -34,6 +36,8 @@ namespace HotelManagerProject
     /// </summary>
     public partial class BillingWebForm : Page
     {
+        private BillingService billingService;
+
         /// <summary>
         /// The my billing services.
         /// </summary>
@@ -114,6 +118,8 @@ namespace HotelManagerProject
                     this.bookingIdTextBox.Text = id.ToString();
                     this.priceValueTextBox.Text = booking.AgreedPrice.ToString(CultureInfo.InvariantCulture);
                     this.customerIdTextBox.Text = this.customerEntityController.GetEntity(booking.CustomerId).Name;
+                    this.fromTextBox.Text = booking.From.ToShortDateString().ToString(CultureInfo.InvariantCulture);
+                    this.toTextBox.Text = booking.To.ToShortDateString().ToString(CultureInfo.InvariantCulture);
 
                     this.billing = new Billing { PriceForRoom = booking.AgreedPrice };
                     var servicesList = this.serviceController.RefreshEntities();
@@ -273,9 +279,83 @@ namespace HotelManagerProject
         /// <param name="e">
         /// The e.
         /// </param>
-        protected void SaveButtonClick(object sender , EventArgs e)
+        protected void SaveButtonClick(object sender, EventArgs e)
         {
+            var errorlabel = this.Master?.FindControl("form1").FindControl("divErrorMessage") as Label;
+            this.billingEntityController = new BillingEntityController();
+            this.billingServiceEntityController = new BillingServiceEntityController();
+            if (this.sumOfServicesTextBox.Text == string.Empty)
+            {
+                this.sumOfServicesTextBox.Text = 0.ToString();
+                this.totalSumTextBox.Text = priceValueTextBox.Text;
+            }
 
+            this.billing = new Billing
+                               {
+                                   BookingId = Convert.ToInt32(this.bookingIdTextBox.Text),
+                                   PriceForRoom = Convert.ToDouble(this.priceValueTextBox.Text),
+                                   PriceForServices = Convert.ToDouble(this.sumOfServicesTextBox.Text),
+                                   TotalPrice = Convert.ToDouble(this.totalSumTextBox.Text),
+                                   Paid = this.paidCheckBox.Checked
+                               };
+           
+            try
+            {
+                this.billing = this.billingEntityController.CreateOrUpdateEntity(this.billing);
+            }
+            catch (SqlException ex)
+            {
+                if (errorlabel != null)
+                {
+                    errorlabel.Text = "Couldn't create the current building";
+                }
+            }
+
+            this.myBillingServices =
+                this.Session["billingServiceWithServiceDescription"] as List<BillingServiceWithServiceDescription>;
+            if (this.myBillingServices != null && this.myBillingServices.Count > 0)
+            {
+                foreach (var item in this.myBillingServices)
+                {
+                    if (item.Quantity > 0)
+                    {
+                        this.billingService = new BillingService
+                        {
+                            BillingId = this.billing.Id,
+                            ServiceId = item.Id,
+                            Quantity = item.Quantity,
+                            Price = item.PricePerUnit
+                        };
+                        try
+                        {
+                            this.billingServiceEntityController.CreateOrUpdateEntity(this.billingService);
+                        }
+                        catch (SqlException ex)
+                        {
+                            if (errorlabel != null)
+                            {
+                                errorlabel.Text = "Couldn't create the current billing";
+                            }
+                        }
+                    }
+                }
+            }
+
+            Server.Transfer("Main.aspx", true);
+        }
+
+        /// <summary>
+        /// The cancel button_ on click.
+        /// </summary>
+        /// <param name="sender">
+        /// The sender.
+        /// </param>
+        /// <param name="e">
+        /// The e.
+        /// </param>
+        protected void CancelButtonOnClick(object sender, EventArgs e)
+        {
+            Server.Transfer("Main.aspx", true);
         }
     }
 }

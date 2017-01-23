@@ -16,6 +16,8 @@ namespace HotelManagerProject
     using System.Web.UI;
     using System.Web.UI.WebControls;
 
+    using DevExpress.Web;
+
     using HotelManagerLib.Controllers;
     using HotelManagerLib.Controllers.Interfaces;
     using HotelManagerLib.Models.Persistant;
@@ -74,10 +76,10 @@ namespace HotelManagerProject
             this.service = this.serviceEntityController.GetEntity(myService);
             var myBilling = Convert.ToInt32(this.billingComboBox.SelectedItem.Value);
             this.billing = this.billingEntityController.GetEntity(myBilling);
-
+           
             this.billingService = new BillingService
                                       {
-                                          Service = this.service,
+                                          Id = Convert.ToInt32(this.idTextBox.Text),
                                           ServiceId = this.service.Id,
                                           Billing = this.billing,
                                           Price = Convert.ToDouble(this.priceTextBox.Text),
@@ -187,6 +189,33 @@ namespace HotelManagerProject
         /// </param>
         protected void Page_Load(object sender, EventArgs e)
         {
+        }
+
+        /// <summary>
+        /// The billing service list grid view on custom button callback.
+        /// </summary>
+        /// <param name="sender">
+        /// The sender.
+        /// </param>
+        /// <param name="e">
+        /// The e.
+        /// </param>
+        protected void BillingServiceListGridViewOnCustomButtonCallback(object sender, ASPxGridViewCustomButtonCallbackEventArgs e)
+        {
+            this.billingServiceEntityController = new BillingServiceEntityController();
+            var gridviewIndex = e.VisibleIndex;
+            var row = this.BillingServiceListGridView.GetRow(gridviewIndex) as BillingService;
+            if (row != null)
+            {
+
+                var myBillingService = this.billingServiceEntityController.GetEntity(row.Id);
+               
+                this.BillingServiceListGridView.JSProperties["cp_text"] = myBillingService.Quantity;
+                this.BillingServiceListGridView.JSProperties["cp_text1"] = myBillingService.Price;
+                this.BillingServiceListGridView.JSProperties["cp_text2"] = myBillingService.BillingId;
+                this.BillingServiceListGridView.JSProperties["cp_text3"] = myBillingService.ServiceId;
+                this.BillingServiceListGridView.JSProperties["cp_text4"] = myBillingService.Id;
+            }
         }
     }
 }

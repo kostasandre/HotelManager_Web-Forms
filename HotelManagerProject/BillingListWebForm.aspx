@@ -8,6 +8,13 @@
         function ShowLoginWindow() {
             createBillingPopUp.Show();
         }
+        function EndCallback(s, e) {
+            paidCheckBox.SetChecked(s.cp_text);
+            priceForRoomTextBox.SetText(s.cp_text1);
+            priceForServicesTextBox.SetText(s.cp_text2);
+            totalPricerTextBox.SetText(s.cp_text3);
+        }
+
 
     </script>
     <div class="container" style="width: 100%">
@@ -29,13 +36,11 @@
 
 
             <div class="col-xs-12 col-lg-4 col-sm-4">
-                <dx:ASPxGridView  ID="BillingListGridView" runat="server" Theme="BlackGlass" AutoGenerateColumns="False" KeyFieldName="Id">
+                <dx:ASPxGridView  ID="BillingListGridView" runat="server" Theme="BlackGlass" AutoGenerateColumns="False" OnCustomButtonCallback="BillingListGridView_OnCustomButtonCallback" KeyFieldName="Id">
                     <Settings ShowGroupPanel="True" ShowFilterRow="True"></Settings>
                     <SettingsSearchPanel Visible="True"></SettingsSearchPanel>
-                    <ClientSideEvents CustomButtonClick="function(s, e) { ShowLoginWindow(); e.processOnServer = true; }" />
+                    <ClientSideEvents EndCallback="EndCallback" CustomButtonClick="function(s, e) { ShowLoginWindow(); e.processOnServer = true; }" />
                     <Columns>
-                        <dx:GridViewCommandColumn SelectAllCheckboxMode="Page" ShowClearFilterButton="True" ShowSelectCheckbox="True" VisibleIndex="0" ShowEditButton="True">
-                        </dx:GridViewCommandColumn>
                         <dx:GridViewCommandColumn ShowClearFilterButton="True" VisibleIndex="1" ButtonRenderMode="Image">
                             <CustomButtons>
                                 <dx:GridViewCommandColumnCustomButton ID="editButton">
@@ -58,7 +63,7 @@
             </div>
         </div>
     </div>
-    <dx:ASPxPopupControl OnInit="createBillingPopUp_OnInit" ClientInstanceName="createBillingPopUp" Width="330px" Height="250px" Modal="True"
+    <dx:ASPxPopupControl ClientInstanceName="createBillingPopUp" Width="330px" Height="250px" Modal="True"
         MaxWidth="800px" MaxHeight="800px" MinHeight="150px" MinWidth="150px" ID="createBillingPopUp"
         ShowFooter="True" FooterText="Runtime: 142 min" PopupElementID="imgButton" HeaderText="Billing Details"
         runat="server" EnableViewState="false" PopupHorizontalAlign="WindowCenter" PopupVerticalAlign="WindowCenter" EnableHierarchyRecreation="True" AllowDragging="True" Theme="BlackGlass">
@@ -82,7 +87,7 @@
                                 </label>
                             </td>
                             <td>
-                                <dx:ASPxCheckBox ID="paidCheckBox" runat="server" CheckState="Unchecked" Width="170px">
+                                <dx:ASPxCheckBox ClientIDMode="Static" ClientInstanceName="paidCheckBox" ID="paidCheckBox" runat="server" CheckState="Unchecked" Width="170px">
                                 </dx:ASPxCheckBox>
                             </td>
                             <tr>
@@ -90,7 +95,7 @@
                                     <label>Price For Room:  </label>
                                 </td>
                                 <td>
-                                    <dx:ASPxTextBox ID="priceForRoomTextBox" runat="server" Width="170px"></dx:ASPxTextBox>
+                                    <dx:ASPxTextBox ClientInstanceName="priceForRoomTextBox" ID="priceForRoomTextBox" runat="server" Width="170px"></dx:ASPxTextBox>
                                 </td>
                             </tr>
                         <tr>
@@ -98,7 +103,7 @@
                                 <label>Price For Services:  </label>
                             </td>
                             <td>
-                                <dx:ASPxTextBox ID="priceForServicesTextBox" runat="server" Width="170px"></dx:ASPxTextBox>
+                                <dx:ASPxTextBox ClientInstanceName="priceForServicesTextBox" ID="priceForServicesTextBox" runat="server" Width="170px"></dx:ASPxTextBox>
                             </td>
                         </tr>
                         <tr>
@@ -106,7 +111,7 @@
                                 <label>Total Price:  </label>
                             </td>
                             <td>
-                                <dx:ASPxTextBox ID="totalPricerTextBox" runat="server" Width="170px"></dx:ASPxTextBox>
+                                <dx:ASPxTextBox ClientInstanceName="totalPricerTextBox" ID="totalPricerTextBox" runat="server" Width="170px"></dx:ASPxTextBox>
                             </td>
                         </tr>
                     </table>

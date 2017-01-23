@@ -8,7 +8,15 @@
         function ShowLoginWindow() {
             createBillingServicePopUp.Show();
         }
-
+        function EndCallback(s, e) {
+            if (s.cp_text !== 0) {
+                quantityTextBox.SetText(s.cp_text);
+                priceTextBox.SetText(s.cp_text1);
+                billingComboBox.SetValue(s.cp_text2);
+                serviceComboBox.SetValue(s.cp_text3);
+                idTextBox.SetText(s.cp_text4);
+            }
+        }
     </script>
     <div class="container" style="width: 100%">
        <br />
@@ -27,12 +35,11 @@
 
         
             <div class="col-xs-12 col-lg-4 col-sm-4">
-                <dx:ASPxGridView ID="BillingServiceListGridView" runat="server" Theme="BlackGlass" AutoGenerateColumns="False" KeyFieldName="Id">
+                <dx:ASPxGridView ID="BillingServiceListGridView" runat="server" Theme="BlackGlass" AutoGenerateColumns="False" OnCustomButtonCallback="BillingServiceListGridViewOnCustomButtonCallback" KeyFieldName="Id">
+                     <ClientSideEvents EndCallback="EndCallback" CustomButtonClick="function(s, e) { ShowLoginWindow(); e.processOnServer = true; }"/>
                     <Settings ShowGroupPanel="True" ShowFilterRow="True"></Settings>
                     <SettingsSearchPanel Visible="True"></SettingsSearchPanel>
                     <Columns>
-                          <dx:GridViewCommandColumn SelectAllCheckboxMode="Page" ShowClearFilterButton="True" ShowSelectCheckbox="True" VisibleIndex="0" ShowEditButton="True">
-                        </dx:GridViewCommandColumn>
                         <dx:GridViewCommandColumn ShowClearFilterButton="True" VisibleIndex="1" ButtonRenderMode="Image">
                             <CustomButtons>
                                 <dx:GridViewCommandColumnCustomButton ID="editButton">
@@ -69,7 +76,7 @@
                                 <label>Billing : </label>
                             </td>
                             <td>
-                                <dx:ASPxComboBox ValueField="Id" TextField="Id" ID="billingComboBox" runat="server" Width="170px" Theme="BlackGlass" EnableTheming="True"></dx:ASPxComboBox> 
+                                <dx:ASPxComboBox ValueField="Id" ClientInstanceName="billingComboBox" TextField="Id" ID="billingComboBox" runat="server" Width="170px" Theme="BlackGlass" EnableTheming="True"></dx:ASPxComboBox> 
                             </td>
                         </tr>
                         <tr>
@@ -77,14 +84,20 @@
                                 <label>Service : </label>
                             </td>
                             <td>
-                                <dx:ASPxComboBox ValueField="Id" TextField="Id" ID="serviceComboBox" runat="server" Width="170px" Theme="BlackGlass" EnableTheming="True"></dx:ASPxComboBox> 
+                                <dx:ASPxComboBox ValueField="Id" ClientInstanceName="serviceComboBox" TextField="Id" ID="serviceComboBox" runat="server" Width="170px" Theme="BlackGlass" EnableTheming="True"></dx:ASPxComboBox> 
                             </td>
                         </tr>
+                         <tr>
+                            <td>
+                                <dx:ASPxTextBox ClientInstanceName="idTextBox" ID="idTextBox" Visible="False" runat="server" Width="170px"></dx:ASPxTextBox> 
+                            </td>
+                        </tr>
+                        <tr>
                              <td>
                                 <label>Quantity:  </label>
                             </td>
                             <td>
-                                <dx:ASPxTextBox ID= "quantityTextBox" runat="server" Width="170px"></dx:ASPxTextBox> 
+                                <dx:ASPxTextBox ClientInstanceName="quantityTextBox" ID="quantityTextBox" runat="server" Width="170px"></dx:ASPxTextBox> 
                             </td>
                         </tr>
                         <tr>
@@ -92,7 +105,7 @@
                                 <label>Price:  </label>
                             </td>
                             <td>
-                                <dx:ASPxTextBox ID= "priceTextBox" runat="server" Width="170px"></dx:ASPxTextBox> 
+                                <dx:ASPxTextBox ClientInstanceName="priceTextBox" ID="priceTextBox" runat="server" Width="170px"></dx:ASPxTextBox> 
                             </td>
                         </tr>
                     </table>

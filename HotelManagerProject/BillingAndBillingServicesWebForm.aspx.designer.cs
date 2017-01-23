@@ -112,6 +112,15 @@ namespace HotelManagerProject {
         protected global::DevExpress.Web.ASPxButton saveButton;
         
         /// <summary>
+        /// cancelButton control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::DevExpress.Web.ASPxButton cancelButton;
+        
+        /// <summary>
         /// BookingList control.
         /// </summary>
         /// <remarks>

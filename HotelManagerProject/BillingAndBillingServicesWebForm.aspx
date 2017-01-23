@@ -11,7 +11,6 @@
             if (s.cp_text !== 0) {
                 sumOfServicesTextBox.SetText(s.cp_text);
                 totalSumTextBox.SetText(s.cp_text2);
-                //saveButton.enabled = true;
             }
         }
 
@@ -115,7 +114,7 @@
                     <dx:ASPxButton ClientInstanceName="saveButton" ID="saveButton" CssClass="Text2" ForeColor="Aquamarine" Text="Save" runat="server" EnableTheming="True" Theme="BlackGlass" OnClick="SaveButtonClick"></dx:ASPxButton>
                 </div>
                 <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2">
-                    <dx:ASPxButton runat="server" CssClass="Text2" ForeColor="Aquamarine" Text="Cancel" EnableTheming="True" Theme="BlackGlass"></dx:ASPxButton>
+                    <dx:ASPxButton ID="cancelButton" runat="server" CssClass="Text2" ForeColor="Aquamarine" Text="Cancel" EnableTheming="True" Theme="BlackGlass" OnClick="CancelButtonOnClick"></dx:ASPxButton>
                 </div>
             </div>
         </div>
