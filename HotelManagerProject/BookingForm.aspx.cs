@@ -329,5 +329,10 @@ namespace HotelManagerProject
                 }
             }
         }
+
+        protected void cancelButton_OnClick(object sender, EventArgs e)
+        {
+            this.Response.Redirect("BookingsListForm.aspx");
+        }
     }
 }

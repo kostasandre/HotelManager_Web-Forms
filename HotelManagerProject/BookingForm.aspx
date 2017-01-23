@@ -151,7 +151,7 @@
                     <dx:ASPxButton OnClick="saveBookingButton_OnClick" ID= "saveBookingButton" runat="server" Text="Save" Width=60px></dx:ASPxButton>
                 </div>
                  <div class="col-xs-3 col-sm-2 col-md-1 col-lg-1" style="text-align: right">
-                    <dx:ASPxButton OnClick="saveBookingButton_OnClick" ID= "cancelButton" runat="server" Text="Cancel" Width="60px"></dx:ASPxButton>
+                    <dx:ASPxButton OnClick="cancelButton_OnClick" ID= "cancelButton" runat="server" Text="Cancel" Width="60px"></dx:ASPxButton>
                 </div>
                 <br/>
                 <br/>
