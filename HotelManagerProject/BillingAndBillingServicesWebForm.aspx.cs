@@ -123,8 +123,9 @@ namespace HotelManagerProject
 
                         var booking = this.bookingEntityController.GetEntity(id);
                         this.bookingIdTextBox.Text = id.ToString();
+                        this.customerSurnameTextBox.Text = this.customerEntityController.GetEntity(booking.CustomerId).Surname;
                         this.priceValueTextBox.Text = booking.AgreedPrice.ToString(CultureInfo.InvariantCulture);
-                        this.customerIdTextBox.Text = this.customerEntityController.GetEntity(booking.CustomerId).Name;
+                        this.customerNameTextBox.Text = this.customerEntityController.GetEntity(booking.CustomerId).Name;
                         this.fromTextBox.Text = booking.From.ToShortDateString().ToString(CultureInfo.InvariantCulture);
                         this.toTextBox.Text = booking.To.ToShortDateString().ToString(CultureInfo.InvariantCulture);
 

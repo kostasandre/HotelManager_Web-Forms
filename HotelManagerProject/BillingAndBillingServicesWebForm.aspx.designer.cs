@@ -22,31 +22,31 @@ namespace HotelManagerProject {
         protected global::DevExpress.Web.ASPxButton SearchButton;
         
         /// <summary>
-        /// bookingIdTextBox control.
+        /// customerNameTextBox control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::DevExpress.Web.ASPxTextBox bookingIdTextBox;
+        protected global::DevExpress.Web.ASPxTextBox customerNameTextBox;
         
         /// <summary>
-        /// priceValueTextBox control.
+        /// customerSurnameTextBox control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::DevExpress.Web.ASPxTextBox priceValueTextBox;
+        protected global::DevExpress.Web.ASPxTextBox customerSurnameTextBox;
         
         /// <summary>
-        /// customerIdTextBox control.
+        /// roomTextBox control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::DevExpress.Web.ASPxTextBox customerIdTextBox;
+        protected global::DevExpress.Web.ASPxTextBox roomTextBox;
         
         /// <summary>
         /// fromTextBox control.
@@ -65,6 +65,24 @@ namespace HotelManagerProject {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::DevExpress.Web.ASPxTextBox toTextBox;
+        
+        /// <summary>
+        /// priceValueTextBox control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::DevExpress.Web.ASPxTextBox priceValueTextBox;
+        
+        /// <summary>
+        /// bookingIdTextBox control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::DevExpress.Web.ASPxTextBox bookingIdTextBox;
         
         /// <summary>
         /// BillingListGridView control.
