@@ -29,7 +29,7 @@
                     <div class="col-xs-4 col-sm-2 col-md-2 col-lg-1">
                          <label>Date From:</label> 
                     </div>
-                    <div style="height: 45px;" class="col-xs-8 col-sm-4 col-md-3 col-lg-3">
+                    <div style="height: 45px;" class="col-xs-8 col-sm-4 col-md-3 col-lg-2">
                         <dx:ASPxDateEdit AllowUserInput="False" ID= "dateFromCalendar" runat="server" AllowNull="False"></dx:ASPxDateEdit>
                     </div>
 
@@ -43,11 +43,9 @@
             <br/>
                 <div class="row">
                         <div class="col-xs-4 col-sm-3 col-md-2 col-lg-2">
-                            <dx:ASPxButton OnClick="CalculateAvailableRoomsButton" ID= "calculateRoomTypePriceButton" runat="server" Text="Calculate Price" ToolTip="Calculates the price of the selected room"></dx:ASPxButton>  
+                            <dx:ASPxButton OnClick="CalculateAvailableRoomsButton" ID= "calculateRoomTypePriceButton" runat="server" Text="Check Availability and Price" ToolTip="Calculates the price and the availability of given days"></dx:ASPxButton>  
                         </div>
-                        <div class="col-xs-4 col-sm-4 col-md-3 col-lg-3">
-                            <dx:ASPxTextBox ID= "roomTypePriceTextBox" runat="server" Width="170px" ReadOnly=True></dx:ASPxTextBox>
-                        </div>
+                        
                     </div>
             <br/>
             <div class="row">
@@ -79,20 +77,40 @@
                         </Columns>
                     </dx:ASPxGridView>
                 </div>
-                <div class="col-xs-4 col-sm-4 col-md-2 col-lg-1">
-                    <label>Comments:</label>
-                </div>
-                <div class="col-xs-4 col-sm-4 col-md-3 col-lg-3">
-                    <dx:ASPxMemo ID= "commentMemoBox" runat="server" Height="71px" Width="170px"></dx:ASPxMemo>
-                </div>
                         
             </div>
             <br/>
-              <div class="row">
-                        <div class="col-xs-4 col-sm-2 col-md-2 col-lg-2">
+              
+            <div class="row">
+                <div class="col-xs-0 col-sm-2 col-md-2 col-lg-6">
+                    
+                </div>
+                 <div class="col-xs-4 col-sm-2 col-md-2 col-lg-1">
+                           <label>System Price:</label>
+                        </div>
+                        <div class="col-xs-6 col-sm-4 col-md-3 col-lg-2">
+                            <dx:ASPxTextBox ID= "roomTypePriceTextBox" runat="server" Width="170px" ReadOnly=True></dx:ASPxTextBox>
+                        </div>
+            </div>
+            <div class="row">
+                <div class="col-xs-0 col-sm-2 col-md-2 col-lg-6">
+                    
+                </div>
+                <div class="col-xs-4 col-sm-2 col-md-2 col-lg-1">
+                           <label>Agreed Price:</label>
+                        </div>
+                        <div class="col-xs-6 col-sm-4 col-md-3 col-lg-2">
+                            <dx:ASPxTextBox ID= "agreedPriceTextBox" runat="server" Width="170px"></dx:ASPxTextBox>
+                        </div>
+            </div>
+            <div class="row">
+                <div class="col-xs-0 col-sm-2 col-md-2 col-lg-6">
+                    
+                </div>
+                        <div class="col-xs-4 col-sm-2 col-md-2 col-lg-1">
                            <label>Search Customer:</label>
                         </div>
-                        <div style="height: 45px;" class="col-xs-8 col-sm-4 col-md-3 col-lg-3">
+                        <div style="height: 45px;" class="col-xs-8 col-sm-4 col-md-5 col-lg-3">
                             <dx:ASPxComboBox OnValueChanged="customerComboBox_OnValueChanged" ID="customerComboBox" NullText="Search Customer" runat="server" ValueField="Id" TextField="Name" IncrementalFilteringMode= "Contains" DropDownStyle= "DropDown">
                                  <Columns>
                                 <dx:ListBoxColumn FieldName="Name" Visible="True" Caption="Name"/>
@@ -100,27 +118,40 @@
                             </Columns>
                             </dx:ASPxComboBox>
                         </div>
-                        <div class="col-xs-4 col-sm-2 col-md-2 col-lg-2">
-                           <label>Agreed Price:</label>
-                        </div>
-                        <div class="col-xs-6 col-sm-4 col-md-3 col-lg-3">
-                            <dx:ASPxTextBox ID= "agreedPriceTextBox" runat="server" Width="170px"></dx:ASPxTextBox>
-                        </div>
+
+                <div style="height: 45px;" class="col-xs-8 col-sm-4 col-md-3 col-lg-1">
+                    <dx:ASPxButton ID="createCustomerButton" runat="server" Text="New Customer">
+                        <ClientSideEvents Click="function(s, e) { ShowLoginWindow(); }" />
+                    </dx:ASPxButton>
+                </div>
                         
+                </div>
+            <br/>
+            <div class="row">
+                <div class="col-xs-0 col-sm-2 col-md-2 col-lg-6">
+                    
+                </div>
+                 <div class="col-xs-4 col-sm-4 col-md-2 col-lg-1">
+                    <label>Comments:</label>
+                </div>
+                <div class="col-xs-4 col-sm-4 col-md-3 col-lg-3">
+                    <dx:ASPxMemo ID= "commentMemoBox" runat="server" Height="71px" Width="170px"></dx:ASPxMemo>
+                </div>
             </div>
             <br/>
-             <dx:ASPxButton ID="createCustomerButton" runat="server" Text="Create Customer">
-                <ClientSideEvents Click="function(s, e) { ShowLoginWindow(); }" />
-            </dx:ASPxButton>
+             
             
             <br/>
             <br/>
             <div class="row">
-                <div class="col-xs-6">
+                <div class="col-xs-4 col-sm-8 col-md-10 col-lg-10">
                     
                 </div>
-                <div class="col-xs-6" style="text-align: right">
-                    <dx:ASPxButton OnClick="saveBookingButton_OnClick" ID= "saveBookingButton" runat="server" Text="Save Booking"></dx:ASPxButton>
+                <div class="col-xs-3 col-sm-2 col-md-1 col-lg-1" style="text-align: right">
+                    <dx:ASPxButton OnClick="saveBookingButton_OnClick" ID= "saveBookingButton" runat="server" Text="Save" Width=60px></dx:ASPxButton>
+                </div>
+                 <div class="col-xs-3 col-sm-2 col-md-1 col-lg-1" style="text-align: right">
+                    <dx:ASPxButton OnClick="saveBookingButton_OnClick" ID= "cancelButton" runat="server" Text="Cancel" Width="60px"></dx:ASPxButton>
                 </div>
                 <br/>
                 <br/>
