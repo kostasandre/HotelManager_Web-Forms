@@ -177,9 +177,14 @@ namespace HotelManagerProject
                         this.BillingListGridView.Visible = true;
                         this.saveButton.Enabled = true;
                         this.totalSumTextBox.Visible = true;
+                        this.totalSumTextBox.ClientSideEvents.Init = "function(s,e){s.SetEnabled(false);}";
                         this.totalSumTextBox.Text = this.priceValueTextBox.Text;
                         this.paidCheckBox.Visible = true;
                         this.sumOfServicesTextBox.Visible = true;
+                        this.sumOfServicesTextBox.ClientSideEvents.Init = "function(s,e){s.SetEnabled(false);}";
+                        this.paidLabel.Visible = true;
+                        this.totalSumLabel.Visible = true;
+                        this.sumOfServicesLabel.Visible = true;
                     }
                 }
                 catch (SqlException ex)
@@ -392,7 +397,7 @@ namespace HotelManagerProject
                 }
             }
 
-            Server.Transfer("Main.aspx", true);
+            Response.Redirect("BillingListWebForm.aspx", true);
         }
 
         /// <summary>
@@ -406,7 +411,7 @@ namespace HotelManagerProject
         /// </param>
         protected void CancelButtonOnClick(object sender, EventArgs e)
         {
-            Server.Transfer("Main.aspx", true);
+            Response.Redirect("BillingListWebForm.aspx", true);
         }
     }
 }
