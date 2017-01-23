@@ -13,7 +13,7 @@
         function ShowLoginWindow() {
             if (createCustomerButton) {
                 nameTextBox.SetText("");
-                surnameText.SetText("");
+                surnameTextBox.SetText("");
                 taxIdTextBox.SetText("");
                 idNumberText.SetText("");
                 emailTextBox.SetText("");
@@ -27,7 +27,7 @@
         function EndCallback(s, e) {
             if (s.cp_text !== undefined) {
                 nameTextBox.SetText(s.cp_text);
-                surnameText.SetText(s.cp_text1);
+                surnameTextBox.SetText(s.cp_text1);
                 taxIdTextBox.SetText(s.cp_text2);
                 idNumberText.SetText(s.cp_text3);
                 emailTextBox.SetText(s.cp_text4);
@@ -47,12 +47,12 @@
         <br/>
         <div class="row">
             <div class="col-lg-1 col-sm-2 col-md-2 col-xs-4">
-                <dx:ASPxButton ClientSideEvents="" id="createCustomerButton" CssClass="button" tooltip="Creates a new Customer" ForeColor="AquaMarine" Theme="BlackGlass" runat="server" Text="Create Customer ">
+                <dx:ASPxButton ClientIDMode="Static" OnClick="SaveButton_OnClick" id="createCustomerButton" CssClass="button" tooltip="Creates a new Customer" ForeColor="AquaMarine" Theme="BlackGlass" runat="server" Text="Create Customer ">
                     <ClientSideEvents Click="function(s, e) { ShowLoginWindow(); }"/>
                 </dx:ASPxButton>
             </div>
             <div class="col-lg-1 col-sm-1 col-xs-4">
-                <dx:ASPxButton OnClick="deleteCustomerButton" runat="server" CssClass="button" tooltip="Deletes the selected Customer" ForeColor="AquaMarine" Theme="BlackGlass" Text="Delete Customer"/>
+                <dx:ASPxButton OnClick="DeleteCustomerButton" runat="server" CssClass="button" tooltip="Deletes the selected Customer" ForeColor="AquaMarine" Theme="BlackGlass" Text="Delete Customer"/>
             </div>
         </div>
 
@@ -144,7 +144,7 @@
                                 <label>Tax Id: </label>
                             </td>
                             <td>
-                                <dx:ASPxTextBox ID="taxIdTextBox" runat="server" Width="170px">
+                                <dx:ASPxTextBox ClientIDMode="Static" ID="taxIdTextBox" runat="server" Width="170px">
 
                                 </dx:ASPxTextBox>
                             </td>
@@ -194,7 +194,7 @@
                                 <label>Phone: </label>
                             </td>
                             <td>
-                                <dx:ASPxTextBox ID="phoneTextBox" runat="server" Width="170px">
+                                <dx:ASPxTextBox ClientIDMode="Static" ID="phoneTextBox" runat="server" Width="170px">
                                     <ClientSideEvents KeyDown="function(s, e) {
                                      if (!((e.htmlEvent.keyCode &gt;= 48 &amp;&amp; e.htmlEvent.keyCode &lt;= 57) || 
                                            (e.htmlEvent.keyCode == 8 || e.htmlEvent.keyCode == 46 || e.htmlEvent.keyCode == 37 || 
@@ -211,7 +211,7 @@
                     </table>
                     <br/>
                     <div class="pcmButton">
-                        <dx:ASPxButton OnClick="saveButton_OnClick" ID="saveButton" runat="server" Text="Save" Width="80px" AutoPostBack="False" Style="float: left; margin-right: 8px">
+                        <dx:ASPxButton OnClick="SaveButton_OnClick" ID="saveButton" runat="server" Text="Save" Width="80px" AutoPostBack="False" Style="float: left; margin-right: 8px">
                             <ClientSideEvents Click="function(s, e) {
 if (eval(&#39;nameTextBox&#39;).lastChangedValue == null || eval(&#39;surnameText&#39;).lastChangedValue == null || eval(&#39;idNumberText&#39;).lastChangedValue == null) {
 return false;
