@@ -5,6 +5,9 @@
 </asp:content>
 <asp:content id="Content2" contentplaceholderid="ContentPlaceHolder1" runat="server">
      <div>
+         <div>
+                <dx:ASPxButton CssClass="editButtonClass" ID='editButton' runat="server" Text="Edit Report" OnClick="EditButtonClick" />  
+            </div>
          <dx:ASPxWebDocumentViewer ID="ASPxBillingWebDocumentViewer" runat="server"></dx:ASPxWebDocumentViewer>
             </div>
 </asp:content>

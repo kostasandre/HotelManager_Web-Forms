@@ -97,7 +97,7 @@ namespace HotelManagerLib.Repositories
         {
             using (var context = new DataBaseContext())
             {
-                return context.Rooms.Include("Hotel").ToList();
+                return context.Rooms.Include("Hotel").Include("RoomType").ToList();
             }
         }
 
@@ -112,7 +112,7 @@ namespace HotelManagerLib.Repositories
         /// </returns>
         public IQueryable<Room> ReadAllQuery(DataBaseContext context)
         {
-            return context.Rooms.Include("Hotel");
+            return context.Rooms.Include("Hotel").Include("RoomType");
         }
 
         /// <summary>
@@ -128,7 +128,7 @@ namespace HotelManagerLib.Repositories
         {
             using (var context = new DataBaseContext())
             {
-                var room = context.Rooms.Include("Hotel").SingleOrDefault(x => x.Id == id);
+                var room = context.Rooms.Include("Hotel").Include("RoomType").SingleOrDefault(x => x.Id == id);
                 return room;
             }
         }
@@ -143,22 +143,24 @@ namespace HotelManagerLib.Repositories
         {
             using (var context = new DataBaseContext())
             {
-                var databaseRoom = context.Rooms.Include("Hotel").SingleOrDefault(x => x.Id == room.Id);
+                var databaseRoom = context.Rooms.Include("Hotel").Include("RoomType").SingleOrDefault(x => x.Id == room.Id);
                 if (databaseRoom == null)
                 {
                     return;
                 }
 
-                if (room.Hotel != null)
-                {
-                    var databaseHotel = context.Hotels.SingleOrDefault(x => x.Id == room.Hotel.Id);
-                    databaseRoom.Hotel = databaseHotel;
-                }
+                //if (room.Hotel != null)
+                //{
+                //    //var databaseHotel = context.Hotels.SingleOrDefault(x => x.Id == room.Hotel.Id);
+                //    //databaseRoom.Hotel = databaseHotel;
+                //}
 
                 // else
                 // {
                 // databaseRoom.HotelId = null;
                 // }
+                var databaseHotel = context.Hotels.SingleOrDefault(x => x.Id == room.HotelId);
+                databaseRoom.Hotel = databaseHotel;
                 databaseRoom.Code = room.Code;
                 databaseRoom.RoomType = room.RoomType; // ???????????
                 databaseRoom.RoomTypeId = room.RoomTypeId; // ???????????
