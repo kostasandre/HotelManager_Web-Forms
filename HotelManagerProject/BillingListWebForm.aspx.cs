@@ -122,11 +122,6 @@ namespace HotelManagerProject
             this.bookingComboBox.DataBind();
             this.BillingListGridView.DataSource = this.billingEntityController.RefreshEntities();
             this.BillingListGridView.DataBind();
-            this.BillingListGridView.JSProperties["cp_text5"] = false;
-            this.BillingListGridView.JSProperties["cp_text6"] = string.Empty;
-            this.BillingListGridView.JSProperties["cp_text7"] = string.Empty;
-            this.BillingListGridView.JSProperties["cp_text8"] = string.Empty;
-            this.BillingListGridView.JSProperties["cp_text9"] = 0;
         }
 
         /// <summary>
