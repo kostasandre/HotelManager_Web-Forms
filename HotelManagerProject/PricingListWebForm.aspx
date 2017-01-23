@@ -20,28 +20,30 @@
                 </dx:ASPxButton>
             </div>
             <div class="col-lg-2 col-md-2 col-sm-2 col-xs-4">
-                <dx:ASPxButton ID="deletePricingListButton" CssClass="button" ToolTip="Deletes the selected PricingList" ForeColor="AquaMarine" Theme="BlackGlass" runat="server" Text="Delete PricingList" />
+                <dx:ASPxButton ID="deletePricingListButton" CssClass="button" ToolTip="Deletes the selected PricingList" ForeColor="AquaMarine" Theme="BlackGlass" runat="server" Text="Delete PricingList" OnClick="DeletePricingListButton_OnClick"/>
             </div>
             <div class="col-lg-8 col-md-8 col-sm-8 col-xs-12">
-                <dx:ASPxGridView ID=PricingListGridView runat="server" AutoGenerateColumns="False" Theme="BlackGlass" EnableTheming="True">
+                <dx:ASPxGridView ID=PricingListGridView runat="server" AutoGenerateColumns="False" Theme="BlackGlass" EnableTheming="True" KeyFieldName="Id">
                     <Settings ShowFilterRow="True" ShowGroupPanel="True" />
                     <SettingsSearchPanel Visible="True" />
                     <Columns>
-                        <dx:GridViewCommandColumn ShowClearFilterButton="True" VisibleIndex="0" ShowEditButton="True">
+                        <dx:GridViewCommandColumn ShowClearFilterButton="True" VisibleIndex="0" SelectAllCheckboxMode="Page" ShowSelectCheckbox="True">
                         </dx:GridViewCommandColumn>
-                        <dx:GridViewDataTextColumn FieldName="Id" VisibleIndex="1">
+                        <dx:GridViewCommandColumn ShowClearFilterButton="True" VisibleIndex="1" ShowEditButton="True">
+                        </dx:GridViewCommandColumn>
+                        <dx:GridViewDataTextColumn FieldName="Id" VisibleIndex="2">
                         </dx:GridViewDataTextColumn>
-                        <dx:GridViewDataTextColumn FieldName="Price" VisibleIndex="2">
+                        <dx:GridViewDataTextColumn FieldName="Price" VisibleIndex="3">
                         </dx:GridViewDataTextColumn>
-                        <dx:GridViewDataTextColumn FieldName="ValidFrom" VisibleIndex="3">
+                        <dx:GridViewDataTextColumn FieldName="ValidFrom" VisibleIndex="4">
                         </dx:GridViewDataTextColumn>
-                        <dx:GridViewDataTextColumn FieldName="ValidTo" VisibleIndex="4">
+                        <dx:GridViewDataTextColumn FieldName="ValidTo" VisibleIndex="5">
                         </dx:GridViewDataTextColumn>
-                        <dx:GridViewDataTextColumn FieldName="VatPrc" VisibleIndex="5">
+                        <dx:GridViewDataTextColumn FieldName="VatPrc" VisibleIndex="6">
                         </dx:GridViewDataTextColumn>
-                        <dx:GridViewDataTextColumn FieldName="Created" VisibleIndex="8">
+                        <dx:GridViewDataTextColumn FieldName="Created" VisibleIndex="7">
                         </dx:GridViewDataTextColumn>
-                        <dx:GridViewDataTextColumn FieldName="CreatedBy" VisibleIndex="9">
+                        <dx:GridViewDataTextColumn FieldName="CreatedBy" VisibleIndex="8">
                         </dx:GridViewDataTextColumn>
                     </Columns>
                 </dx:ASPxGridView>
@@ -75,7 +77,7 @@
                                                 </div>
                                                 <div class="col-xs-6">
 
-                                                    <asp:RadioButtonList ID="typeOFRadioButtonList" runat="server" OnSelectedIndexChanged="typeOFRadioButtonList_OnSelectedIndexChanged" AutoPostBack="True">
+                                                    <asp:RadioButtonList ID="typeOFRadioButtonList" runat="server" OnSelectedIndexChanged="TypeOFRadioButtonList_OnSelectedIndexChanged" AutoPostBack="True">
                                                     </asp:RadioButtonList>
 
                                                 </div>
@@ -149,7 +151,7 @@
                                 <tr>
                                     <td colspan="2">
                                         <div class="pcmButton">
-                                            <dx:ASPxButton ID="btOK" runat="server" Text="OK" Width="80px" AutoPostBack="False" Style="float: left; margin-right: 8px" OnClick="btOK_OnClick">
+                                            <dx:ASPxButton ID="btOK" runat="server" Text="OK" Width="80px" AutoPostBack="False" Style="float: left; margin-right: 8px" OnClick="SaveButton_OnClick">
                                                 <ClientSideEvents Click="function(s, e) { if(ASPxClientEdit.ValidateGroup('entryGroup')) PricingListDetailView.Hide(); }" />
                                             </dx:ASPxButton>
                                             <dx:ASPxButton ID="btCancel" runat="server" Text="Cancel" Width="80px" AutoPostBack="False" Style="float: left; margin-right: 8px">
