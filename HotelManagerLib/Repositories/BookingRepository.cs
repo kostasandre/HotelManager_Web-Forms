@@ -111,7 +111,6 @@ namespace HotelManagerLib.Repositories
         /// <returns>
         /// The <see cref="IList"/>.
         /// </returns>
-        
         public IList<Booking> ReadAllList()
         {
             using (var context = new DataBaseContext())

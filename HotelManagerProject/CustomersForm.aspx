@@ -47,7 +47,7 @@
         <br/>
         <div class="row">
             <div class="col-lg-1 col-sm-2 col-md-2 col-xs-4">
-                <dx:ASPxButton ClientIDMode="Static" ClientSideEvents="" id="createCustomerButton" CssClass="button" tooltip="Creates a new Customer" ForeColor="AquaMarine" Theme="BlackGlass" runat="server" Text="Create Customer ">
+                <dx:ASPxButton ClientSideEvents="" id="createCustomerButton" CssClass="button" tooltip="Creates a new Customer" ForeColor="AquaMarine" Theme="BlackGlass" runat="server" Text="Create Customer ">
                     <ClientSideEvents Click="function(s, e) { ShowLoginWindow(); }"/>
                 </dx:ASPxButton>
             </div>
@@ -118,7 +118,7 @@
                                 <label>Name: </label>
                             </td>
                             <td>
-                                <dx:ASPxTextBox ClientIDMode="Static" ClientInstanceName="nameTextBox" ValidateRequestMode="Enabled" ID="nameTextBox" runat="server" Width="170px">
+                                <dx:ASPxTextBox ClientInstanceName="nameTextBox" ValidateRequestMode="Enabled" ID="nameTextBox" runat="server" Width="170px">
                                     <ValidationSettings EnableCustomValidation="True" ErrorDisplayMode="Text" ErrorTextPosition="Right" SetFocusOnError="true">
                                         <ErrorFrameStyle Font-Size="Large"/>
                                         <RequiredField IsRequired="True" ErrorText="*"/>
@@ -139,41 +139,32 @@
                                 </dx:ASPxTextBox>
                             </td>
                         </tr>
-                         <tr>
-                            <td>
-                                <label>Id Number: </label>
-                            </td>
-                            <td>
-                                <dx:ASPxTextBox ClientIDMode="Static" ClientInstanceName="idNumberText" ID="idNumberTextBox" runat="server" Width="170px">
-                                    <dx:ClientSideEvents KeyDown="function(s, e) {
-                                    
-	                                 if (!((e.htmlEvent.keyCode &gt;= 48 &amp;&amp; e.htmlEvent.keyCode &lt;= 57) || 
-                                           (e.htmlEvent.keyCode &gt;= 65 &amp;&amp; e.htmlEvent.keyCode &lt;= 90) || (e.htmlEvent.keyCode &gt;= 8) )) 
-                                        ASPxClientUtils.PreventEventAndBubble(e.htmlEvent); }">
-                                    </dx:ClientSideEvents>
-                                    
-                                   <ValidationSettings EnableCustomValidation="True" ErrorDisplayMode="Text" ErrorTextPosition="Right" SetFocusOnError="true">
-                                        <ErrorFrameStyle Font-Size="Large"/>
-                                        <RequiredField IsRequired="True" ErrorText="*"/>
-                                    </ValidationSettings>
-                                </dx:ASPxTextBox>
-                            </td>
-                        </tr>
                         <tr>
                             <td>
                                 <label>Tax Id: </label>
                             </td>
                             <td>
-                                <dx:ASPxTextBox ClientIDMode="Static" ID="taxIdTextBox" runat="server" Width="170px">
+                                <dx:ASPxTextBox ID="taxIdTextBox" runat="server" Width="170px">
 
-
+                                </dx:ASPxTextBox>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <label>Id Number: </label>
+                            </td>
+                            <td>
+                                <dx:ASPxTextBox ClientInstanceName="idNumberText" ID="idNumberTextBox" runat="server" Width="170px">
                                     <ClientSideEvents KeyDown="function(s, e) {
-	                                     if (!((e.htmlEvent.keyCode &gt;= 48 &amp;&amp; e.htmlEvent.keyCode &lt;= 57) || 
-                                               (e.htmlEvent.keyCode == 8 || e.htmlEvent.keyCode == 46 || e.htmlEvent.keyCode == 37 || 
-                                                e.htmlEvent.keyCode == 39))) 
-                                            ASPxClientUtils.PreventEventAndBubble(e.htmlEvent);}">
-                                        
+                                     if (!((e.htmlEvent.keyCode &gt;= 48 &amp;&amp; e.htmlEvent.keyCode &lt;= 57) || 
+                                           (e.htmlEvent.keyCode == 8 || e.htmlEvent.keyCode == 46 || e.htmlEvent.keyCode == 37 || 
+                                            e.htmlEvent.keyCode == 39))) 
+                                        ASPxClientUtils.PreventEventAndBubble(e.htmlEvent); }">
                                     </ClientSideEvents>
+                                    <ValidationSettings EnableCustomValidation="True" ErrorDisplayMode="Text" ErrorTextPosition="Right" SetFocusOnError="true">
+                                        <ErrorFrameStyle Font-Size="Large"/>
+                                        <RequiredField IsRequired="True" ErrorText="*"/>
+                                    </ValidationSettings>
                                 </dx:ASPxTextBox>
                             </td>
                         </tr>
@@ -203,9 +194,9 @@
                                 <label>Phone: </label>
                             </td>
                             <td>
-                                <dx:ASPxTextBox ClientIDMode="Static" ID="phoneTextBox" runat="server" Width="170px">
+                                <dx:ASPxTextBox ID="phoneTextBox" runat="server" Width="170px">
                                     <ClientSideEvents KeyDown="function(s, e) {
-	                                 if (!((e.htmlEvent.keyCode &gt;= 48 &amp;&amp; e.htmlEvent.keyCode &lt;= 57) || 
+                                     if (!((e.htmlEvent.keyCode &gt;= 48 &amp;&amp; e.htmlEvent.keyCode &lt;= 57) || 
                                            (e.htmlEvent.keyCode == 8 || e.htmlEvent.keyCode == 46 || e.htmlEvent.keyCode == 37 || 
                                             e.htmlEvent.keyCode == 39))) 
                                         ASPxClientUtils.PreventEventAndBubble(e.htmlEvent); }">

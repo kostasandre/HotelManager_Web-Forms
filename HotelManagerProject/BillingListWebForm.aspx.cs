@@ -78,7 +78,7 @@ namespace HotelManagerProject
                     PriceForServices = Convert.ToDouble(this.priceForServicesTextBox.Text),
                     TotalPrice = Convert.ToDouble(this.totalPricerTextBox.Text)
                 };
-
+                
                 this.billingEntityController.CreateOrUpdateEntity(this.billing);
                 this.BillingListGridView.DataSource = this.billingEntityController.RefreshEntities();
                 this.BillingListGridView.DataBind();
@@ -118,6 +118,7 @@ namespace HotelManagerProject
             this.bookingEntityController = new BookingController();
             this.bookingComboBox.DataSource = this.bookingEntityController.RefreshEntities();
             this.bookingComboBox.SelectedIndex = 0;
+            this.bookingComboBox.Value = "Customer.Name";
             this.bookingComboBox.DataBind();
             this.BillingListGridView.DataSource = this.billingEntityController.RefreshEntities();
             this.BillingListGridView.DataBind();
@@ -150,7 +151,7 @@ namespace HotelManagerProject
         /// <param name="e">
         /// The e.
         /// </param>
-        protected void DeleteBillingButtonClick(object sender , EventArgs e)
+        protected void DeleteBillingButtonClick(object sender, EventArgs e)
         {
             var errorlabel = this.Master?.FindControl("form1").FindControl("divErrorMessage") as Label;
             if (errorlabel != null)

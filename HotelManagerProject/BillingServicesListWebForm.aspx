@@ -1,8 +1,8 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/MasterPage.Master" AutoEventWireup="true" CodeBehind="BillingServicesListWebForm.aspx.cs" Inherits="HotelManagerProject.BillingServicesListForm" %>
+﻿<%@ page title="" language="C#" masterpagefile="~/MasterPage.Master" autoeventwireup="true" codebehind="BillingServicesListWebForm.aspx.cs" inherits="HotelManagerProject.BillingServicesListForm" %>
 
-<asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
-</asp:Content>
-<asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
+<asp:content id="Content1" contentplaceholderid="head" runat="server">
+</asp:content>
+<asp:content id="Content2" contentplaceholderid="ContentPlaceHolder1" runat="server">
     <link href="CssClasses/StyleSheet1.css" rel="stylesheet" />
     <script type="text/javascript">
         function ShowLoginWindow() {
@@ -40,7 +40,12 @@
 
 
 
-            <div class="col-xs-12 col-lg-4 col-sm-4">
+           <div class="row">
+                <div class="col-xs-12 col-lg-4 col-sm-4">
+                </div>
+                <div class="col-xs-12">
+                    <div class="MainForm" style="width: 680px;">
+                        <h1>BillingServices List</h1>
                 <dx:ASPxGridView ID="BillingServiceListGridView" runat="server" Theme="BlackGlass" AutoGenerateColumns="False" OnCustomButtonCallback="BillingServiceListGridViewOnCustomButtonCallback" KeyFieldName="Id">
                     <ClientSideEvents EndCallback="EndCallback" CustomButtonClick="function(s, e) { ShowLoginWindow(); e.processOnServer = true; }" />
                     <Settings ShowGroupPanel="True" ShowFilterRow="True"></Settings>
@@ -55,11 +60,11 @@
                                 </dx:GridViewCommandColumnCustomButton>
                             </CustomButtons>
                         </dx:GridViewCommandColumn>
-                        <dx:GridViewDataTextColumn FieldName="Id" VisibleIndex="2">
+                        <dx:GridViewDataTextColumn FieldName="Id" VisibleIndex="2" Visible="False">
                         </dx:GridViewDataTextColumn>
                         <dx:GridViewDataTextColumn FieldName="BillingId" VisibleIndex="3" ReadOnly="True">
                         </dx:GridViewDataTextColumn>
-                        <dx:GridViewDataTextColumn FieldName="ServiceId" VisibleIndex="4">
+                        <dx:GridViewDataTextColumn FieldName="Service.Code" VisibleIndex="4">
                         </dx:GridViewDataTextColumn>
                         <dx:GridViewDataTextColumn FieldName="Quantity" VisibleIndex="5">
                         </dx:GridViewDataTextColumn>
@@ -67,6 +72,9 @@
                         </dx:GridViewDataTextColumn>
                     </Columns>
                 </dx:ASPxGridView>
+                        </div>
+
+                </div>
             </div>
         </div>
     </div>
@@ -92,7 +100,11 @@
                                 <label>Service : </label>
                             </td>
                             <td>
-                                <dx:ASPxComboBox ValueField="Id" ClientInstanceName="serviceComboBox" TextField="Id" ID="serviceComboBox" runat="server" Width="170px" Theme="BlackGlass" EnableTheming="True"></dx:ASPxComboBox>
+                                <dx:ASPxComboBox ValueField="Id" ClientInstanceName="serviceComboBox" TextField="Id" ID="serviceComboBox" runat="server" Width="170px" Theme="BlackGlass" EnableTheming="True">
+                                    <Columns>
+                                        <dx:ListBoxColumn FieldName="Code"/>
+                                    </Columns>
+                                </dx:ASPxComboBox>
                             </td>
                         </tr>
                         <tr>
@@ -130,4 +142,4 @@
             </dx:PopupControlContentControl>
         </ContentCollection>
     </dx:ASPxPopupControl>
-</asp:Content>
+</asp:content>
