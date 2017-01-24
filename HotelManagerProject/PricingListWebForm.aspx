@@ -8,6 +8,8 @@
         function ShowLoginWindow() {
             if (createPricingListButton) {
                 idTextBox.SetText("0");
+                //var temp = typeOFRadioButtonList;
+                //var temp2 = typeOFRadioButtonList.textContent;
                 //typeOFRadioButtonList.SetChecked(false);
                 //roomTypeComboBox.SetText("");
                 //serviceComboBox.SetText("");
@@ -23,7 +25,62 @@
         function EndCallback(s, e) {
             idTextBox.SetText(s.cp_text1);
             //typeOFRadioButtonList.SetChecked(s.cp_text2);
-            typeOFRadioButtonList.visible = 'false';
+            //typeOFRadioButtonList.setSelectedValue(s.cp_text2);
+            //typeOFRadioButtonList.setText(s.cp_text2);
+            //typeOfServiceLabel.visible = 'true';
+            //typeOfServiceTextBox.visible = 'true';
+            typeOFRadioButtonList.SetSelectedIndex(s.cp_text2);
+            if (s.cp_text2 === 0) {
+                if (roomTypeLabel.SetVisible) {
+                    roomTypeLabel.SetVisible(true);
+                } else {
+                    roomTypeLabel.classList.remove('hidden');
+                }
+                
+                if (roomTypeComboBox.SetVisible) {
+                    roomTypeComboBox.SetVisible(true);
+                } else {
+                    roomTypeComboBox.classList.remove('hidden');
+                }
+
+                if (serviceLabel.SetVisible) {
+                    serviceLabel.SetVisible(false);
+                } else {
+                    serviceLabel.classList.add('hidden');
+                }
+
+                if (serviceComboBox.SetVisible) {
+                    serviceComboBox.SetVisible(false);
+                } else {
+                    serviceComboBox.classList.add('hidden');
+                }
+            }
+
+            if (s.cp_text2 === 1) {
+                if (roomTypeLabel.SetVisible) {
+                    roomTypeLabel.SetVisible(false);
+                } else {
+                    roomTypeLabel.classList.add('hidden');
+                }
+
+                if (roomTypeComboBox.SetVisible) {
+                    roomTypeComboBox.SetVisible(false);
+                } else {
+                    roomTypeComboBox.classList.add('hidden');
+                }
+
+                if (serviceLabel.SetVisible) {
+                    serviceLabel.SetVisible(true);
+                } else {
+                    serviceLabel.classList.remove('hidden');
+                }
+
+                if (serviceComboBox.SetVisible) {
+                    serviceComboBox.SetVisible(true);
+                } else {
+                    serviceComboBox.classList.remove('hidden');
+                }
+            }
             //roomTypeComboBox.SetText(s.cp_text3);
             //serviceComboBox.SetText(s.cp_text4);
             validFromDateEdit.SetText(s.cp_text5);
@@ -124,15 +181,24 @@
                                                 </div>
                                                 <div class="col-xs-6">
 
-                                                    <asp:RadioButtonList ID="typeOFRadioButtonList" runat="server" OnSelectedIndexChanged="TypeOFRadioButtonList_OnSelectedIndexChanged" AutoPostBack="True" ClientIDMode="Static">
-                                                    </asp:RadioButtonList>
+                                                    <dx:ASPxRadioButtonList ID="typeOFRadioButtonList" runat="server" OnSelectedIndexChanged="TypeOFRadioButtonList_OnSelectedIndexChanged" AutoPostBack="True" ClientIDMode="Static">
+                                                    </dx:ASPxRadioButtonList>
 
                                                 </div>
                                             </div>
                                             
+<%--                                            <div class="row">
+                                                <div class="col-xs-4">
+                                                    <dx:ASPxLabel ID="typeOfServiceLabel" CssClass="hidden" runat="server" Text="Name" ClientIDMode="Static"></dx:ASPxLabel>
+                                                </div>
+                                                <div class="col-xs-6">
+                                                    <dx:ASPxTextBox ID="typeOfServiceTextBox" CssClass="hidden" runat="server" Width="170px" ClientIDMode="Static"></dx:ASPxTextBox>
+                                                </div>
+                                            </div>--%>
+                                            
                                             <div class="row">
                                                 <div class="col-xs-4">
-                                                    <dx:ASPxLabel ID="roomTypeLabel" runat="server" Text="Room Type"></dx:ASPxLabel>
+                                                    <dx:ASPxLabel ID="roomTypeLabel" runat="server" Text="Room Type" ClientIDMode="Static"></dx:ASPxLabel>
                                                 </div>
                                                 <div class="col-xs-6">
                                                     <dx:ASPxComboBox ID="roomTypeComboBox" NullText="Select Room Type" ValueField="Id" TextField="Code" runat="server" IncrementalFilteringMode="None" DropDownStyle="DropDownList" ClientIDMode="Static"></dx:ASPxComboBox>
@@ -141,7 +207,7 @@
                                             
                                             <div class="row">
                                                 <div class="col-xs-4">
-                                                    <dx:ASPxLabel ID="serviceLabel" runat="server" Text="Service"></dx:ASPxLabel>
+                                                    <dx:ASPxLabel ID="serviceLabel" runat="server" Text="Service" ClientIDMode="Static"></dx:ASPxLabel>
                                                 </div>
                                                 <div class="col-xs-6">
                                                     <dx:ASPxComboBox ID="serviceComboBox" NullText="Select Service" ValueField="Id" TextField="Description" runat="server" IncrementalFilteringMode="None" DropDownStyle="DropDownList" ClientIDMode="Static"></dx:ASPxComboBox>
@@ -171,7 +237,7 @@
                                                     <dx:ASPxLabel ID="priceLabel" runat="server" Text="Price"></dx:ASPxLabel>
                                                 </div>
                                                 <div class="col-xs-6">
-                                                    <dx:ASPxSpinEdit ID="priceSpinEdit" runat="server" Number="0" ClientIDMode="Static">
+                                                    <dx:ASPxSpinEdit ID="priceSpinEdit" runat="server" Number="0" MinValue="0" DecimalPlaces="2" ClientIDMode="Static">
                                                     </dx:ASPxSpinEdit>
                                                 </div>
                                             </div>
@@ -181,7 +247,7 @@
                                                     <dx:ASPxLabel ID="VatPrcLabel" runat="server" Text="Vat Prc"></dx:ASPxLabel>
                                                 </div>
                                                 <div class="col-xs-6">
-                                                    <dx:ASPxSpinEdit ID="VatPrcSpinEdit" runat="server" Number="0" ClientIDMode="Static">
+                                                    <dx:ASPxSpinEdit ID="VatPrcSpinEdit" runat="server" Number="0" MinValue="0" MaxValue="100" DecimalPlaces="0" ClientIDMode="Static">
                                                     </dx:ASPxSpinEdit>
                                                 </div>
                                             </div>
