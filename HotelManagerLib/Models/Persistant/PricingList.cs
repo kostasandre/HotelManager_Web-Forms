@@ -13,6 +13,7 @@ namespace HotelManagerLib.Models.Persistant
 
     using System;
     using System.ComponentModel;
+    using System.ComponentModel.DataAnnotations.Schema;
 
     using HotelManagerLib.Enums;
 
@@ -49,6 +50,12 @@ namespace HotelManagerLib.Models.Persistant
         /// </summary>
         [Browsable(false)]
         public int Id { get; set; }
+
+        /// <summary>
+        /// Gets or sets the billable entity code.
+        /// </summary>
+        [NotMapped]
+        public string BillableEntityCode { get; set; }
 
         /// <summary>
         /// Gets or sets the price.
