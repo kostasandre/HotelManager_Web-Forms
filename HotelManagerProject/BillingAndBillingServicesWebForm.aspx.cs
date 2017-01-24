@@ -128,7 +128,7 @@ namespace HotelManagerProject
                         this.customerNameTextBox.Text = this.customerEntityController.GetEntity(booking.CustomerId).Name;
                         this.fromTextBox.Text = booking.From.ToShortDateString().ToString(CultureInfo.InvariantCulture);
                         this.toTextBox.Text = booking.To.ToShortDateString().ToString(CultureInfo.InvariantCulture);
-
+                        this.roomTextBox.Text = booking.Room.Code;
                         this.billing = new Billing { PriceForRoom = booking.AgreedPrice };
                         var servicesList = this.serviceController.RefreshEntities();
                         var billingServices = new List<BillingService>();
@@ -341,6 +341,8 @@ namespace HotelManagerProject
             var errorlabel = this.Master?.FindControl("form1").FindControl("divErrorMessage") as Label;
             this.billingEntityController = new BillingEntityController();
             this.billingServiceEntityController = new BillingServiceEntityController();
+            this.saveButton.ClientSideEvents.Click = "function(s,e){document.getElementById('sumOfServicesTextBox').SetEnabled(true);}";
+            //this.sumOfServicesTextBox.Enabled = true;
             if (this.sumOfServicesTextBox.Text == string.Empty)
             {
                 this.sumOfServicesTextBox.Text = 0.ToString();
