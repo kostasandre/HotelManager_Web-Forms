@@ -87,6 +87,7 @@
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\BillingServiceWithServiceDescription.cs" />
+    <Compile Include="Models\BookingCalendar.cs" />
     <Compile Include="Models\Persistant\Billing.cs" />
     <Compile Include="Models\Persistant\BillingService.cs" />
     <Compile Include="Models\Persistant\Booking.cs" />

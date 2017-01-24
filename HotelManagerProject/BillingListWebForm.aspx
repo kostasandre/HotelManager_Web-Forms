@@ -129,7 +129,7 @@
                             </td>
                             <td>
                                 <dx:ASPxTextBox ClientInstanceName="priceForRoomTextBox"  ID="priceForRoomTextBox" runat="server" Width="170px">
-                                     <ClientSideEvents KeyDown="function(s, e) {     if (!((e.htmlEvent.keyCode &gt;= 48 &amp;&amp; e.htmlEvent.keyCode &lt;= 57) || 
+                                    <ClientSideEvents KeyDown="function(s, e) {     if (!((e.htmlEvent.keyCode &gt;= 48 &amp;&amp; e.htmlEvent.keyCode &lt;= 57) || (e.htmlEvent.keyCode == 188) ||
                                            (e.htmlEvent.keyCode == 8 || e.htmlEvent.keyCode == 46 || e.htmlEvent.keyCode == 37 || 
                                             e.htmlEvent.keyCode == 39))) 
                                         ASPxClientUtils.PreventEventAndBubble(e.htmlEvent);
@@ -147,7 +147,7 @@
                             </td>
                             <td>
                                 <dx:ASPxTextBox ClientInstanceName="priceForServicesTextBox" ID="priceForServicesTextBox" runat="server" Width="170px">
-                                        <ClientSideEvents KeyDown="function(s, e) {     if (!((e.htmlEvent.keyCode &gt;= 48 &amp;&amp; e.htmlEvent.keyCode &lt;= 57) || 
+                                    <ClientSideEvents KeyDown="function(s, e) {     if (!((e.htmlEvent.keyCode &gt;= 48 &amp;&amp; e.htmlEvent.keyCode &lt;= 57) || (e.htmlEvent.keyCode == 188) ||
                                            (e.htmlEvent.keyCode == 8 || e.htmlEvent.keyCode == 46 || e.htmlEvent.keyCode == 37 || 
                                             e.htmlEvent.keyCode == 39))) 
                                         ASPxClientUtils.PreventEventAndBubble(e.htmlEvent);
@@ -165,7 +165,7 @@
                             </td>
                             <td>
                                 <dx:ASPxTextBox ClientInstanceName="totalPricerTextBox" ID="totalPricerTextBox" runat="server" Width="170px">
-                                        <ClientSideEvents KeyDown="function(s, e) {     if (!((e.htmlEvent.keyCode &gt;= 48 &amp;&amp; e.htmlEvent.keyCode &lt;= 57) || 
+                                    <ClientSideEvents KeyDown="function(s, e) {     if (!((e.htmlEvent.keyCode &gt;= 48 &amp;&amp; e.htmlEvent.keyCode &lt;= 57) || (e.htmlEvent.keyCode == 188) ||
                                            (e.htmlEvent.keyCode == 8 || e.htmlEvent.keyCode == 46 || e.htmlEvent.keyCode == 37 || 
                                             e.htmlEvent.keyCode == 39))) 
                                         ASPxClientUtils.PreventEventAndBubble(e.htmlEvent);

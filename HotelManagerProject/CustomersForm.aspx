@@ -162,11 +162,10 @@
                                 <dx:ASPxTextBox ClientIDMode="Static" ID="taxIdTextBox" runat="server" Width="170px">
 
                                     <ClientSideEvents KeyDown="function(s, e) {
-	   if (!((e.htmlEvent.keyCode &gt;= 48 &amp;&amp; e.htmlEvent.keyCode &lt;= 57) || 
+	  if (!((e.htmlEvent.keyCode &gt;= 48 &amp;&amp; e.htmlEvent.keyCode &lt;= 57) || (e.htmlEvent.keyCode &gt;= 96 &amp;&amp; e.htmlEvent.keyCode &lt;= 105) ||
                                            (e.htmlEvent.keyCode == 8 || e.htmlEvent.keyCode == 46 || e.htmlEvent.keyCode == 37 || 
                                             e.htmlEvent.keyCode == 39))) 
-                                        ASPxClientUtils.PreventEventAndBubble(e.htmlEvent);
- }"></ClientSideEvents>
+                                        ASPxClientUtils.PreventEventAndBubble(e.htmlEvent); }"></ClientSideEvents>
                                 </dx:ASPxTextBox>
                             </td>
                         </tr>
@@ -200,7 +199,7 @@
 
 
                                     <ClientSideEvents KeyDown="function(s, e) {
-	  if (!((e.htmlEvent.keyCode &gt;= 48 &amp;&amp; e.htmlEvent.keyCode &lt;= 57) || 
+	  if (!((e.htmlEvent.keyCode &gt;= 48 &amp;&amp; e.htmlEvent.keyCode &lt;= 57) || (e.htmlEvent.keyCode &gt;= 96 &amp;&amp; e.htmlEvent.keyCode &lt;= 105) ||
                                            (e.htmlEvent.keyCode == 8 || e.htmlEvent.keyCode == 46 || e.htmlEvent.keyCode == 37 || 
                                             e.htmlEvent.keyCode == 39))) 
                                         ASPxClientUtils.PreventEventAndBubble(e.htmlEvent);

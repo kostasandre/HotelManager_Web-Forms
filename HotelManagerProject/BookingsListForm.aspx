@@ -25,6 +25,8 @@
                 agreedPriceTextBox.SetText(s.cp_text5);
                 iDtextBox.SetText(s.cp_text8);
                 codeTextBox.SetText(s.cp_text9);
+                nameTextBox.SetText(s.cp_text10);
+                surnameTextBox.SetText(s.cp_text11);
                 iDtextBox.visible = 'false';
 
                 
@@ -199,7 +201,14 @@
                                 <label>Agreed Price: </label>
                             </td>
                             <td>
-                                <dx:ASPxTextBox ClientIDMode="Static" ID="agreedPriceTextBox" runat="server" Width="170px"></dx:ASPxTextBox>
+                                <dx:ASPxTextBox ClientIDMode="Static" ID="agreedPriceTextBox" runat="server" Width="170px">
+                                    <ClientSideEvents KeyDown="function(s, e) {
+	if (!((e.htmlEvent.keyCode &gt;= 48 &amp;&amp; e.htmlEvent.keyCode &lt;= 57) || (e.htmlEvent.keyCode == 188) ||
+           (e.htmlEvent.keyCode == 8 || e.htmlEvent.keyCode == 46 || e.htmlEvent.keyCode == 37 || 
+            e.htmlEvent.keyCode == 39))) 
+        ASPxClientUtils.PreventEventAndBubble(e.htmlEvent); 
+}"></ClientSideEvents>
+                                </dx:ASPxTextBox>
                             </td>
                         </tr>
                         <tr>

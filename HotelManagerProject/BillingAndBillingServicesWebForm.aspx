@@ -119,7 +119,10 @@
                 <div class="col-lg-9 col-md-8 col-sm-6 col-xs-2">
                 </div>
                 <div class="col-lg-1 col-md-2 col-sm-1 col-xs-3">
-                    <dx:ASPxButton ClientInstanceName="saveButton" ID="saveButton" CssClass="Text2" ForeColor="Aquamarine" Text="Save" runat="server" EnableTheming="True" Theme="BlackGlass" OnClick="SaveButtonClick"></dx:ASPxButton>
+                    <dx:ASPxButton ClientInstanceName="saveButton" ID="saveButton" CssClass="Text2" ForeColor="Aquamarine" Text="Save" runat="server" EnableTheming="True" Theme="BlackGlass" OnClick="SaveButtonClick">
+                        <ClientSideEvents CheckedChanged="function(s, e) {document.getElementById(&#39;sumOfServicesTextBox&#39;).SetEnabled(true)
+}"></ClientSideEvents>
+                    </dx:ASPxButton>
                 </div>
                 <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2">
                     <dx:ASPxButton ID="cancelButton" runat="server" CssClass="Text2" ForeColor="Aquamarine" Text="Cancel" EnableTheming="True" Theme="BlackGlass" OnClick="CancelButtonOnClick"></dx:ASPxButton>
