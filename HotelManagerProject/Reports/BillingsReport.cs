@@ -10,6 +10,7 @@ namespace HotelManagerProject
     {
         public BillingsReport()
         {
+            
             InitializeComponent();
         }
 

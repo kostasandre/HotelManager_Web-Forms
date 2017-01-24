@@ -197,16 +197,7 @@
                                 </dx:ASPxTextBox> 
                             </td>
                         </tr>
-                        <tr>
-                             <td>
-                                <label>Tax Id:  </label>
-                            </td>
-                            <td>
-                                <dx:ASPxTextBox ID= "taxIdTextBox" runat="server" Width="170px">
-                                    
-                                </dx:ASPxTextBox> 
-                            </td>
-                        </tr>
+                       
                         <tr>
                              <td>
                                 <label>Id Number:  </label>
@@ -214,7 +205,7 @@
                             <td>
                                 <dx:ASPxTextBox ClientInstanceName="idNumberText" ID= "idNumberTextBox" runat="server" Width="170px">
                                     <ClientSideEvents KeyDown="function(s, e) {
-	                                 if (!((e.htmlEvent.keyCode &gt;= 48 &amp;&amp; e.htmlEvent.keyCode &lt;= 57) || 
+	                                 if (!((e.htmlEvent.keyCode &gt;= 48 &amp;&amp; e.htmlEvent.keyCode &lt;= 57) ||(e.htmlEvent.keyCode &gt;= 96&amp;&amp; e.htmlEvent.keyCode &lt;= 105) || (e.htmlEvent.keyCode &gt;= 65 &amp;&amp; e.htmlEvent.keyCode &lt;= 90) ||
                                            (e.htmlEvent.keyCode == 8 || e.htmlEvent.keyCode == 46 || e.htmlEvent.keyCode == 37 || 
                                             e.htmlEvent.keyCode == 39))) 
                                         ASPxClientUtils.PreventEventAndBubble(e.htmlEvent); }">
@@ -223,6 +214,22 @@
                                     <ErrorFrameStyle Font-Size="Large"/>
                                         <RequiredField IsRequired="True" ErrorText="*"/>
                                     </ValidationSettings>
+                                </dx:ASPxTextBox> 
+                            </td>
+                        </tr>
+                         <tr>
+                             <td>
+                                <label>Tax Id:  </label>
+                            </td>
+                            <td>
+                                <dx:ASPxTextBox ID= "taxIdTextBox" runat="server" Width="170px">
+
+                                    <ClientSideEvents KeyDown="function(s, e) {
+	 if (!((e.htmlEvent.keyCode &gt;= 48 &amp;&amp; e.htmlEvent.keyCode &lt;= 57) || (e.htmlEvent.keyCode &gt;= 96 &amp;&amp; e.htmlEvent.keyCode &lt;= 105) ||
+                                           (e.htmlEvent.keyCode == 8 || e.htmlEvent.keyCode == 46 || e.htmlEvent.keyCode == 37 || 
+                                            e.htmlEvent.keyCode == 39))) 
+                                        ASPxClientUtils.PreventEventAndBubble(e.htmlEvent); 
+}"></ClientSideEvents>
                                 </dx:ASPxTextBox> 
                             </td>
                         </tr>
@@ -239,7 +246,11 @@
                                 <label>Email:  </label>
                             </td>
                             <td>
-                                <dx:ASPxTextBox ID= "emailTextBox" runat="server" Width="170px"></dx:ASPxTextBox> 
+                                <dx:ASPxTextBox ID= "emailTextBox" runat="server" Width="170px">
+                                    <ValidationSettings>
+                                        <RegularExpression ErrorText="Invalid mail" ValidationExpression="\w+([-+.']\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*" />
+                                    </ValidationSettings>
+                                </dx:ASPxTextBox> 
                             </td>
                         </tr>
                         <tr>
@@ -247,7 +258,14 @@
                                 <label>Phone:  </label>
                             </td>
                             <td>
-                                <dx:ASPxTextBox ID= "phoneTextBox" runat="server" Width="170px"></dx:ASPxTextBox> 
+                                <dx:ASPxTextBox ID= "phoneTextBox" runat="server" Width="170px">
+                                    <ClientSideEvents KeyDown="function(s, e) {
+	  if (!((e.htmlEvent.keyCode &gt;= 48 &amp;&amp; e.htmlEvent.keyCode &lt;= 57) || (e.htmlEvent.keyCode &gt;= 96 &amp;&amp; e.htmlEvent.keyCode &lt;= 105) ||
+                                           (e.htmlEvent.keyCode == 8 || e.htmlEvent.keyCode == 46 || e.htmlEvent.keyCode == 37 || 
+                                            e.htmlEvent.keyCode == 39))) 
+                                        ASPxClientUtils.PreventEventAndBubble(e.htmlEvent);
+}"></ClientSideEvents>
+                                </dx:ASPxTextBox> 
                             </td>
                         </tr>
                     </table>

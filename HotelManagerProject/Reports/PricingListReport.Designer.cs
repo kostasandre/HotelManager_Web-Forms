@@ -356,6 +356,7 @@
             this.ComponentStorage.AddRange(new System.ComponentModel.IComponent[] {
             this.objectDataSource1});
             this.DataSource = this.objectDataSource1;
+            this.FilterString = "[ValidFrom] >= ?VF And [ValidTo] <= ?VT";
             this.Parameters.AddRange(new DevExpress.XtraReports.Parameters.Parameter[] {
             this.VF,
             this.VT});

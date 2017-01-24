@@ -157,15 +157,6 @@ namespace HotelManagerProject {
         protected global::DevExpress.Web.ASPxTextBox surNameTextBox;
         
         /// <summary>
-        /// taxIdTextBox control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::DevExpress.Web.ASPxTextBox taxIdTextBox;
-        
-        /// <summary>
         /// idNumberTextBox control.
         /// </summary>
         /// <remarks>
@@ -173,6 +164,15 @@ namespace HotelManagerProject {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::DevExpress.Web.ASPxTextBox idNumberTextBox;
+        
+        /// <summary>
+        /// taxIdTextBox control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::DevExpress.Web.ASPxTextBox taxIdTextBox;
         
         /// <summary>
         /// addressTextBox control.

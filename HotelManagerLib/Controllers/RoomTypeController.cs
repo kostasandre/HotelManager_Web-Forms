@@ -15,6 +15,7 @@ namespace HotelManagerLib.Controllers
     using System.Collections.Generic;
 
     using HotelManagerLib.Controllers.Interfaces;
+    using HotelManagerLib.Enums;
     using HotelManagerLib.Models.Persistant;
     using HotelManagerLib.Repositories;
     using HotelManagerLib.Repositories.Interfaces;
@@ -32,12 +33,15 @@ namespace HotelManagerLib.Controllers
         public RoomTypeController()
         {
             this.Repository = new RoomTypeRepository();
+            this.PricingListRepository = new PricingListRepository();
         }
 
         /// <summary>
         /// Gets or sets the repository.
         /// </summary>
         public IEntityRepository<RoomType> Repository { get; set; }
+
+        public IEntityRepository<PricingList> PricingListRepository { get; set; }
 
         /// <summary>
         /// The create or update entity.
@@ -76,6 +80,15 @@ namespace HotelManagerLib.Controllers
             if (entity.Id > 0)
             {
                 this.Repository.Delete(entity.Id);
+                var pricingLists = this.PricingListRepository.ReadAllList();
+                foreach (var pricingList in pricingLists)
+                {
+                    if ((pricingList.TypeOfBillableEntity == TypeOfBillableEntity.RoomType)
+                        && (pricingList.BillableEntityId == entity.Id))
+                    {
+                        this.PricingListRepository.Delete(pricingList.Id);
+                    }
+                }
             }
             else
             {

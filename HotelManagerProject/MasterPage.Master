@@ -68,6 +68,8 @@
                     <li><a href="ChartWebForm.aspx" id="">Chart</a></li>
                     
                     <li><a href="PricingListWebFormReport.aspx" id="">PricingList Reports</a></li>
+                    
+                    <li><a href="RoomAvailabilityForm.aspx" id="">Room Availability</a></li>
                 </ul>
             </nav>
         </div>
