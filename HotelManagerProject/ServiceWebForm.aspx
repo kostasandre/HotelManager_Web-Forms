@@ -144,7 +144,7 @@
                                         <div class="pcmButton">
                                             <dx:ASPxButton ID="btOK" runat="server" Text="OK" Width="80px" AutoPostBack="False" Style="float: left; margin-right: 8px" OnClick="SaveButton_OnClick">
                                                 <ClientSideEvents Click="function(s, e) {
-if (eval(&#39;codeTextBox&#39;).lastChangedValue == null || eval(&#39;descriptionTextBox&#39;).lastChangedValue == null)
+ if (eval(&#39;codeTextBox&#39;).lastChangedValue == null || eval(&#39;descriptionTextBox&#39;).lastChangedValue == null)
  		{
 return false;
 }
