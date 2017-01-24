@@ -25,7 +25,7 @@
                 //roomTypeComboBox.SetEnabled(false);
                 idTextBox.visible = 'false';
             }
-            
+
         }
     </script>
 
@@ -98,7 +98,7 @@
                                     <td class="pcmCellText">
 
                                         <div class="container" style="width: 100%">
-                                            
+
                                             <div class="row">
                                                 <div class="col-xs-4">
                                                     <dx:ASPxLabel ID="idLabel" CssClass="hidden" runat="server" Text="Name"></dx:ASPxLabel>
