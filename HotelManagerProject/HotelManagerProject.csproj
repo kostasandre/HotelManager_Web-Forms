@@ -100,7 +100,6 @@
     <Content Include="HotelWebForm.aspx" />
     <Content Include="Images\edit.png" />
     <Content Include="PricingListWebForm.aspx" />
-    <Content Include="ReportDesignerForm.aspx" />
     <Content Include="RoomTypeWebForm.aspx" />
     <Content Include="RoomWebForm.aspx" />
     <Content Include="ServiceWebForm.aspx" />
@@ -172,6 +171,12 @@
     <Compile Include="BillingAndBillingServicesWebForm.aspx.designer.cs">
       <DependentUpon>BillingAndBillingServicesWebForm.aspx</DependentUpon>
     </Compile>
+    <Compile Include="BillingsReport.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="BillingsReport.Designer.cs">
+      <DependentUpon>BillingsReport.cs</DependentUpon>
+    </Compile>
     <Compile Include="BookingForm.aspx.cs">
       <DependentUpon>BookingForm.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -236,13 +241,6 @@
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
       <DependentUpon>Settings.settings</DependentUpon>
     </Compile>
-    <Compile Include="ReportDesignerForm.aspx.cs">
-      <DependentUpon>ReportDesignerForm.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="ReportDesignerForm.aspx.designer.cs">
-      <DependentUpon>ReportDesignerForm.aspx</DependentUpon>
-    </Compile>
     <Compile Include="RoomTypeWebForm.aspx.cs">
       <DependentUpon>RoomTypeWebForm.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -276,6 +274,9 @@
     <Folder Include="App_Data\" />
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="BillingsReport.resx">
+      <DependentUpon>BillingsReport.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Dashboard1.resx">
       <DependentUpon>Dashboard1.cs</DependentUpon>
     </EmbeddedResource>

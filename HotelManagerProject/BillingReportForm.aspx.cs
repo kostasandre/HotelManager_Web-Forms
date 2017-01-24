@@ -49,7 +49,7 @@ namespace HotelManagerProject
             if (!this.IsPostBack)
             {
                 this.billingEntityController = new BillingEntityController();
-                var report = new XtraReport { DataSource = this.billingEntityController.RefreshEntities() };
+                var report = new BillingsReport { DataSource = this.billingEntityController.RefreshEntities() };
                 this.ASPxBillingWebDocumentViewer.OpenReport(report);
                 //var test = this.Request.QueryString["Type"];
 
