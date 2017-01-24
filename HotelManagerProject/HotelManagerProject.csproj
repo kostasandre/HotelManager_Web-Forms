@@ -108,7 +108,6 @@
     <Content Include="HotelWebForm.aspx" />
     <Content Include="Images\edit.png" />
     <Content Include="PricingListWebForm.aspx" />
-    <Content Include="ReportDesignerForm.aspx" />
     <Content Include="RoomAvailabilityForm.aspx" />
     <Content Include="PricingListWebFormReport.aspx" />
     <Content Include="RoomTypeWebForm.aspx" />
@@ -271,13 +270,6 @@
       <AutoGen>True</AutoGen>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
       <DependentUpon>Settings.settings</DependentUpon>
-    </Compile>
-    <Compile Include="ReportDesignerForm.aspx.cs">
-      <DependentUpon>ReportDesignerForm.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="ReportDesignerForm.aspx.designer.cs">
-      <DependentUpon>ReportDesignerForm.aspx</DependentUpon>
     </Compile>
     <Compile Include="RoomAvailabilityForm.aspx.cs">
       <DependentUpon>RoomAvailabilityForm.aspx</DependentUpon>

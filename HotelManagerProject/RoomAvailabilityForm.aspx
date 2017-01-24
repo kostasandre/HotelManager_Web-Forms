@@ -50,5 +50,6 @@
         <ClientSideEvents DropDown="OnDropDown" Init="OnInit"/>
     </dx:ASPxDateEdit>--%>
     <dx:ASPxGridView ID= "availableRooms" runat="server">
+        <SettingsBehavior AllowSort="false" AllowGroup="false" AllowDragDrop="False" />
     </dx:ASPxGridView>
 </asp:Content>

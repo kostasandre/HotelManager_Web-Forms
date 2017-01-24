@@ -70,10 +70,12 @@
             this.xrLabel10 = new DevExpress.XtraReports.UI.XRLabel();
             this.xrLabel9 = new DevExpress.XtraReports.UI.XRLabel();
             this.xrLabel12 = new DevExpress.XtraReports.UI.XRLabel();
-            this.From = new DevExpress.XtraReports.Parameters.Parameter();
-            this.To = new DevExpress.XtraReports.Parameters.Parameter();
             this.objectDataSource1 = new DevExpress.DataAccess.ObjectBinding.ObjectDataSource(this.components);
+            this.objectDataSource2 = new DevExpress.DataAccess.ObjectBinding.ObjectDataSource(this.components);
+            this.FromParam = new DevExpress.XtraReports.Parameters.Parameter();
+            this.ToParam = new DevExpress.XtraReports.Parameters.Parameter();
             ((System.ComponentModel.ISupportInitialize)(this.objectDataSource1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.objectDataSource2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this)).BeginInit();
             // 
             // Detail
@@ -582,22 +584,27 @@
             this.xrLabel12.Summary = xrSummary3;
             this.xrLabel12.TextAlignment = DevExpress.XtraPrinting.TextAlignment.BottomCenter;
             // 
-            // From
-            // 
-            this.From.Description = "From";
-            this.From.Name = "From";
-            this.From.Type = typeof(System.DateTime);
-            // 
-            // To
-            // 
-            this.To.Description = "To";
-            this.To.Name = "To";
-            this.To.Type = typeof(System.DateTime);
-            // 
             // objectDataSource1
             // 
             this.objectDataSource1.DataSource = typeof(HotelManagerLib.Models.Persistant.Billing);
             this.objectDataSource1.Name = "objectDataSource1";
+            // 
+            // objectDataSource2
+            // 
+            this.objectDataSource2.DataSource = typeof(HotelManagerLib.Models.Persistant.Booking);
+            this.objectDataSource2.Name = "objectDataSource2";
+            // 
+            // FromParam
+            // 
+            this.FromParam.Description = "From";
+            this.FromParam.Name = "FromParam";
+            this.FromParam.Type = typeof(System.DateTime);
+            // 
+            // ToParam
+            // 
+            this.ToParam.Description = "To";
+            this.ToParam.Name = "ToParam";
+            this.ToParam.Type = typeof(System.DateTime);
             // 
             // BillingsReport
             // 
@@ -613,14 +620,19 @@
             this.calculatedField2,
             this.calculatedField3});
             this.ComponentStorage.AddRange(new System.ComponentModel.IComponent[] {
-            this.objectDataSource1});
+            this.objectDataSource1,
+            this.objectDataSource2});
             this.DataSource = this.objectDataSource1;
+            this.FilterString = "[Booking.From] >= ?FromParam And [Booking.To] <= ?ToParam";
             this.Margins = new System.Drawing.Printing.Margins(0, 3, 100, 117);
             this.Parameters.AddRange(new DevExpress.XtraReports.Parameters.Parameter[] {
-            this.From,
-            this.To});
+            this.FromParam,
+            this.ToParam});
+            this.ScriptsSource = "                                                                                 " +
+    "                                                    ";
             this.Version = "16.2";
             ((System.ComponentModel.ISupportInitialize)(this.objectDataSource1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.objectDataSource2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this)).EndInit();
 
         }
@@ -640,8 +652,6 @@
         private DevExpress.XtraReports.UI.XRPageInfo xrPageInfo2;
         private DevExpress.XtraReports.UI.XRPageInfo xrPageInfo1;
         private DevExpress.XtraReports.UI.PageFooterBand PageFooter;
-        private DevExpress.XtraReports.Parameters.Parameter From;
-        private DevExpress.XtraReports.Parameters.Parameter To;
         private DevExpress.XtraReports.UI.XRLabel xrLabel14;
         private DevExpress.XtraReports.UI.XRLabel xrLabel15;
         private DevExpress.XtraReports.UI.XRLabel xrLabel26;
@@ -668,5 +678,8 @@
         private DevExpress.XtraReports.UI.XRLabel xrLabel7;
         private DevExpress.XtraReports.UI.XRLabel xrLabel11;
         private DevExpress.XtraReports.UI.XRLabel xrLabel8;
+        private DevExpress.DataAccess.ObjectBinding.ObjectDataSource objectDataSource2;
+        private DevExpress.XtraReports.Parameters.Parameter FromParam;
+        private DevExpress.XtraReports.Parameters.Parameter ToParam;
     }
 }

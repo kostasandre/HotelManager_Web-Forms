@@ -178,11 +178,11 @@ namespace HotelManagerProject
                         this.BillingListGridView.Visible = true;
                         this.saveButton.Enabled = true;
                         this.totalSumTextBox.Visible = true;
-                        this.totalSumTextBox.ClientSideEvents.Init = "function(s,e){s.SetEnabled(false);}";
+                        this.totalSumTextBox.ReadOnly = true;
                         this.totalSumTextBox.Text = this.priceValueTextBox.Text;
                         this.paidCheckBox.Visible = true;
                         this.sumOfServicesTextBox.Visible = true;
-                        this.sumOfServicesTextBox.ClientSideEvents.Init = "function(s,e){s.SetEnabled(false);}";
+                        this.sumOfServicesTextBox.ReadOnly = true;
                         this.paidLabel.Visible = true;
                         this.totalSumLabel.Visible = true;
                         this.sumOfServicesLabel.Visible = true;
@@ -263,6 +263,13 @@ namespace HotelManagerProject
             this.paidLabel.Visible = false;
             this.totalSumLabel.Visible = false;
             this.sumOfServicesLabel.Visible = false;
+            this.customerNameTextBox.ReadOnly = true;
+            this.customerSurnameTextBox.ReadOnly = true;
+            this.roomTextBox.ReadOnly = true;
+            this.fromTextBox.ReadOnly = true;
+            this.fromTextBox.ReadOnly = true;
+            this.toTextBox.ReadOnly = true;
+            this.priceValueTextBox.ReadOnly = true;
         }
 
         /// <summary>
@@ -341,8 +348,6 @@ namespace HotelManagerProject
             var errorlabel = this.Master?.FindControl("form1").FindControl("divErrorMessage") as Label;
             this.billingEntityController = new BillingEntityController();
             this.billingServiceEntityController = new BillingServiceEntityController();
-            this.saveButton.ClientSideEvents.Click = "function(s,e){document.getElementById('sumOfServicesTextBox').SetEnabled(true);}";
-            //this.sumOfServicesTextBox.Enabled = true;
             if (this.sumOfServicesTextBox.Text == string.Empty)
             {
                 this.sumOfServicesTextBox.Text = 0.ToString();
@@ -400,7 +405,7 @@ namespace HotelManagerProject
                 }
             }
 
-            Response.Redirect("BillingListWebForm.aspx", true);
+            this.Response.Redirect("BillingListWebForm.aspx", true);
         }
 
         /// <summary>
@@ -414,7 +419,7 @@ namespace HotelManagerProject
         /// </param>
         protected void CancelButtonOnClick(object sender, EventArgs e)
         {
-            Response.Redirect("BillingListWebForm.aspx", true);
+            this.Response.Redirect("BillingListWebForm.aspx", true);
         }
     }
 }
