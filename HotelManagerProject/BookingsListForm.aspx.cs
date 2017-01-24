@@ -62,8 +62,8 @@ namespace HotelManagerProject
             this.bookingsGridView.JSProperties["cp_text7"] = booking.CreatedBy;
             this.bookingsGridView.JSProperties["cp_text8"] = booking.Id.ToString();
             this.bookingsGridView.JSProperties["cp_text9"] = booking.Room.Code;
-            //this.bookingsGridView.JSProperties["cp_text10"] = booking.Customer.Name;
-            //this.bookingsGridView.JSProperties["cp_text11"] = booking.Customer.Surname;
+            this.bookingsGridView.JSProperties["cp_text10"] = booking.Customer.Name;
+            this.bookingsGridView.JSProperties["cp_text11"] = booking.Customer.Surname;
 
         }
 
