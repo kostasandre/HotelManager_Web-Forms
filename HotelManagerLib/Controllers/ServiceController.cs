@@ -14,6 +14,8 @@ namespace HotelManagerLib.Controllers
     using System;
     using System.Collections.Generic;
 
+    using HotelManagerLib.Enums;
+
     using Interfaces;
     using Models.Persistant;
     using Repositories;
@@ -32,12 +34,14 @@ namespace HotelManagerLib.Controllers
         public ServiceController()
         {
             this.Repository = new ServiceRepository();
+            this.PricingListRepository = new PricingListRepository();
         }
 
         /// <summary>
         /// Gets or sets the repository.
         /// </summary>
         public IEntityRepository<Service> Repository { get; set; }
+        public IEntityRepository<PricingList> PricingListRepository { get; set; }
 
         /// <summary>
         /// The create or update entity.
@@ -76,6 +80,15 @@ namespace HotelManagerLib.Controllers
             if (entity.Id > 0)
             {
                 this.Repository.Delete(entity.Id);
+                var pricingLists = this.PricingListRepository.ReadAllList();
+                foreach (var pricingList in pricingLists)
+                {
+                    if ((pricingList.TypeOfBillableEntity == TypeOfBillableEntity.Service)
+                        && (pricingList.BillableEntityId == entity.Id))
+                    {
+                        this.PricingListRepository.Delete(pricingList.Id);
+                    }
+                }
             }
             else
             {
