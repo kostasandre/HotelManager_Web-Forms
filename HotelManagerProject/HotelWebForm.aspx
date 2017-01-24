@@ -104,7 +104,7 @@
                                     <td class="pcmCellText">
 
                                         <div class="container" style="width: 100%">
-                                            
+
                                             <div class="row">
                                                 <div class="col-xs-4">
                                                     <dx:ASPxLabel ID="idLabel" CssClass="hidden" runat="server" Text="Name"></dx:ASPxLabel>
@@ -119,7 +119,12 @@
                                                     <dx:ASPxLabel ID="nameLabel" runat="server" Text="Name"></dx:ASPxLabel>
                                                 </div>
                                                 <div class="col-xs-6">
-                                                    <dx:ASPxTextBox ID="nameTextBox" runat="server" Width="170px" ClientIDMode="Static"></dx:ASPxTextBox>
+                                                    <dx:ASPxTextBox ID="nameTextBox" runat="server" Width="170px" ClientIDMode="Static">
+                                                        <ValidationSettings EnableCustomValidation="True" ErrorDisplayMode="Text" ErrorTextPosition="Right" SetFocusOnError="true">
+                                                            <ErrorFrameStyle Font-Size="Large" />
+                                                            <RequiredField IsRequired="True" ErrorText="*" />
+                                                        </ValidationSettings>
+                                                    </dx:ASPxTextBox>
                                                 </div>
                                             </div>
 
@@ -129,7 +134,12 @@
                                                     <dx:ASPxLabel ID="addressLabel" runat="server" Text="Address"></dx:ASPxLabel>
                                                 </div>
                                                 <div class="col-xs-6">
-                                                    <dx:ASPxTextBox ID="addressTextBox" runat="server" Width="170px" ClientIDMode="Static"></dx:ASPxTextBox>
+                                                    <dx:ASPxTextBox ID="addressTextBox" runat="server" Width="170px" ClientIDMode="Static">
+                                                        <ValidationSettings EnableCustomValidation="True" ErrorDisplayMode="Text" ErrorTextPosition="Right" SetFocusOnError="true">
+                                                            <ErrorFrameStyle Font-Size="Large" />
+                                                            <RequiredField IsRequired="True" ErrorText="*" />
+                                                        </ValidationSettings>
+                                                    </dx:ASPxTextBox>
                                                 </div>
                                             </div>
 
@@ -138,7 +148,12 @@
                                                     <dx:ASPxLabel ID="managerLabel" runat="server" Text="Manager"></dx:ASPxLabel>
                                                 </div>
                                                 <div class="col-xs-6">
-                                                    <dx:ASPxTextBox ID="managerTextBox" runat="server" Width="170px" ClientIDMode="Static"></dx:ASPxTextBox>
+                                                    <dx:ASPxTextBox ID="managerTextBox" runat="server" Width="170px" ClientIDMode="Static">
+                                                        <ValidationSettings EnableCustomValidation="True" ErrorDisplayMode="Text" ErrorTextPosition="Right" SetFocusOnError="true">
+                                                            <ErrorFrameStyle Font-Size="Large" />
+                                                            <RequiredField IsRequired="True" ErrorText="*" />
+                                                        </ValidationSettings>
+                                                    </dx:ASPxTextBox>
                                                 </div>
                                             </div>
 
@@ -147,7 +162,11 @@
                                                     <dx:ASPxLabel ID="emailLabel" runat="server" Text="Email"></dx:ASPxLabel>
                                                 </div>
                                                 <div class="col-xs-6">
-                                                    <dx:ASPxTextBox ID="emailTextBox" runat="server" Width="170px" ClientIDMode="Static"></dx:ASPxTextBox>
+                                                    <dx:ASPxTextBox ID="emailTextBox" runat="server" Width="170px" ClientIDMode="Static">
+                                                        <ValidationSettings>
+                                                            <RegularExpression ErrorText="Invalid mail" ValidationExpression="\w+([-+.']\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*" />
+                                                        </ValidationSettings>
+                                                    </dx:ASPxTextBox>
                                                 </div>
                                             </div>
 
@@ -156,7 +175,15 @@
                                                     <dx:ASPxLabel ID="phoneLabel" runat="server" Text="Phone"></dx:ASPxLabel>
                                                 </div>
                                                 <div class="col-xs-6">
-                                                    <dx:ASPxTextBox ID="phoneTextBox" runat="server" Width="170px" ClientIDMode="Static"></dx:ASPxTextBox>
+                                                    <dx:ASPxTextBox ID="phoneTextBox" runat="server" Width="170px" ClientIDMode="Static">
+                                                        <ClientSideEvents KeyDown="function(s, e) {
+	if (!((e.htmlEvent.keyCode &gt;= 48 &amp;&amp; e.htmlEvent.keyCode &lt;= 57) || 
+                                           (e.htmlEvent.keyCode == 8 || e.htmlEvent.keyCode == 46 || e.htmlEvent.keyCode == 37 || 
+                                            e.htmlEvent.keyCode == 39))) 
+                                        ASPxClientUtils.PreventEventAndBubble(e.htmlEvent);
+
+}"></ClientSideEvents>
+                                                    </dx:ASPxTextBox>
                                                 </div>
                                             </div>
 
@@ -166,6 +193,13 @@
                                                 </div>
                                                 <div class="col-xs-6">
                                                     <dx:ASPxSpinEdit ID="taxIdSpinEdit" runat="server" Number="0" MaxLength="9" ClientIDMode="Static">
+                                                        <ClientSideEvents KeyDown="function(s, e) {
+	if (!((e.htmlEvent.keyCode &gt;= 48 &amp;&amp; e.htmlEvent.keyCode &lt;= 57) || 
+                                           (e.htmlEvent.keyCode == 8 || e.htmlEvent.keyCode == 46 || e.htmlEvent.keyCode == 37 || 
+                                            e.htmlEvent.keyCode == 39))) 
+                                        ASPxClientUtils.PreventEventAndBubble(e.htmlEvent);
+
+}"></ClientSideEvents>
                                                     </dx:ASPxSpinEdit>
                                                 </div>
                                             </div>
@@ -182,7 +216,14 @@
                                     <td colspan="2">
                                         <div class="pcmButton">
                                             <dx:ASPxButton ID="btOK" runat="server" Text="OK" Width="80px" AutoPostBack="False" Style="float: left; margin-right: 8px" OnClick="saveButton_OnClick">
-                                                <ClientSideEvents Click="function(s, e) { if(ASPxClientEdit.ValidateGroup('entryGroup')) HotelDetailView.Hide(); }" />
+                                                <ClientSideEvents Click="function(s, e) {
+if (eval(&#39;nameTextBox&#39;).lastChangedValue == null || eval(&#39;addressTextBox&#39;).lastChangedValue == null || eval(&#39;managerTextBox&#39;).lastChangedValue == null)
+ 		{
+return false;
+}
+
+ 	if(ASPxClientEdit.ValidateGroup(&#39;entryGroup&#39;)) HotelDetailView.Hide();
+ }" />
                                             </dx:ASPxButton>
                                             <dx:ASPxButton ID="btCancel" runat="server" Text="Cancel" Width="80px" AutoPostBack="False" Style="float: left; margin-right: 8px">
                                                 <ClientSideEvents Click="function(s, e) { HotelDetailView.Hide(); }" />

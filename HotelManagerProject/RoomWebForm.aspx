@@ -113,7 +113,12 @@
                                                     <dx:ASPxLabel ID="codeLabel" runat="server" Text="Code"></dx:ASPxLabel>
                                                 </div>
                                                 <div class="col-xs-6">
-                                                    <dx:ASPxTextBox ID="codeTextBox" runat="server" Width="170px" ClientIDMode="Static"></dx:ASPxTextBox>
+                                                    <dx:ASPxTextBox ID="codeTextBox" runat="server" Width="170px" ClientIDMode="Static">
+                                                        <ValidationSettings EnableCustomValidation="True" ErrorDisplayMode="Text" ErrorTextPosition="Right" SetFocusOnError="true">
+                                                            <ErrorFrameStyle Font-Size="Large" />
+                                                            <RequiredField IsRequired="True" ErrorText="*" />
+                                                        </ValidationSettings>
+                                                    </dx:ASPxTextBox>
                                                 </div>
                                             </div>
 
@@ -123,7 +128,12 @@
                                                     <dx:ASPxLabel ID="hotelLabel" runat="server" Text="Hotel"></dx:ASPxLabel>
                                                 </div>
                                                 <div class="col-xs-6">
-                                                    <dx:ASPxComboBox ID="hotelComboBox" NullText="Select Hotel" ValueField="Id" TextField="Name" runat="server" IncrementalFilteringMode="None" DropDownStyle="DropDownList" ClientIDMode="Static"></dx:ASPxComboBox>
+                                                    <dx:ASPxComboBox ID="hotelComboBox" NullText="Select Hotel" ValueField="Id" TextField="Name" runat="server" IncrementalFilteringMode="None" DropDownStyle="DropDownList" ClientIDMode="Static">
+                                                        <ValidationSettings EnableCustomValidation="True" ErrorDisplayMode="Text" ErrorTextPosition="Right" SetFocusOnError="true">
+                                                            <ErrorFrameStyle Font-Size="Large" />
+                                                            <RequiredField IsRequired="True" ErrorText="*" />
+                                                        </ValidationSettings>
+                                                    </dx:ASPxComboBox>
                                                 </div>
                                             </div>
 
@@ -132,7 +142,12 @@
                                                     <dx:ASPxLabel ID="roomTypeLabel" runat="server" Text="Room Type"></dx:ASPxLabel>
                                                 </div>
                                                 <div class="col-xs-6">
-                                                    <dx:ASPxComboBox ID="roomTypeComboBox" NullText="Select Room Type" ValueField="Id" TextField="Code" runat="server" IncrementalFilteringMode="None" DropDownStyle="DropDownList" ClientIDMode="Static"></dx:ASPxComboBox>
+                                                    <dx:ASPxComboBox ID="roomTypeComboBox" NullText="Select Room Type" ValueField="Id" TextField="Code" runat="server" IncrementalFilteringMode="None" DropDownStyle="DropDownList" ClientIDMode="Static">
+                                                        <ValidationSettings EnableCustomValidation="True" ErrorDisplayMode="Text" ErrorTextPosition="Right" SetFocusOnError="true">
+                                                            <ErrorFrameStyle Font-Size="Large" />
+                                                            <RequiredField IsRequired="True" ErrorText="*" />
+                                                        </ValidationSettings>
+                                                    </dx:ASPxComboBox>
                                                 </div>
                                             </div>
                                         </div>
@@ -148,7 +163,14 @@
                                     <td colspan="2">
                                         <div class="pcmButton">
                                             <dx:ASPxButton ID="btOK" runat="server" Text="OK" Width="80px" AutoPostBack="False" Style="float: left; margin-right: 8px" OnClick="SaveButton_OnClick">
-                                                <ClientSideEvents Click="function(s, e) { if(ASPxClientEdit.ValidateGroup('entryGroup')) RoomDetailView.Hide(); }" />
+                                                <ClientSideEvents Click="function(s, e) {
+if (eval(&#39;codeTextBox&#39;).lastChangedValue == null || eval(&#39;hotelComboBox&#39;).lastChangedValue == null || eval(&#39;roomTypeComboBox&#39;).lastChangedValue == null)
+ 		{
+return false;
+}
+
+ 	if(ASPxClientEdit.ValidateGroup(&#39;entryGroup&#39;)) RoomDetailView.Hide(); 
+}" />
                                             </dx:ASPxButton>
                                             <dx:ASPxButton ID="btCancel" runat="server" Text="Cancel" Width="80px" AutoPostBack="False" Style="float: left; margin-right: 8px">
                                                 <ClientSideEvents Click="function(s, e) { RoomDetailView.Hide(); }" />

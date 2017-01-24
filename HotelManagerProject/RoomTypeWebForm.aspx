@@ -107,7 +107,7 @@
                                     <td class="pcmCellText">
 
                                         <div class="container" style="width: 100%">
-                                            
+
                                             <div class="row">
                                                 <div class="col-xs-4">
                                                     <dx:ASPxLabel ID="idLabel" CssClass="hidden" runat="server" Text="Name"></dx:ASPxLabel>
@@ -122,7 +122,12 @@
                                                     <dx:ASPxLabel ID="codeLabel" runat="server" Text="Code"></dx:ASPxLabel>
                                                 </div>
                                                 <div class="col-xs-6">
-                                                    <dx:ASPxTextBox ID="codeTextBox" runat="server" Width="170px" ClientIDMode="Static"></dx:ASPxTextBox>
+                                                    <dx:ASPxTextBox ID="codeTextBox" runat="server" Width="170px" ClientIDMode="Static">
+                                                        <ValidationSettings EnableCustomValidation="True" ErrorDisplayMode="Text" ErrorTextPosition="Right" SetFocusOnError="true">
+                                                            <ErrorFrameStyle Font-Size="Large" />
+                                                            <RequiredField IsRequired="True" ErrorText="*" />
+                                                        </ValidationSettings>
+                                                    </dx:ASPxTextBox>
                                                 </div>
                                             </div>
 
@@ -132,7 +137,12 @@
                                                     <dx:ASPxLabel ID="bedTypeLabel" runat="server" Text="Bed Type"></dx:ASPxLabel>
                                                 </div>
                                                 <div class="col-xs-6">
-                                                    <dx:ASPxComboBox ID="bedTypeComboBox" NullText="Select Bed Type" ValueField="Id" TextField="Name" runat="server" IncrementalFilteringMode="None" DropDownStyle="DropDownList" ClientIDMode="Static"></dx:ASPxComboBox>
+                                                    <dx:ASPxComboBox ID="bedTypeComboBox" NullText="Select Bed Type" ValueField="Id" TextField="Name" runat="server" IncrementalFilteringMode="None" DropDownStyle="DropDownList" ClientIDMode="Static">
+                                                        <ValidationSettings EnableCustomValidation="True" ErrorDisplayMode="Text" ErrorTextPosition="Right" SetFocusOnError="true">
+                                                            <ErrorFrameStyle Font-Size="Large" />
+                                                            <RequiredField IsRequired="True" ErrorText="*" />
+                                                        </ValidationSettings>
+                                                    </dx:ASPxComboBox>
                                                 </div>
                                             </div>
 
@@ -141,7 +151,12 @@
                                                     <dx:ASPxLabel ID="ViewLabel" runat="server" Text="View"></dx:ASPxLabel>
                                                 </div>
                                                 <div class="col-xs-6">
-                                                    <dx:ASPxComboBox ID="ViewComboBox" NullText="Select View" ValueField="Id" TextField="Name" runat="server" IncrementalFilteringMode="None" DropDownStyle="DropDownList" ClientIDMode="Static"></dx:ASPxComboBox>
+                                                    <dx:ASPxComboBox ID="ViewComboBox" NullText="Select View" ValueField="Id" TextField="Name" runat="server" IncrementalFilteringMode="None" DropDownStyle="DropDownList" ClientIDMode="Static">
+                                                        <ValidationSettings EnableCustomValidation="True" ErrorDisplayMode="Text" ErrorTextPosition="Right" SetFocusOnError="true">
+                                                            <ErrorFrameStyle Font-Size="Large" />
+                                                            <RequiredField IsRequired="True" ErrorText="*" />
+                                                        </ValidationSettings>
+                                                    </dx:ASPxComboBox>
                                                 </div>
                                             </div>
 
@@ -184,7 +199,14 @@
                                     <td colspan="2">
                                         <div class="pcmButton">
                                             <dx:ASPxButton ID="btOK" runat="server" Text="OK" Width="80px" AutoPostBack="False" Style="float: left; margin-right: 8px" OnClick="SaveButton_OnClick">
-                                                <ClientSideEvents Click="function(s, e) { if(ASPxClientEdit.ValidateGroup('entryGroup')) RoomTypeDetailView.Hide(); }" />
+                                                <ClientSideEvents Click="function(s, e) {
+if (eval(&#39;codeTextBox&#39;).lastChangedValue == null || eval(&#39;bedTypeComboBox&#39;).lastChangedValue == null || eval(&#39;ViewComboBox&#39;).lastChangedValue == null)
+ 		{
+return false;
+}
+
+ 	if(ASPxClientEdit.ValidateGroup(&#39;entryGroup&#39;)) RoomTypeDetailView.Hide(); 
+}" />
                                             </dx:ASPxButton>
                                             <dx:ASPxButton ID="btCancel" runat="server" Text="Cancel" Width="80px" AutoPostBack="False" Style="float: left; margin-right: 8px">
                                                 <ClientSideEvents Click="function(s, e) { RoomTypeDetailView.Hide(); }" />
