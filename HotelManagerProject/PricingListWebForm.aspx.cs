@@ -14,9 +14,13 @@ namespace HotelManagerProject
     using System;
     using System.Collections.Generic;
     using System.Data.SqlClient;
+    using System.Globalization;
     using System.Linq;
     using System.Web.UI;
     using System.Web.UI.WebControls;
+
+    using DevExpress.Web;
+    using DevExpress.XtraPrinting.Native;
 
     using HotelManagerLib.Controllers;
     using HotelManagerLib.Controllers.Interfaces;
@@ -62,7 +66,29 @@ namespace HotelManagerProject
         protected void Page_Init(object sender, EventArgs e)
         {
             this.pricingListController = new PricingListController();
-            this.PricingListGridView.DataSource = this.pricingListController.RefreshEntities();
+            this.roomTypeController = new RoomTypeController();
+            this.serviceController = new ServiceController();
+
+            var pricingListList = this.pricingListController.RefreshEntities();
+            foreach (var pricingList in pricingListList)
+            {
+                if (pricingList.TypeOfBillableEntity == TypeOfBillableEntity.RoomType)
+                {
+                    var roomTypeTemp =
+                        this.roomTypeController.RefreshEntities()
+                            .SingleOrDefault(x => x.Id == pricingList.BillableEntityId) as RoomType;
+                    pricingList.BillableEntityCode = roomTypeTemp.Code;
+                }
+                else
+                {
+                    var serviceTemp =
+                        this.serviceController.RefreshEntities()
+                            .SingleOrDefault(x => x.Id == pricingList.BillableEntityId) as Service;
+                    pricingList.BillableEntityCode = serviceTemp.Code;
+                }
+            }
+
+            this.PricingListGridView.DataSource = pricingListList;
             this.PricingListGridView.DataBind();
 
             this.typeOFRadioButtonList.DataSource = typeof(TypeOfBillableEntity).GetEnumValues();
@@ -145,6 +171,7 @@ namespace HotelManagerProject
                         roomTypeList.SingleOrDefault(
                             x => x.Id == Convert.ToInt32(this.roomTypeComboBox.SelectedItem.Value));
                     this.pricingList.BillableEntityId = roomTypeTemp.Id;
+                    this.pricingList.BillableEntityCode = roomTypeTemp.Code;
                 }
             }
             else if (this.typeOFRadioButtonList.SelectedItem.Value == "Service")
@@ -156,6 +183,7 @@ namespace HotelManagerProject
                         serviceList.SingleOrDefault(
                             x => x.Id == Convert.ToInt32(this.serviceComboBox.SelectedItem.Value));
                     this.pricingList.BillableEntityId = serviceTemp.Id;
+                    this.pricingList.BillableEntityCode = serviceTemp.Code;
                 }
             }
 
@@ -230,6 +258,22 @@ namespace HotelManagerProject
                     this.PricingListGridView.DataBind();
                 }
             }
+        }
+
+        protected void PricingListGridView_OnCustomButtonCallback(object sender, ASPxGridViewCustomButtonCallbackEventArgs e)
+        {
+            this.pricingListController = new PricingListController();
+            var gridviewIndex = e.VisibleIndex;
+            var row = this.PricingListGridView.GetRow(gridviewIndex) as PricingList;
+            var myPricingList = this.pricingListController.GetEntity(row.Id);
+            this.PricingListGridView.JSProperties["cp_text1"] = myPricingList.Id;
+            this.PricingListGridView.JSProperties["cp_text2"] = myPricingList.TypeOfBillableEntity.ToString();
+            this.PricingListGridView.JSProperties["cp_text3"] = myPricingList.BillableEntityCode;
+            this.PricingListGridView.JSProperties["cp_text4"] = myPricingList.BillableEntityCode;
+            this.PricingListGridView.JSProperties["cp_text5"] = myPricingList.ValidFrom.ToString(CultureInfo.InvariantCulture);
+            this.PricingListGridView.JSProperties["cp_text6"] = myPricingList.ValidTo.ToString(CultureInfo.InvariantCulture);
+            this.PricingListGridView.JSProperties["cp_text7"] = myPricingList.Price;
+            this.PricingListGridView.JSProperties["cp_text8"] = myPricingList.VatPrc;
         }
     }
 }

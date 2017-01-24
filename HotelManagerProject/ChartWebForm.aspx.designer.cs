@@ -10,15 +10,15 @@
 namespace HotelManagerProject {
     
     
-    public partial class BillingReport {
+    public partial class ChartWebForm {
         
         /// <summary>
-        /// ASPxBillingWebDocumentViewer control.
+        /// ASPxDashboardViewer1 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::DevExpress.XtraReports.Web.ASPxWebDocumentViewer ASPxBillingWebDocumentViewer;
+        protected global::DevExpress.DashboardWeb.ASPxDashboardViewer ASPxDashboardViewer1;
     }
 }

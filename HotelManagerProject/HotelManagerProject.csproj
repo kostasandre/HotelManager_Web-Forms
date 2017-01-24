@@ -47,16 +47,21 @@
     <Reference Include="DevExpress.Dashboard.v16.2.Core, Version=16.2.3.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
     <Reference Include="DevExpress.Dashboard.v16.2.Web, Version=16.2.3.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
     <Reference Include="DevExpress.DataAccess.v16.2, Version=16.2.3.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.Map.v16.2.Core, Version=16.2.3.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
     <Reference Include="DevExpress.Office.v16.2.Core, Version=16.2.3.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
     <Reference Include="DevExpress.Pdf.v16.2.Core, Version=16.2.3.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
     <Reference Include="DevExpress.PivotGrid.v16.2.Core, Version=16.2.3.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
     <Reference Include="DevExpress.Sparkline.v16.2.Core, Version=16.2.3.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
     <Reference Include="DevExpress.Web.ASPxScheduler.v16.2, Version=16.2.3.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.Utils.v16.2, Version=16.2.3.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
     <Reference Include="DevExpress.Web.ASPxTreeList.v16.2, Version=16.2.3.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
     <Reference Include="DevExpress.Web.Resources.v16.2, Version=16.2.3.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
     <Reference Include="DevExpress.Xpo.v16.2, Version=16.2.3.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
     <Reference Include="DevExpress.XtraCharts.v16.2, Version=16.2.3.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
     <Reference Include="DevExpress.XtraGauges.v16.2.Core, Version=16.2.3.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.XtraGauges.v16.2.Presets, Version=16.2.3.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.XtraGauges.v16.2.Win, Version=16.2.3.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.XtraMap.v16.2, Version=16.2.3.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
     <Reference Include="DevExpress.XtraReports.v16.2, Version=16.2.3.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
     <Reference Include="DevExpress.XtraReports.v16.2.Web, Version=16.2.3.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
     <Reference Include="DevExpress.XtraScheduler.v16.2.Core, Version=16.2.3.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
@@ -90,6 +95,7 @@
     <Content Include="BillingAndBillingServicesWebForm.aspx" />
     <Content Include="BookingForm.aspx" />
     <Content Include="BookingsListForm.aspx" />
+    <Content Include="ChartWebForm.aspx" />
     <Content Include="Content\bootstrap-theme.css" />
     <Content Include="Content\bootstrap-theme.min.css" />
     <Content Include="Content\bootstrap.css" />
@@ -104,6 +110,7 @@
     <Content Include="PricingListWebForm.aspx" />
     <Content Include="ReportDesignerForm.aspx" />
     <Content Include="RoomAvailabilityForm.aspx" />
+    <Content Include="PricingListWebFormReport.aspx" />
     <Content Include="RoomTypeWebForm.aspx" />
     <Content Include="RoomWebForm.aspx" />
     <Content Include="ServiceWebForm.aspx" />
@@ -175,6 +182,12 @@
     <Compile Include="BillingAndBillingServicesWebForm.aspx.designer.cs">
       <DependentUpon>BillingAndBillingServicesWebForm.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Reports\BillingsReport.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Reports\BillingsReport.Designer.cs">
+      <DependentUpon>BillingsReport.cs</DependentUpon>
+    </Compile>
     <Compile Include="BookingForm.aspx.cs">
       <DependentUpon>BookingForm.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -189,12 +202,25 @@
     <Compile Include="BookingsListForm.aspx.designer.cs">
       <DependentUpon>BookingsListForm.aspx</DependentUpon>
     </Compile>
+    <Compile Include="ChartWebForm.aspx.cs">
+      <DependentUpon>ChartWebForm.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ChartWebForm.aspx.designer.cs">
+      <DependentUpon>ChartWebForm.aspx</DependentUpon>
+    </Compile>
     <Compile Include="CustomersForm.aspx.cs">
       <DependentUpon>CustomersForm.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="CustomersForm.aspx.designer.cs">
       <DependentUpon>CustomersForm.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Dashboard1.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Dashboard1.Designer.cs">
+      <DependentUpon>Dashboard1.cs</DependentUpon>
     </Compile>
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -220,12 +246,25 @@
     <Compile Include="MasterPage.Master.designer.cs">
       <DependentUpon>MasterPage.Master</DependentUpon>
     </Compile>
+    <Compile Include="Reports\PricingListReport.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Reports\PricingListReport.Designer.cs">
+      <DependentUpon>PricingListReport.cs</DependentUpon>
+    </Compile>
     <Compile Include="PricingListWebForm.aspx.cs">
       <DependentUpon>PricingListWebForm.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="PricingListWebForm.aspx.designer.cs">
       <DependentUpon>PricingListWebForm.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="PricingListWebFormReport.aspx.cs">
+      <DependentUpon>PricingListWebFormReport.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="PricingListWebFormReport.aspx.designer.cs">
+      <DependentUpon>PricingListWebFormReport.aspx</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Properties\Settings.Designer.cs">
@@ -280,6 +319,12 @@
     <Folder Include="App_Data\" />
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="Reports\BillingsReport.resx">
+      <DependentUpon>BillingsReport.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reports\PricingListReport.resx">
+      <DependentUpon>PricingListReport.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Properties\licenses.licx" />
   </ItemGroup>
   <ItemGroup>

@@ -83,10 +83,7 @@ namespace HotelManagerProject
             this.roomTypeController = new RoomTypeController();
 
             this.roomType.Id = Convert.ToInt32(this.idTextBox.Text);
-
-
-
-
+            
             this.roomType.Code = this.codeTextBox.Text;
             this.roomType.BedType = (BedType)Enum.Parse(typeof(BedType), this.bedTypeComboBox.SelectedItem.Text);
             this.roomType.View = (View)Enum.Parse(typeof(View), this.ViewComboBox.SelectedItem.Text);

@@ -160,10 +160,10 @@ namespace HotelManagerLib.Repositories
                 // databaseRoom.HotelId = null;
                 // }
                 var databaseHotel = context.Hotels.SingleOrDefault(x => x.Id == room.HotelId);
-                databaseRoom.Hotel = databaseHotel;
+                //databaseRoom.Hotel = databaseHotel;
+                databaseRoom.HotelId = databaseHotel.Id;
                 databaseRoom.Code = room.Code;
-                databaseRoom.RoomType = room.RoomType; // ???????????
-                databaseRoom.RoomTypeId = room.RoomTypeId; // ???????????
+                databaseRoom.RoomTypeId = room.RoomTypeId; 
                 databaseRoom.Updated = DateTime.Now;
                 databaseRoom.UpdatedBy = Environment.UserName;
 

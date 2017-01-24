@@ -96,7 +96,7 @@
                 </div>
                 <div class="col-lg-2 col-md-3 col-sm-3 col-xs-12">
                     <dx:ASPxLabel CssClass="Text" ForeColor="Black" ID="sumOfServicesLabel" Text="Sum of Services :" runat="server" EnableTheming="True" Theme="BlackGlass"></dx:ASPxLabel>
-                    <dx:ASPxTextBox  ClientInstanceName="sumOfServicesTextBox" ID="sumOfServicesTextBox" runat="server"></dx:ASPxTextBox>
+                    <dx:ASPxTextBox  ClientInstanceName="sumOfServicesTextBox" ClientIDMode="Static" ID="sumOfServicesTextBox" runat="server"></dx:ASPxTextBox>
                 </div>
 
             </div>

@@ -10,24 +10,15 @@
 namespace HotelManagerProject {
     
     
-    public partial class ReportDesignerForm {
+    public partial class PricingListWebFormReport {
         
         /// <summary>
-        /// form1 control.
+        /// ASPxPricingListWebDocumentViewer control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlForm form1;
-        
-        /// <summary>
-        /// ASPxReportDesigner control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::DevExpress.XtraReports.Web.ASPxReportDesigner ASPxReportDesigner;
+        protected global::DevExpress.XtraReports.Web.ASPxWebDocumentViewer ASPxPricingListWebDocumentViewer;
     }
 }

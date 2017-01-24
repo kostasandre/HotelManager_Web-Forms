@@ -65,7 +65,10 @@
                 </ul>
                 <ul class="nav navbar-nav collapse" id="four">
                     <li><a href="BillingReportForm.aspx" id="">Billing reports</a></li>
-                    <li><a href="#" id="">Three sub 2</a></li>
+                    <li><a href="ChartWebForm.aspx" id="">Chart</a></li>
+                    
+                    <li><a href="PricingListWebFormReport.aspx" id="">PricingList Reports</a></li>
+                    
                     <li><a href="RoomAvailabilityForm.aspx" id="">Room Availability</a></li>
                 </ul>
             </nav>
