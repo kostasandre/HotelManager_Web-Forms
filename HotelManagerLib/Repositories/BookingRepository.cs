@@ -150,7 +150,7 @@ namespace HotelManagerLib.Repositories
         {
             using (var context = new DataBaseContext())
             {
-                var booking = context.Bookings.Include("Room").SingleOrDefault(x => x.Id == id);
+                var booking = context.Bookings.Include("Room").Include("Customer").SingleOrDefault(x => x.Id == id);
                 return booking;
             }
         }

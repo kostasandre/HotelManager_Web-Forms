@@ -139,32 +139,33 @@
                                 </dx:ASPxTextBox>
                             </td>
                         </tr>
-                        <tr>
-                            <td>
-                                <label>Tax Id: </label>
-                            </td>
-                            <td>
-                                <dx:ASPxTextBox ClientIDMode="Static" ID="taxIdTextBox" runat="server" Width="170px">
-
-                                </dx:ASPxTextBox>
-                            </td>
-                        </tr>
+                       
                         <tr>
                             <td>
                                 <label>Id Number: </label>
                             </td>
                             <td>
                                 <dx:ASPxTextBox ClientInstanceName="idNumberText" ID="idNumberTextBox" runat="server" Width="170px">
-                                    <ClientSideEvents KeyDown="function(s, e) {
-                                     if (!((e.htmlEvent.keyCode &gt;= 48 &amp;&amp; e.htmlEvent.keyCode &lt;= 57) || 
-                                           (e.htmlEvent.keyCode == 8 || e.htmlEvent.keyCode == 46 || e.htmlEvent.keyCode == 37 || 
-                                            e.htmlEvent.keyCode == 39))) 
-                                        ASPxClientUtils.PreventEventAndBubble(e.htmlEvent); }">
-                                    </ClientSideEvents>
+                                    
                                     <ValidationSettings EnableCustomValidation="True" ErrorDisplayMode="Text" ErrorTextPosition="Right" SetFocusOnError="true">
                                         <ErrorFrameStyle Font-Size="Large"/>
                                         <RequiredField IsRequired="True" ErrorText="*"/>
                                     </ValidationSettings>
+                                </dx:ASPxTextBox>
+                            </td>
+                        </tr>
+                         <tr>
+                            <td>
+                                <label>Tax Id: </label>
+                            </td>
+                            <td>
+                                <dx:ASPxTextBox ClientIDMode="Static" ID="taxIdTextBox" runat="server" Width="170px">
+
+                                    <ClientSideEvents KeyDown="function(s, e) {
+	   if (!((e.htmlEvent.keyCode &gt;= 48 &amp;&amp; e.htmlEvent.keyCode &lt;= 57) || 
+                                           (e.htmlEvent.keyCode == 8 || e.htmlEvent.keyCode == 46 || e.htmlEvent.keyCode == 37 || 
+                                            e.htmlEvent.keyCode == 39))) 
+                                        ASPxClientUtils.PreventEventAndBubble(e.htmlEvent); }"></ClientSideEvents>
                                 </dx:ASPxTextBox>
                             </td>
                         </tr>
@@ -195,12 +196,14 @@
                             </td>
                             <td>
                                 <dx:ASPxTextBox ClientIDMode="Static" ID="phoneTextBox" runat="server" Width="170px">
+
+
                                     <ClientSideEvents KeyDown="function(s, e) {
-                                     if (!((e.htmlEvent.keyCode &gt;= 48 &amp;&amp; e.htmlEvent.keyCode &lt;= 57) || 
+	  if (!((e.htmlEvent.keyCode &gt;= 48 &amp;&amp; e.htmlEvent.keyCode &lt;= 57) || 
                                            (e.htmlEvent.keyCode == 8 || e.htmlEvent.keyCode == 46 || e.htmlEvent.keyCode == 37 || 
                                             e.htmlEvent.keyCode == 39))) 
-                                        ASPxClientUtils.PreventEventAndBubble(e.htmlEvent); }">
-                                    </ClientSideEvents>
+                                        ASPxClientUtils.PreventEventAndBubble(e.htmlEvent);
+}"></ClientSideEvents>
                                 </dx:ASPxTextBox>
                             </td>
                         </tr>

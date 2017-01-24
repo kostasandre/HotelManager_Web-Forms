@@ -198,12 +198,6 @@
     <Compile Include="CustomersForm.aspx.designer.cs">
       <DependentUpon>CustomersForm.aspx</DependentUpon>
     </Compile>
-    <Compile Include="Dashboard1.cs">
-      <SubType>Component</SubType>
-    </Compile>
-    <Compile Include="Dashboard1.Designer.cs">
-      <DependentUpon>Dashboard1.cs</DependentUpon>
-    </Compile>
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
