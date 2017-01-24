@@ -69,7 +69,6 @@ namespace HotelManagerProject
                         errorlabel.Text = "Couldn't create the current Billing";
                     }
                 }
-
             }
         }
     }

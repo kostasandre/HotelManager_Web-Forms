@@ -64,8 +64,8 @@
                     <li><a href="BillingAndBillingServicesWebForm.aspx" id="">Create a new Billing with Billing Service</a></li>
                 </ul>
                 <ul class="nav navbar-nav collapse" id="four">
-                    <li><a href="BillingReportForm.aspx" id="">Billing reports</a></li>
-                    <li><a href="#" id="">Three sub 2</a></li>
+                    <li><a href="BillingReportForm.aspx" id="">Billing Reports</a></li>
+                    <li><a href="PricingListWebFormReport.aspx" id="">PricingList Reports</a></li>
                 </ul>
             </nav>
         </div>

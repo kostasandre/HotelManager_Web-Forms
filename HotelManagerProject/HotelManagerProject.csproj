@@ -178,10 +178,10 @@
     <Compile Include="BillingAndBillingServicesWebForm.aspx.designer.cs">
       <DependentUpon>BillingAndBillingServicesWebForm.aspx</DependentUpon>
     </Compile>
-    <Compile Include="BillingsReport.cs">
+    <Compile Include="Reports\BillingsReport.cs">
       <SubType>Component</SubType>
     </Compile>
-    <Compile Include="BillingsReport.Designer.cs">
+    <Compile Include="Reports\BillingsReport.Designer.cs">
       <DependentUpon>BillingsReport.cs</DependentUpon>
     </Compile>
     <Compile Include="BookingForm.aspx.cs">
@@ -242,10 +242,10 @@
     <Compile Include="MasterPage.Master.designer.cs">
       <DependentUpon>MasterPage.Master</DependentUpon>
     </Compile>
-    <Compile Include="PricingListReport.cs">
+    <Compile Include="Reports\PricingListReport.cs">
       <SubType>Component</SubType>
     </Compile>
-    <Compile Include="PricingListReport.Designer.cs">
+    <Compile Include="Reports\PricingListReport.Designer.cs">
       <DependentUpon>PricingListReport.cs</DependentUpon>
     </Compile>
     <Compile Include="PricingListWebForm.aspx.cs">
@@ -301,10 +301,10 @@
     <Folder Include="App_Data\" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="BillingsReport.resx">
+    <EmbeddedResource Include="Reports\BillingsReport.resx">
       <DependentUpon>BillingsReport.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="PricingListReport.resx">
+    <EmbeddedResource Include="Reports\PricingListReport.resx">
       <DependentUpon>PricingListReport.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\licenses.licx" />
