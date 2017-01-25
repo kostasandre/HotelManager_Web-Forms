@@ -68,31 +68,23 @@ namespace HotelManagerProject
             this.pricingListController = new PricingListController();
             this.roomTypeController = new RoomTypeController();
             this.serviceController = new ServiceController();
-
-            var pricingListList = this.pricingListController.RefreshEntities();
-            foreach (var pricingList in pricingListList)
-            {
-                if (pricingList.TypeOfBillableEntity == TypeOfBillableEntity.RoomType)
-                {
-                    var roomTypeTemp =
-                        this.roomTypeController.RefreshEntities()
-                            .SingleOrDefault(x => x.Id == pricingList.BillableEntityId) as RoomType;
-                    pricingList.BillableEntityCode = roomTypeTemp.Code;
-                }
-                else
-                {
-                    var serviceTemp =
-                        this.serviceController.RefreshEntities()
-                            .SingleOrDefault(x => x.Id == pricingList.BillableEntityId) as Service;
-                    pricingList.BillableEntityCode = serviceTemp.Code;
-                }
-            }
-
-            this.PricingListGridView.DataSource = pricingListList;
-            this.PricingListGridView.DataBind();
+            
+            this.RefreshPricingListEntityWithCodeInside();
 
             this.typeOFRadioButtonList.DataSource = typeof(TypeOfBillableEntity).GetEnumValues();
             this.typeOFRadioButtonList.DataBind();
+
+            var roomTypeList = this.roomTypeController.RefreshEntities();
+            this.roomTypeComboBox.DataSource = roomTypeList;
+            this.roomTypeComboBox.DataBind();
+            this.roomTypeLabel.ClientVisible = false;
+            this.roomTypeComboBox.ClientVisible = false;
+
+            var serviceList = this.serviceController.RefreshEntities();
+            this.serviceComboBox.DataSource = serviceList;
+            this.serviceComboBox.DataBind();
+            this.serviceLabel.ClientVisible = false;
+            this.serviceComboBox.ClientVisible = false;
         }
 
         /// <summary>
@@ -109,17 +101,7 @@ namespace HotelManagerProject
             this.roomTypeController = new RoomTypeController();
             this.serviceController = new ServiceController();
 
-            var roomTypeList = this.roomTypeController.RefreshEntities();
-            this.roomTypeComboBox.DataSource = roomTypeList;
-            this.roomTypeComboBox.DataBind();
-            this.roomTypeLabel.Visible = false;
-            this.roomTypeComboBox.Visible = false;
-
-            var serviceList = this.serviceController.RefreshEntities();
-            this.serviceComboBox.DataSource = serviceList;
-            this.serviceComboBox.DataBind();
-            this.serviceLabel.Visible = false;
-            this.serviceComboBox.Visible = false;
+            
         }
 
         /// <summary>
@@ -133,16 +115,25 @@ namespace HotelManagerProject
         /// </param>
         protected void TypeOFRadioButtonList_OnSelectedIndexChanged(object sender, EventArgs e)
         {
-            if (this.typeOFRadioButtonList.SelectedItem.Value == "RoomType")
+            this.DisplayBillableServiceControl(this.typeOFRadioButtonList.SelectedItem.Value.ToString());
+        }
+
+        private void DisplayBillableServiceControl(string billableServiceType)
+        {
+            if (billableServiceType == "RoomType")
             {
-                this.roomTypeLabel.Visible = true;
-                this.roomTypeComboBox.Visible = true;
+                this.roomTypeLabel.ClientVisible = true;
+                this.roomTypeComboBox.ClientVisible = true;
+                this.serviceLabel.ClientVisible = false;
+                this.serviceComboBox.ClientVisible = false;
             }
 
-            if (this.typeOFRadioButtonList.SelectedItem.Value == "Service")
+            if (billableServiceType == "Service")
             {
-                this.serviceLabel.Visible = true;
-                this.serviceComboBox.Visible = true;
+                this.roomTypeLabel.ClientVisible = false;
+                this.roomTypeComboBox.ClientVisible = false;
+                this.serviceLabel.ClientVisible = true;
+                this.serviceComboBox.ClientVisible = true;
             }
         }
 
@@ -159,10 +150,13 @@ namespace HotelManagerProject
         {
             this.pricingList = new PricingList();
             this.pricingListController = new PricingListController();
+
+            this.pricingList.Id = Convert.ToInt32(this.idTextBox.Text);
+
             this.pricingList.TypeOfBillableEntity =
                 (TypeOfBillableEntity)
                 Enum.Parse(typeof(TypeOfBillableEntity), this.typeOFRadioButtonList.SelectedItem.Text);
-            if (this.typeOFRadioButtonList.SelectedItem.Value == "RoomType")
+            if (this.typeOFRadioButtonList.SelectedItem.Value.ToString() == "RoomType")
             {
                 var roomTypeList = this.roomTypeComboBox.DataSource as List<RoomType>;
                 if (roomTypeList != null)
@@ -171,10 +165,9 @@ namespace HotelManagerProject
                         roomTypeList.SingleOrDefault(
                             x => x.Id == Convert.ToInt32(this.roomTypeComboBox.SelectedItem.Value));
                     this.pricingList.BillableEntityId = roomTypeTemp.Id;
-                    this.pricingList.BillableEntityCode = roomTypeTemp.Code;
-                }
+                    }
             }
-            else if (this.typeOFRadioButtonList.SelectedItem.Value == "Service")
+            else if (this.typeOFRadioButtonList.SelectedItem.Value.ToString() == "Service")
             {
                 var serviceList = this.serviceComboBox.DataSource as List<Service>;
                 if (serviceList != null)
@@ -183,7 +176,6 @@ namespace HotelManagerProject
                         serviceList.SingleOrDefault(
                             x => x.Id == Convert.ToInt32(this.serviceComboBox.SelectedItem.Value));
                     this.pricingList.BillableEntityId = serviceTemp.Id;
-                    this.pricingList.BillableEntityCode = serviceTemp.Code;
                 }
             }
 
@@ -207,6 +199,8 @@ namespace HotelManagerProject
         protected void DeletePricingListButton_OnClick(object sender, EventArgs e)
         {
             this.pricingListController = new PricingListController();
+            this.roomTypeController = new RoomTypeController();
+            this.serviceController = new ServiceController();
 
             var errorlabel = this.Master?.FindControl("form1").FindControl("divErrorMessage") as Label;
             if (errorlabel != null)
@@ -254,8 +248,8 @@ namespace HotelManagerProject
 
                     errorlabel.Text = errorlabel.Text.TrimEnd(' ', ',');
                     this.Session["errorMessage"] = errorlabel.Text;
-                    this.PricingListGridView.DataSource = this.pricingListController.RefreshEntities();
-                    this.PricingListGridView.DataBind();
+
+                    this.RefreshPricingListEntityWithCodeInside();
                 }
             }
         }
@@ -263,17 +257,69 @@ namespace HotelManagerProject
         protected void PricingListGridView_OnCustomButtonCallback(object sender, ASPxGridViewCustomButtonCallbackEventArgs e)
         {
             this.pricingListController = new PricingListController();
+            this.roomTypeController = new RoomTypeController();
+            this.serviceController = new ServiceController();
+
+
+
+
             var gridviewIndex = e.VisibleIndex;
             var row = this.PricingListGridView.GetRow(gridviewIndex) as PricingList;
             var myPricingList = this.pricingListController.GetEntity(row.Id);
+
+            if (myPricingList.TypeOfBillableEntity == TypeOfBillableEntity.RoomType)
+            {
+                var roomTypeTemp =
+                    this.roomTypeController.RefreshEntities()
+                        .SingleOrDefault(x => x.Id == myPricingList.BillableEntityId) as RoomType;
+                myPricingList.BillableEntityCode = roomTypeTemp.Code;
+            }
+            else
+            {
+                var serviceTemp =
+                    this.serviceController.RefreshEntities()
+                        .SingleOrDefault(x => x.Id == myPricingList.BillableEntityId) as Service;
+                myPricingList.BillableEntityCode = serviceTemp.Code;
+            }
+
             this.PricingListGridView.JSProperties["cp_text1"] = myPricingList.Id;
-            this.PricingListGridView.JSProperties["cp_text2"] = myPricingList.TypeOfBillableEntity.ToString();
+            this.PricingListGridView.JSProperties["cp_text2"] = (int)myPricingList.TypeOfBillableEntity;
             this.PricingListGridView.JSProperties["cp_text3"] = myPricingList.BillableEntityCode;
             this.PricingListGridView.JSProperties["cp_text4"] = myPricingList.BillableEntityCode;
-            this.PricingListGridView.JSProperties["cp_text5"] = myPricingList.ValidFrom.ToString(CultureInfo.InvariantCulture);
-            this.PricingListGridView.JSProperties["cp_text6"] = myPricingList.ValidTo.ToString(CultureInfo.InvariantCulture);
+            this.PricingListGridView.JSProperties["cp_text5"] = myPricingList.ValidFrom.ToString(CultureInfo.CurrentCulture);
+            this.PricingListGridView.JSProperties["cp_text6"] = myPricingList.ValidTo.ToString(CultureInfo.CurrentCulture);
             this.PricingListGridView.JSProperties["cp_text7"] = myPricingList.Price;
             this.PricingListGridView.JSProperties["cp_text8"] = myPricingList.VatPrc;
+
+            if (e.ButtonID == "editButton")
+            {
+                this.DisplayBillableServiceControl(myPricingList.TypeOfBillableEntity.ToString());
+            }
+        }
+
+        protected void RefreshPricingListEntityWithCodeInside()
+        {
+            var pricingListList = this.pricingListController.RefreshEntities();
+            foreach (var pricingList in pricingListList)
+            {
+                if (pricingList.TypeOfBillableEntity == TypeOfBillableEntity.RoomType)
+                {
+                    var roomTypeTemp =
+                        this.roomTypeController.RefreshEntities()
+                            .SingleOrDefault(x => x.Id == pricingList.BillableEntityId) as RoomType;
+                    pricingList.BillableEntityCode = roomTypeTemp.Code;
+                }
+                else
+                {
+                    var serviceTemp =
+                        this.serviceController.RefreshEntities()
+                            .SingleOrDefault(x => x.Id == pricingList.BillableEntityId) as Service;
+                    pricingList.BillableEntityCode = serviceTemp.Code;
+                }
+            }
+
+            this.PricingListGridView.DataSource = pricingListList;
+            this.PricingListGridView.DataBind();
         }
     }
 }

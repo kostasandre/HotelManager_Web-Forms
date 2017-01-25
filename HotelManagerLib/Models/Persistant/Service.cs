@@ -14,6 +14,7 @@ namespace HotelManagerLib.Models.Persistant
     using System;
     using System.Collections.Generic;
     using System.ComponentModel;
+    using System.ComponentModel.DataAnnotations.Schema;
 
     using HotelManagerLib.Models.Persistant.Interfaces;
 
@@ -29,7 +30,7 @@ namespace HotelManagerLib.Models.Persistant
         /// </summary>
         public Service()
         {
-            this.Hotels = new List<Hotel>();
+            //this.Hotels = new List<Hotel>(); /////////////////////////////////////////////
             this.BillingServices = new List<BillingService>();
             this.Created = DateTime.Now;
             this.CreatedBy = Environment.UserName;
@@ -53,8 +54,25 @@ namespace HotelManagerLib.Models.Persistant
         /// <summary>
         /// Gets or sets the hotels.
         /// </summary>
-        public virtual List<Hotel> Hotels { get; set; }
+        //public virtual List<Hotel> Hotels { get; set; } ////////////////////////////////////
+
+        /// <summary>
+        /// Gets or sets the hotel.
+        /// </summary>
+        public virtual Hotel Hotel { get; set; }
         
+        /// <summary>
+        /// Gets or sets the hotel id.
+        /// </summary>
+        [ForeignKey("Hotel")]
+        [Browsable(false)]
+        public int HotelId { get; set; }
+
+        /// <summary>
+        /// The hotel name.
+        /// </summary>
+        public string HotelName => this.Hotel.Name;
+
         /// <summary>
         /// Gets or sets the id.
         /// </summary>

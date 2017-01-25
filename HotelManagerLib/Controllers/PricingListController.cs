@@ -190,7 +190,7 @@ namespace HotelManagerLib.Controllers
                     if (date >= pricingListOfTheRoomForOnePeriod.ValidFrom && date <= pricingListOfTheRoomForOnePeriod.ValidTo)
                     {
                         sum += pricingListOfTheRoomForOnePeriod.Price
-                                + (pricingListOfTheRoomForOnePeriod.Price * pricingListOfTheRoomForOnePeriod.VatPrc);
+                                + (pricingListOfTheRoomForOnePeriod.Price * pricingListOfTheRoomForOnePeriod.VatPrc / 100);
                         flag++;
                         if (flag > 1)
                         {
@@ -244,7 +244,7 @@ namespace HotelManagerLib.Controllers
                 throw new NullReferenceException($"No pricing list for given days!");
             }
 
-            return tempPricingList.Price + (tempPricingList.Price * tempPricingList.VatPrc);
+            return tempPricingList.Price + (tempPricingList.Price * tempPricingList.VatPrc / 100);
         }
     }
 }

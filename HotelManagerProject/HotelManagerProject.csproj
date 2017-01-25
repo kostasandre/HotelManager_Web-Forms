@@ -311,6 +311,9 @@
     <Folder Include="App_Data\" />
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="Dashboard1.resx">
+      <DependentUpon>Dashboard1.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Reports\BillingsReport.resx">
       <DependentUpon>BillingsReport.cs</DependentUpon>
     </EmbeddedResource>
