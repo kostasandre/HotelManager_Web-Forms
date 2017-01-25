@@ -150,10 +150,13 @@ namespace HotelManagerProject
         {
             this.pricingList = new PricingList();
             this.pricingListController = new PricingListController();
+
+            this.pricingList.Id = Convert.ToInt32(this.idTextBox.Text);
+
             this.pricingList.TypeOfBillableEntity =
                 (TypeOfBillableEntity)
                 Enum.Parse(typeof(TypeOfBillableEntity), this.typeOFRadioButtonList.SelectedItem.Text);
-            if (this.typeOFRadioButtonList.SelectedItem.Value == "RoomType")
+            if (this.typeOFRadioButtonList.SelectedItem.Value.ToString() == "RoomType")
             {
                 var roomTypeList = this.roomTypeComboBox.DataSource as List<RoomType>;
                 if (roomTypeList != null)
@@ -162,10 +165,9 @@ namespace HotelManagerProject
                         roomTypeList.SingleOrDefault(
                             x => x.Id == Convert.ToInt32(this.roomTypeComboBox.SelectedItem.Value));
                     this.pricingList.BillableEntityId = roomTypeTemp.Id;
-                    this.pricingList.BillableEntityCode = roomTypeTemp.Code;
-                }
+                    }
             }
-            else if (this.typeOFRadioButtonList.SelectedItem.Value == "Service")
+            else if (this.typeOFRadioButtonList.SelectedItem.Value.ToString() == "Service")
             {
                 var serviceList = this.serviceComboBox.DataSource as List<Service>;
                 if (serviceList != null)
@@ -174,7 +176,6 @@ namespace HotelManagerProject
                         serviceList.SingleOrDefault(
                             x => x.Id == Convert.ToInt32(this.serviceComboBox.SelectedItem.Value));
                     this.pricingList.BillableEntityId = serviceTemp.Id;
-                    this.pricingList.BillableEntityCode = serviceTemp.Code;
                 }
             }
 
@@ -256,9 +257,31 @@ namespace HotelManagerProject
         protected void PricingListGridView_OnCustomButtonCallback(object sender, ASPxGridViewCustomButtonCallbackEventArgs e)
         {
             this.pricingListController = new PricingListController();
+            this.roomTypeController = new RoomTypeController();
+            this.serviceController = new ServiceController();
+
+
+
+
             var gridviewIndex = e.VisibleIndex;
             var row = this.PricingListGridView.GetRow(gridviewIndex) as PricingList;
             var myPricingList = this.pricingListController.GetEntity(row.Id);
+
+            if (myPricingList.TypeOfBillableEntity == TypeOfBillableEntity.RoomType)
+            {
+                var roomTypeTemp =
+                    this.roomTypeController.RefreshEntities()
+                        .SingleOrDefault(x => x.Id == myPricingList.BillableEntityId) as RoomType;
+                myPricingList.BillableEntityCode = roomTypeTemp.Code;
+            }
+            else
+            {
+                var serviceTemp =
+                    this.serviceController.RefreshEntities()
+                        .SingleOrDefault(x => x.Id == myPricingList.BillableEntityId) as Service;
+                myPricingList.BillableEntityCode = serviceTemp.Code;
+            }
+
             this.PricingListGridView.JSProperties["cp_text1"] = myPricingList.Id;
             this.PricingListGridView.JSProperties["cp_text2"] = (int)myPricingList.TypeOfBillableEntity;
             this.PricingListGridView.JSProperties["cp_text3"] = myPricingList.BillableEntityCode;

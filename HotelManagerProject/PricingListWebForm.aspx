@@ -3,16 +3,11 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
-    
+
     <script type="text/javascript">
         function ShowLoginWindow() {
             if (createPricingListButton) {
                 idTextBox.SetText("0");
-                //var temp = typeOFRadioButtonList;
-                //var temp2 = typeOFRadioButtonList.textContent;
-                //typeOFRadioButtonList.SetChecked(false);
-                //roomTypeComboBox.SetText("");
-                //serviceComboBox.SetText("");
                 validFromDateEdit.SetText("");
                 validToDateEdit.SetText("");
                 priceSpinEdit.SetText("");
@@ -24,11 +19,6 @@
 
         function EndCallback(s, e) {
             idTextBox.SetText(s.cp_text1);
-            //typeOFRadioButtonList.SetChecked(s.cp_text2);
-            //typeOFRadioButtonList.setSelectedValue(s.cp_text2);
-            //typeOFRadioButtonList.setText(s.cp_text2);
-            //typeOfServiceLabel.visible = 'true';
-            //typeOfServiceTextBox.visible = 'true';
             typeOFRadioButtonList.SetSelectedIndex(s.cp_text2);
             if (s.cp_text2 === 0) {
                 if (roomTypeLabel.SetVisible) {
@@ -36,7 +26,7 @@
                 } else {
                     roomTypeLabel.classList.remove('hidden');
                 }
-                
+
                 if (roomTypeComboBox.SetVisible) {
                     roomTypeComboBox.SetVisible(true);
                 } else {
@@ -81,8 +71,11 @@
                     serviceComboBox.classList.remove('hidden');
                 }
             }
-            //roomTypeComboBox.SetText(s.cp_text3);
-            //serviceComboBox.SetText(s.cp_text4);
+            typeOFRadioButtonList.SetEnabled(false);
+            roomTypeComboBox.SetText(s.cp_text3);
+            roomTypeComboBox.SetEnabled(false);
+            serviceComboBox.SetText(s.cp_text4);
+            serviceComboBox.SetEnabled(false);
             validFromDateEdit.SetText(s.cp_text5);
             validToDateEdit.SetText(s.cp_text6);
             priceSpinEdit.SetText(s.cp_text7);
@@ -93,14 +86,14 @@
     <div class="container" style="width: 100%">
         <div class="row">
             <div class="col-lg-2 col-md-2 col-sm-2 col-md-2 col-xs-4">
-                <dx:ASPxButton ID="createPricingListButton" ClientIDMode="Static" CssClass="button" ToolTip="Creates a new PricingList" ForeColor="AquaMarine" Theme="BlackGlass" runat="server" Text="Create PricingList" >
+                <dx:ASPxButton ID="createPricingListButton" ClientIDMode="Static" CssClass="button" ToolTip="Creates a new PricingList" ForeColor="AquaMarine" Theme="BlackGlass" runat="server" Text="Create PricingList">
                     <ClientSideEvents Click="function(s, e) {
 	{ ShowLoginWindow(); }
 }"></ClientSideEvents>
                 </dx:ASPxButton>
             </div>
             <div class="col-lg-2 col-md-2 col-sm-2 col-xs-4">
-                <dx:ASPxButton ID="deletePricingListButton" CssClass="button" ToolTip="Deletes the selected PricingList" ForeColor="AquaMarine" Theme="BlackGlass" runat="server" Text="Delete PricingList" OnClick="DeletePricingListButton_OnClick"/>
+                <dx:ASPxButton ID="deletePricingListButton" CssClass="button" ToolTip="Deletes the selected PricingList" ForeColor="AquaMarine" Theme="BlackGlass" runat="server" Text="Delete PricingList" OnClick="DeletePricingListButton_OnClick" />
             </div>
             <div class="col-lg-8 col-md-8 col-sm-8 col-xs-12">
                 <dx:ASPxGridView ID="PricingListGridView" OnCustomButtonCallback="PricingListGridView_OnCustomButtonCallback" runat="server" AutoGenerateColumns="False" Theme="BlackGlass" EnableTheming="True" KeyFieldName="Id" ClientIDMode="Static">
@@ -145,11 +138,11 @@
             </div>
         </div>
     </div>
-    
+
     <dx:ASPxPopupControl ID="PricingListDetailView" ClientIDMode="Static" runat="server" CloseAction="CloseButton" Width="350px" Height="250px" CloseOnEscape="True" Modal="True"
         MaxWidth="800px" MaxHeight="800px" MinHeight="150px" MinWidth="150px"
         PopupHorizontalAlign="WindowCenter" PopupVerticalAlign="WindowCenter" ClientInstanceName="PricingListDetailView"
-        HeaderText="Bookings" AllowDragging="True" PopupAnimationType="Fade" EnableViewState="False" EnableTheming="True" Theme="BlackGlass">
+        HeaderText="Pricing List" AllowDragging="True" PopupAnimationType="Fade" EnableViewState="False" EnableTheming="True" Theme="BlackGlass">
         <ClientSideEvents PopUp="function(s, e) { ASPxClientEdit.ClearGroup('entryGroup');}" />
         <ContentCollection>
             <dx:PopupControlContentControl runat="server">
@@ -165,7 +158,7 @@
                                     <td class="pcmCellText">
 
                                         <div class="container" style="width: 100%">
-                                            
+
                                             <div class="row">
                                                 <div class="col-xs-4">
                                                     <dx:ASPxLabel ID="idLabel" CssClass="hidden" runat="server" Text="Name"></dx:ASPxLabel>
@@ -182,72 +175,95 @@
                                                 <div class="col-xs-6">
 
                                                     <dx:ASPxRadioButtonList ID="typeOFRadioButtonList" runat="server" OnSelectedIndexChanged="TypeOFRadioButtonList_OnSelectedIndexChanged" AutoPostBack="True" ClientIDMode="Static">
+                                                    <ValidationSettings EnableCustomValidation="True" ErrorDisplayMode="Text" ErrorTextPosition="Right" SetFocusOnError="true">
+                                                            <ErrorFrameStyle Font-Size="Large" />
+                                                            <RequiredField IsRequired="True" ErrorText="*" />
+                                                        </ValidationSettings>
                                                     </dx:ASPxRadioButtonList>
 
                                                 </div>
                                             </div>
-                                            
-<%--                                            <div class="row">
-                                                <div class="col-xs-4">
-                                                    <dx:ASPxLabel ID="typeOfServiceLabel" CssClass="hidden" runat="server" Text="Name" ClientIDMode="Static"></dx:ASPxLabel>
-                                                </div>
-                                                <div class="col-xs-6">
-                                                    <dx:ASPxTextBox ID="typeOfServiceTextBox" CssClass="hidden" runat="server" Width="170px" ClientIDMode="Static"></dx:ASPxTextBox>
-                                                </div>
-                                            </div>--%>
-                                            
+
                                             <div class="row">
                                                 <div class="col-xs-4">
                                                     <dx:ASPxLabel ID="roomTypeLabel" runat="server" Text="Room Type" ClientIDMode="Static"></dx:ASPxLabel>
                                                 </div>
                                                 <div class="col-xs-6">
-                                                    <dx:ASPxComboBox ID="roomTypeComboBox" NullText="Select Room Type" ValueField="Id" TextField="Code" runat="server" IncrementalFilteringMode="None" DropDownStyle="DropDownList" ClientIDMode="Static"></dx:ASPxComboBox>
+                                                    <dx:ASPxComboBox ID="roomTypeComboBox" NullText="Select Room Type" ValueField="Id" TextField="Code" runat="server" IncrementalFilteringMode="None" DropDownStyle="DropDownList" ClientIDMode="Static">
+                                                        <ValidationSettings EnableCustomValidation="True" ErrorDisplayMode="Text" ErrorTextPosition="Right" SetFocusOnError="true">
+                                                            <ErrorFrameStyle Font-Size="Large" />
+                                                            <RequiredField IsRequired="True" ErrorText="*" />
+                                                        </ValidationSettings>
+                                                    </dx:ASPxComboBox>
                                                 </div>
                                             </div>
-                                            
+
                                             <div class="row">
                                                 <div class="col-xs-4">
                                                     <dx:ASPxLabel ID="serviceLabel" runat="server" Text="Service" ClientIDMode="Static"></dx:ASPxLabel>
                                                 </div>
                                                 <div class="col-xs-6">
-                                                    <dx:ASPxComboBox ID="serviceComboBox" NullText="Select Service" ValueField="Id" TextField="Description" runat="server" IncrementalFilteringMode="None" DropDownStyle="DropDownList" ClientIDMode="Static"></dx:ASPxComboBox>
+                                                    <dx:ASPxComboBox ID="serviceComboBox" NullText="Select Service" ValueField="Id" TextField="Description" runat="server" IncrementalFilteringMode="None" DropDownStyle="DropDownList" ClientIDMode="Static">
+                                                        <ValidationSettings EnableCustomValidation="True" ErrorDisplayMode="Text" ErrorTextPosition="Right" SetFocusOnError="true">
+                                                            <ErrorFrameStyle Font-Size="Large" />
+                                                            <RequiredField IsRequired="True" ErrorText="*" />
+                                                        </ValidationSettings>
+                                                    </dx:ASPxComboBox>
                                                 </div>
                                             </div>
-                                            
+
                                             <div class="row">
                                                 <div class="col-xs-4">
                                                     <dx:ASPxLabel ID="ValidFrom" runat="server" Text="ValidFrom"></dx:ASPxLabel>
                                                 </div>
                                                 <div class="col-xs-6">
-                                                    <dx:ASPxDateEdit ID="validFromDateEdit" runat="server" ClientIDMode="Static"></dx:ASPxDateEdit>
+                                                    <dx:ASPxDateEdit ID="validFromDateEdit" runat="server" ClientIDMode="Static">
+                                                        <ValidationSettings EnableCustomValidation="True" ErrorDisplayMode="Text" ErrorTextPosition="Right" SetFocusOnError="true">
+                                                            <ErrorFrameStyle Font-Size="Large" />
+                                                            <RequiredField IsRequired="True" ErrorText="*" />
+                                                        </ValidationSettings>
+                                                    </dx:ASPxDateEdit>
                                                 </div>
                                             </div>
-                                            
+
                                             <div class="row">
                                                 <div class="col-xs-4">
                                                     <dx:ASPxLabel ID="ValidTo" runat="server" Text="ValidTo"></dx:ASPxLabel>
                                                 </div>
                                                 <div class="col-xs-6">
-                                                    <dx:ASPxDateEdit ID="validToDateEdit" runat="server" ClientIDMode="Static"></dx:ASPxDateEdit>
+                                                    <dx:ASPxDateEdit ID="validToDateEdit" runat="server" ClientIDMode="Static">
+                                                        <ValidationSettings EnableCustomValidation="True" ErrorDisplayMode="Text" ErrorTextPosition="Right" SetFocusOnError="true">
+                                                            <ErrorFrameStyle Font-Size="Large" />
+                                                            <RequiredField IsRequired="True" ErrorText="*" />
+                                                        </ValidationSettings>
+                                                    </dx:ASPxDateEdit>
                                                 </div>
                                             </div>
-                                            
+
                                             <div class="row">
                                                 <div class="col-xs-4">
                                                     <dx:ASPxLabel ID="priceLabel" runat="server" Text="Price"></dx:ASPxLabel>
                                                 </div>
                                                 <div class="col-xs-6">
                                                     <dx:ASPxSpinEdit ID="priceSpinEdit" runat="server" Number="0" MinValue="0" DecimalPlaces="2" ClientIDMode="Static">
+                                                        <ValidationSettings EnableCustomValidation="True" ErrorDisplayMode="Text" ErrorTextPosition="Right" SetFocusOnError="true">
+                                                            <ErrorFrameStyle Font-Size="Large" />
+                                                            <RequiredField IsRequired="True" ErrorText="*" />
+                                                        </ValidationSettings>
                                                     </dx:ASPxSpinEdit>
                                                 </div>
                                             </div>
-                                            
+
                                             <div class="row">
                                                 <div class="col-xs-4">
                                                     <dx:ASPxLabel ID="VatPrcLabel" runat="server" Text="Vat Prc"></dx:ASPxLabel>
                                                 </div>
                                                 <div class="col-xs-6">
                                                     <dx:ASPxSpinEdit ID="VatPrcSpinEdit" runat="server" Number="0" MinValue="0" MaxValue="100" DecimalPlaces="0" ClientIDMode="Static">
+                                                        <ValidationSettings EnableCustomValidation="True" ErrorDisplayMode="Text" ErrorTextPosition="Right" SetFocusOnError="true">
+                                                            <ErrorFrameStyle Font-Size="Large" />
+                                                            <RequiredField IsRequired="True" ErrorText="*" />
+                                                        </ValidationSettings>
                                                     </dx:ASPxSpinEdit>
                                                 </div>
                                             </div>
@@ -265,7 +281,14 @@
                                     <td colspan="2">
                                         <div class="pcmButton">
                                             <dx:ASPxButton ID="btOK" runat="server" Text="OK" Width="80px" AutoPostBack="False" Style="float: left; margin-right: 8px" OnClick="SaveButton_OnClick">
-                                                <ClientSideEvents Click="function(s, e) { if(ASPxClientEdit.ValidateGroup('entryGroup')) PricingListDetailView.Hide(); }" />
+                                                <ClientSideEvents Click="function(s, e) { 
+if (eval(&#39;validFromDateEdit&#39;).lastChangedValue == null || eval(&#39;validToDateEdit&#39;).lastChangedValue == null || eval(&#39;priceSpinEdit&#39;).lastChangedValue == null || eval(&#39;VatPrcSpinEdit&#39;).lastChangedValue == null || eval(&#39;typeOFRadioButtonList&#39;).lastChangedValue == null ) 
+{
+return false;
+}
+
+if(ASPxClientEdit.ValidateGroup(&#39;entryGroup&#39;)) PricingListDetailView.Hide(); 
+}" />
                                             </dx:ASPxButton>
                                             <dx:ASPxButton ID="btCancel" runat="server" Text="Cancel" Width="80px" AutoPostBack="False" Style="float: left; margin-right: 8px">
                                                 <ClientSideEvents Click="function(s, e) { PricingListDetailView.Hide(); }" />
