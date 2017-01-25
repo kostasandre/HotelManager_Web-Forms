@@ -126,7 +126,7 @@
             // xrLabel7
             // 
             this.xrLabel7.DataBindings.AddRange(new DevExpress.XtraReports.UI.XRBinding[] {
-            new DevExpress.XtraReports.UI.XRBinding("Text", null, "ValidTo")});
+            new DevExpress.XtraReports.UI.XRBinding("Text", null, "ValidTo", "{0:dd/MM/yyyy}")});
             this.xrLabel7.Dpi = 100F;
             this.xrLabel7.LocationFloat = new DevExpress.Utils.PointFloat(100F, 0F);
             this.xrLabel7.Name = "xrLabel7";
@@ -139,7 +139,7 @@
             // xrLabel6
             // 
             this.xrLabel6.DataBindings.AddRange(new DevExpress.XtraReports.UI.XRBinding[] {
-            new DevExpress.XtraReports.UI.XRBinding("Text", null, "ValidFrom")});
+            new DevExpress.XtraReports.UI.XRBinding("Text", null, "ValidFrom", "{0:dd/MM/yyyy}")});
             this.xrLabel6.Dpi = 100F;
             this.xrLabel6.LocationFloat = new DevExpress.Utils.PointFloat(0F, 0F);
             this.xrLabel6.Name = "xrLabel6";
