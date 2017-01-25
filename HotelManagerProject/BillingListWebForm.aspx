@@ -22,9 +22,6 @@
             priceForServicesTextBox.SetText(s.cp_text2);
             totalPricerTextBox.SetText(s.cp_text3);
             idTextBox.SetText(s.cp_text4);
-            for (var i = 0; i <= bookingComboBox.itemcount)
-            bookingComboBox.SetText(s.cp_text5);
-            bookingComboBox.SetText(s.cp_text6);
 
         }
 
