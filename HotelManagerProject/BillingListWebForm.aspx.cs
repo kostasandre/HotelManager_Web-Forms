@@ -116,10 +116,12 @@ namespace HotelManagerProject
         {
             this.billingEntityController = new BillingEntityController();
             this.bookingEntityController = new BookingController();
+
             this.bookingComboBox.DataSource = this.bookingEntityController.RefreshEntities();
             this.bookingComboBox.SelectedIndex = 0;
             this.bookingComboBox.Value = "Customer.Name";
             this.bookingComboBox.DataBind();
+
             this.BillingListGridView.DataSource = this.billingEntityController.RefreshEntities();
             this.BillingListGridView.DataBind();
         }
