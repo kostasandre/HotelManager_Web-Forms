@@ -100,7 +100,15 @@
                            <label>Agreed Price:</label>
                         </div>
                         <div class="col-xs-6 col-sm-4 col-md-3 col-lg-2">
-                            <dx:ASPxTextBox ID= "agreedPriceTextBox" runat="server" Width="170px"></dx:ASPxTextBox>
+                            <dx:ASPxTextBox ID= "agreedPriceTextBox" runat="server" Width="170px">
+                                <ClientSideEvents KeyDown="function(s, e) {
+	if (!((e.htmlEvent.keyCode &gt;= 48 &amp;&amp; e.htmlEvent.keyCode &lt;= 57) || (e.htmlEvent.keyCode &gt;= 96&amp;&amp; e.htmlEvent.keyCode &lt;= 105) ||  (e.htmlEvent.keyCode == 188) ||(e.htmlEvent.keyCode == 110) ||
+           (e.htmlEvent.keyCode == 8 || e.htmlEvent.keyCode == 46 || e.htmlEvent.keyCode == 37 || 
+            e.htmlEvent.keyCode == 39))) 
+        ASPxClientUtils.PreventEventAndBubble(e.htmlEvent); 
+
+}"></ClientSideEvents>
+                            </dx:ASPxTextBox>
                         </div>
             </div>
             <div class="row">
@@ -177,9 +185,9 @@
                             </td>
                             <td>
                                 <dx:ASPxTextBox ClientInstanceName="nameTextBox" ValidateRequestMode="Enabled" ID= "nameTextBox" runat="server" Width="170px">
-                                    <ValidationSettings  EnableCustomValidation="True" ErrorDisplayMode="Text" ErrorTextPosition="Right" SetFocusOnError="true">
+                                    <ValidationSettings  EnableCustomValidation="True" ErrorDisplayMode="ImageWithTooltip" ErrorTextPosition="Right" SetFocusOnError="true">
                                     <ErrorFrameStyle Font-Size="Large"/>
-                                        <RequiredField IsRequired="True" ErrorText="*"/>
+                                        <RequiredField IsRequired="True" ErrorText="Name is required"/>
                                     </ValidationSettings>
                                 </dx:ASPxTextBox> 
                             </td>
@@ -190,9 +198,9 @@
                             </td>
                             <td>
                                 <dx:ASPxTextBox ClientInstanceName="surnameText" ValidateRequestMode="Enabled" ID= "surNameTextBox" runat="server" Width="170px">
-                                    <ValidationSettings  EnableCustomValidation="True" ErrorDisplayMode="Text" ErrorTextPosition="Right" SetFocusOnError="true">
+                                    <ValidationSettings  EnableCustomValidation="True" ErrorDisplayMode="ImageWithTooltip" ErrorTextPosition="Right" SetFocusOnError="true">
                                     <ErrorFrameStyle Font-Size="Large"/>
-                                        <RequiredField IsRequired="True" ErrorText="*"/>
+                                        <RequiredField IsRequired="True" ErrorText="Surname is required"/>
                                     </ValidationSettings>
                                 </dx:ASPxTextBox> 
                             </td>
@@ -210,9 +218,9 @@
                                             e.htmlEvent.keyCode == 39))) 
                                         ASPxClientUtils.PreventEventAndBubble(e.htmlEvent); }">
                                     </ClientSideEvents>
-                                    <ValidationSettings  EnableCustomValidation="True" ErrorDisplayMode="Text" ErrorTextPosition="Right" SetFocusOnError="true">
+                                    <ValidationSettings  EnableCustomValidation="True" ErrorDisplayMode="ImageWithTooltip" ErrorTextPosition="Right" SetFocusOnError="true">
                                     <ErrorFrameStyle Font-Size="Large"/>
-                                        <RequiredField IsRequired="True" ErrorText="*"/>
+                                        <RequiredField IsRequired="True" ErrorText="Id number is required"/>
                                     </ValidationSettings>
                                 </dx:ASPxTextBox> 
                             </td>

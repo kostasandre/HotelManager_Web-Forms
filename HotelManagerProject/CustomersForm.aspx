@@ -119,9 +119,9 @@
                             </td>
                             <td>
                                 <dx:ASPxTextBox ClientInstanceName="nameTextBox" ValidateRequestMode="Enabled" ID="nameTextBox" runat="server" Width="170px">
-                                    <ValidationSettings EnableCustomValidation="True" ErrorDisplayMode="Text" ErrorTextPosition="Right" SetFocusOnError="true">
+                                    <ValidationSettings EnableCustomValidation="True" ErrorDisplayMode="ImageWithTooltip" ErrorTextPosition="Right" SetFocusOnError="true">
                                         <ErrorFrameStyle Font-Size="Large" />
-                                        <RequiredField IsRequired="True" ErrorText="*" />
+                                        <RequiredField IsRequired="True" ErrorText="Name is required" />
                                     </ValidationSettings>
                                 </dx:ASPxTextBox>
                             </td>
@@ -132,9 +132,9 @@
                             </td>
                             <td>
                                 <dx:ASPxTextBox ClientIDMode="Static" ClientInstanceName="surnameText" ValidateRequestMode="Enabled" ID="surNameTextBox" runat="server" Width="170px">
-                                    <ValidationSettings EnableCustomValidation="True" ErrorDisplayMode="Text" ErrorTextPosition="Right" SetFocusOnError="true">
+                                    <ValidationSettings EnableCustomValidation="True" ErrorDisplayMode="ImageWithTooltip" ErrorTextPosition="Right" SetFocusOnError="true">
                                         <ErrorFrameStyle Font-Size="Large" />
-                                        <RequiredField IsRequired="True" ErrorText="*" />
+                                        <RequiredField IsRequired="True" ErrorText="Surname is required" />
                                     </ValidationSettings>
                                 </dx:ASPxTextBox>
                             </td>
@@ -147,9 +147,9 @@
                             <td>
                                 <dx:ASPxTextBox ClientInstanceName="idNumberText" ID="idNumberTextBox" runat="server" Width="170px">
 
-                                    <ValidationSettings EnableCustomValidation="True" ErrorDisplayMode="Text" ErrorTextPosition="Right" SetFocusOnError="true">
+                                    <ValidationSettings EnableCustomValidation="True" ErrorDisplayMode="ImageWithTooltip" ErrorTextPosition="Right" SetFocusOnError="true">
                                         <ErrorFrameStyle Font-Size="Large" />
-                                        <RequiredField IsRequired="True" ErrorText="*" />
+                                        <RequiredField IsRequired="True" ErrorText="Id number is required" />
                                     </ValidationSettings>
                                 </dx:ASPxTextBox>
                             </td>
@@ -183,8 +183,8 @@
                             </td>
                             <td>
                                 <dx:ASPxTextBox ClientIDMode="Static" ID="emailTextBox" runat="server" Width="170px">
-                                    <ValidationSettings>
-                                        <RegularExpression ErrorText="Invalid mail" ValidationExpression="\w+([-+.']\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*" />
+                                    <ValidationSettings ErrorDisplayMode="ImageWithTooltip">
+                                        <RegularExpression ErrorText="Invalid Email" ValidationExpression="\w+([-+.']\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*" />
                                     </ValidationSettings>
                                 </dx:ASPxTextBox>
                             </td>

@@ -178,9 +178,9 @@
                                                 <div class="col-xs-6">
 
                                                     <dx:ASPxRadioButtonList ID="typeOFRadioButtonList" runat="server" OnSelectedIndexChanged="TypeOFRadioButtonList_OnSelectedIndexChanged" AutoPostBack="True" ClientIDMode="Static">
-                                                        <ValidationSettings EnableCustomValidation="True" ErrorDisplayMode="Text" ErrorTextPosition="Right" SetFocusOnError="true">
+                                                        <ValidationSettings EnableCustomValidation="True" ErrorDisplayMode="ImageWithTooltip" ErrorTextPosition="Right" SetFocusOnError="true">
                                                             <ErrorFrameStyle Font-Size="Large" />
-                                                            <RequiredField IsRequired="True" ErrorText="*" />
+                                                            <RequiredField IsRequired="True" ErrorText="Type of service is required" />
                                                         </ValidationSettings>
                                                     </dx:ASPxRadioButtonList>
 
@@ -193,9 +193,9 @@
                                                 </div>
                                                 <div class="col-xs-6">
                                                     <dx:ASPxComboBox ID="roomTypeComboBox" NullText="Select Room Type" ValueField="Id" TextField="Code" runat="server" IncrementalFilteringMode="None" DropDownStyle="DropDownList" ClientIDMode="Static">
-                                                        <ValidationSettings EnableCustomValidation="True" ErrorDisplayMode="Text" ErrorTextPosition="Right" SetFocusOnError="true">
+                                                        <ValidationSettings EnableCustomValidation="True" ErrorDisplayMode="ImageWithTooltip" ErrorTextPosition="Right" SetFocusOnError="true">
                                                             <ErrorFrameStyle Font-Size="Large" />
-                                                            <RequiredField IsRequired="True" ErrorText="*" />
+                                                            <RequiredField IsRequired="True" ErrorText="Room type is required" />
                                                         </ValidationSettings>
                                                     </dx:ASPxComboBox>
                                                 </div>
@@ -207,9 +207,9 @@
                                                 </div>
                                                 <div class="col-xs-6">
                                                     <dx:ASPxComboBox ID="serviceComboBox" NullText="Select Service" ValueField="Id" TextField="Description" runat="server" IncrementalFilteringMode="None" DropDownStyle="DropDownList" ClientIDMode="Static">
-                                                        <ValidationSettings EnableCustomValidation="True" ErrorDisplayMode="Text" ErrorTextPosition="Right" SetFocusOnError="true">
+                                                        <ValidationSettings EnableCustomValidation="True" ErrorDisplayMode="ImageWithTooltip" ErrorTextPosition="Right" SetFocusOnError="true">
                                                             <ErrorFrameStyle Font-Size="Large" />
-                                                            <RequiredField IsRequired="True" ErrorText="*" />
+                                                            <RequiredField IsRequired="True" ErrorText="Service is required" />
                                                         </ValidationSettings>
                                                     </dx:ASPxComboBox>
                                                 </div>
@@ -221,9 +221,9 @@
                                                 </div>
                                                 <div class="col-xs-6">
                                                     <dx:ASPxDateEdit ID="validFromDateEdit" runat="server" ClientIDMode="Static">
-                                                        <ValidationSettings EnableCustomValidation="True" ErrorDisplayMode="Text" ErrorTextPosition="Right" SetFocusOnError="true">
+                                                        <ValidationSettings EnableCustomValidation="True" ErrorDisplayMode="ImageWithTooltip" ErrorTextPosition="Right" SetFocusOnError="true">
                                                             <ErrorFrameStyle Font-Size="Large" />
-                                                            <RequiredField IsRequired="True" ErrorText="*" />
+                                                            <RequiredField IsRequired="True" ErrorText="Valid from is required" />
                                                         </ValidationSettings>
                                                     </dx:ASPxDateEdit>
                                                 </div>
@@ -235,9 +235,9 @@
                                                 </div>
                                                 <div class="col-xs-6">
                                                     <dx:ASPxDateEdit ID="validToDateEdit" runat="server" ClientIDMode="Static">
-                                                        <ValidationSettings EnableCustomValidation="True" ErrorDisplayMode="Text" ErrorTextPosition="Right" SetFocusOnError="true">
+                                                        <ValidationSettings EnableCustomValidation="True" ErrorDisplayMode="ImageWithTooltip" ErrorTextPosition="Right" SetFocusOnError="true">
                                                             <ErrorFrameStyle Font-Size="Large" />
-                                                            <RequiredField IsRequired="True" ErrorText="*" />
+                                                            <RequiredField IsRequired="True" ErrorText="Valid to is required" />
                                                         </ValidationSettings>
                                                     </dx:ASPxDateEdit>
                                                 </div>
@@ -249,9 +249,9 @@
                                                 </div>
                                                 <div class="col-xs-6">
                                                     <dx:ASPxSpinEdit ID="priceSpinEdit" runat="server" Number="0" MinValue="0" DecimalPlaces="2" ClientIDMode="Static">
-                                                        <ValidationSettings EnableCustomValidation="True" ErrorDisplayMode="Text" ErrorTextPosition="Right" SetFocusOnError="true">
+                                                        <ValidationSettings EnableCustomValidation="True" ErrorDisplayMode="ImageWithTooltip" ErrorTextPosition="Right" SetFocusOnError="true">
                                                             <ErrorFrameStyle Font-Size="Large" />
-                                                            <RequiredField IsRequired="True" ErrorText="*" />
+                                                            <RequiredField IsRequired="True" ErrorText="Price is required" />
                                                         </ValidationSettings>
                                                     </dx:ASPxSpinEdit>
                                                 </div>
@@ -263,9 +263,9 @@
                                                 </div>
                                                 <div class="col-xs-6">
                                                     <dx:ASPxSpinEdit ID="VatPrcSpinEdit" runat="server" Number="0" MinValue="0" MaxValue="100" DecimalPlaces="0" ClientIDMode="Static">
-                                                        <ValidationSettings EnableCustomValidation="True" ErrorDisplayMode="Text" ErrorTextPosition="Right" SetFocusOnError="true">
+                                                        <ValidationSettings EnableCustomValidation="True" ErrorDisplayMode="ImageWithTooltip" ErrorTextPosition="Right" SetFocusOnError="true">
                                                             <ErrorFrameStyle Font-Size="Large" />
-                                                            <RequiredField IsRequired="True" ErrorText="*" />
+                                                            <RequiredField IsRequired="True" ErrorText="Vat is required" />
                                                         </ValidationSettings>
                                                     </dx:ASPxSpinEdit>
                                                 </div>

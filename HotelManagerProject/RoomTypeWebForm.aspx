@@ -126,9 +126,9 @@
                                                 </div>
                                                 <div class="col-xs-6">
                                                     <dx:ASPxTextBox ID="codeTextBox" runat="server" Width="170px" ClientIDMode="Static">
-                                                        <ValidationSettings EnableCustomValidation="True" ErrorDisplayMode="Text" ErrorTextPosition="Right" SetFocusOnError="true">
+                                                        <ValidationSettings EnableCustomValidation="True" ErrorDisplayMode="ImageWithTooltip" ErrorTextPosition="Right" SetFocusOnError="true">
                                                             <ErrorFrameStyle Font-Size="Large" />
-                                                            <RequiredField IsRequired="True" ErrorText="*" />
+                                                            <RequiredField IsRequired="True" ErrorText="Code is required" />
                                                         </ValidationSettings>
                                                     </dx:ASPxTextBox>
                                                 </div>
@@ -141,9 +141,9 @@
                                                 </div>
                                                 <div class="col-xs-6">
                                                     <dx:ASPxComboBox ID="bedTypeComboBox" NullText="Select Bed Type" ValueField="Id" TextField="Name" runat="server" IncrementalFilteringMode="None" DropDownStyle="DropDownList" ClientIDMode="Static">
-                                                        <ValidationSettings EnableCustomValidation="True" ErrorDisplayMode="Text" ErrorTextPosition="Right" SetFocusOnError="true">
+                                                        <ValidationSettings EnableCustomValidation="True" ErrorDisplayMode="ImageWithTooltip" ErrorTextPosition="Right" SetFocusOnError="true">
                                                             <ErrorFrameStyle Font-Size="Large" />
-                                                            <RequiredField IsRequired="True" ErrorText="*" />
+                                                            <RequiredField IsRequired="True" ErrorText="Bed type is required" />
                                                         </ValidationSettings>
                                                     </dx:ASPxComboBox>
                                                 </div>
@@ -155,9 +155,9 @@
                                                 </div>
                                                 <div class="col-xs-6">
                                                     <dx:ASPxComboBox ID="ViewComboBox" NullText="Select View" ValueField="Id" TextField="Name" runat="server" IncrementalFilteringMode="None" DropDownStyle="DropDownList" ClientIDMode="Static">
-                                                        <ValidationSettings EnableCustomValidation="True" ErrorDisplayMode="Text" ErrorTextPosition="Right" SetFocusOnError="true">
+                                                        <ValidationSettings EnableCustomValidation="True" ErrorDisplayMode="ImageWithTooltip" ErrorTextPosition="Right" SetFocusOnError="true">
                                                             <ErrorFrameStyle Font-Size="Large" />
-                                                            <RequiredField IsRequired="True" ErrorText="*" />
+                                                            <RequiredField IsRequired="True" ErrorText="View is required" />
                                                         </ValidationSettings>
                                                     </dx:ASPxComboBox>
                                                 </div>

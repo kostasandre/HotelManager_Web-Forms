@@ -1,8 +1,8 @@
-﻿<%@ page title="" language="C#" masterpagefile="~/MasterPage.Master" autoeventwireup="true" codebehind="BillingServicesListWebForm.aspx.cs" inherits="HotelManagerProject.BillingServicesListForm" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/MasterPage.Master" AutoEventWireup="true" CodeBehind="BillingServicesListWebForm.aspx.cs" Inherits="HotelManagerProject.BillingServicesListForm" %>
 
-<asp:content id="Content1" contentplaceholderid="head" runat="server">
-</asp:content>
-<asp:content id="Content2" contentplaceholderid="ContentPlaceHolder1" runat="server">
+<asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
+</asp:Content>
+<asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
     <link href="CssClasses/StyleSheet1.css" rel="stylesheet" />
     <script type="text/javascript">
         function ShowLoginWindow() {
@@ -25,59 +25,57 @@
         }
     </script>
     <div class="container" style="width: 100%">
-        <br />
-        <br />
-        <br />
         <div class="row">
             <div class="col-lg-1 col-sm-2 col-md-2 col-xs-4">
                 <dx:ASPxButton ClientInstanceName="CreateBillingServiceButton" ID="CreateBillingServiceButton" CssClass="button" ToolTip="Creates a new Billing" ForeColor="AquaMarine" Theme="BlackGlass" runat="server" Text="Create Billing Service">
                     <ClientSideEvents Click="function(s, e) { ShowLoginWindow(); }" />
                 </dx:ASPxButton>
             </div>
-            <div class="col-lg-3 col-sm-2 col-xs-4">
-                <dx:ASPxButton runat="server" CssClass="button" ToolTip="Deletes the selected Billing" ForeColor="AquaMarine" Theme="BlackGlass" Text="Delete Billing" OnClick="DeleteBillingButtonClick" />
+            <div class="col-lg-1 col-md-2 col-sm-2 col-xs-4">
+                <dx:ASPxButton runat="server" CssClass="button" ToolTip="Deletes the selected Billing" ForeColor="AquaMarine" Theme="BlackGlass" Text="Delete Billing Service" OnClick="DeleteBillingButtonClick" />
             </div>
 
 
 
-           <div class="row">
-                <div class="col-xs-12 col-lg-4 col-sm-4">
-                </div>
-                <div class="col-xs-12">
-                    <div class="MainForm" style="width: 680px;">
-                        <h1>BillingServices List</h1>
-                <dx:ASPxGridView ID="BillingServiceListGridView" runat="server" Theme="BlackGlass" AutoGenerateColumns="False" OnCustomButtonCallback="BillingServiceListGridViewOnCustomButtonCallback" KeyFieldName="Id">
-                    <ClientSideEvents EndCallback="EndCallback" CustomButtonClick="function(s, e) { ShowLoginWindow(); e.processOnServer = true; }" />
-                    <Settings ShowGroupPanel="True" ShowFilterRow="True"></Settings>
-                    <SettingsSearchPanel Visible="True"></SettingsSearchPanel>
-                    <Columns>
-                        <dx:GridViewCommandColumn ShowClearFilterButton="True" VisibleIndex="0" SelectAllCheckboxMode="Page" ShowSelectCheckbox="True">
-                        </dx:GridViewCommandColumn>
-                        <dx:GridViewCommandColumn ShowClearFilterButton="True" VisibleIndex="1" ButtonRenderMode="Image">
-                            <CustomButtons>
-                                <dx:GridViewCommandColumnCustomButton ID="editButton">
-                                    <Image Url="Images/edit.png" Width="35px" ToolTip="Edit"></Image>
-                                </dx:GridViewCommandColumnCustomButton>
-                            </CustomButtons>
-                        </dx:GridViewCommandColumn>
-                        <dx:GridViewDataTextColumn FieldName="Id" VisibleIndex="2" Visible="False">
-                        </dx:GridViewDataTextColumn>
-                        <dx:GridViewDataTextColumn FieldName="BillingId" VisibleIndex="3" ReadOnly="True">
-                        </dx:GridViewDataTextColumn>
-                        <dx:GridViewDataTextColumn FieldName="Service.Code" VisibleIndex="4">
-                        </dx:GridViewDataTextColumn>
-                        <dx:GridViewDataTextColumn FieldName="Quantity" VisibleIndex="5">
-                        </dx:GridViewDataTextColumn>
-                        <dx:GridViewDataTextColumn FieldName="Price" VisibleIndex="6">
-                        </dx:GridViewDataTextColumn>
-                    </Columns>
-                </dx:ASPxGridView>
-                        </div>
 
+            <div class="col-lg-10 col-md-8 col-sm-8 col-xs-12">
+
+
+                <div class="MainForm" style="width: 720px;">
+                    <a style="font-size: 20px; color: black; font-weight: bold">Billing Services List</a>
+                    <dx:ASPxGridView ID="BillingServiceListGridView" runat="server" Theme="BlackGlass" AutoGenerateColumns="False" OnCustomButtonCallback="BillingServiceListGridViewOnCustomButtonCallback" KeyFieldName="Id">
+                        <ClientSideEvents EndCallback="EndCallback" CustomButtonClick="function(s, e) { ShowLoginWindow(); e.processOnServer = true; }" />
+                        <Settings ShowGroupPanel="True" ShowFilterRow="True"></Settings>
+                        <SettingsSearchPanel Visible="True"></SettingsSearchPanel>
+                        <Columns>
+                            <dx:GridViewCommandColumn ShowClearFilterButton="True" VisibleIndex="0" SelectAllCheckboxMode="Page" ShowSelectCheckbox="True">
+                            </dx:GridViewCommandColumn>
+                            <dx:GridViewCommandColumn ShowClearFilterButton="True" VisibleIndex="1" ButtonRenderMode="Image">
+                                <CustomButtons>
+                                    <dx:GridViewCommandColumnCustomButton ID="editButton">
+                                        <Image Url="Images/edit.png" Width="35px" ToolTip="Edit"></Image>
+                                    </dx:GridViewCommandColumnCustomButton>
+                                </CustomButtons>
+                            </dx:GridViewCommandColumn>
+                            <dx:GridViewDataTextColumn FieldName="Id" VisibleIndex="2" Visible="False">
+                            </dx:GridViewDataTextColumn>
+                            <dx:GridViewDataTextColumn FieldName="BillingId" VisibleIndex="3" ReadOnly="True">
+                            </dx:GridViewDataTextColumn>
+                            <dx:GridViewDataTextColumn FieldName="Service.Code" VisibleIndex="4">
+                            </dx:GridViewDataTextColumn>
+                            <dx:GridViewDataTextColumn FieldName="Quantity" VisibleIndex="5">
+                            </dx:GridViewDataTextColumn>
+                            <dx:GridViewDataTextColumn FieldName="Price" VisibleIndex="6">
+                            </dx:GridViewDataTextColumn>
+                        </Columns>
+                    </dx:ASPxGridView>
                 </div>
+
             </div>
         </div>
     </div>
+
+
     <dx:ASPxPopupControl ClientInstanceName="createBillingServicePopUp" Width="330px" Height="250px" Modal="True"
         MaxWidth="800px" MaxHeight="800px" MinHeight="150px" MinWidth="150px" ID="createBillingServicePopUp"
         ShowFooter="True" FooterText="Runtime: 142 min" PopupElementID="imgButton" HeaderText="Billing Details"
@@ -102,7 +100,7 @@
                             <td>
                                 <dx:ASPxComboBox ValueField="Id" ClientInstanceName="serviceComboBox" TextField="Id" ID="serviceComboBox" runat="server" Width="170px" Theme="BlackGlass" EnableTheming="True">
                                     <Columns>
-                                        <dx:ListBoxColumn FieldName="Code"/>
+                                        <dx:ListBoxColumn FieldName="Code" />
                                     </Columns>
                                 </dx:ASPxComboBox>
                             </td>
@@ -118,14 +116,14 @@
                             </td>
                             <td>
                                 <dx:ASPxTextBox ClientInstanceName="quantityTextBox" ID="quantityTextBox" runat="server" Width="170px">
-                                     <ClientSideEvents KeyDown="function(s, e) {     if (!((e.htmlEvent.keyCode &gt;= 48 &amp;&amp; e.htmlEvent.keyCode &lt;= 57) || 
+                                    <ClientSideEvents KeyDown="function(s, e) {     if (!((e.htmlEvent.keyCode &gt;= 48 &amp;&amp; e.htmlEvent.keyCode &lt;= 57) || 
                                            (e.htmlEvent.keyCode == 8 || e.htmlEvent.keyCode == 46 || e.htmlEvent.keyCode == 37 || 
                                             e.htmlEvent.keyCode == 39))) 
                                         ASPxClientUtils.PreventEventAndBubble(e.htmlEvent);
                                          }" />
-                                     <ValidationSettings  EnableCustomValidation="True" ErrorDisplayMode="Text" ErrorTextPosition="Right" SetFocusOnError="true">
-                                    <ErrorFrameStyle Font-Size="Large"/>
-                                        <RequiredField IsRequired="True" ErrorText="*"/>
+                                    <ValidationSettings EnableCustomValidation="True" ErrorDisplayMode="Text" ErrorTextPosition="Right" SetFocusOnError="true">
+                                        <ErrorFrameStyle Font-Size="Large" />
+                                        <RequiredField IsRequired="True" ErrorText="*" />
                                     </ValidationSettings>
                                 </dx:ASPxTextBox>
                             </td>
@@ -141,9 +139,9 @@
                                             e.htmlEvent.keyCode == 39))) 
                                         ASPxClientUtils.PreventEventAndBubble(e.htmlEvent);
                                          }" />
-                                     <ValidationSettings  EnableCustomValidation="True" ErrorDisplayMode="Text" ErrorTextPosition="Right" SetFocusOnError="true">
-                                    <ErrorFrameStyle Font-Size="Large"/>
-                                        <RequiredField IsRequired="True" ErrorText="*"/>
+                                    <ValidationSettings EnableCustomValidation="True" ErrorDisplayMode="Text" ErrorTextPosition="Right" SetFocusOnError="true">
+                                        <ErrorFrameStyle Font-Size="Large" />
+                                        <RequiredField IsRequired="True" ErrorText="*" />
                                     </ValidationSettings>
                                 </dx:ASPxTextBox>
                             </td>
@@ -158,7 +156,7 @@ if (eval(&#39;quantityTextBox&#39;).lastChangedValue == null || eval(&#39;priceT
                                                                                                           }
 
  if(ASPxClientEdit.ValidateGroup(&#39;entryGroup&#39;)) createBillingServicePopUp.Hide();
- }"/>
+ }" />
                         </dx:ASPxButton>
                         <dx:ASPxButton ID="btCancel" runat="server" Text="Cancel" Width="80px" AutoPostBack="False" Style="float: left; margin-right: 8px">
                             <ClientSideEvents Click="function(s, e) { createBillingServicePopUp.Hide(); }" />
@@ -168,4 +166,4 @@ if (eval(&#39;quantityTextBox&#39;).lastChangedValue == null || eval(&#39;priceT
             </dx:PopupControlContentControl>
         </ContentCollection>
     </dx:ASPxPopupControl>
-</asp:content>
+</asp:Content>

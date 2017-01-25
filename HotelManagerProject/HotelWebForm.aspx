@@ -127,9 +127,9 @@
                                                 </div>
                                                 <div class="col-xs-6">
                                                     <dx:ASPxTextBox ID="nameTextBox" runat="server" Width="170px" ClientIDMode="Static">
-                                                        <ValidationSettings EnableCustomValidation="True" ErrorDisplayMode="Text" ErrorTextPosition="Right" SetFocusOnError="true">
+                                                        <ValidationSettings EnableCustomValidation="True" ErrorDisplayMode="ImageWithTooltip" ErrorTextPosition="Right" SetFocusOnError="true">
                                                             <ErrorFrameStyle Font-Size="Large" />
-                                                            <RequiredField IsRequired="True" ErrorText="*" />
+                                                            <RequiredField IsRequired="True" ErrorText="Name is required" />
                                                         </ValidationSettings>
                                                     </dx:ASPxTextBox>
                                                 </div>
@@ -142,9 +142,9 @@
                                                 </div>
                                                 <div class="col-xs-6">
                                                     <dx:ASPxTextBox ID="addressTextBox" runat="server" Width="170px" ClientIDMode="Static">
-                                                        <ValidationSettings EnableCustomValidation="True" ErrorDisplayMode="Text" ErrorTextPosition="Right" SetFocusOnError="true">
+                                                        <ValidationSettings EnableCustomValidation="True" ErrorDisplayMode="ImageWithTooltip" ErrorTextPosition="Right" SetFocusOnError="true">
                                                             <ErrorFrameStyle Font-Size="Large" />
-                                                            <RequiredField IsRequired="True" ErrorText="*" />
+                                                            <RequiredField IsRequired="True" ErrorText="Address is required" />
                                                         </ValidationSettings>
                                                     </dx:ASPxTextBox>
                                                 </div>
@@ -156,9 +156,9 @@
                                                 </div>
                                                 <div class="col-xs-6">
                                                     <dx:ASPxTextBox ID="managerTextBox" runat="server" Width="170px" ClientIDMode="Static">
-                                                        <ValidationSettings EnableCustomValidation="True" ErrorDisplayMode="Text" ErrorTextPosition="Right" SetFocusOnError="true">
+                                                        <ValidationSettings EnableCustomValidation="True" ErrorDisplayMode="ImageWithTooltip" ErrorTextPosition="Right" SetFocusOnError="true">
                                                             <ErrorFrameStyle Font-Size="Large" />
-                                                            <RequiredField IsRequired="True" ErrorText="*" />
+                                                            <RequiredField IsRequired="True" ErrorText="Manager is required" />
                                                         </ValidationSettings>
                                                     </dx:ASPxTextBox>
                                                 </div>
@@ -170,8 +170,8 @@
                                                 </div>
                                                 <div class="col-xs-6">
                                                     <dx:ASPxTextBox ID="emailTextBox" runat="server" Width="170px" ClientIDMode="Static">
-                                                        <ValidationSettings>
-                                                            <RegularExpression ErrorText="Invalid mail" ValidationExpression="\w+([-+.']\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*" />
+                                                        <ValidationSettings ErrorDisplayMode="ImageWithTooltip" ErrorTextPosition="Right" SetFocusOnError="true">
+                                                            <RegularExpression ErrorText="Invalid Email" ValidationExpression="\w+([-+.']\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*" />
                                                         </ValidationSettings>
                                                     </dx:ASPxTextBox>
                                                 </div>
