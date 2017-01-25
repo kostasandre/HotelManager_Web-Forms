@@ -40,7 +40,7 @@ namespace HotelManagerLib.DBContext.Configurations
 
             // Foreign Keys
             this.HasRequired(x => x.Service).WithMany(x => x.BillingServices).HasForeignKey(x => x.ServiceId);
-            this.HasRequired(x => x.Billing).WithMany(x => x.BillingServices).HasForeignKey(x => x.BillingId);
+            this.HasRequired(x => x.Billing).WithMany(x => x.BillingServices).HasForeignKey(x => x.BillingId).WillCascadeOnDelete(false);
         }
     }
 }

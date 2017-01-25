@@ -106,7 +106,7 @@
                                 <label>Booking : </label>
                             </td>
                             <td>
-                                <dx:ASPxComboBox ValueField="Id" ClientIDMode="Static" ClientInstanceName="bookingComboBox" TextField="Id" ID="bookingComboBox" runat="server" Width="170px" Theme="BlackGlass" EnableTheming="True">
+                                <dx:ASPxComboBox ValueField="Id" ClientIDMode="Static" ClientInstanceName="bookingComboBox" TextField="Id" ID="bookingComboBox" runat="server" Width="170px" Theme="BlackGlass" EnableTheming="True" TextFormatString="{0} {1}">
                                     <Columns>
                                         <dx:ListBoxColumn Name="Name" Caption="Name" FieldName="Customer.Name" />
                                         <dx:ListBoxColumn  Name="Surname" Caption="Surname" FieldName="Customer.Surname" />
@@ -141,9 +141,9 @@
                                             e.htmlEvent.keyCode == 39))) 
                                         ASPxClientUtils.PreventEventAndBubble(e.htmlEvent);
                                          }" />
-                                    <ValidationSettings EnableCustomValidation="True" ErrorDisplayMode="Text" ErrorTextPosition="Right" SetFocusOnError="true">
+                                    <ValidationSettings EnableCustomValidation="True" ErrorDisplayMode="ImageWithTooltip" ErrorTextPosition="Right" SetFocusOnError="true">
                                         <ErrorFrameStyle Font-Size="Large" />
-                                        <RequiredField IsRequired="True" ErrorText="*" />
+                                        <RequiredField IsRequired="True" ErrorText="Price is required" />
                                     </ValidationSettings>
                                 </dx:ASPxTextBox>
                             </td>
@@ -159,9 +159,9 @@
                                             e.htmlEvent.keyCode == 39))) 
                                         ASPxClientUtils.PreventEventAndBubble(e.htmlEvent);
                                          }" />
-                                    <ValidationSettings EnableCustomValidation="True" ErrorDisplayMode="Text" ErrorTextPosition="Right" SetFocusOnError="true">
+                                    <ValidationSettings EnableCustomValidation="True" ErrorDisplayMode="ImageWithTooltip" ErrorTextPosition="Right" SetFocusOnError="true">
                                         <ErrorFrameStyle Font-Size="Large" />
-                                        <RequiredField IsRequired="True" ErrorText="*" />
+                                        <RequiredField IsRequired="True" ErrorText="Price for services is required" />
                                     </ValidationSettings>
                                 </dx:ASPxTextBox>
                             </td>
@@ -177,9 +177,9 @@
                                             e.htmlEvent.keyCode == 39))) 
                                         ASPxClientUtils.PreventEventAndBubble(e.htmlEvent);
                                          }" />
-                                    <ValidationSettings EnableCustomValidation="True" ErrorDisplayMode="Text" ErrorTextPosition="Right" SetFocusOnError="true">
+                                    <ValidationSettings EnableCustomValidation="True" ErrorDisplayMode="ImageWithTooltip" ErrorTextPosition="Right" SetFocusOnError="true">
                                         <ErrorFrameStyle Font-Size="Large" />
-                                        <RequiredField IsRequired="True" ErrorText="*" />
+                                        <RequiredField IsRequired="True" ErrorText="Total Price" />
                                     </ValidationSettings>
                                 </dx:ASPxTextBox>
                             </td>

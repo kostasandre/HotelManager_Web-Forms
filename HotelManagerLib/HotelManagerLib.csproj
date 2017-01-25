@@ -89,6 +89,18 @@
     <Compile Include="Migrations\201701250754472_last.Designer.cs">
       <DependentUpon>201701250754472_last.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201701251335187_beforepresentation.cs" />
+    <Compile Include="Migrations\201701251335187_beforepresentation.Designer.cs">
+      <DependentUpon>201701251335187_beforepresentation.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201701251351555_alloena.cs" />
+    <Compile Include="Migrations\201701251351555_alloena.Designer.cs">
+      <DependentUpon>201701251351555_alloena.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201701251405144_alloena2.cs" />
+    <Compile Include="Migrations\201701251405144_alloena2.Designer.cs">
+      <DependentUpon>201701251405144_alloena2.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\BillingServiceWithServiceDescription.cs" />
     <Compile Include="Models\BookingCalendar.cs" />
@@ -139,6 +151,15 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201701250754472_last.resx">
       <DependentUpon>201701250754472_last.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201701251335187_beforepresentation.resx">
+      <DependentUpon>201701251335187_beforepresentation.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201701251351555_alloena.resx">
+      <DependentUpon>201701251351555_alloena.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201701251405144_alloena2.resx">
+      <DependentUpon>201701251405144_alloena2.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
