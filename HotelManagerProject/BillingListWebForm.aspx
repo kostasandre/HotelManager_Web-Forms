@@ -22,6 +22,10 @@
             priceForServicesTextBox.SetText(s.cp_text2);
             totalPricerTextBox.SetText(s.cp_text3);
             idTextBox.SetText(s.cp_text4);
+            for (var i = 0; i <= bookingComboBox.itemcount)
+            bookingComboBox.SetText(s.cp_text5);
+            bookingComboBox.SetText(s.cp_text6);
+
         }
 
 
@@ -100,10 +104,10 @@
                                 <label>Booking : </label>
                             </td>
                             <td>
-                                <dx:ASPxComboBox ValueField="Id" TextField="Id" ID="bookingComboBox" runat="server" Width="170px" Theme="BlackGlass" EnableTheming="True">
+                                <dx:ASPxComboBox ValueField="Id" TextField="Id" ClientInstanceName="bookingComboBox" ID="bookingComboBox" runat="server" Width="170px" Theme="BlackGlass" EnableTheming="True">
                                     <Columns>
-                                        <dx:ListBoxColumn FieldName="Customer.Name"/>
-                                        <dx:ListBoxColumn FieldName="Customer.Surname"/>
+                                        <dx:ListBoxColumn Caption="Name" FieldName="Customer.Name"/>
+                                        <dx:ListBoxColumn Caption="Surname" FieldName="Customer.Surname"/>
                                     </Columns>
                                 </dx:ASPxComboBox>
                             </td>
