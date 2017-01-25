@@ -116,10 +116,12 @@ namespace HotelManagerProject
         {
             this.billingEntityController = new BillingEntityController();
             this.bookingEntityController = new BookingController();
+
             this.bookingComboBox.DataSource = this.bookingEntityController.RefreshEntities();
             this.bookingComboBox.SelectedIndex = 0;
             this.bookingComboBox.Value = "Customer.Name";
             this.bookingComboBox.DataBind();
+
             this.BillingListGridView.DataSource = this.billingEntityController.RefreshEntities();
             this.BillingListGridView.DataBind();
         }
@@ -224,6 +226,8 @@ namespace HotelManagerProject
                 this.BillingListGridView.JSProperties["cp_text2"] = myBilling.PriceForRoom;
                 this.BillingListGridView.JSProperties["cp_text3"] = myBilling.TotalPrice;
                 this.BillingListGridView.JSProperties["cp_text4"] = row.Id;
+                this.BillingListGridView.JSProperties["cp_text5"] = myBilling.Booking.Customer.Name;
+                this.BillingListGridView.JSProperties["cp_text6"] = myBilling.Booking.Customer.Surname;
             }
         }
     }
