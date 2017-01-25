@@ -111,7 +111,7 @@
                            <label>Search Customer:</label>
                         </div>
                         <div style="height: 45px;" class="col-xs-8 col-sm-4 col-md-5 col-lg-3">
-                            <dx:ASPxComboBox OnValueChanged="customerComboBox_OnValueChanged" ID="customerComboBox" NullText="Search Customer" runat="server" ValueField="Id" TextField="Name" IncrementalFilteringMode= "Contains" DropDownStyle= "DropDown">
+                            <dx:ASPxComboBox OnValueChanged="customerComboBox_OnValueChanged" ID="customerComboBox" NullText="Search Customer" runat="server" ValueField="Id" TextField="Name" IncrementalFilteringMode= "Contains" DropDownStyle= "DropDown" TextFormatString="{0} {1}">
                                  <Columns>
                                 <dx:ListBoxColumn FieldName="Name" Visible="True" Caption="Name"/>
                                 <dx:ListBoxColumn Caption="Surname" FieldName="Surname" />
