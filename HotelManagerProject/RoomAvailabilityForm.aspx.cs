@@ -101,6 +101,7 @@ namespace HotelManagerProject
             if (!this.Page.IsPostBack)
             {
                 this.drawavailableRooms(DateTime.Now.Month);
+                this.availableRooms.SettingsPager.Mode = GridViewPagerMode.ShowAllRecords;
             }
         }
 
