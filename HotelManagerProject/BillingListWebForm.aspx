@@ -22,6 +22,16 @@
             priceForServicesTextBox.SetText(s.cp_text2);
             totalPricerTextBox.SetText(s.cp_text3);
             idTextBox.SetText(s.cp_text4);
+            for (i = 0; i < bookingComboBox.GetItemCount() ; i++) {
+                var item = bookingComboBox.GetItem(i);
+                if (item !== undefined) {
+                    var name = item.texts[0];
+                    var surName = item.texts[1];
+                    if (name === s.cp_text5 && surName === s.cp_text6) {
+                        bookingComboBox.SetSelectedIndex(i);
+                    }
+                }
+            }
         }
 
 
@@ -96,10 +106,10 @@
                                 <label>Booking : </label>
                             </td>
                             <td>
-                                <dx:ASPxComboBox ValueField="Id" TextField="Id" ID="bookingComboBox" runat="server" Width="170px" Theme="BlackGlass" EnableTheming="True">
+                                <dx:ASPxComboBox ValueField="Id" ClientIDMode="Static" ClientInstanceName="bookingComboBox" TextField="Id" ID="bookingComboBox" runat="server" Width="170px" Theme="BlackGlass" EnableTheming="True">
                                     <Columns>
-                                        <dx:ListBoxColumn FieldName="Customer.Name" />
-                                        <dx:ListBoxColumn FieldName="Customer.Surname" />
+                                        <dx:ListBoxColumn Name="Name" Caption="Name" FieldName="Customer.Name" />
+                                        <dx:ListBoxColumn  Name="Surname" Caption="Surname" FieldName="Customer.Surname" />
                                     </Columns>
                                 </dx:ASPxComboBox>
                             </td>
