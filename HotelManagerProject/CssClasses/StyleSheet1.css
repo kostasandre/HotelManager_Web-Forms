@@ -84,3 +84,17 @@
 .hidden {
     display: none;
 }
+
+.textBoxAlighn input {
+    text-align: center;
+}
+
+.imagesSize {
+    width: 20px;
+    height: 20px;
+}
+
+.alighnCenter {
+    float: left;
+    margin-right:5px;
+}

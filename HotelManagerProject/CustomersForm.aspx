@@ -106,9 +106,9 @@
     </div>
 
     <dx:ASPxPopupControl ClientInstanceName="createUserPopUp" Width="330px" Height="250px"
-                         MaxWidth="800px" MaxHeight="800px" MinHeight="150px" MinWidth="150px" ID="createUserPopUp"
-                         ShowFooter="True" FooterText="Runtime: 142 min" PopupElementID="imgButton" HeaderText="Customer Form"
-                         runat="server" EnableViewState="false" PopupHorizontalAlign="WindowCenter" PopupVerticalAlign="WindowCenter" AllowDragging="True" PopupAnimationType="Fade" Modal="True">
+        MaxWidth="800px" MaxHeight="800px" MinHeight="150px" MinWidth="150px" ID="createUserPopUp"
+        PopupElementID="imgButton" HeaderText="Customer Form"
+        runat="server" EnableViewState="false" PopupHorizontalAlign="WindowCenter" PopupVerticalAlign="WindowCenter" AllowDragging="True" PopupAnimationType="Fade" Modal="True" Theme="BlackGlass">
         <ContentCollection>
             <dx:PopupControlContentControl runat="server">
                 <asp:Panel ID="Panel1" runat="server">
