@@ -88,53 +88,56 @@
             <div class="col-lg-2 col-md-2 col-sm-2 col-md-2 col-xs-4">
                 <dx:ASPxButton ID="createPricingListButton" ClientIDMode="Static" CssClass="button" ToolTip="Creates a new PricingList" ForeColor="AquaMarine" Theme="BlackGlass" runat="server" Text="Create PricingList">
                     <ClientSideEvents Click="function(s, e) {
-	{ ShowLoginWindow(); }
-}"></ClientSideEvents>
+	                    { ShowLoginWindow(); }
+                        }"></ClientSideEvents>
                 </dx:ASPxButton>
             </div>
             <div class="col-lg-2 col-md-2 col-sm-2 col-xs-4">
                 <dx:ASPxButton ID="deletePricingListButton" CssClass="button" ToolTip="Deletes the selected PricingList" ForeColor="AquaMarine" Theme="BlackGlass" runat="server" Text="Delete PricingList" OnClick="DeletePricingListButton_OnClick" />
             </div>
             <div class="col-lg-8 col-md-8 col-sm-8 col-xs-12">
-                <dx:ASPxGridView ID="PricingListGridView" OnCustomButtonCallback="PricingListGridView_OnCustomButtonCallback" runat="server" AutoGenerateColumns="False" Theme="BlackGlass" EnableTheming="True" KeyFieldName="Id" ClientIDMode="Static">
-                    <ClientSideEvents CustomButtonClick="function(s, e) {
-	e.processOnServer = true;
+                <div class="MainForm" style="width: 1200px">
+                    <a style="font-size: 20px; color: black; font-weight: bold">Pricing List</a>
+                    <dx:ASPxGridView ID="PricingListGridView" OnCustomButtonCallback="PricingListGridView_OnCustomButtonCallback" runat="server" AutoGenerateColumns="False" Theme="BlackGlass" EnableTheming="True" KeyFieldName="Id" ClientIDMode="Static">
+                        <ClientSideEvents CustomButtonClick="function(s, e) {
+	                    e.processOnServer = true;
              	        ShowLoginWindow(e.visibleIndex);
 
-}"
-                        EndCallback="EndCallback
-"></ClientSideEvents>
+                        }"
+                            EndCallback="EndCallback
+                        "></ClientSideEvents>
 
-                    <Settings ShowFilterRow="True" ShowGroupPanel="True" />
-                    <SettingsSearchPanel Visible="True" />
-                    <Columns>
-                        <dx:GridViewCommandColumn ShowClearFilterButton="True" VisibleIndex="0" SelectAllCheckboxMode="Page" ShowSelectCheckbox="True">
-                        </dx:GridViewCommandColumn>
-                        <dx:GridViewCommandColumn ShowClearFilterButton="True" VisibleIndex="1" ButtonRenderMode="Image">
-                            <CustomButtons>
-                                <dx:GridViewCommandColumnCustomButton ID="editButton">
-                                    <Image Url="Images/edit.png" Width="35px" ToolTip="Edit"></Image>
-                                </dx:GridViewCommandColumnCustomButton>
-                            </CustomButtons>
-                        </dx:GridViewCommandColumn>
-                        <dx:GridViewDataTextColumn FieldName="Id" VisibleIndex="2" Visible="False">
-                        </dx:GridViewDataTextColumn>
-                        <dx:GridViewDataTextColumn FieldName="BillableEntityCode" VisibleIndex="3">
-                        </dx:GridViewDataTextColumn>
-                        <dx:GridViewDataTextColumn FieldName="Price" VisibleIndex="4">
-                        </dx:GridViewDataTextColumn>
-                        <dx:GridViewDataTextColumn FieldName="ValidFrom" VisibleIndex="5">
-                        </dx:GridViewDataTextColumn>
-                        <dx:GridViewDataTextColumn FieldName="ValidTo" VisibleIndex="6">
-                        </dx:GridViewDataTextColumn>
-                        <dx:GridViewDataTextColumn FieldName="VatPrc" VisibleIndex="7">
-                        </dx:GridViewDataTextColumn>
-                        <dx:GridViewDataTextColumn FieldName="Created" VisibleIndex="8">
-                        </dx:GridViewDataTextColumn>
-                        <dx:GridViewDataTextColumn FieldName="CreatedBy" VisibleIndex="9">
-                        </dx:GridViewDataTextColumn>
-                    </Columns>
-                </dx:ASPxGridView>
+                        <Settings ShowFilterRow="True" ShowGroupPanel="True" />
+                        <SettingsSearchPanel Visible="True" />
+                        <Columns>
+                            <dx:GridViewCommandColumn ShowClearFilterButton="True" VisibleIndex="0" SelectAllCheckboxMode="Page" ShowSelectCheckbox="True">
+                            </dx:GridViewCommandColumn>
+                            <dx:GridViewCommandColumn ShowClearFilterButton="True" VisibleIndex="1" ButtonRenderMode="Image">
+                                <CustomButtons>
+                                    <dx:GridViewCommandColumnCustomButton ID="editButton">
+                                        <Image Url="Images/edit.png" Width="35px" ToolTip="Edit"></Image>
+                                    </dx:GridViewCommandColumnCustomButton>
+                                </CustomButtons>
+                            </dx:GridViewCommandColumn>
+                            <dx:GridViewDataTextColumn FieldName="Id" VisibleIndex="2" Visible="False">
+                            </dx:GridViewDataTextColumn>
+                            <dx:GridViewDataTextColumn FieldName="BillableEntityCode" VisibleIndex="3">
+                            </dx:GridViewDataTextColumn>
+                            <dx:GridViewDataTextColumn FieldName="Price" VisibleIndex="4">
+                            </dx:GridViewDataTextColumn>
+                            <dx:GridViewDataTextColumn FieldName="ValidFrom" VisibleIndex="5">
+                            </dx:GridViewDataTextColumn>
+                            <dx:GridViewDataTextColumn FieldName="ValidTo" VisibleIndex="6">
+                            </dx:GridViewDataTextColumn>
+                            <dx:GridViewDataTextColumn FieldName="VatPrc" VisibleIndex="7">
+                            </dx:GridViewDataTextColumn>
+                            <dx:GridViewDataTextColumn FieldName="Created" VisibleIndex="8">
+                            </dx:GridViewDataTextColumn>
+                            <dx:GridViewDataTextColumn FieldName="CreatedBy" VisibleIndex="9">
+                            </dx:GridViewDataTextColumn>
+                        </Columns>
+                    </dx:ASPxGridView>
+                </div>
             </div>
         </div>
     </div>
@@ -175,7 +178,7 @@
                                                 <div class="col-xs-6">
 
                                                     <dx:ASPxRadioButtonList ID="typeOFRadioButtonList" runat="server" OnSelectedIndexChanged="TypeOFRadioButtonList_OnSelectedIndexChanged" AutoPostBack="True" ClientIDMode="Static">
-                                                    <ValidationSettings EnableCustomValidation="True" ErrorDisplayMode="Text" ErrorTextPosition="Right" SetFocusOnError="true">
+                                                        <ValidationSettings EnableCustomValidation="True" ErrorDisplayMode="Text" ErrorTextPosition="Right" SetFocusOnError="true">
                                                             <ErrorFrameStyle Font-Size="Large" />
                                                             <RequiredField IsRequired="True" ErrorText="*" />
                                                         </ValidationSettings>
@@ -282,13 +285,13 @@
                                         <div class="pcmButton">
                                             <dx:ASPxButton ID="btOK" runat="server" Text="OK" Width="80px" AutoPostBack="False" Style="float: left; margin-right: 8px" OnClick="SaveButton_OnClick">
                                                 <ClientSideEvents Click="function(s, e) { 
-if (eval(&#39;validFromDateEdit&#39;).lastChangedValue == null || eval(&#39;validToDateEdit&#39;).lastChangedValue == null || eval(&#39;priceSpinEdit&#39;).lastChangedValue == null || eval(&#39;VatPrcSpinEdit&#39;).lastChangedValue == null || eval(&#39;typeOFRadioButtonList&#39;).lastChangedValue == null ) 
-{
-return false;
-}
+                                                    if (eval(&#39;validFromDateEdit&#39;).lastChangedValue == null || eval(&#39;validToDateEdit&#39;).lastChangedValue == null || eval(&#39;priceSpinEdit&#39;).lastChangedValue == null || eval(&#39;VatPrcSpinEdit&#39;).lastChangedValue == null || eval(&#39;typeOFRadioButtonList&#39;).lastChangedValue == null ) 
+                                                    {
+                                                    return false;
+                                                    }
 
-if(ASPxClientEdit.ValidateGroup(&#39;entryGroup&#39;)) PricingListDetailView.Hide(); 
-}" />
+                                                    if(ASPxClientEdit.ValidateGroup(&#39;entryGroup&#39;)) PricingListDetailView.Hide(); 
+                                                    }" />
                                             </dx:ASPxButton>
                                             <dx:ASPxButton ID="btCancel" runat="server" Text="Cancel" Width="80px" AutoPostBack="False" Style="float: left; margin-right: 8px">
                                                 <ClientSideEvents Click="function(s, e) { PricingListDetailView.Hide(); }" />
