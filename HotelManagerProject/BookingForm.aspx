@@ -163,8 +163,8 @@
     </div>
     <dx:ASPxPopupControl ClientInstanceName="createUserPopUp" Width="330px" Height="250px"
         MaxWidth="800px" MaxHeight="800px" MinHeight="150px" MinWidth="150px" ID="createUserPopUp"
-        ShowFooter="True" FooterText="Runtime: 142 min" PopupElementID="imgButton" HeaderText="Customer Form"
-        runat="server" EnableViewState="false" PopupHorizontalAlign="WindowCenter" PopupVerticalAlign="WindowCenter" EnableHierarchyRecreation="True" AllowDragging= "True" PopupAnimationType="Fade" Modal="True">
+        PopupElementID="imgButton" HeaderText="Customer Details"
+        runat="server" EnableViewState="false" PopupHorizontalAlign="WindowCenter" PopupVerticalAlign="WindowCenter" EnableHierarchyRecreation="True" AllowDragging="True" PopupAnimationType="Fade" Modal="True" Theme="BlackGlass">
         <modalbackgroundstyle backcolor="Black">
         </modalbackgroundstyle>
         <ContentCollection>

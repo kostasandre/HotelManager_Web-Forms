@@ -8,7 +8,8 @@ namespace HotelManagerLib.Models
 {
     public class BookingCalendar
     {
-        public int RoomId { get; set; }
+        public string Hotel { get; set; }
+        public string Room { get; set; }
 
         public AvailableStatus Day1 { get; set; }
         public AvailableStatus Day2 { get; set; }

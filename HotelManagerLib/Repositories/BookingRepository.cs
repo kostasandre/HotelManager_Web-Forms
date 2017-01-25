@@ -114,6 +114,7 @@ namespace HotelManagerLib.Repositories
             using (var context = new DataBaseContext())
             {
                 return context.Bookings.Include("Room").Include("Customer").ToList();
+                
             }
         }
 
@@ -146,8 +147,8 @@ namespace HotelManagerLib.Repositories
         {
             using (var context = new DataBaseContext())
             {
-                var booking = context.Bookings.Include("Room").Include("Customer").SingleOrDefault(x => x.Id == id);
-                return booking;
+                return context.Bookings.Include("Room").Include("Customer").SingleOrDefault(x => x.Id == id);
+                
             }
         }
 
