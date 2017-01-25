@@ -42,45 +42,48 @@
                 <dx:ASPxButton ID="deleteHotelButton" CssClass="button" ToolTip="Deletes the selected Hotel" ForeColor="AquaMarine" Theme="BlackGlass" runat="server" Text="Delete Hotel" OnClick="DeleteHotelButtonClick" />
             </div>
             <div class="col-lg-10 col-md-8 col-sm-8 col-xs-12">
-                <dx:ASPxGridView ID="HotelGridView" runat="server" AutoGenerateColumns="False" Theme="BlackGlass" EnableTheming="True" OnCustomButtonCallback="HotelGridView_OnCustomButtonCallback" KeyFieldName="Id">
-                    <ClientSideEvents CustomButtonClick="function(s, e) {
-	 ShowLoginWindow(); e.processOnServer = true; 
-}"
-                        EndCallback="EndCallback
-"></ClientSideEvents>
+                <div class="MainForm" style="width: 1325px">
+                    <a style="font-size: 20px; color: black; font-weight: bold">Hotel List</a>
+                    <dx:ASPxGridView ID="HotelGridView" runat="server" AutoGenerateColumns="False" Theme="BlackGlass" EnableTheming="True" OnCustomButtonCallback="HotelGridView_OnCustomButtonCallback" KeyFieldName="Id">
+                        <ClientSideEvents CustomButtonClick="function(s, e) {
+	                        ShowLoginWindow(); e.processOnServer = true; 
+                            }"
+                                EndCallback="EndCallback
+                            "></ClientSideEvents>
 
-                    <Settings ShowFilterRow="True" ShowGroupPanel="True" />
-                    <SettingsSearchPanel Visible="True" />
-                    <Columns>
-                        <dx:GridViewCommandColumn ShowClearFilterButton="True" VisibleIndex="0" SelectAllCheckboxMode="Page" ShowSelectCheckbox="True">
-                        </dx:GridViewCommandColumn>
-                        <dx:GridViewCommandColumn ShowClearFilterButton="True" VisibleIndex="1" ButtonRenderMode="Image">
-                            <CustomButtons>
-                                <dx:GridViewCommandColumnCustomButton ID="editButton">
-                                    <Image Url="Images/edit.png" Width="35px" ToolTip="Edit"></Image>
-                                </dx:GridViewCommandColumnCustomButton>
-                            </CustomButtons>
-                        </dx:GridViewCommandColumn>
-                        <dx:GridViewDataTextColumn FieldName="Id" VisibleIndex="2" Visible="False">
-                        </dx:GridViewDataTextColumn>
-                        <dx:GridViewDataTextColumn FieldName="Name" VisibleIndex="3">
-                        </dx:GridViewDataTextColumn>
-                        <dx:GridViewDataTextColumn FieldName="Address" VisibleIndex="4">
-                        </dx:GridViewDataTextColumn>
-                        <dx:GridViewDataTextColumn FieldName="Manager" VisibleIndex="5">
-                        </dx:GridViewDataTextColumn>
-                        <dx:GridViewDataTextColumn FieldName="Phone" VisibleIndex="6">
-                        </dx:GridViewDataTextColumn>
-                        <dx:GridViewDataTextColumn FieldName="Email" VisibleIndex="7">
-                        </dx:GridViewDataTextColumn>
-                        <dx:GridViewDataTextColumn FieldName="TaxId" VisibleIndex="8">
-                        </dx:GridViewDataTextColumn>
-                        <dx:GridViewDataTextColumn FieldName="Created" VisibleIndex="9">
-                        </dx:GridViewDataTextColumn>
-                        <dx:GridViewDataTextColumn FieldName="CreatedBy" VisibleIndex="10">
-                        </dx:GridViewDataTextColumn>
-                    </Columns>
-                </dx:ASPxGridView>
+                        <Settings ShowFilterRow="True" ShowGroupPanel="True" />
+                        <SettingsSearchPanel Visible="True" />
+                        <Columns>
+                            <dx:GridViewCommandColumn ShowClearFilterButton="True" VisibleIndex="0" SelectAllCheckboxMode="Page" ShowSelectCheckbox="True">
+                            </dx:GridViewCommandColumn>
+                            <dx:GridViewCommandColumn ShowClearFilterButton="True" VisibleIndex="1" ButtonRenderMode="Image">
+                                <CustomButtons>
+                                    <dx:GridViewCommandColumnCustomButton ID="editButton">
+                                        <Image Url="Images/edit.png" Width="35px" ToolTip="Edit"></Image>
+                                    </dx:GridViewCommandColumnCustomButton>
+                                </CustomButtons>
+                            </dx:GridViewCommandColumn>
+                            <dx:GridViewDataTextColumn FieldName="Id" VisibleIndex="2" Visible="False">
+                            </dx:GridViewDataTextColumn>
+                            <dx:GridViewDataTextColumn FieldName="Name" VisibleIndex="3">
+                            </dx:GridViewDataTextColumn>
+                            <dx:GridViewDataTextColumn FieldName="Address" VisibleIndex="4">
+                            </dx:GridViewDataTextColumn>
+                            <dx:GridViewDataTextColumn FieldName="Manager" VisibleIndex="5">
+                            </dx:GridViewDataTextColumn>
+                            <dx:GridViewDataTextColumn FieldName="Phone" VisibleIndex="6">
+                            </dx:GridViewDataTextColumn>
+                            <dx:GridViewDataTextColumn FieldName="Email" VisibleIndex="7">
+                            </dx:GridViewDataTextColumn>
+                            <dx:GridViewDataTextColumn FieldName="TaxId" VisibleIndex="8">
+                            </dx:GridViewDataTextColumn>
+                            <dx:GridViewDataTextColumn FieldName="Created" VisibleIndex="9">
+                            </dx:GridViewDataTextColumn>
+                            <dx:GridViewDataTextColumn FieldName="CreatedBy" VisibleIndex="10">
+                            </dx:GridViewDataTextColumn>
+                        </Columns>
+                    </dx:ASPxGridView>
+                </div>
             </div>
         </div>
     </div>

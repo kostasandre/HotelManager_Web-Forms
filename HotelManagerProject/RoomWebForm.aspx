@@ -38,47 +38,50 @@
             <div class="col-lg-1 col-md-2 col-sm-2 col-xs-4">
                 <dx:ASPxButton ID="createRoomButton" ClientIDMode="Static" CssClass="button" ToolTip="Creates a new Room" ForeColor="AquaMarine" Theme="BlackGlass" runat="server" Text="Create Room">
                     <ClientSideEvents Click="function(s, e) {
-	{ ShowLoginWindow(); }
-}"></ClientSideEvents>
+	                    { ShowLoginWindow(); }
+                        }"></ClientSideEvents>
                 </dx:ASPxButton>
             </div>
             <div class="col-lg-1 col-md-2 col-sm-2 col-xs-4">
                 <dx:ASPxButton ID="deleteRoomButton" CssClass="button" ToolTip="Deletes the selected Room" ForeColor="AquaMarine" Theme="BlackGlass" runat="server" Text="Delete Room" OnClick="DeleteRoomButton_OnClick" />
             </div>
             <div class="col-lg-10 col-md-8 col-sm-8 col-xs-12">
-                <dx:ASPxGridView ID="RoomGridView" OnCustomButtonCallback="RoomGridView_OnCustomButtonCallback" runat="server" AutoGenerateColumns="False" Theme="BlackGlass" EnableTheming="True" KeyFieldName="Id" ClientIDMode="Static">
-                    <ClientSideEvents CustomButtonClick="function(s, e) {
-	                    e.processOnServer = true;
-             	        ShowLoginWindow(e.visibleIndex);
+                <div class="MainForm" style="width: 740px">
+                    <a style="font-size: 20px; color: black; font-weight: bold">Room List</a>
+                    <dx:ASPxGridView ID="RoomGridView" OnCustomButtonCallback="RoomGridView_OnCustomButtonCallback" runat="server" AutoGenerateColumns="False" Theme="BlackGlass" EnableTheming="True" KeyFieldName="Id" ClientIDMode="Static">
+                        <ClientSideEvents CustomButtonClick="function(s, e) {
+	                        e.processOnServer = true;
+             	            ShowLoginWindow(e.visibleIndex);
 
-}"
-                        EndCallback="EndCallback
-"></ClientSideEvents>
+                            }"
+                            EndCallback="EndCallback
+                            "></ClientSideEvents>
 
-                    <Settings ShowFilterRow="True" ShowGroupPanel="True" />
-                    <SettingsSearchPanel Visible="True" />
-                    <Columns>
-                        <dx:GridViewCommandColumn ShowClearFilterButton="True" VisibleIndex="0" SelectAllCheckboxMode="Page" ShowSelectCheckbox="True">
-                        </dx:GridViewCommandColumn>
-                        <dx:GridViewCommandColumn ShowClearFilterButton="True" VisibleIndex="1" ButtonRenderMode="Image">
-                            <CustomButtons>
-                                <dx:GridViewCommandColumnCustomButton ID="editButton">
-                                    <Image Url="Images/edit.png" Width="35px" ToolTip="Edit"></Image>
-                                </dx:GridViewCommandColumnCustomButton>
-                            </CustomButtons>
-                        </dx:GridViewCommandColumn>
-                        <dx:GridViewDataTextColumn FieldName="Id" VisibleIndex="2" Visible="False">
-                        </dx:GridViewDataTextColumn>
-                        <dx:GridViewDataTextColumn FieldName="Code" VisibleIndex="3">
-                        </dx:GridViewDataTextColumn>
-                        <dx:GridViewDataTextColumn FieldName="HotelName" VisibleIndex="4">
-                        </dx:GridViewDataTextColumn>
-                        <dx:GridViewDataTextColumn FieldName="Created" VisibleIndex="5">
-                        </dx:GridViewDataTextColumn>
-                        <dx:GridViewDataTextColumn FieldName="CreatedBy" VisibleIndex="6">
-                        </dx:GridViewDataTextColumn>
-                    </Columns>
-                </dx:ASPxGridView>
+                        <Settings ShowFilterRow="True" ShowGroupPanel="True" />
+                        <SettingsSearchPanel Visible="True" />
+                        <Columns>
+                            <dx:GridViewCommandColumn ShowClearFilterButton="True" VisibleIndex="0" SelectAllCheckboxMode="Page" ShowSelectCheckbox="True">
+                            </dx:GridViewCommandColumn>
+                            <dx:GridViewCommandColumn ShowClearFilterButton="True" VisibleIndex="1" ButtonRenderMode="Image">
+                                <CustomButtons>
+                                    <dx:GridViewCommandColumnCustomButton ID="editButton">
+                                        <Image Url="Images/edit.png" Width="35px" ToolTip="Edit"></Image>
+                                    </dx:GridViewCommandColumnCustomButton>
+                                </CustomButtons>
+                            </dx:GridViewCommandColumn>
+                            <dx:GridViewDataTextColumn FieldName="Id" VisibleIndex="2" Visible="False">
+                            </dx:GridViewDataTextColumn>
+                            <dx:GridViewDataTextColumn FieldName="Code" VisibleIndex="3">
+                            </dx:GridViewDataTextColumn>
+                            <dx:GridViewDataTextColumn FieldName="HotelName" VisibleIndex="4">
+                            </dx:GridViewDataTextColumn>
+                            <dx:GridViewDataTextColumn FieldName="Created" VisibleIndex="5">
+                            </dx:GridViewDataTextColumn>
+                            <dx:GridViewDataTextColumn FieldName="CreatedBy" VisibleIndex="6">
+                            </dx:GridViewDataTextColumn>
+                        </Columns>
+                    </dx:ASPxGridView>
+                </div>
             </div>
         </div>
     </div>
