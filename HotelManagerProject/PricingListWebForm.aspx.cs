@@ -63,12 +63,12 @@ namespace HotelManagerProject
         /// <param name="e">
         /// The e.
         /// </param>
-        protected void Page_Init(object sender, EventArgs e)
+        protected void Page_Init(object sender , EventArgs e)
         {
             this.pricingListController = new PricingListController();
             this.roomTypeController = new RoomTypeController();
             this.serviceController = new ServiceController();
-            
+
             this.RefreshPricingListEntityWithCodeInside();
 
             this.typeOFRadioButtonList.DataSource = typeof(TypeOfBillableEntity).GetEnumValues();
@@ -96,12 +96,8 @@ namespace HotelManagerProject
         /// <param name="e">
         /// The e.
         /// </param>
-        protected void Page_Load(object sender, EventArgs e)
+        protected void Page_Load(object sender , EventArgs e)
         {
-            this.roomTypeController = new RoomTypeController();
-            this.serviceController = new ServiceController();
-
-            
         }
 
         /// <summary>
@@ -113,7 +109,7 @@ namespace HotelManagerProject
         /// <param name="e">
         /// The e.
         /// </param>
-        protected void TypeOFRadioButtonList_OnSelectedIndexChanged(object sender, EventArgs e)
+        protected void TypeOFRadioButtonList_OnSelectedIndexChanged(object sender , EventArgs e)
         {
             this.DisplayBillableServiceControl(this.typeOFRadioButtonList.SelectedItem.Value.ToString());
         }
@@ -146,45 +142,50 @@ namespace HotelManagerProject
         /// <param name="e">
         /// The e.
         /// </param>
-        protected void SaveButton_OnClick(object sender, EventArgs e)
+        protected void SaveButton_OnClick(object sender , EventArgs e)
         {
             this.pricingList = new PricingList();
             this.pricingListController = new PricingListController();
 
             this.pricingList.Id = Convert.ToInt32(this.idTextBox.Text);
 
-            this.pricingList.TypeOfBillableEntity =
-                (TypeOfBillableEntity)
-                Enum.Parse(typeof(TypeOfBillableEntity), this.typeOFRadioButtonList.SelectedItem.Text);
-            if (this.typeOFRadioButtonList.SelectedItem.Value.ToString() == "RoomType")
+            if (this.pricingList.Id == 0)
             {
-                var roomTypeList = this.roomTypeComboBox.DataSource as List<RoomType>;
-                if (roomTypeList != null)
+                this.pricingList.TypeOfBillableEntity =
+                    (TypeOfBillableEntity)
+                    Enum.Parse(typeof(TypeOfBillableEntity), this.typeOFRadioButtonList.SelectedItem.Text);
+                if (this.typeOFRadioButtonList.SelectedItem.Value.ToString() == "RoomType")
                 {
-                    var roomTypeTemp =
-                        roomTypeList.SingleOrDefault(
-                            x => x.Id == Convert.ToInt32(this.roomTypeComboBox.SelectedItem.Value));
-                    this.pricingList.BillableEntityId = roomTypeTemp.Id;
+                    var roomTypeList = this.roomTypeComboBox.DataSource as List<RoomType>;
+                    if (roomTypeList != null)
+                    {
+                        var roomTypeTemp =
+                            roomTypeList.SingleOrDefault(
+                                x => x.Id == Convert.ToInt32(this.roomTypeComboBox.SelectedItem.Value));
+                        this.pricingList.BillableEntityId = roomTypeTemp.Id;
                     }
-            }
-            else if (this.typeOFRadioButtonList.SelectedItem.Value.ToString() == "Service")
-            {
-                var serviceList = this.serviceComboBox.DataSource as List<Service>;
-                if (serviceList != null)
+                }
+                else if (this.typeOFRadioButtonList.SelectedItem.Value.ToString() == "Service")
                 {
-                    var serviceTemp =
-                        serviceList.SingleOrDefault(
-                            x => x.Id == Convert.ToInt32(this.serviceComboBox.SelectedItem.Value));
-                    this.pricingList.BillableEntityId = serviceTemp.Id;
+                    var serviceList = this.serviceComboBox.DataSource as List<Service>;
+                    if (serviceList != null)
+                    {
+                        var serviceTemp =
+                            serviceList.SingleOrDefault(
+                                x => x.Id == Convert.ToInt32(this.serviceComboBox.SelectedItem.Value));
+                        this.pricingList.BillableEntityId = serviceTemp.Id;
+                    }
                 }
             }
+
+
 
             this.pricingList.Price = Convert.ToDouble(this.priceSpinEdit.Number);
             this.pricingList.VatPrc = Convert.ToDouble(this.VatPrcSpinEdit.Number);
             this.pricingList.ValidFrom = this.validFromDateEdit.Date;
             this.pricingList.ValidTo = this.validToDateEdit.Date;
             this.pricingListController.CreateOrUpdateEntity(this.pricingList);
-            this.Page.Response.Redirect(this.Page.Request.Url.ToString(), true);
+            this.Page.Response.Redirect(this.Page.Request.Url.ToString() , true);
         }
 
         /// <summary>
@@ -196,7 +197,7 @@ namespace HotelManagerProject
         /// <param name="e">
         /// The e.
         /// </param>
-        protected void DeletePricingListButton_OnClick(object sender, EventArgs e)
+        protected void DeletePricingListButton_OnClick(object sender , EventArgs e)
         {
             this.pricingListController = new PricingListController();
             this.roomTypeController = new RoomTypeController();
@@ -215,7 +216,7 @@ namespace HotelManagerProject
                 this.Session["errorMessage"] = string.Empty;
 
                 var selectedRowKeys =
-                    this.PricingListGridView.GetSelectedFieldValues(this.PricingListGridView.KeyFieldName, "Id");
+                    this.PricingListGridView.GetSelectedFieldValues(this.PricingListGridView.KeyFieldName , "Id");
                 if ((selectedRowKeys == null) || (selectedRowKeys.Count == 0))
                 {
                     errorlabel.Text = @"Please select a Pricing List first to delete";
@@ -246,7 +247,7 @@ namespace HotelManagerProject
                         errorlabel.Text = $"Sql error: " + exp.Message;
                     }
 
-                    errorlabel.Text = errorlabel.Text.TrimEnd(' ', ',');
+                    errorlabel.Text = errorlabel.Text.TrimEnd(' ' , ',');
                     this.Session["errorMessage"] = errorlabel.Text;
 
                     this.RefreshPricingListEntityWithCodeInside();
@@ -254,7 +255,7 @@ namespace HotelManagerProject
             }
         }
 
-        protected void PricingListGridView_OnCustomButtonCallback(object sender, ASPxGridViewCustomButtonCallbackEventArgs e)
+        protected void PricingListGridView_OnCustomButtonCallback(object sender , ASPxGridViewCustomButtonCallbackEventArgs e)
         {
             this.pricingListController = new PricingListController();
             this.roomTypeController = new RoomTypeController();

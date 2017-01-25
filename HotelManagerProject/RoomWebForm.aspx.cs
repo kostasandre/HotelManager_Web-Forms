@@ -18,6 +18,7 @@ namespace HotelManagerProject
     using System.Web.UI;
     using System.Web.UI.WebControls;
 
+    using DevExpress.Utils;
     using DevExpress.Web;
 
     using HotelManagerLib.Controllers;
@@ -114,22 +115,27 @@ namespace HotelManagerProject
 
             this.room.Id = Convert.ToInt32(this.idTextBox.Text);
             this.room.Code = this.codeTextBox.Text;
-
-            var hotelList = this.hotelComboBox.DataSource as List<Hotel>;
-            if (hotelList != null)
+            if (this.room.Id == 0)
             {
-                var hotelTemp =
-                    hotelList.SingleOrDefault(x => x.Id == Convert.ToInt32(this.hotelComboBox.SelectedItem.Value));
-                this.room.HotelId = hotelTemp.Id;
-            }
+                var hotelList = this.hotelComboBox.DataSource as List<Hotel>;
+                if (hotelList != null)
+                {
+                    var hotelTemp =
+                        hotelList.SingleOrDefault(x => x.Id == Convert.ToInt32(this.hotelComboBox.SelectedItem.Value));
+                    this.room.HotelId = hotelTemp.Id;
+                }
 
-            var roomTypeList = this.roomTypeComboBox.DataSource as List<RoomType>;
-            if (roomTypeList != null)
-            {
-                var roomTypeTemp =
-                    roomTypeList.SingleOrDefault(x => x.Id == Convert.ToInt32(this.roomTypeComboBox.SelectedItem.Value));
-                this.room.RoomTypeId = roomTypeTemp.Id;
+                var roomTypeList = this.roomTypeComboBox.DataSource as List<RoomType>;
+                if (roomTypeList != null)
+                {
+                    var roomTypeTemp =
+                        roomTypeList.SingleOrDefault(x => x.Id == Convert.ToInt32(this.roomTypeComboBox.SelectedItem.Value));
+                    this.room.RoomTypeId = roomTypeTemp.Id;
+                }
             }
+            //this.btOK.ClientSideEvents.Click = " function(s , e) {'hotelComboBox.SetEnabled(true);'}";
+            //this.btOK.ClientSideEvents.Click = " function(s , e) {'roomTypeComboBox.SetEnabled(true);'}";
+            
 
             this.roomController.CreateOrUpdateEntity(this.room);
             this.Page.Response.Redirect(this.Page.Request.Url.ToString() , true);
