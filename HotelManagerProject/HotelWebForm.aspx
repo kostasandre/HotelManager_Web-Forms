@@ -29,18 +29,22 @@
     </script>
 
     <div class="container" style="width: 100%">
+        
         <div class="row">
+            
             <div class="col-lg-1 col-md-2 col-sm-2 col-xs-4">
                 <dx:ASPxButton ID="createHotelButton" ClientIDMode="Static" CssClass="button" ToolTip="Creates a new Hotel" ForeColor="AquaMarine" Theme="BlackGlass" runat="server" Text="Create Hotel">
                     <ClientSideEvents Click="function(s, e) {
-	{ ShowLoginWindow();  e.processOnServer = true;}
-}"></ClientSideEvents>
+	                    { ShowLoginWindow();  e.processOnServer = true;}
+                        }"></ClientSideEvents>
                 </dx:ASPxButton>
 
             </div>
+
             <div class="col-lg-1 col-md-2 col-sm-2 col-xs-4">
                 <dx:ASPxButton ID="deleteHotelButton" CssClass="button" ToolTip="Deletes the selected Hotel" ForeColor="AquaMarine" Theme="BlackGlass" runat="server" Text="Delete Hotel" OnClick="DeleteHotelButtonClick" />
             </div>
+
             <div class="col-lg-10 col-md-8 col-sm-8 col-xs-12">
                 <div class="MainForm" style="width: 1325px">
                     <a style="font-size: 20px; color: black; font-weight: bold">Hotel List</a>
@@ -48,7 +52,7 @@
                         <ClientSideEvents CustomButtonClick="function(s, e) {
 	                        ShowLoginWindow(); e.processOnServer = true; 
                             }"
-                                EndCallback="EndCallback
+                            EndCallback="EndCallback
                             "></ClientSideEvents>
 
                         <Settings ShowFilterRow="True" ShowGroupPanel="True" />
