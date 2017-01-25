@@ -20,6 +20,7 @@
             codeTextBox.SetText(s.cp_text2);
             descriptionTextBox.SetText(s.cp_text3);
             hotelComboBox.SetText(s.cp_text4);
+            hotelComboBox.SetEnabled(false);
         }
     </script>
 

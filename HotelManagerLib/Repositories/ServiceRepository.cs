@@ -151,6 +151,9 @@ namespace HotelManagerLib.Repositories
                     return;
                 }
 
+                //var databaseHotel = context.Hotels.SingleOrDefault(x => x.Id == service.HotelId);         //to evala se sxolio giati sto update den mporoume na allaksoume Hotel
+                //databaseService.HotelId = databaseHotel.Id;                                               //to evala se sxolio giati sto update den mporoume na allaksoume Hotel
+
                 databaseService.Code = service.Code;
                 databaseService.Updated = DateTime.Now;
                 databaseService.UpdatedBy = Environment.UserName;

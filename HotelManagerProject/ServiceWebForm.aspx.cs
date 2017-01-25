@@ -104,15 +104,17 @@ namespace HotelManagerProject
             this.service.Id = Convert.ToInt32(this.idTextBox.Text);
             this.service.Code = this.codeTextBox.Text;
             this.service.Description = this.descriptionTextBox.Text;
-
-            var hotelList = this.hotelComboBox.DataSource as List<Hotel>;
-            if (hotelList != null)
+            if (this.service.Id == 0)
             {
-                var hotelTemp =
-                    hotelList.SingleOrDefault(x => x.Id == Convert.ToInt32(this.hotelComboBox.SelectedItem.Value));
-                this.service.HotelId = hotelTemp.Id;
+                var hotelList = this.hotelComboBox.DataSource as List<Hotel>;
+                if (hotelList != null)
+                {
+                    var hotelTemp =
+                        hotelList.SingleOrDefault(x => x.Id == Convert.ToInt32(this.hotelComboBox.SelectedItem.Value));
+                    this.service.HotelId = hotelTemp.Id;
+                }
             }
-
+            
             this.serviceController.CreateOrUpdateEntity(this.service);
             this.Page.Response.Redirect(this.Page.Request.Url.ToString(), true);
         }
@@ -193,7 +195,7 @@ namespace HotelManagerProject
             this.ServiceGridView.JSProperties["cp_text1"] = myService.Id;
             this.ServiceGridView.JSProperties["cp_text2"] = myService.Code;
             this.ServiceGridView.JSProperties["cp_text3"] = myService.Description;
-            this.ServiceGridView.JSProperties["cp_text3"] = myService.HotelName;
+            this.ServiceGridView.JSProperties["cp_text4"] = myService.HotelName;
         }
     }
 }

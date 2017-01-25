@@ -159,11 +159,11 @@ namespace HotelManagerLib.Repositories
                 // {
                 // databaseRoom.HotelId = null;
                 // }
-                var databaseHotel = context.Hotels.SingleOrDefault(x => x.Id == room.HotelId);
-                //databaseRoom.Hotel = databaseHotel;
-                databaseRoom.HotelId = databaseHotel.Id;
+
+                //var databaseHotel = context.Hotels.SingleOrDefault(x => x.Id == room.HotelId);          //to evala se sxolio giati sto update den mporoume na allaksoume Hotel
+                //databaseRoom.HotelId = databaseHotel.Id;                                               //to evala se sxolio giati sto update den mporoume na allaksoume Hotel
                 databaseRoom.Code = room.Code;
-                databaseRoom.RoomTypeId = room.RoomTypeId; 
+                //databaseRoom.RoomTypeId = room.RoomTypeId;                                            // to evala se sxolio giati sto update den mporoume na allaksoume room Type
                 databaseRoom.Updated = DateTime.Now;
                 databaseRoom.UpdatedBy = Environment.UserName;
 

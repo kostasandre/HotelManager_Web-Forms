@@ -84,3 +84,10 @@
 .hidden {
     display: none;
 }
+
+.readonly {
+    -webkit-user-select: none
+  -moz-user-select: none
+  -ms-user-select: none
+    
+}
