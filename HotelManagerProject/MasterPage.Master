@@ -47,7 +47,7 @@
                     <li><a href="HotelWebForm.aspx" id="">Hotels</a></li>
                     <li><a href="RoomWebForm.aspx" id="">Rooms</a></li>
                     <li><a href="RoomTypeWebForm.aspx" id="">Room Types</a></li>
-                    <li><a href="#" id="">Pictures</a></li>
+                    <%--<li><a href="#" id="">Pictures</a></li>--%>
                     <li><a href="ServiceWebForm.aspx" id="">Services</a></li>
                     <li><a href="PricingListWebForm.aspx" id="">Pricing List</a></li>
                 </ul>
