@@ -72,6 +72,7 @@ namespace HotelManagerLib.Models.Persistant
         /// Gets or sets the billings.
         /// </summary>
         public List<Billing> Billings { get; set; }
+
         /// <summary>
         /// Gets or sets the room.
         /// </summary>

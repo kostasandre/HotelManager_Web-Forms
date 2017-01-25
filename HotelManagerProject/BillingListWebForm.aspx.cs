@@ -60,7 +60,6 @@ namespace HotelManagerProject
         /// </param>
         protected void BtOkClick(object sender, EventArgs e)
         {
-
             var errorlabel = this.Master?.FindControl("form1").FindControl("divErrorMessage") as Label;
             this.billingEntityController = new BillingEntityController();
             this.bookingEntityController = new BookingController();

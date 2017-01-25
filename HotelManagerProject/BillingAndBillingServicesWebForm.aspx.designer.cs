@@ -22,15 +22,6 @@ namespace HotelManagerProject {
         protected global::DevExpress.Web.ASPxButton SearchButton;
         
         /// <summary>
-        /// customerNameTextBox control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::DevExpress.Web.ASPxTextBox customerNameTextBox;
-        
-        /// <summary>
         /// customerSurnameTextBox control.
         /// </summary>
         /// <remarks>
@@ -38,6 +29,15 @@ namespace HotelManagerProject {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::DevExpress.Web.ASPxTextBox customerSurnameTextBox;
+        
+        /// <summary>
+        /// customerNameTextBox control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::DevExpress.Web.ASPxTextBox customerNameTextBox;
         
         /// <summary>
         /// roomTextBox control.
@@ -112,24 +112,6 @@ namespace HotelManagerProject {
         protected global::DevExpress.Web.ASPxTextBox sumOfServicesTextBox;
         
         /// <summary>
-        /// paidLabel control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::DevExpress.Web.ASPxLabel paidLabel;
-        
-        /// <summary>
-        /// paidCheckBox control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::DevExpress.Web.ASPxCheckBox paidCheckBox;
-        
-        /// <summary>
         /// totalSumLabel control.
         /// </summary>
         /// <remarks>
@@ -146,6 +128,24 @@ namespace HotelManagerProject {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::DevExpress.Web.ASPxTextBox totalSumTextBox;
+        
+        /// <summary>
+        /// paidLabel control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::DevExpress.Web.ASPxLabel paidLabel;
+        
+        /// <summary>
+        /// paidCheckBox control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::DevExpress.Web.ASPxCheckBox paidCheckBox;
         
         /// <summary>
         /// saveButton control.
