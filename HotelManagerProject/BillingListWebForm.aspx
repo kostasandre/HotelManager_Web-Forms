@@ -94,7 +94,7 @@
 
     <dx:ASPxPopupControl ClientInstanceName="createBillingPopUp" Width="330px" Height="250px" Modal="True"
         MaxWidth="800px" MaxHeight="800px" MinHeight="150px" MinWidth="150px" ID="createBillingPopUp"
-        ShowFooter="True" FooterText="Runtime: 142 min" PopupElementID="imgButton" HeaderText="Billing Details"
+        PopupElementID="imgButton" HeaderText="Billing Details"
         runat="server" EnableViewState="false" PopupHorizontalAlign="WindowCenter" PopupVerticalAlign="WindowCenter" EnableHierarchyRecreation="True" AllowDragging="True" Theme="BlackGlass">
         <ClientSideEvents PopUp="function(s, e) { ASPxClientEdit.ClearGroup('entryGroup');}" />
         <ContentCollection>
