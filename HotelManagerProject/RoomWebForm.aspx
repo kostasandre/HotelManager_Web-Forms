@@ -21,8 +21,12 @@
                 codeTextBox.SetText(s.cp_text2);
                 hotelComboBox.SetText(s.cp_text3);
                 roomTypeComboBox.SetText(s.cp_text4);
-                //hotelComboBox.SetEnabled(false);
-                //roomTypeComboBox.SetEnabled(false);
+                hotelComboBox.SetEnabled(false);
+                roomTypeComboBox.SetEnabled(false);
+                //hotelComboBox.HideDropDown();
+                //roomTypeComboBox.HideDropDown();
+                //hotelComboBox.classList.add('readonly');
+                //roomTypeComboBox.classList.add('readonly');
                 idTextBox.visible = 'false';
             }
 
@@ -142,7 +146,7 @@
                                                     <dx:ASPxLabel ID="roomTypeLabel" runat="server" Text="Room Type"></dx:ASPxLabel>
                                                 </div>
                                                 <div class="col-xs-6">
-                                                    <dx:ASPxComboBox ID="roomTypeComboBox" NullText="Select Room Type" ValueField="Id" TextField="Code" runat="server" IncrementalFilteringMode="None" DropDownStyle="DropDownList" ClientIDMode="Static">
+                                                    <dx:ASPxComboBox ID="roomTypeComboBox" NullText="Select Room Type" ValueField="Id" TextField="Code" runat="server" IncrementalFilteringMode="None" ClientIDMode="Static">
                                                         <ValidationSettings EnableCustomValidation="True" ErrorDisplayMode="Text" ErrorTextPosition="Right" SetFocusOnError="true">
                                                             <ErrorFrameStyle Font-Size="Large" />
                                                             <RequiredField IsRequired="True" ErrorText="*" />

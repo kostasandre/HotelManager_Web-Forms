@@ -22,55 +22,79 @@
         <div class="container" style="width: 100%">
 
             <div class="row">
-                <div class="col-lg-0 col-md-0 col-sm-0 col-xs-0">
+                <div class="col-lg-1 col-md-2 col-sm-2 col-xs-4">
+                    <dx:ASPxLabel Width="90px" CssClass="Text" ForeColor="Black" runat="server" Text="Booking :" Theme="BlackGlass"></dx:ASPxLabel>
                 </div>
-                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                <div class="col-lg-1 col-md-2 col-sm-2 col-xs-4">
                     <dx:ASPxButton ID="SearchButton" runat="server" ToolTip="Search for your desired booking." Theme="BlackGlass">
                         <Image Width="50px" Height="20px" Url="Images/searched.jpg"></Image>
                         <ClientSideEvents Click="function(s, e) { ShowLoginWindow(); }" />
                     </dx:ASPxButton>
                 </div>
-                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                   <dx:ASPxLabel CssClass="Text" ForeColor="Black" runat="server" Text="Name :" Theme="BlackGlass"></dx:ASPxLabel>
-                    <dx:ASPxTextBox ID="customerNameTextBox" runat="server"></dx:ASPxTextBox>
-                </div>
-                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                    <dx:ASPxLabel CssClass="Text" ForeColor="Black" runat="server" Text="Surname :" Theme="BlackGlass"></dx:ASPxLabel>
-                    <dx:ASPxTextBox ID="customerSurnameTextBox" runat="server"></dx:ASPxTextBox>
-                </div>
-                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                    <dx:ASPxLabel CssClass="Text" ForeColor="Black" runat="server" Text="Room :" Theme="BlackGlass"></dx:ASPxLabel>
-                    <dx:ASPxTextBox ID="roomTextBox" runat="server"></dx:ASPxTextBox>
-                </div>
-                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                    <dx:ASPxLabel CssClass="Text" ForeColor="Black" runat="server" Text="From :" Theme="BlackGlass"></dx:ASPxLabel>
-                    <dx:ASPxTextBox ID="fromTextBox" runat="server"></dx:ASPxTextBox>
-                </div>
-                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                    <dx:ASPxLabel CssClass="Text" ForeColor="Black" runat="server" Text="To :" Theme="BlackGlass"></dx:ASPxLabel>
-                    <dx:ASPxTextBox ID="toTextBox" runat="server"></dx:ASPxTextBox>
-                </div>
-                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                    <dx:ASPxLabel CssClass="Text" ForeColor="Black" runat="server" Text="Price for room :" Theme="BlackGlass"></dx:ASPxLabel>
-                    <dx:ASPxTextBox ID="priceValueTextBox" runat="server"></dx:ASPxTextBox>
-                </div>
-                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                    <dx:ASPxTextBox ID="bookingIdTextBox" CssClass="hidden" runat="server"></dx:ASPxTextBox>
-                </div>
             </div>
         </div>
+
+        <div class="row" style="margin-top: 10px;">
+            <div class="col-lg-1 col-md-2 col-sm-2 col-xs-4">
+                <dx:ASPxLabel Width="100px" CssClass="Text" ForeColor="Black" runat="server" Text="Customer :" Theme="BlackGlass"></dx:ASPxLabel>
+            </div>
+            <div class="col-lg-2 col-md-10 col-sm-8 col-xs-7">
+                <dx:ASPxTextBox ID="customerSurnameTextBox" NullText="Surname" runat="server"></dx:ASPxTextBox>
+            </div>
+            <div class="col-lg-1 col-md-2 col-sm-3 col-xs-2">
+                <dx:ASPxTextBox ID="customerNameTextBox" NullText="Name" runat="server"></dx:ASPxTextBox>
+            </div>
+        </div>
+
+
+        <div class="row" style="margin-top: 10px;">
+            <div class="col-lg-1 col-md-2 col-sm-2 col-xs-4">
+                <dx:ASPxLabel Width="100px" CssClass="Text" ForeColor="Black" runat="server" Text="Room :" Theme="BlackGlass"></dx:ASPxLabel>
+            </div>
+            <div class="col-lg-1 col-md-1 col-sm-2 col-xs-3">
+                <dx:ASPxTextBox ID="roomTextBox" NullText="Code" runat="server"></dx:ASPxTextBox>
+            </div>
+        </div>
+
+
+        <div class="row" style="margin-top: 10px;">
+            <div class="col-lg-1 col-md-2 col-sm-2 col-xs-4">
+                <dx:ASPxLabel CssClass="Text" ForeColor="Black" runat="server" Text="Stay :" Theme="BlackGlass"></dx:ASPxLabel>
+            </div>
+            <div class="col-lg-2 col-md-10 col-sm-8 col-xs-7">
+                <dx:ASPxTextBox NullText="From" ID="fromTextBox" runat="server"></dx:ASPxTextBox>
+            </div>
+            <div class="col-lg-1 col-md-2 col-sm-3 col-xs-2">
+                <dx:ASPxTextBox NullText="To" ID="toTextBox" runat="server"></dx:ASPxTextBox>
+            </div>
+        </div>
+
+        <div class="row" style="margin-top: 10px;">
+            <div class="col-lg-7 col-md-5 col-sm-0 col-xs-0">
+            </div>
+            <div class="col-lg-2 col-md-2 col-sm-3 col-xs-5">
+                <dx:ASPxLabel Width="150px" CssClass="Text" ForeColor="Black" runat="server" Text="Price for room :" Theme="BlackGlass"></dx:ASPxLabel>
+            </div>
+            <div class="col-lg-1 col-md-2 col-sm-1 col-xs-1">
+                <dx:ASPxTextBox ID="priceValueTextBox" runat="server"></dx:ASPxTextBox>
+            </div>
+            <div>
+                <dx:ASPxTextBox ID="bookingIdTextBox" CssClass="hidden" runat="server"></dx:ASPxTextBox>
+            </div>
+
+        </div>
+
+
 
         <div class="container" style="width: 100%">
             <br>
             <br>
 
             <div class="row">
-                <div class="col-lg-2 col-md-2 col-sm-1 col-xs-0">
-                </div>
                 <div class="col-lg-4 col-md-3 col-sm-2 col-xs-2">
                     <dx:ASPxGridView ID="BillingListGridView" runat="server" Theme="BlackGlass" AutoGenerateColumns="False" KeyFieldName="Id" OnRowUpdating="BillingListGridViewOnRowUpdating">
                         <Settings ShowGroupPanel="True" ShowFilterRow="True"></Settings>
-                        <ClientSideEvents  EndCallback="EndCallback"/>
+                        <ClientSideEvents EndCallback="EndCallback" />
                         <SettingsDataSecurity AllowInsert="False" AllowDelete="False"></SettingsDataSecurity>
                         <SettingsSearchPanel Visible="True"></SettingsSearchPanel>
                         <Columns>
@@ -91,47 +115,62 @@
                 </div>
             </div>
             <br>
-            <div class="row">
-                <div class="col-lg-9 col-md-7 col-sm-5 col-xs-0">
+            <div class="row" style="margin-top: 10px;">
+                <div class="col-lg-7 col-md-5 col-sm-0 col-xs-0">
                 </div>
-                <div class="col-lg-2 col-md-3 col-sm-3 col-xs-12">
-                    <dx:ASPxLabel CssClass="Text" ForeColor="Black" ID="sumOfServicesLabel" Text="Sum of Services :" runat="server" EnableTheming="True" Theme="BlackGlass"></dx:ASPxLabel>
-                    <dx:ASPxTextBox  ClientInstanceName="sumOfServicesTextBox" ClientIDMode="Static" ID="sumOfServicesTextBox" runat="server"></dx:ASPxTextBox>
+                <div class="col-lg-2 col-md-2 col-sm-3 col-xs-6">
+                    <dx:ASPxLabel Width="250px" CssClass="Text" ForeColor="Black" ID="sumOfServicesLabel" Text="Price for services :" runat="server" EnableTheming="True" Theme="BlackGlass"></dx:ASPxLabel>
                 </div>
-
+                <div class="col-lg-1 col-md-2 col-sm-1 col-xs-1">
+                    <dx:ASPxTextBox ClientInstanceName="sumOfServicesTextBox" ClientIDMode="Static" ID="sumOfServicesTextBox" runat="server"></dx:ASPxTextBox>
+                </div>
             </div>
-            <div class="row">
-                <div class="col-lg-8 col-md-5 col-sm-3 col-xs-0">
+
+            <div class="row" style="margin-top: 10px;">
+                <div class="col-lg-7 col-md-5 col-sm-0 col-xs-0">
                 </div>
-                <div class="col-lg-1 col-md-2 col-sm-2 col-xs-12">
-                    <dx:ASPxLabel CssClass="Text" ID="paidLabel" ForeColor="Black" runat="server" Text="Paid :" Theme="BlackGlass"></dx:ASPxLabel>
-                    <dx:ASPxCheckBox ID="paidCheckBox" runat="server"></dx:ASPxCheckBox>
+                <div class="col-lg-2 col-md-2 col-sm-3 col-xs-6">
+                    <dx:ASPxLabel CssClass="Text2" ID="totalSumLabel" ForeColor="Black" Text="Total price :" runat="server" EnableTheming="True" Theme="BlackGlass"></dx:ASPxLabel>
                 </div>
-                <div class="col-lg-1 col-md-2 col-sm-2 col-xs-12">
-                    <dx:ASPxLabel CssClass="Text2" ID="totalSumLabel" ForeColor="Black" Text="Total Sum :" runat="server" EnableTheming="True" Theme="BlackGlass"></dx:ASPxLabel>
+                <div class="col-lg-1 col-md-2 col-sm-1 col-xs-1">
                     <dx:ASPxTextBox ClientInstanceName="totalSumTextBox" ID="totalSumTextBox" runat="server"></dx:ASPxTextBox>
                 </div>
             </div>
-            <br>
-            <br>
-            <br>
-            <div class="row">
-                <div class="col-lg-9 col-md-8 col-sm-6 col-xs-2">
+
+            <div class="row" style="margin-top: 10px;">
+                <div class="col-lg-9 col-md-7 col-sm-3 col-xs-6">
                 </div>
-                <div class="col-lg-1 col-md-2 col-sm-1 col-xs-3">
-                    <dx:ASPxButton ClientInstanceName="saveButton" ID="saveButton" CssClass="Text2" ForeColor="Aquamarine" Text="Save" runat="server" EnableTheming="True" Theme="BlackGlass" OnClick="SaveButtonClick">
-                        <ClientSideEvents CheckedChanged="function(s, e) {document.getElementById(&#39;sumOfServicesTextBox&#39;).SetEnabled(true)
-}"></ClientSideEvents>
-                    </dx:ASPxButton>
+                <div class="col-lg-1 col-md-1 col-sm-1 col-xs-2">
+                    <dx:ASPxLabel Width="80px" CssClass="Text" ID="paidLabel" ForeColor="Black" runat="server" Text="Paid :" Theme="BlackGlass"></dx:ASPxLabel>
                 </div>
-                <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2">
-                    <dx:ASPxButton ID="cancelButton" runat="server" CssClass="Text2" ForeColor="Aquamarine" Text="Cancel" EnableTheming="True" Theme="BlackGlass" OnClick="CancelButtonOnClick"></dx:ASPxButton>
+                <div class="col-lg-1 col-md-1 col-sm-1 col-xs-1">
+                    <dx:ASPxCheckBox ID="paidCheckBox" runat="server"></dx:ASPxCheckBox>
                 </div>
             </div>
+
         </div>
-
-
+        <br>
+        <br>
+        <br>
+        <div class="row">
+            <div class="col-lg-9 col-md-8 col-sm-6 col-xs-2">
+            </div>
+            <div class="col-lg-1 col-md-2 col-sm-1 col-xs-3">
+                <dx:ASPxButton ClientInstanceName="saveButton" ID="saveButton" CssClass="Text2" ForeColor="Aquamarine" Text="Save" runat="server" EnableTheming="True" Theme="BlackGlass" OnClick="SaveButtonClick">
+                    <ClientSideEvents CheckedChanged="function(s, e) {document.getElementById(&#39;sumOfServicesTextBox&#39;).SetEnabled(true)
+}"></ClientSideEvents>
+                </dx:ASPxButton>
+            </div>
+            <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2">
+                <dx:ASPxButton ID="cancelButton" runat="server" CssClass="Text2" ForeColor="Aquamarine" Text="Cancel" EnableTheming="True" Theme="BlackGlass" OnClick="CancelButtonOnClick"></dx:ASPxButton>
+            </div>
+        </div>
     </div>
+
+    
+
+
+
     <dx:ASPxPopupControl ID="BookingList" runat="server" CloseAction="CloseButton" CloseOnEscape="True" Modal="True"
         PopupHorizontalAlign="WindowCenter" PopupVerticalAlign="WindowCenter" ClientInstanceName="BookingList"
         HeaderText="Bookings" AllowDragging="True" PopupAnimationType="Fade" EnableViewState="False" EnableTheming="True" Theme="BlackGlass">
@@ -156,17 +195,21 @@
                                             <Columns>
                                                 <dx:GridViewCommandColumn SelectAllCheckboxMode="Page" ShowClearFilterButton="True" ShowSelectCheckbox="True" VisibleIndex="0">
                                                 </dx:GridViewCommandColumn>
-                                                <dx:GridViewDataTextColumn FieldName="Comments" VisibleIndex="2" ReadOnly="True">
+                                                <dx:GridViewDataTextColumn FieldName="Customer.Name" VisibleIndex="2" ReadOnly="True">
+                                                </dx:GridViewDataTextColumn>
+                                                <dx:GridViewDataTextColumn FieldName="Customer.Surname" VisibleIndex="3" ReadOnly="True">
+                                                </dx:GridViewDataTextColumn>
+                                                <dx:GridViewDataTextColumn FieldName="Comments" VisibleIndex="4" ReadOnly="True">
                                                 </dx:GridViewDataTextColumn>
                                                 <dx:GridViewDataTextColumn FieldName="Id" VisibleIndex="5" Visible="False">
                                                 </dx:GridViewDataTextColumn>
-                                                <dx:GridViewDataTextColumn FieldName="From" VisibleIndex="4" ReadOnly="True">
+                                                <dx:GridViewDataTextColumn FieldName="From" VisibleIndex="6" ReadOnly="True">
                                                 </dx:GridViewDataTextColumn>
-                                                <dx:GridViewDataTextColumn FieldName="To" VisibleIndex="6" ReadOnly="True">
+                                                <dx:GridViewDataTextColumn FieldName="To" VisibleIndex="7" ReadOnly="True">
                                                 </dx:GridViewDataTextColumn>
-                                                <dx:GridViewDataTextColumn FieldName="SystemPrice" VisibleIndex="7" ReadOnly="True">
+                                                <dx:GridViewDataTextColumn FieldName="SystemPrice" VisibleIndex="8" ReadOnly="True">
                                                 </dx:GridViewDataTextColumn>
-                                                <dx:GridViewDataTextColumn FieldName="AgreedPrice" VisibleIndex="3" ReadOnly="True">
+                                                <dx:GridViewDataTextColumn FieldName="AgreedPrice" VisibleIndex="9" ReadOnly="True">
                                                 </dx:GridViewDataTextColumn>
                                             </Columns>
                                         </dx:ASPxGridView>

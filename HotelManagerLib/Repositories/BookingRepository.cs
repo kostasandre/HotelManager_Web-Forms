@@ -72,8 +72,6 @@ namespace HotelManagerLib.Repositories
         /// <param name="id">
         /// The id.
         /// </param>
-        /// <exception cref="NotImplementedException">
-        /// </exception>
         public void Delete(int id)
         {
             using (var context = new DataBaseContext())
@@ -129,8 +127,6 @@ namespace HotelManagerLib.Repositories
         /// <returns>
         /// The <see cref="IQueryable"/>.
         /// </returns>
-        /// <exception cref="NotImplementedException">
-        /// </exception>
         public IQueryable<Booking> ReadAllQuery(DataBaseContext context)
         {
             return context.Bookings;

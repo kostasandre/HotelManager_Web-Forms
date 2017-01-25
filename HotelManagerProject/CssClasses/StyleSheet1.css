@@ -98,3 +98,11 @@
     float: left;
     margin-right:5px;
 }
+}
+
+.readonly {
+    -webkit-user-select: none
+  -moz-user-select: none
+  -ms-user-select: none
+    
+}
