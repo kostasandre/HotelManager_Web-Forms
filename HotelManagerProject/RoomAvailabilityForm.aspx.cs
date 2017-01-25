@@ -17,12 +17,14 @@ namespace HotelManagerProject
     using System.Globalization;
     using System.Linq;
     using System.Web.UI;
+    using System.Web.UI.WebControls;
 
     using DevExpress.Web;
 
     using HotelManagerLib.Controllers;
     using HotelManagerLib.Enums;
     using HotelManagerLib.Models;
+    using HotelManagerLib.Models.Persistant;
 
     #endregion
 
@@ -57,7 +59,7 @@ namespace HotelManagerProject
         /// </param>
         protected void CurrentMonthTextBox_OnInit(object sender, EventArgs e)
         {
-            this.CurrentMonthTextBox.Text = DateTime.Now.ToString("MMMM", CultureInfo.InvariantCulture);
+            this.CurrentMonthTextBox.Text = DateTime.Now.ToString("MMMM", CultureInfo.InvariantCulture) + DateTime.Now.Year;
         }
 
         /// <summary>
@@ -140,11 +142,11 @@ namespace HotelManagerProject
         /// </exception>
         private void AvailableRoomsOnHtmlDataCellPrepared(object sender, ASPxGridViewTableDataCellEventArgs e)
         {
-            var availableStatus = (AvailableStatus)e.CellValue;
-            if (e.DataColumn.FieldName != "RoomId")
+            AvailableStatus status;
+            if (e.DataColumn.FieldName != "RoomId" && Enum.TryParse(e.CellValue.ToString(), out status))
             {
                 e.Cell.Text = string.Empty;
-                switch (availableStatus)
+                switch (status)
                 {
                     case AvailableStatus.Available:
                         e.Cell.BackColor = Color.Green;
@@ -172,12 +174,25 @@ namespace HotelManagerProject
         /// </param>
         private void drawavailableRooms(int month)
         {
+            var errorlabel = this.Master?.FindControl("form1").FindControl("divErrorMessage") as Label;
             this.bookingController = new BookingController();
             this.roomController = new RoomController();
+            IList<Booking> bookings = new List<Booking>();
+            IList<Room> rooms = new List<Room>();
 
-            var bookings = this.bookingController.RefreshEntities();
-
-            var rooms = this.roomController.RefreshEntities();
+            try
+            {
+                bookings = this.bookingController.RefreshEntities();
+                rooms = this.roomController.RefreshEntities();
+            }
+            catch (Exception ex)
+            {
+                if (errorlabel != null)
+                {
+                    errorlabel.Text = ex.Message;
+                }
+            }
+            
             this.calendarList = new List<BookingCalendar>();
 
             foreach (var availableRoom in rooms)
@@ -210,7 +225,8 @@ namespace HotelManagerProject
                     }
                 }
 
-                calendarEntry.RoomId = availableRoom.Id;
+                calendarEntry.Hotel = availableRoom.HotelName;
+                calendarEntry.Room = availableRoom.Code;
                 this.calendarList.Add(calendarEntry);
             }
 

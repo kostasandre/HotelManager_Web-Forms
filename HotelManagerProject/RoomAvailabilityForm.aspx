@@ -5,7 +5,7 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
-    <script type="text/javascript">
+ <%--   <script type="text/javascript">
         function OnInit(s, e) {
             var calendar = s.GetCalendar();
             calendar.owner = s;
@@ -32,23 +32,26 @@
                 parentDateEdit.HideDropDown();
             }
         }
-    </script>
+    </script>--%>
     
     <div class="row">
-        <div style="margin-left: 40px; height: 45px;" class="col-xs-4 col-sm-2 col-md-2 col-lg-4">
-            <dx:ASPxButton OnClick="PreviousMonthButton_OnClick" ID= "PreviousMonthButton" runat="server" Text="Previous"></dx:ASPxButton>              
+        <div style="height: 45px;" class="col-xs-4 col-sm-2 col-md-2 col-lg-3">
         </div>
-        <div style="height: 45px;" class="col-xs-4 col-sm-2 col-md-2 col-lg-4">
+        <div style ="height: 45px;" class="col-xs-0 col-sm-0 col-md-0 col-lg-1">
+            <dx:ASPxButton OnClick="PreviousMonthButton_OnClick" ID= "PreviousMonthButton" runat="server" Text="<"></dx:ASPxButton>              
+        </div>
+        <div style="height: 45px;" class="col-xs-0 col-sm-0 col-md-0 col-lg-2">
             <dx:ASPxTextBox ReadOnly="True" OnInit="CurrentMonthTextBox_OnInit" ID= "CurrentMonthTextBox" runat="server" Width="170px"></dx:ASPxTextBox>
-                    </div>
-        <div style="height: 45px;" class="col-xs-4 col-sm-2 col-md-2 col-lg-1">
-            <dx:ASPxButton OnClick="NextMonthButton_OnClick" ID= "NextMonthButton" runat="server" Text="Next"></dx:ASPxButton>            
         </div>
+        <div style="height: 45px;" class="col-xs-0 col-sm-0 col-md-0 col-lg-1">
+            <dx:ASPxButton OnClick="NextMonthButton_OnClick" ID= "NextMonthButton" runat="server" Text=">">
+               
+            </dx:ASPxButton>            
+        </div>
+       <%-- <div style="height: 45px;" class="col-xs-4 col-sm-2 col-md-2 col-lg-0">
+        </div>--%>
     </div>
-   <%-- <dx:ASPxDateEdit OnButtonClick="ASPxDateEdit1_OnButtonClick" ClientIDMode="Static" AutoPostBack="True"  ID= "ASPxDateEdit1" runat="server" EditFormat="Custom" DisplayFormatString="MMM yyyy" OnInit="de_Init">
-        
-        <ClientSideEvents DropDown="OnDropDown" Init="OnInit"/>
-    </dx:ASPxDateEdit>--%>
+
     <dx:ASPxGridView ID= "availableRooms" runat="server">
         <SettingsBehavior AllowSort="false" AllowGroup="false" AllowDragDrop="False" />
     </dx:ASPxGridView>
