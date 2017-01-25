@@ -85,6 +85,10 @@
     <Compile Include="Migrations\201701190755509_11th.Designer.cs">
       <DependentUpon>201701190755509_11th.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201701250754472_last.cs" />
+    <Compile Include="Migrations\201701250754472_last.Designer.cs">
+      <DependentUpon>201701250754472_last.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\BillingServiceWithServiceDescription.cs" />
     <Compile Include="Models\BookingCalendar.cs" />
@@ -132,6 +136,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201701190755509_11th.resx">
       <DependentUpon>201701190755509_11th.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201701250754472_last.resx">
+      <DependentUpon>201701250754472_last.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

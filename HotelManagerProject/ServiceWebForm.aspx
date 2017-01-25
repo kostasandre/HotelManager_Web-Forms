@@ -10,6 +10,7 @@
                 idTextBox.SetText("0");
                 codeTextBox.SetText("");
                 descriptionTextBox.SetText("");
+                hotelComboBox.SetText("");
             }
             ServiceDetailView.Show();
         }
@@ -18,6 +19,7 @@
             idTextBox.SetText(s.cp_text1);
             codeTextBox.SetText(s.cp_text2);
             descriptionTextBox.SetText(s.cp_text3);
+            hotelComboBox.SetText(s.cp_text4);
         }
     </script>
 
@@ -93,6 +95,20 @@
                                             
                                             <div class="row">
                                                 <div class="col-xs-4">
+                                                    <dx:ASPxLabel ID="hotelLabel" runat="server" Text="Hotel"></dx:ASPxLabel>
+                                                </div>
+                                                <div class="col-xs-6">
+                                                    <dx:ASPxComboBox ID="hotelComboBox" NullText="Select Hotel" ValueField="Id" TextField="Name" runat="server" IncrementalFilteringMode="None" DropDownStyle="DropDownList" ClientIDMode="Static">
+                                                        <ValidationSettings EnableCustomValidation="True" ErrorDisplayMode="Text" ErrorTextPosition="Right" SetFocusOnError="true">
+                                                            <ErrorFrameStyle Font-Size="Large" />
+                                                            <RequiredField IsRequired="True" ErrorText="*" />
+                                                        </ValidationSettings>
+                                                    </dx:ASPxComboBox>
+                                                </div>
+                                            </div>
+
+                                            <div class="row">
+                                                <div class="col-xs-4">
                                                     <dx:ASPxLabel ID="idLabel" CssClass="hidden" runat="server" Text="Name"></dx:ASPxLabel>
                                                 </div>
                                                 <div class="col-xs-6">
@@ -144,7 +160,7 @@
                                         <div class="pcmButton">
                                             <dx:ASPxButton ID="btOK" runat="server" Text="OK" Width="80px" AutoPostBack="False" Style="float: left; margin-right: 8px" OnClick="SaveButton_OnClick">
                                                 <ClientSideEvents Click="function(s, e) {
- if (eval(&#39;codeTextBox&#39;).lastChangedValue == null || eval(&#39;descriptionTextBox&#39;).lastChangedValue == null)
+ if (eval(&#39;codeTextBox&#39;).lastChangedValue == null || eval(&#39;descriptionTextBox&#39;).lastChangedValue == null || eval(&#39;hotelComboBox&#39;).lastChangedValue == null)
  		{
 return false;
 }

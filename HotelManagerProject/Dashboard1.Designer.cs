@@ -34,24 +34,18 @@
             DevExpress.DashboardCommon.SimpleSeries simpleSeries1 = new DevExpress.DashboardCommon.SimpleSeries();
             DevExpress.DashboardCommon.DashboardLayoutGroup dashboardLayoutGroup1 = new DevExpress.DashboardCommon.DashboardLayoutGroup();
             DevExpress.DashboardCommon.DashboardLayoutItem dashboardLayoutItem1 = new DevExpress.DashboardCommon.DashboardLayoutItem();
-            this.dashboardObjectDataSource1 = new DevExpress.DashboardCommon.DashboardObjectDataSource();
             this.chartDashboardItem1 = new DevExpress.DashboardCommon.ChartDashboardItem();
-            ((System.ComponentModel.ISupportInitialize)(this.dashboardObjectDataSource1)).BeginInit();
+            this.dashboardObjectDataSource1 = new DevExpress.DashboardCommon.DashboardObjectDataSource();
             ((System.ComponentModel.ISupportInitialize)(this.chartDashboardItem1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(dimension1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(measure1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dashboardObjectDataSource1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this)).BeginInit();
-            // 
-            // dashboardObjectDataSource1
-            // 
-            this.dashboardObjectDataSource1.ComponentName = "dashboardObjectDataSource1";
-            this.dashboardObjectDataSource1.DataSource = typeof(HotelManagerLib.Models.Persistant.Billing);
-            this.dashboardObjectDataSource1.Name = "Object Data Source 1";
             // 
             // chartDashboardItem1
             // 
             dimension1.DataMember = "Booking.To";
-            dimension1.DateTimeGroupInterval = DevExpress.DashboardCommon.DateTimeGroupInterval.Month;
+            dimension1.DateTimeGroupInterval = DevExpress.DashboardCommon.DateTimeGroupInterval.MonthYear;
             this.chartDashboardItem1.Arguments.AddRange(new DevExpress.DashboardCommon.Dimension[] {
             dimension1});
             this.chartDashboardItem1.AxisX.TitleVisible = false;
@@ -77,6 +71,12 @@
             chartPane1});
             this.chartDashboardItem1.ShowCaption = true;
             // 
+            // dashboardObjectDataSource1
+            // 
+            this.dashboardObjectDataSource1.ComponentName = "dashboardObjectDataSource1";
+            this.dashboardObjectDataSource1.DataSource = typeof(HotelManagerLib.Models.Persistant.Billing);
+            this.dashboardObjectDataSource1.Name = "Object Data Source 1";
+            // 
             // Dashboard1
             // 
             this.DataSources.AddRange(new DevExpress.DashboardCommon.IDashboardDataSource[] {
@@ -91,10 +91,10 @@
             dashboardLayoutGroup1.Orientation = DevExpress.DashboardCommon.DashboardLayoutGroupOrientation.Vertical;
             this.LayoutRoot = dashboardLayoutGroup1;
             this.Title.Text = "Dashboard";
-            ((System.ComponentModel.ISupportInitialize)(this.dashboardObjectDataSource1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(dimension1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(measure1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.chartDashboardItem1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dashboardObjectDataSource1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this)).EndInit();
 
         }

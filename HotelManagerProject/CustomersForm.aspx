@@ -18,7 +18,7 @@
                 idNumberText.SetText("");
                 emailTextBox.SetText("");
                 addressTextBox.SetText("");
-                iDtextBox.SetText("");
+                iDtextBox.SetText("0");
                 phoneTextBox.SetText("");
             }
             createUserPopUp.Show();

@@ -12,7 +12,9 @@ namespace HotelManagerProject
     #region
 
     using System;
+    using System.Collections.Generic;
     using System.Data.SqlClient;
+    using System.Linq;
     using System.Web.UI;
     using System.Web.UI.WebControls;
 
@@ -40,6 +42,11 @@ namespace HotelManagerProject
         private IEntityController<Service> serviceController;
 
         /// <summary>
+        /// The hotel controller.
+        /// </summary>
+        private IEntityController<Hotel> hotelController;
+
+        /// <summary>
         /// The page_ init.
         /// </summary>
         /// <param name="sender">
@@ -51,8 +58,14 @@ namespace HotelManagerProject
         protected void Page_Init(object sender, EventArgs e)
         {
             this.serviceController = new ServiceController();
+            this.hotelController = new HotelController();
+
             this.ServiceGridView.DataSource = this.serviceController.RefreshEntities();
             this.ServiceGridView.DataBind();
+
+            var hotelList = this.hotelController.RefreshEntities();
+            this.hotelComboBox.DataSource = hotelList;
+            this.hotelComboBox.DataBind();
         }
 
         /// <summary>
@@ -87,9 +100,19 @@ namespace HotelManagerProject
         {
             this.service = new Service();
             this.serviceController = new ServiceController();
+
             this.service.Id = Convert.ToInt32(this.idTextBox.Text);
             this.service.Code = this.codeTextBox.Text;
             this.service.Description = this.descriptionTextBox.Text;
+
+            var hotelList = this.hotelComboBox.DataSource as List<Hotel>;
+            if (hotelList != null)
+            {
+                var hotelTemp =
+                    hotelList.SingleOrDefault(x => x.Id == Convert.ToInt32(this.hotelComboBox.SelectedItem.Value));
+                this.service.HotelId = hotelTemp.Id;
+            }
+
             this.serviceController.CreateOrUpdateEntity(this.service);
             this.Page.Response.Redirect(this.Page.Request.Url.ToString(), true);
         }
@@ -170,6 +193,7 @@ namespace HotelManagerProject
             this.ServiceGridView.JSProperties["cp_text1"] = myService.Id;
             this.ServiceGridView.JSProperties["cp_text2"] = myService.Code;
             this.ServiceGridView.JSProperties["cp_text3"] = myService.Description;
+            this.ServiceGridView.JSProperties["cp_text3"] = myService.HotelName;
         }
     }
 }
