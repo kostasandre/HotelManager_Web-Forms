@@ -275,15 +275,15 @@ namespace HotelManagerLib.Tests.BookingEntityTests
             Assert.AreEqual(Environment.UserName , booking.UpdatedBy);
         }
 
-        //[Test]
-        //public void GetAvailableRooms()
-        //{
-        //    var bookingController = new BookingController();
-        //    //var availableRooms = bookingController.GetAvailableRooms(this.roomType, DateTime.Now, DateTime.Now);
-        //    var nullBooking = Assert.Throws<ArgumentNullException>(
-        //             () => bookingController.GetAvailableRooms(this.roomType , DateTime.Now , DateTime.Now));
+        [Test]
+        public void GetAvailableRooms()
+        {
+            var roomtypes = this.roomTypeEntityController.RefreshEntities();
+            var bookingController = new BookingController();
+            var availableRooms = bookingController.GetAvailableRooms(roomtypes[0].Id, DateTime.Now, DateTime.Now);
+            Assert.AreNotEqual(availableRooms.Count , null);
 
-        //}
+        }
 
         /// <summary>
         /// The clear hotel.

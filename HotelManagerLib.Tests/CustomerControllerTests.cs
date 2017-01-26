@@ -68,6 +68,14 @@ namespace HotelManagerLib.Tests
             Assert.AreEqual(customer.Id,this.customer.Id);
         }
 
+        [Test]
+        public void UpdateEntity()
+        {
+            this.customer.Name = "updateTest";
+            var updatedCustomer = this.customerController.CreateOrUpdateEntity(this.customer);
+            Assert.AreEqual(updatedCustomer.Name, this.customer.Name);
+        }
+
         [TearDown]
         public void ClearHotel()
         {
