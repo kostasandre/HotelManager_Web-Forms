@@ -142,7 +142,7 @@ namespace HotelManagerProject
         /// <param name="e">
         /// The e.
         /// </param>
-        protected void SaveButton_OnClick(object sender , EventArgs e)
+        protected void SaveButton_OnClick(object sender, EventArgs e)
         {
             this.pricingList = new PricingList();
             this.pricingListController = new PricingListController();
@@ -198,12 +198,12 @@ namespace HotelManagerProject
                 }
                 else
                 {
-                    this.validToDateEdit.IsValid = false;
                     this.validFromDateEdit.IsValid = false;
+                    this.validToDateEdit.IsValid = false;
+                    this.validFromDateEdit.ErrorText = "There is allready Pricing List for the period you declared!";
                     this.validToDateEdit.ErrorText = "There is allready Pricing List for the period you declared!";
                 }
             }
-
         }
 
         /// <summary>
