@@ -209,5 +209,10 @@ namespace HotelManagerProject
                 this.HotelGridView.JSProperties["cp_text7"] = myHotel.TaxId;
             }
         }
+
+        protected void selectHotelASPxButton_Click(object sender , EventArgs e)
+        {
+
+        }
     }
 }
