@@ -10,167 +10,167 @@
         }
 
     </script>
-    <div class="MainForm">
 
-        <h1>Booking Form</h1>
-
-        <div class="container" style="width: 100%">
-
-            <div class="row">
-                <div style="height: 45px;" class="col-xs-4 col-sm-2 col-md-2 col-lg-1">
-                    <label>Room Type:</label>
-                </div>
-                <div class="col-xs-3 col-sm-1 col-md-2 col-lg-1">
-                    <dx:ASPxComboBox ID="roomTypeComboBox" NullText="Select Room Type" runat="server" ValueField="Id" TextField="Code" IncrementalFilteringMode="None" DropDownStyle="DropDownList">
-                    </dx:ASPxComboBox>
-                </div>
+    <div class="container" style="width: 100%">
+        <div class="row">
+            <div class="col-lg-1 col-sm-2 col-md-2 col-xs-4">
+                <dx:ASPxButton OnClick="saveBookingButton_OnClick" ID="saveBookingButton" CssClass="button" ToolTip="Saves the Booking" ForeColor="AquaMarine" Theme="BlackGlass" runat="server" Text="Save Booking" />
             </div>
-            <div class="row">
-                <div class="col-xs-4 col-sm-2 col-md-2 col-lg-1">
-                    <label>Date From:</label>
-                </div>
-                <div style="height: 45px;" class="col-xs-8 col-sm-4 col-md-3 col-lg-2">
-                    <dx:ASPxDateEdit AllowUserInput="False" ID="dateFromCalendar" runat="server" AllowNull="False">
-                        <ValidationSettings EnableCustomValidation="True" ErrorDisplayMode="ImageWithTooltip" ErrorTextPosition="Right" SetFocusOnError="true">
-                            <ErrorFrameStyle Font-Size="Large" />
-                            <RequiredField IsRequired="True" ErrorText="Valid from is required" />
-                        </ValidationSettings>
-                    </dx:ASPxDateEdit>
-                </div>
-
-                <div class="col-xs-4 col-sm-2 col-md-2 col-lg-1">
-                    <label>Date To:</label>
-                </div>
-                <div class="col-xs-6 col-sm-4 col-md-3 col-lg-3">
-                    <dx:ASPxDateEdit AllowUserInput="False" ID="dateToCalendar" runat="server" AllowNull="False">
-                        <ValidationSettings EnableCustomValidation="True" ErrorDisplayMode="ImageWithTooltip" ErrorTextPosition="Right" SetFocusOnError="true">
-                            <ErrorFrameStyle Font-Size="Large" />
-                            <RequiredField IsRequired="True" ErrorText="Valid from is required" />
-                        </ValidationSettings>
-                    </dx:ASPxDateEdit>
-
-                </div>
+            <div class="col-lg-1 col-md-2 col-sm-2 col-xs-4">
+                <dx:ASPxButton OnClick="cancelButton_OnClick" ID="cancelButton" runat="server" CssClass="button" ToolTip="Cancel" ForeColor="AquaMarine" Theme="BlackGlass" Text="Cancel Booking" />
             </div>
-            <br />
-            <div class="row">
-                <div class="col-xs-4 col-sm-3 col-md-2 col-lg-2">
-                    <dx:ASPxButton OnClick="CalculateAvailableRoomsButton" ID="calculateRoomTypePriceButton" runat="server" Text="Check Availability and Price" ToolTip="Calculates the price and the availability of given days"></dx:ASPxButton>
-                </div>
+            <div class="col-lg-10 col-md-8 col-sm-8 col-xs-12">
+                <div class="MainForm" style="width: 1000px">
 
-            </div>
-            <br />
-            <div class="row">
-                <div class="col-xs-12">
-                    <h3>Available Rooms</h3>
-                </div>
+                    <a style="font-size: 20px; color: black; font-weight: bold">Booking Form</a>
+                    <br/>
+                    <div class="container" style="width: 100%">
 
-            </div>
-            <br />
-            <div class="row">
-                <div class="col-xs-12 col-sm-8 col-md-8 col-lg-6" style="margin-bottom: 10px">
-                    <dx:ASPxGridView ID="availableRoomsGridView" runat="server" Theme="BlackGlass" AutoGenerateColumns="False" KeyFieldName="Id">
-                        <Settings ShowFilterRow="True"></Settings>
-                        <SettingsBehavior AllowFocusedRow="True"></SettingsBehavior>
+                        <div class="row">
+                            <div style="height: 45px;" class="col-xs-1 col-sm-1 col-md-2 col-lg-2">
+                                <label>Room Type:</label>
+                            </div>
+                            <div class="col-xs-3 col-sm-1 col-md-10 col-lg-1">
+                                <dx:ASPxComboBox ID="roomTypeComboBox" NullText="Select Room Type" runat="server" ValueField="Id" TextField="Code" IncrementalFilteringMode="None" DropDownStyle="DropDownList">
+                                </dx:ASPxComboBox>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-xs-1 col-sm-1 col-md-2 col-lg-2">
+                                <label>Date From:</label>
+                            </div>
+                            <div style="height: 45px;" class="col-xs-11 col-sm-11 col-md-10 col-lg-3">
+                                <dx:ASPxDateEdit AllowUserInput="False" ID="dateFromCalendar" runat="server" AllowNull="False"></dx:ASPxDateEdit>
+                            </div>
 
-                        <SettingsDataSecurity AllowEdit="False" AllowInsert="False" AllowDelete="False"></SettingsDataSecurity>
-                        <Columns>
+                            <div class="col-xs-1 col-sm-1 col-md-2 col-lg-2">
+                                <label>Date To:</label>
+                            </div>
+                            <div class="col-xs-10 col-sm-4 col-md-3 col-lg-3">
+                                <dx:ASPxDateEdit AllowUserInput="False" ID="dateToCalendar" runat="server" AllowNull="False"></dx:ASPxDateEdit>
+                            </div>
+                        </div>
+                        <br />
+                        <div class="row">
+                            <div class="col-xs-4 col-sm-3 col-md-2 col-lg-2">
+                                <dx:ASPxButton OnClick="CalculateAvailableRoomsButton" ID="calculateRoomTypePriceButton" runat="server" Text="Check Availability and Price" ToolTip="Calculates the price and the availability of given days"></dx:ASPxButton>
+                            </div>
 
-                            <dx:GridViewCommandColumn ShowClearFilterButton="True" VisibleIndex="1" ButtonRenderMode="Image">
-                            </dx:GridViewCommandColumn>
-                            <dx:GridViewDataTextColumn FieldName="Code" VisibleIndex="2">
-                            </dx:GridViewDataTextColumn>
-                            <dx:GridViewDataTextColumn FieldName="Id" VisibleIndex="4" Visible="False">
-                            </dx:GridViewDataTextColumn>
-                            <dx:GridViewDataTextColumn FieldName="HotelId" VisibleIndex="3">
-                            </dx:GridViewDataTextColumn>
-                            <dx:GridViewDataTextColumn FieldName="RoomTypeId" VisibleIndex="5">
-                            </dx:GridViewDataTextColumn>
-                        </Columns>
-                    </dx:ASPxGridView>
-                </div>
+                        </div>
+                        <br />
+                        <div class="row">
+                            <div class="col-xs-12">
+                                <h3>Available Rooms</h3>
+                            </div>
 
-            </div>
-            <br />
+                        </div>
+                        <br />
+                        <div class="row">
+                            <div class="col-xs-12 col-sm-8 col-md-8 col-lg-6" style="margin-bottom: 10px">
+                                <dx:ASPxGridView ID="availableRoomsGridView" runat="server" Theme="BlackGlass" AutoGenerateColumns="False" KeyFieldName="Id">
+                                    <Settings ShowFilterRow="True"></Settings>
+                                    <SettingsBehavior AllowFocusedRow="True"></SettingsBehavior>
 
-            <div class="row">
-                <div class="col-xs-0 col-sm-2 col-md-2 col-lg-6">
-                </div>
-                <div class="col-xs-4 col-sm-2 col-md-2 col-lg-1">
-                    <label>System Price:</label>
-                </div>
-                <div class="col-xs-6 col-sm-4 col-md-3 col-lg-2">
-                    <dx:ASPxTextBox ID="roomTypePriceTextBox" runat="server" Width="170px" ReadOnly=True></dx:ASPxTextBox>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-xs-0 col-sm-2 col-md-2 col-lg-6">
-                </div>
-                <div class="col-xs-4 col-sm-2 col-md-2 col-lg-1">
-                    <label>Agreed Price:</label>
-                </div>
-                <div class="col-xs-6 col-sm-4 col-md-3 col-lg-2">
-                    <dx:ASPxTextBox ID="agreedPriceTextBox" runat="server" Width="170px">
-                        <ClientSideEvents KeyDown="function(s, e) {
+                                    <SettingsDataSecurity AllowEdit="False" AllowInsert="False" AllowDelete="False"></SettingsDataSecurity>
+                                    <Columns>
+
+                                        <dx:GridViewCommandColumn ShowClearFilterButton="True" VisibleIndex="1" ButtonRenderMode="Image">
+                                        </dx:GridViewCommandColumn>
+                                        <dx:GridViewDataTextColumn FieldName="Code" VisibleIndex="2">
+                                        </dx:GridViewDataTextColumn>
+                                        <dx:GridViewDataTextColumn FieldName="Id" VisibleIndex="4" Visible="False">
+                                        </dx:GridViewDataTextColumn>
+                                        <dx:GridViewDataTextColumn FieldName="HotelId" VisibleIndex="3">
+                                        </dx:GridViewDataTextColumn>
+                                        <dx:GridViewDataTextColumn FieldName="RoomTypeId" VisibleIndex="5">
+                                        </dx:GridViewDataTextColumn>
+                                    </Columns>
+                                </dx:ASPxGridView>
+                            </div>
+
+                        </div>
+                        <br />
+
+                        <div class="row">
+                            <div class="col-xs-0 col-sm-0 col-md-0 col-lg-5">
+                            </div>
+                            <div class="col-xs-1 col-sm-1 col-md-1 col-lg-1">
+                                <label>System Price:</label>
+                            </div>
+                            <div class="col-xs-11 col-sm-4 col-md-3 col-lg-2">
+                                <dx:ASPxTextBox ID="roomTypePriceTextBox" runat="server" Width="170px" ReadOnly=True></dx:ASPxTextBox>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-xs-0 col-sm-0 col-md-0 col-lg-5">
+                            </div>
+                            <div class="col-xs-1 col-sm-1 col-md-1 col-lg-1">
+                                <label>Agreed Price:</label>
+                            </div>
+                            <div class="col-xs-11 col-sm-4 col-md-3 col-lg-2">
+                                <dx:ASPxTextBox ID="agreedPriceTextBox" runat="server" Width="170px">
+                                    <ClientSideEvents KeyDown="function(s, e) {
 	if (!((e.htmlEvent.keyCode &gt;= 48 &amp;&amp; e.htmlEvent.keyCode &lt;= 57) || (e.htmlEvent.keyCode &gt;= 96&amp;&amp; e.htmlEvent.keyCode &lt;= 105) ||  (e.htmlEvent.keyCode == 188) ||(e.htmlEvent.keyCode == 110) ||
            (e.htmlEvent.keyCode == 8 || e.htmlEvent.keyCode == 46 || e.htmlEvent.keyCode == 37 || 
             e.htmlEvent.keyCode == 39))) 
         ASPxClientUtils.PreventEventAndBubble(e.htmlEvent); 
 
 }"></ClientSideEvents>
-                    </dx:ASPxTextBox>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-xs-0 col-sm-2 col-md-2 col-lg-6">
-                </div>
-                <div class="col-xs-4 col-sm-2 col-md-2 col-lg-1">
-                    <label>Search Customer:</label>
-                </div>
-                <div style="height: 45px;" class="col-xs-8 col-sm-4 col-md-5 col-lg-3">
-                    <dx:ASPxComboBox OnValueChanged="customerComboBox_OnValueChanged" ID="customerComboBox" NullText="Search Customer" runat="server" ValueField="Id" TextField="Name" IncrementalFilteringMode="Contains" DropDownStyle="DropDown" TextFormatString="{0} {1}">
-                        <Columns>
-                            <dx:ListBoxColumn FieldName="Name" Visible="True" Caption="Name" />
-                            <dx:ListBoxColumn Caption="Surname" FieldName="Surname" />
-                        </Columns>
-                    </dx:ASPxComboBox>
-                </div>
+                                </dx:ASPxTextBox>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-xs-0 col-sm-0 col-md-0 col-lg-5">
+                            </div>
+                            <div class="col-xs-1 col-sm-1 col-md-1 col-lg-1">
+                                <label>Search Customer:</label>
+                            </div>
+                            <div style="height: 45px;" class="col-xs-3 col-sm-3 col-md-3 col-lg-3">
+                                <dx:ASPxComboBox OnValueChanged="customerComboBox_OnValueChanged" ID="customerComboBox" NullText="Search Customer" runat="server" ValueField="Id" TextField="Name" IncrementalFilteringMode="Contains" DropDownStyle="DropDown" TextFormatString="{0} {1}">
+                                    <Columns>
+                                        <dx:ListBoxColumn FieldName="Name" Visible="True" Caption="Name" />
+                                        <dx:ListBoxColumn Caption="Surname" FieldName="Surname" />
+                                    </Columns>
+                                </dx:ASPxComboBox>
+                            </div>
 
-                <div style="height: 45px;" class="col-xs-8 col-sm-4 col-md-3 col-lg-1">
-                    <dx:ASPxButton ID="createCustomerButton" runat="server" Text="New Customer">
-                        <ClientSideEvents Click="function(s, e) { ShowLoginWindow(); }" />
-                    </dx:ASPxButton>
-                </div>
+                            <div style="height: 45px;" class="col-xs-8 col-sm-4 col-md-3 col-lg-1">
+                                <dx:ASPxButton ID="createCustomerButton" runat="server" Text="New Customer">
+                                    <ClientSideEvents Click="function(s, e) { ShowLoginWindow(); }" />
+                                </dx:ASPxButton>
+                            </div>
 
-            </div>
-            <br />
-            <div class="row">
-                <div class="col-xs-0 col-sm-2 col-md-2 col-lg-6">
-                </div>
-                <div class="col-xs-4 col-sm-4 col-md-2 col-lg-1">
-                    <label>Comments:</label>
-                </div>
-                <div class="col-xs-4 col-sm-4 col-md-3 col-lg-3">
-                    <dx:ASPxMemo ID="commentMemoBox" runat="server" Height="71px" Width="170px"></dx:ASPxMemo>
-                </div>
-            </div>
-            <br />
-
-
-            <br />
-            <br />
-            <div class="row">
+                        </div>
+                        <br />
+                        <div class="row">
+                            <div class="col-xs-0 col-sm-0 col-md-0 col-lg-5">
+                            </div>
+                            <div class="col-xs-1 col-sm-1 col-md-1 col-lg-1">
+                                <label>Comments:</label>
+                            </div>
+                            <div class="col-xs-4 col-sm-4 col-md-3 col-lg-3">
+                                <dx:ASPxMemo ID="commentMemoBox" runat="server" Height="71px" Width="170px"></dx:ASPxMemo>
+                            </div>
+                        </div>
+                         <br/>
+           
+                        <%-- <div class="row">
                 <div class="col-xs-4 col-sm-8 col-md-10 col-lg-10">
+                    
                 </div>
                 <div class="col-xs-3 col-sm-2 col-md-1 col-lg-1" style="text-align: right">
-                    <dx:ASPxButton OnClick="saveBookingButton_OnClick" ID="saveBookingButton" runat="server" Text="Save" Width=60px></dx:ASPxButton>
+                    <dx:ASPxButton OnClick="saveBookingButton_OnClick" ID= "saveBookingButton" runat="server" Text="Save" Width=60px></dx:ASPxButton>
                 </div>
-                <div class="col-xs-3 col-sm-2 col-md-1 col-lg-1" style="text-align: right">
-                    <dx:ASPxButton OnClick="cancelButton_OnClick" ID="cancelButton" runat="server" Text="Cancel" Width="60px"></dx:ASPxButton>
+                 <div class="col-xs-3 col-sm-2 col-md-1 col-lg-1" style="text-align: right">
+                    <dx:ASPxButton OnClick="cancelButton_OnClick" ID= "cancelButton" runat="server" Text="Cancel" Width="60px"></dx:ASPxButton>
                 </div>
-                <br />
-                <br />
+                <br/>
+                <br/>
+                
 
-
+            </div>--%>
+                    </div>
+                </div>
             </div>
         </div>
 

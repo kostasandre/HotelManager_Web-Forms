@@ -5,14 +5,14 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
-       <script type="text/javascript">
-           function OnInit(s, e) {
-               var calendar = s.GetCalendar();
-               calendar.owner = s;
-               calendar.GetMainElement().style.opacity = '0';
-           }
+    <script type="text/javascript">
+        function OnInit(s, e) {
+            var calendar = s.GetCalendar();
+            calendar.owner = s;
+            calendar.GetMainElement().style.opacity = '0';
+        }
 
-           function OnDropDown(s, e) {
+        function OnDropDown(s, e) {
             var calendar = s.GetCalendar();
             var fastNav = calendar.fastNavigation;
             fastNav.activeView = calendar.GetView(0, 0);
@@ -43,43 +43,51 @@
             <div class="col-xs-1 col-sm-1 col-md-1 col-lg-5">
                 <dx:ASPxDateEdit AutoPostBack="True" ID="de" runat="server" Theme="BlackGlass" EnableTheming="True" ShowShadow="false"
                     DisplayFormatString="MMM yyyy" EditFormatString="MMM yyyy" OnInit="de_Init">
-                    <ClientSideEvents DropDown="OnDropDown" Init="OnInit"/>
+                    <ClientSideEvents DropDown="OnDropDown" Init="OnInit" />
                 </dx:ASPxDateEdit>
-                <asp:Button ID="secretInput" style="display: none" OnClick="OnDateChanged" runat="server" ClientIDMode="Static"/>
+                <asp:Button ID="secretInput" Style="display: none" OnClick="OnDateChanged" runat="server" ClientIDMode="Static" />
             </div>
         </div>
     </div>
-    
-    <div class="MainForm">
-        <h1>Rooms Availability</h1>
-        <dx:ASPxGridView ID="availableRooms" runat="server">
 
-            <SettingsBehavior AllowSort="false" AllowGroup="false" AllowDragDrop="False" />
-        </dx:ASPxGridView>
-        <br />
-        <div class="container-fluid">
-            <div class="row">
+    <div class="container" style="width: 100%">
+        <div class="row">
+            <div class="AvailableroomsForm" style="width: 1800px; ">
+                <a style="font-size: 20px; color: black; font-weight: bold">Booking List</a>
+                <dx:ASPxGridView ID="availableRooms" runat="server">
 
-                <div class="col-xs-2" style="margin-bottom: 10px">
-                    <img class="imagesSize" alt="Green Square Image" src="Images/green.png" />
-                    <asp:Label ID=greenLabel runat="server" Text=":Available Rooms"></asp:Label>
+                    <SettingsBehavior AllowSort="false" AllowGroup="false" AllowDragDrop="False" />
+                </dx:ASPxGridView>
+                <br />
+                <div class="container-fluid">
+                    <div class="row">
+
+                        <div class="col-xs-2" style="margin-bottom: 10px">
+                            <img class="imagesSize" alt="Green Square Image" src="Images/green.png" />
+                            <asp:Label ID=greenLabel runat="server" Text=":Available Rooms"></asp:Label>
+                        </div>
+
+                        <div class="col-xs-2 ">
+                            <img class="imagesSize" alt="Blue Square Image" src="Images/blue.png" />
+                            <asp:Label ID=blueLabel runat="server" Text=":Billed Rooms"></asp:Label>
+                        </div>
+
+                        <div class="col-xs-2">
+                            <img class="imagesSize" alt="Yellow Square Image" src="Images/yellow.png" />
+                            <asp:Label ID=yellowLabel runat="server" Text=":Not Available Rooms"></asp:Label>
+                        </div>
+
+                        <div class="col-xs-2">
+                            <img class="imagesSize" alt="Red Square Image" src="Images/red.png" />
+                            <asp:Label ID=RedLabel runat="server" Text=":Occupied Rooms"></asp:Label>
+                        </div>
+                         <div class="col-xs-2">
+                            <img class="imagesSize" alt="Grey Square Image" src="Images/grey.png" />
+                            <asp:Label ID=GreyLabel runat="server" Text=":Not Existing Day"></asp:Label>
+                        </div>
+
+                    </div>
                 </div>
-
-                <div class="col-xs-2 ">
-                    <img class="imagesSize" alt="Blue Square Image" src="Images/blue.png" />
-                    <asp:Label ID=blueLabel runat="server" Text=":Billed Rooms"></asp:Label>
-                </div>
-
-                <div class="col-xs-2">
-                    <img class="imagesSize" alt="Yellow Square Image" src="Images/yellow.png" />
-                    <asp:Label ID=yellowLabel runat="server" Text=":Not Available Rooms"></asp:Label>
-                </div>
-
-                <div class="col-xs-2">
-                    <img class="imagesSize" alt="Red Square Image" src="Images/red.png" />
-                    <asp:Label ID=RedLabel runat="server" Text=":Occupied Rooms"></asp:Label>
-                </div>
-
             </div>
         </div>
     </div>
