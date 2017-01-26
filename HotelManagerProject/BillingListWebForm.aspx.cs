@@ -101,6 +101,13 @@ namespace HotelManagerProject
                     errorlabel.Text = "Couldn't create the current Billing";
                 }
             }
+            catch (Exception ex)
+            {
+                if (errorlabel != null)
+                {
+                    errorlabel.Text = ex.Message;
+                }
+            }
         }
       
         /// <summary>
@@ -192,7 +199,11 @@ namespace HotelManagerProject
                     }
                     catch (SqlException ex)
                     {
-                        return;
+                        errorlabel.Text = ex.Message;
+                    }
+                    catch (Exception ex)
+                    {
+                        errorlabel.Text = ex.Message;
                     }
                 }
 
