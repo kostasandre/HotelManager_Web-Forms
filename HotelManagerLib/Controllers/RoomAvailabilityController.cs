@@ -83,35 +83,58 @@ namespace HotelManagerLib.Controllers
                     if (!DateTime.TryParse(dateString, out parsedDate))
                     {
                         property.SetValue(calendarEntry, AvailableStatus.NotExistingDay);
+                        continue;
                     }
-                }
 
+                    var currentBooking =
+                        bookings.SingleOrDefault(
+                            x => x.Room.Id == availableRoom.Id && x.From <= parsedDate && x.To >= parsedDate);
 
-                foreach (var booking in bookings.Where(x => x.Room.Id == availableRoom.Id))
-                {
-                    var bookingDays = (booking.To - booking.From).Days;
-                    for (var i = 0; i < bookingDays; i++)
+                    if (currentBooking == null || currentBooking.Status == Status.Cancelled)
                     {
-                        var checkDay = booking.From.AddDays(i);
-                        var correctProperty = $"Day{checkDay.Day}";
-                        var propertyInfo = typeof(BookingCalendar).GetProperty(correctProperty);
-                        if ((checkDay.Year == date.Year) && (checkDay.Month == date.Month) && (booking.Status != Status.Cancelled) && (propertyInfo != null))
-                        {
-                            switch (booking.Status)
-                            {
-                                case Status.New:
-                                    propertyInfo.SetValue(calendarEntry, AvailableStatus.NotAvailable);
-                                    break;
-                                case Status.Active:
-                                    propertyInfo.SetValue(calendarEntry, AvailableStatus.NotAvailableOccupied);
-                                    break;
-                                case Status.Billed:
-                                    propertyInfo.SetValue(calendarEntry, AvailableStatus.NotAvailableBilled);
-                                    break;
-                            }
-                        }
+                        continue;
+                    }
+
+                    switch (currentBooking.Status)
+                    {
+                        case Status.New:
+                            property.SetValue(calendarEntry, AvailableStatus.NotAvailable);
+                            break;
+                        case Status.Active:
+                            property.SetValue(calendarEntry, AvailableStatus.NotAvailableOccupied);
+                            break;
+                        case Status.Billed:
+                            property.SetValue(calendarEntry, AvailableStatus.NotAvailableBilled);
+                            break;
                     }
                 }
+
+
+                //foreach (var booking in bookings.Where(x => x.Room.Id == availableRoom.Id))
+                //{
+                //    var bookingDays = (booking.To - booking.From).Days;
+                //    for (var i = 0; i < bookingDays; i++)
+                //    {
+                //        var checkDay = booking.From.AddDays(i);
+                //        var correctProperty = $"Day{checkDay.Day}";
+                //        var propertyInfo = typeof(BookingCalendar).GetProperty(correctProperty);
+                //        if ((checkDay.Year == date.Year) && (checkDay.Month == date.Month) && (booking.Status != Status.Cancelled) && (propertyInfo != null))
+                //        {
+                //            switch (booking.Status)
+                //            {
+                //                case Status.New:
+                //                    propertyInfo.SetValue(calendarEntry, AvailableStatus.NotAvailable);
+                //                    break;
+                //                case Status.Active:
+                //                    propertyInfo.SetValue(calendarEntry, AvailableStatus.NotAvailableOccupied);
+                //                    break;
+                //                case Status.Billed:
+                //                    propertyInfo.SetValue(calendarEntry, AvailableStatus.NotAvailableBilled);
+                //                    break;
+                //            }
+                //        }
+                //    }
+                //}
 
                 calendarEntry.Hotel = availableRoom.HotelName;
                 calendarEntry.Room = availableRoom.Code;

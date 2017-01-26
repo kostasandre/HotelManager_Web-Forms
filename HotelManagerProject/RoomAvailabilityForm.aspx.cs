@@ -61,7 +61,7 @@ namespace HotelManagerProject
         /// </param>
         protected void CurrentMonthTextBox_OnInit(object sender, EventArgs e)
         {
-            this.CurrentMonthTextBox.Text = DateTime.Now.ToString("MMMM", CultureInfo.InvariantCulture);
+            //this.CurrentMonthTextBox.Text = DateTime.Now.ToString("MMMM", CultureInfo.InvariantCulture);
         }
 
         /// <summary>
