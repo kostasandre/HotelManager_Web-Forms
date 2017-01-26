@@ -50,7 +50,8 @@ namespace HotelManagerLib.Models
         Available = 0,
         NotAvailable = 1,
         NotAvailableOccupied =2,
-        NotAvailableBilled = 3
+        NotAvailableBilled = 3,
+        NotExistingDay = 4
 
     }
 }
