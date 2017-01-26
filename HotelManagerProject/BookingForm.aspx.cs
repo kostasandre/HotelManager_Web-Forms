@@ -244,7 +244,10 @@ namespace HotelManagerProject
             var price = this.roomTypePriceTextBox.Text;
             if (price == string.Empty)
             {
-                errorlabel.Text = "Please calculate price first";
+                if (errorlabel != null)
+                {
+                    errorlabel.Text = "Please calculate price first";
+                }
                 return;
             }
 
@@ -275,15 +278,10 @@ namespace HotelManagerProject
             {
                 agreedPrice = price;
             }
-
-            //this.booking.Room = selectedRoom;
+        
             this.booking.RoomId = selectedRoom.Id;
             this.booking.AgreedPrice = Convert.ToDouble(agreedPrice);
             this.booking.SystemPrice = Convert.ToDouble(price);
-            this.booking.Created = DateTime.Now;
-            this.booking.CreatedBy = Environment.UserName;
-            //this.booking.Customer = customer;
-           
             this.booking.From = Convert.ToDateTime(dateFrom);
             this.booking.To = Convert.ToDateTime(dateTo);
             this.booking.Status = Status.New;

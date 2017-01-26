@@ -105,6 +105,10 @@
     <Compile Include="Migrations\201701260747329_hotelCascadedeleteFalse.Designer.cs">
       <DependentUpon>201701260747329_hotelCascadedeleteFalse.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201701261037053_customerCascadeDeleteFalse.cs" />
+    <Compile Include="Migrations\201701261037053_customerCascadeDeleteFalse.Designer.cs">
+      <DependentUpon>201701261037053_customerCascadeDeleteFalse.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\BillingServiceWithServiceDescription.cs" />
     <Compile Include="Models\BookingCalendar.cs" />
@@ -167,6 +171,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201701260747329_hotelCascadedeleteFalse.resx">
       <DependentUpon>201701260747329_hotelCascadedeleteFalse.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201701261037053_customerCascadeDeleteFalse.resx">
+      <DependentUpon>201701261037053_customerCascadeDeleteFalse.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
