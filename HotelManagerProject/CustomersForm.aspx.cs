@@ -128,6 +128,10 @@ namespace HotelManagerProject
                     {
                         return;
                     }
+                    catch (Exception exp)
+                    {
+                        errorlabel.Text = $"First you shoud delete the Bookings of this Customer!";
+                    }
                 }
 
                 errorlabel.Text = errorlabel.Text.TrimEnd(' ', ',');

@@ -221,6 +221,7 @@
                                                 </div>
                                                 <div class="col-xs-6">
                                                     <dx:ASPxDateEdit ID="validFromDateEdit" runat="server" ClientIDMode="Static">
+
                                                         <ValidationSettings EnableCustomValidation="True" ErrorDisplayMode="ImageWithTooltip" ErrorTextPosition="Right" SetFocusOnError="true">
                                                             <ErrorFrameStyle Font-Size="Large" />
                                                             <RequiredField IsRequired="True" ErrorText="Valid from is required" />
@@ -235,13 +236,37 @@
                                                 </div>
                                                 <div class="col-xs-6">
                                                     <dx:ASPxDateEdit ID="validToDateEdit" runat="server" ClientIDMode="Static">
+                                                        <ClientSideEvents Validation="function(s, e) {
+	                                                        e.isValid = (CheckDifference()&gt;=0)
+                                                            }
+"></ClientSideEvents>
+
                                                         <ValidationSettings EnableCustomValidation="True" ErrorDisplayMode="ImageWithTooltip" ErrorTextPosition="Right" SetFocusOnError="true">
                                                             <ErrorFrameStyle Font-Size="Large" />
                                                             <RequiredField IsRequired="True" ErrorText="Valid to is required" />
+                                                            
                                                         </ValidationSettings>
                                                     </dx:ASPxDateEdit>
                                                 </div>
                                             </div>
+                                            
+                                            <script type="text/javascript">
+                                                            function CheckDifference() {
+                                                                var startDate = new Date();
+                                                                var endDate = new Date();
+                                                                var difference = -1;
+                                                                startDate = validFromDateEdit.GetDate();
+                                                                if (startDate != null) {
+                                                                    endDate = validToDateEdit.GetDate();
+                                                                    var startTime = startDate.getTime();
+                                                                    var endTime = endDate.getTime();
+                                                                    difference = (endTime - startTime) / 86400000;
+
+                                                                }
+                                                                return difference;
+
+                                                            }
+                                                            </script>
 
                                             <div class="row">
                                                 <div class="col-xs-4">

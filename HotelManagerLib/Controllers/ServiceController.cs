@@ -41,6 +41,10 @@ namespace HotelManagerLib.Controllers
         /// Gets or sets the repository.
         /// </summary>
         public IEntityRepository<Service> Repository { get; set; }
+
+        /// <summary>
+        /// Gets or sets the pricing list repository.
+        /// </summary>
         public IEntityRepository<PricingList> PricingListRepository { get; set; }
 
         /// <summary>
