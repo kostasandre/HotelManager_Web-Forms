@@ -294,10 +294,10 @@
             this.xrLabel13.Font = new System.Drawing.Font("Times New Roman", 20F, ((System.Drawing.FontStyle)(((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic) 
                 | System.Drawing.FontStyle.Underline))));
             this.xrLabel13.ForeColor = System.Drawing.Color.Navy;
-            this.xrLabel13.LocationFloat = new DevExpress.Utils.PointFloat(0F, 0F);
+            this.xrLabel13.LocationFloat = new DevExpress.Utils.PointFloat(104.2912F, 0F);
             this.xrLabel13.Name = "xrLabel13";
             this.xrLabel13.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100F);
-            this.xrLabel13.SizeF = new System.Drawing.SizeF(782.2917F, 35.20832F);
+            this.xrLabel13.SizeF = new System.Drawing.SizeF(742.7088F, 35.20832F);
             this.xrLabel13.StylePriority.UseFont = false;
             this.xrLabel13.StylePriority.UseForeColor = false;
             this.xrLabel13.Text = "Billings";
