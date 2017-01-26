@@ -1,6 +1,6 @@
 ﻿// --------------------------------------------------------------------------------------------------------------------
-// <copyright file="BillingAndBillingServicesWebForm.aspx.cs" company="">
-//   
+// <copyright file="BillingAndBillingServicesWebForm.aspx.cs" company="Data Communication">
+//   Hotel Manager
 // </copyright>
 // <summary>
 //   The billing web form.
@@ -12,16 +12,13 @@ namespace HotelManagerProject
     #region
 
     using System;
-    using System.Collections;
     using System.Collections.Generic;
-    using System.Data;
     using System.Data.SqlClient;
     using System.Globalization;
     using System.Linq;
     using System.Web.UI;
     using System.Web.UI.WebControls;
 
-    using DevExpress.Utils;
     using DevExpress.Web;
     using DevExpress.Web.Data;
 
@@ -107,7 +104,7 @@ namespace HotelManagerProject
         /// <param name="e">
         /// The e.
         /// </param>
-        protected void BtOkClick(object sender , EventArgs e)
+        protected void BtOkClick(object sender, EventArgs e)
         {
             var errorlabel = this.Master?.FindControl("form1").FindControl("divErrorMessage") as Label;
             var selectedRowKeys = this.BookingListGridview.GetSelectedFieldValues(
@@ -142,40 +139,42 @@ namespace HotelManagerProject
 
                         foreach (var item in servicesList)
                         {
-                            try
+                            if (item.HotelId == booking.Room.HotelId)
                             {
-                                this.price = this.pricingListEntityController.ServicePricing(booking.From , item.Id);
-                            }
-                            catch (ArgumentNullException ex)
-                            {
-                                this.price = 0;
-                            }
-                            catch (NullReferenceException ex)
-                            {
-                                this.price = 0;
-                            }
-
-                            {
-                                var myBillingService = new BillingService
+                                try
                                 {
-                                    Service = item ,
-                                    Price = this.price ,
-                                    Quantity = 0
-                                };
-                                billingServices.Add(myBillingService);
+                                    this.price = this.pricingListEntityController.ServicePricing(booking.From , item.Id);
+                                }
+                                catch (ArgumentNullException ex)
+                                {
+                                    this.price = 0;
+                                }
+                                catch (NullReferenceException ex)
+                                {
+                                    this.price = 0;
+                                }
+
+                                {
+                                    var myBillingService = new BillingService
+                                    {
+                                        Service = item ,
+                                        Price = this.price ,
+                                        Quantity = 0
+                                    };
+                                    billingServices.Add(myBillingService);
+                                }
                             }
                         }
-
 
                         this.myBillingServices =
                             billingServices.Select(
                                 item =>
                                     new BillingServiceWithServiceDescription
                                     {
-                                        Id = item.Service.Id ,
-                                        Description = item.Service.Description ,
-                                        Quantity = item.Quantity ,
-                                        PricePerUnit = item.Price ,
+                                        Id = item.Service.Id,
+                                        Description = item.Service.Description,
+                                        Quantity = item.Quantity,
+                                        PricePerUnit = item.Price,
                                         TotalPrice = 0
                                     }).ToList();
 
@@ -209,6 +208,10 @@ namespace HotelManagerProject
                         errorlabel.Text = "Couldn't create the current Billing";
                     }
                 }
+                catch (Exception ex)
+                {
+                    errorlabel.Text = ex.Message;
+                }
             }
         }
 
@@ -222,7 +225,7 @@ namespace HotelManagerProject
         /// <param name="e">
         /// The e.
         /// </param>
-        protected void Page_Init(object sender , EventArgs e)
+        protected void Page_Init(object sender, EventArgs e)
         {
             var errorlabel = this.Master?.FindControl("form1").FindControl("divErrorMessage") as Label;
             if (!this.IsPostBack)
@@ -260,6 +263,13 @@ namespace HotelManagerProject
                 if (errorlabel != null)
                 {
                     errorlabel.Text = "Couldn't create the current Billing";
+                }
+            }
+            catch (Exception ex)
+            {
+                if (errorlabel != null)
+                {
+                    errorlabel.Text = ex.Message;
                 }
             }
 
@@ -327,8 +337,8 @@ namespace HotelManagerProject
                 this.Session["billingServiceWithServiceDescription"] = this.myBillingServices;
                 var sumOfServicesPrice = this.myBillingServices.Sum(loaclItem => loaclItem.TotalPrice);
                 var totalSum = sumOfServicesPrice + Convert.ToDouble(this.priceValueTextBox.Text);
-                gridView.JSProperties["cp_text"] = sumOfServicesPrice.ToString(CultureInfo.InvariantCulture);
-                gridView.JSProperties["cp_text2"] = totalSum.ToString(CultureInfo.InvariantCulture);
+                gridView.JSProperties["cp_text"] = sumOfServicesPrice.ToString(CultureInfo.CurrentCulture);
+                gridView.JSProperties["cp_text2"] = totalSum.ToString(CultureInfo.CurrentCulture);
 
 
                 this.BillingListGridView.DataSource = this.myBillingServices;
@@ -358,15 +368,15 @@ namespace HotelManagerProject
             if (this.sumOfServicesTextBox.Text == string.Empty)
             {
                 this.sumOfServicesTextBox.Text = 0.ToString();
-                this.totalSumTextBox.Text = priceValueTextBox.Text;
+                this.totalSumTextBox.Text = this.priceValueTextBox.Text;
             }
 
             this.billing = new Billing
             {
-                BookingId = Convert.ToInt32(this.bookingIdTextBox.Text) ,
-                PriceForRoom = Convert.ToDouble(this.priceValueTextBox.Text) ,
-                PriceForServices = Convert.ToDouble(this.sumOfServicesTextBox.Text) ,
-                TotalPrice = Convert.ToDouble(this.totalSumTextBox.Text) ,
+                BookingId = Convert.ToInt32(this.bookingIdTextBox.Text),
+                PriceForRoom = Convert.ToDouble(this.priceValueTextBox.Text),
+                PriceForServices = Convert.ToDouble(this.sumOfServicesTextBox.Text),
+                TotalPrice = Convert.ToDouble(this.totalSumTextBox.Text),
                 Paid = this.paidCheckBox.Checked
             };
 
@@ -381,7 +391,21 @@ namespace HotelManagerProject
             {
                 if (errorlabel != null)
                 {
-                    errorlabel.Text = "Couldn't create the current building";
+                    errorlabel.Text = "Couldn't create the current booking";
+                }
+            }
+            catch (ArgumentNullException ex)
+            {
+                if (errorlabel != null)
+                {
+                    errorlabel.Text = "Couldn't create the current booking";
+                }
+            }
+            catch (Exception ex)
+            {
+                if (errorlabel != null)
+                {
+                    errorlabel.Text = ex.Message;
                 }
             }
 
@@ -395,9 +419,9 @@ namespace HotelManagerProject
                     {
                         this.billingService = new BillingService
                         {
-                            BillingId = this.billing.Id ,
-                            ServiceId = item.Id ,
-                            Quantity = item.Quantity ,
+                            BillingId = this.billing.Id,
+                            ServiceId = item.Id,
+                            Quantity = item.Quantity,
                             Price = item.PricePerUnit
                         };
                         try
@@ -408,7 +432,21 @@ namespace HotelManagerProject
                         {
                             if (errorlabel != null)
                             {
-                                errorlabel.Text = "Couldn't create the current billing";
+                                errorlabel.Text = "Couldn't create the current billing service";
+                            }
+                        }
+                        catch (ArgumentNullException ex)
+                        {
+                            if (errorlabel != null)
+                            {
+                                errorlabel.Text = "Couldn't create the current billing service";
+                            }
+                        }
+                        catch (Exception ex)
+                        {
+                            if (errorlabel != null)
+                            {
+                                errorlabel.Text = ex.Message;
                             }
                         }
                     }

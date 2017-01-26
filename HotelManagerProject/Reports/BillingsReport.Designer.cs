@@ -70,10 +70,10 @@
             this.xrLabel10 = new DevExpress.XtraReports.UI.XRLabel();
             this.xrLabel9 = new DevExpress.XtraReports.UI.XRLabel();
             this.xrLabel12 = new DevExpress.XtraReports.UI.XRLabel();
-            this.objectDataSource1 = new DevExpress.DataAccess.ObjectBinding.ObjectDataSource(this.components);
-            this.objectDataSource2 = new DevExpress.DataAccess.ObjectBinding.ObjectDataSource(this.components);
             this.FromParam = new DevExpress.XtraReports.Parameters.Parameter();
             this.ToParam = new DevExpress.XtraReports.Parameters.Parameter();
+            this.objectDataSource1 = new DevExpress.DataAccess.ObjectBinding.ObjectDataSource(this.components);
+            this.objectDataSource2 = new DevExpress.DataAccess.ObjectBinding.ObjectDataSource(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.objectDataSource1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.objectDataSource2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this)).BeginInit();
@@ -91,7 +91,7 @@
             this.xrLabel11,
             this.xrLabel8});
             this.Detail.Dpi = 100F;
-            this.Detail.HeightF = 31.25F;
+            this.Detail.HeightF = 25F;
             this.Detail.Name = "Detail";
             this.Detail.Padding = new DevExpress.XtraPrinting.PaddingInfo(0, 0, 0, 0, 100F);
             this.Detail.TextAlignment = DevExpress.XtraPrinting.TextAlignment.TopLeft;
@@ -294,10 +294,10 @@
             this.xrLabel13.Font = new System.Drawing.Font("Times New Roman", 20F, ((System.Drawing.FontStyle)(((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic) 
                 | System.Drawing.FontStyle.Underline))));
             this.xrLabel13.ForeColor = System.Drawing.Color.Navy;
-            this.xrLabel13.LocationFloat = new DevExpress.Utils.PointFloat(0F, 0F);
+            this.xrLabel13.LocationFloat = new DevExpress.Utils.PointFloat(104.2912F, 0F);
             this.xrLabel13.Name = "xrLabel13";
             this.xrLabel13.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100F);
-            this.xrLabel13.SizeF = new System.Drawing.SizeF(782.2917F, 35.20832F);
+            this.xrLabel13.SizeF = new System.Drawing.SizeF(742.7088F, 35.20832F);
             this.xrLabel13.StylePriority.UseFont = false;
             this.xrLabel13.StylePriority.UseForeColor = false;
             this.xrLabel13.Text = "Billings";
@@ -319,7 +319,7 @@
             this.xrLabel15,
             this.xrLabel14});
             this.PageHeader.Dpi = 100F;
-            this.PageHeader.HeightF = 95.83334F;
+            this.PageHeader.HeightF = 90.625F;
             this.PageHeader.Name = "PageHeader";
             // 
             // xrLabel26
@@ -588,16 +588,6 @@
             this.xrLabel12.Summary = xrSummary3;
             this.xrLabel12.TextAlignment = DevExpress.XtraPrinting.TextAlignment.BottomRight;
             // 
-            // objectDataSource1
-            // 
-            this.objectDataSource1.DataSource = typeof(HotelManagerLib.Models.Persistant.Billing);
-            this.objectDataSource1.Name = "objectDataSource1";
-            // 
-            // objectDataSource2
-            // 
-            this.objectDataSource2.DataSource = typeof(HotelManagerLib.Models.Persistant.Booking);
-            this.objectDataSource2.Name = "objectDataSource2";
-            // 
             // FromParam
             // 
             this.FromParam.Description = "From";
@@ -609,6 +599,16 @@
             this.ToParam.Description = "To";
             this.ToParam.Name = "ToParam";
             this.ToParam.Type = typeof(System.DateTime);
+            // 
+            // objectDataSource1
+            // 
+            this.objectDataSource1.DataSource = typeof(HotelManagerLib.Models.Persistant.Billing);
+            this.objectDataSource1.Name = "objectDataSource1";
+            // 
+            // objectDataSource2
+            // 
+            this.objectDataSource2.DataSource = typeof(HotelManagerLib.Models.Persistant.Booking);
+            this.objectDataSource2.Name = "objectDataSource2";
             // 
             // BillingsReport
             // 

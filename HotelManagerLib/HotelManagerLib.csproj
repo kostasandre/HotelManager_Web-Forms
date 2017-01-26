@@ -102,6 +102,10 @@
     <Compile Include="Migrations\201701251405144_alloena2.Designer.cs">
       <DependentUpon>201701251405144_alloena2.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201701260747329_hotelCascadedeleteFalse.cs" />
+    <Compile Include="Migrations\201701260747329_hotelCascadedeleteFalse.Designer.cs">
+      <DependentUpon>201701260747329_hotelCascadedeleteFalse.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\BillingServiceWithServiceDescription.cs" />
     <Compile Include="Models\BookingCalendar.cs" />
@@ -161,6 +165,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201701251405144_alloena2.resx">
       <DependentUpon>201701251405144_alloena2.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201701260747329_hotelCascadedeleteFalse.resx">
+      <DependentUpon>201701260747329_hotelCascadedeleteFalse.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

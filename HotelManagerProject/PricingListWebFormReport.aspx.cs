@@ -97,7 +97,7 @@ namespace HotelManagerProject
                 {
                     if (errorlabel != null)
                     {
-                        errorlabel.Text = "Something went wrong with the database.Please check the connection string.";
+                        errorlabel.Text = ex.Message;
                     }
                 }
                 catch (ArgumentNullException ex)
@@ -105,6 +105,13 @@ namespace HotelManagerProject
                     if (errorlabel != null)
                     {
                         errorlabel.Text = "Couldn't create the current Billing";
+                    }
+                }
+                catch (Exception ex)
+                {
+                    if (errorlabel != null)
+                    {
+                        errorlabel.Text = ex.Message;
                     }
                 }
             }

@@ -164,11 +164,15 @@ namespace HotelManagerProject
 
                         errorlabel.Text += $"'{hotelTemp.Name}',";
                         this.HotelGridView.Selection.UnselectRowByKey(id);
-                        
+
                     }
                     catch (SqlException exp)
                     {
                         errorlabel.Text = $"Sql error: " + exp.Message;
+                    }
+                    catch (Exception exp)
+                    {
+                        errorlabel.Text = $"First you shoud delete the Rooms and Services which belongs to this Hotel!";
                     }
 
                     errorlabel.Text = errorlabel.Text.TrimEnd(' ', ',');
