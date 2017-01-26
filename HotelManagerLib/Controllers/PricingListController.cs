@@ -246,5 +246,41 @@ namespace HotelManagerLib.Controllers
 
             return tempPricingList.Price + (tempPricingList.Price * tempPricingList.VatPrc / 100);
         }
+
+        public bool ValidationDateForPricingList(object dateFromSender, object dateToSender, TypeOfBillableEntity typeOfEntityEnum , int BillableEntityId)
+        {
+            var dateFrom = Convert.ToDateTime(dateFromSender);
+            var dateTo = Convert.ToDateTime(dateToSender);
+
+            List<PricingList> pricingListsOfTheBillableEntityForWholeYear;
+
+            try
+            {
+                using (var context = new DataBaseContext())
+                {
+                    pricingListsOfTheBillableEntityForWholeYear =
+                        this.Repository.ReadAllQuery(context)
+                            .Where(
+                                x =>
+                                    x.BillableEntityId == BillableEntityId
+                                    && x.TypeOfBillableEntity == typeOfEntityEnum)
+                            .ToList();
+                }
+            }
+            catch (Exception exception)
+            {
+                throw new DataException($" Error retreiving data!", exception);
+            }
+
+            foreach (var pricingListOfTheBillableEntityForOnePeriod in pricingListsOfTheBillableEntityForWholeYear)
+            {
+                if (pricingListOfTheBillableEntityForOnePeriod.ValidFrom <= dateTo && pricingListOfTheBillableEntityForOnePeriod.ValidTo >= dateFrom)
+                {
+                    return false;
+                }
+            }
+
+            return true;
+        }
     }
 }

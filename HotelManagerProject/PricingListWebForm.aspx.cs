@@ -37,7 +37,7 @@ namespace HotelManagerProject
         /// <summary>
         /// The pricing list controller.
         /// </summary>
-        private IEntityController<PricingList> pricingListController;
+        private PricingListController pricingListController;
 
         /// <summary>
         /// The room type controller.
@@ -147,45 +147,63 @@ namespace HotelManagerProject
             this.pricingList = new PricingList();
             this.pricingListController = new PricingListController();
 
-            this.pricingList.Id = Convert.ToInt32(this.idTextBox.Text);
-
-            if (this.pricingList.Id == 0)
+            var errorlabel = this.Master?.FindControl("form1").FindControl("divErrorMessage") as Label;
+            if (errorlabel != null)
             {
-                this.pricingList.TypeOfBillableEntity =
-                    (TypeOfBillableEntity)
-                    Enum.Parse(typeof(TypeOfBillableEntity), this.typeOFRadioButtonList.SelectedItem.Text);
-                if (this.typeOFRadioButtonList.SelectedItem.Value.ToString() == "RoomType")
+                this.pricingList.Id = Convert.ToInt32(this.idTextBox.Text);
+
+                if (this.pricingList.Id == 0)
                 {
-                    var roomTypeList = this.roomTypeComboBox.DataSource as List<RoomType>;
-                    if (roomTypeList != null)
+                    this.pricingList.TypeOfBillableEntity =
+                        (TypeOfBillableEntity)
+                        Enum.Parse(typeof(TypeOfBillableEntity), this.typeOFRadioButtonList.SelectedItem.Text);
+                    if (this.typeOFRadioButtonList.SelectedItem.Value.ToString() == "RoomType")
                     {
-                        var roomTypeTemp =
-                            roomTypeList.SingleOrDefault(
-                                x => x.Id == Convert.ToInt32(this.roomTypeComboBox.SelectedItem.Value));
-                        this.pricingList.BillableEntityId = roomTypeTemp.Id;
+                        var roomTypeList = this.roomTypeComboBox.DataSource as List<RoomType>;
+                        if (roomTypeList != null)
+                        {
+                            var roomTypeTemp =
+                                roomTypeList.SingleOrDefault(
+                                    x => x.Id == Convert.ToInt32(this.roomTypeComboBox.SelectedItem.Value));
+                            this.pricingList.BillableEntityId = roomTypeTemp.Id;
+                        }
+                    }
+                    else if (this.typeOFRadioButtonList.SelectedItem.Value.ToString() == "Service")
+                    {
+                        var serviceList = this.serviceComboBox.DataSource as List<Service>;
+                        if (serviceList != null)
+                        {
+                            var serviceTemp =
+                                serviceList.SingleOrDefault(
+                                    x => x.Id == Convert.ToInt32(this.serviceComboBox.SelectedItem.Value));
+                            this.pricingList.BillableEntityId = serviceTemp.Id;
+                        }
                     }
                 }
-                else if (this.typeOFRadioButtonList.SelectedItem.Value.ToString() == "Service")
+
+
+
+                this.pricingList.Price = Convert.ToDouble(this.priceSpinEdit.Number);
+                this.pricingList.VatPrc = Convert.ToDouble(this.VatPrcSpinEdit.Number);
+                this.pricingList.ValidFrom = this.validFromDateEdit.Date;
+                this.pricingList.ValidTo = this.validToDateEdit.Date;
+                if (this.pricingListController.ValidationDateForPricingList(
+                    this.pricingList.ValidFrom,
+                    this.pricingList.ValidTo,
+                    this.pricingList.TypeOfBillableEntity,
+                    this.pricingList.BillableEntityId))
                 {
-                    var serviceList = this.serviceComboBox.DataSource as List<Service>;
-                    if (serviceList != null)
-                    {
-                        var serviceTemp =
-                            serviceList.SingleOrDefault(
-                                x => x.Id == Convert.ToInt32(this.serviceComboBox.SelectedItem.Value));
-                        this.pricingList.BillableEntityId = serviceTemp.Id;
-                    }
+                    this.pricingListController.CreateOrUpdateEntity(this.pricingList);
+                    this.Page.Response.Redirect(this.Page.Request.Url.ToString(), true);
+                }
+                else
+                {
+                    this.validToDateEdit.IsValid = false;
+                    this.validFromDateEdit.IsValid = false;
+                    this.validToDateEdit.ErrorText = "There is allready Pricing List for the period you declared!";
                 }
             }
 
-
-
-            this.pricingList.Price = Convert.ToDouble(this.priceSpinEdit.Number);
-            this.pricingList.VatPrc = Convert.ToDouble(this.VatPrcSpinEdit.Number);
-            this.pricingList.ValidFrom = this.validFromDateEdit.Date;
-            this.pricingList.ValidTo = this.validToDateEdit.Date;
-            this.pricingListController.CreateOrUpdateEntity(this.pricingList);
-            this.Page.Response.Redirect(this.Page.Request.Url.ToString() , true);
         }
 
         /// <summary>
