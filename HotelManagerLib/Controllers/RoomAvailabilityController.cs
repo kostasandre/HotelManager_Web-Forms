@@ -109,33 +109,6 @@ namespace HotelManagerLib.Controllers
                     }
                 }
 
-
-                //foreach (var booking in bookings.Where(x => x.Room.Id == availableRoom.Id))
-                //{
-                //    var bookingDays = (booking.To - booking.From).Days;
-                //    for (var i = 0; i < bookingDays; i++)
-                //    {
-                //        var checkDay = booking.From.AddDays(i);
-                //        var correctProperty = $"Day{checkDay.Day}";
-                //        var propertyInfo = typeof(BookingCalendar).GetProperty(correctProperty);
-                //        if ((checkDay.Year == date.Year) && (checkDay.Month == date.Month) && (booking.Status != Status.Cancelled) && (propertyInfo != null))
-                //        {
-                //            switch (booking.Status)
-                //            {
-                //                case Status.New:
-                //                    propertyInfo.SetValue(calendarEntry, AvailableStatus.NotAvailable);
-                //                    break;
-                //                case Status.Active:
-                //                    propertyInfo.SetValue(calendarEntry, AvailableStatus.NotAvailableOccupied);
-                //                    break;
-                //                case Status.Billed:
-                //                    propertyInfo.SetValue(calendarEntry, AvailableStatus.NotAvailableBilled);
-                //                    break;
-                //            }
-                //        }
-                //    }
-                //}
-
                 calendarEntry.Hotel = availableRoom.HotelName;
                 calendarEntry.Room = availableRoom.Code;
                 this.calendarList.Add(calendarEntry);

@@ -118,6 +118,7 @@
     <Content Include="Images\blue.png" />
     <Content Include="Images\edit.png" />
     <Content Include="Images\green.png" />
+    <Content Include="Images\grey.png" />
     <Content Include="Images\red.png" />
     <Content Include="Images\yellow.png" />
     <Content Include="PricingListWebForm.aspx" />

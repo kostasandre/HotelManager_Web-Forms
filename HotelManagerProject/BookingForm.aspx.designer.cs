@@ -13,6 +13,24 @@ namespace HotelManagerProject {
     public partial class BookingForm {
         
         /// <summary>
+        /// saveBookingButton control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::DevExpress.Web.ASPxButton saveBookingButton;
+        
+        /// <summary>
+        /// cancelButton control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::DevExpress.Web.ASPxButton cancelButton;
+        
+        /// <summary>
         /// roomTypeComboBox control.
         /// </summary>
         /// <remarks>
@@ -101,24 +119,6 @@ namespace HotelManagerProject {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::DevExpress.Web.ASPxMemo commentMemoBox;
-        
-        /// <summary>
-        /// saveBookingButton control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::DevExpress.Web.ASPxButton saveBookingButton;
-        
-        /// <summary>
-        /// cancelButton control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::DevExpress.Web.ASPxButton cancelButton;
         
         /// <summary>
         /// createUserPopUp control.
