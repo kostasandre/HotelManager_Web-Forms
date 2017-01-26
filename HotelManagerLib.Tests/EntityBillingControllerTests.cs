@@ -15,6 +15,7 @@ namespace HotelManagerLib.Tests
 
     using HotelManagerLib.Controllers;
     using HotelManagerLib.Controllers.Interfaces;
+    using HotelManagerLib.DBContext;
     using HotelManagerLib.Enums;
     using HotelManagerLib.Models.Persistant;
 
@@ -209,15 +210,14 @@ namespace HotelManagerLib.Tests
                                    Comments = "Very good!!"
                                    };
             this.booking = this.bookingEntityController.CreateOrUpdateEntity(this.booking);
-
             this.billing = new Billing()
-                               {
-                                   BookingId = this.booking.Id,
-                                   PriceForRoom = this.booking.AgreedPrice,
-                                   PriceForServices = 150,
-                                   TotalPrice = 12150,
-                                   Paid = true
-                               };
+            {
+                BookingId = this.booking.Id,
+                PriceForRoom = this.booking.AgreedPrice,
+                PriceForServices = 150,
+                TotalPrice = 12150,
+                Paid = true
+            };
             this.billing = this.billingEntityController.CreateOrUpdateEntity(this.billing);
         }
 
@@ -227,7 +227,51 @@ namespace HotelManagerLib.Tests
         [Test]
         public void CreateBilling()
         {
+            var localBilling = new Billing()
+            {
+                BookingId = this.booking.Id,
+                PriceForRoom = this.booking.AgreedPrice,
+                PriceForServices = 150,
+                TotalPrice = 12150,
+                Paid = true
+            };
+            var testBilling = this.billingEntityController.CreateOrUpdateEntity(localBilling);
+            Assert.AreEqual(testBilling.TotalPrice, localBilling.TotalPrice);
+            this.billingEntityController.DeleteEntity(testBilling);
+        }
+
+        /// <summary>
+        /// The read all list.
+        /// </summary>
+        [Test]
+        public void RefreshEntities()
+        {
+            var list = this.billingEntityController.RefreshEntities();
+            Assert.AreNotEqual(list.Count, null);
+        }
+
+        /// <summary>
+        /// The read one.
+        /// </summary>
+        [Test]
+        public void GetEntity()
+        {
+            var test = this.billingEntityController.GetEntity(this.billing.Id);
+            Assert.AreEqual(this.billing.Id , test.Id);
+        }
+
+        /// <summary>
+        /// The update.
+        /// </summary>
+        [Test]
+        public void Update()
+        {
+            this.billing.TotalPrice = 1000000;
             
+            var testBilling = this.billingEntityController.CreateOrUpdateEntity(this.billing);
+            Assert.IsNotNull(testBilling);
+            Assert.AreEqual(testBilling.TotalPrice, this.billing.TotalPrice);
+            Assert.AreEqual(Environment.UserName, testBilling.UpdatedBy);
         }
 
         /// <summary>
