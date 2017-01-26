@@ -1,32 +1,27 @@
 ﻿// --------------------------------------------------------------------------------------------------------------------
-// <copyright file="EntityBillingControllerTests.cs" company="">
+// <copyright file="EntityBillingServicesControllerTests.cs" company="">
 //   
 // </copyright>
 // <summary>
-//   The entity billing controller tests.
+//   The entity billing services controller test.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
 
 namespace HotelManagerLib.Tests
 {
-    #region
-
     using System;
 
     using HotelManagerLib.Controllers;
     using HotelManagerLib.Controllers.Interfaces;
-    using HotelManagerLib.DBContext;
     using HotelManagerLib.Enums;
     using HotelManagerLib.Models.Persistant;
 
     using NUnit.Framework;
 
-    #endregion
-
     /// <summary>
-    /// The entity billing controller tests.
+    /// The entity billing services controller test.
     /// </summary>
-    public class EntityBillingControllerTests
+    public class EntityBillingServicesControllerTests
     {
         /// <summary>
         /// The billing.
@@ -114,6 +109,16 @@ namespace HotelManagerLib.Tests
         private IEntityController<Service> serviceEntityController;
 
         /// <summary>
+        /// The billing service.
+        /// </summary>
+        private BillingService billingService;
+
+        /// <summary>
+        /// The billing services entity controller.
+        /// </summary>
+        private IEntityController<BillingService> billingServicesEntityController;
+
+        /// <summary>
         /// The setup.
         /// </summary>
         [SetUp]
@@ -127,6 +132,7 @@ namespace HotelManagerLib.Tests
             this.roomEntityController = new RoomController();
             this.billingEntityController = new BillingEntityController();
             this.pricingListEntityController = new PricingListController();
+            this.billingServicesEntityController = new BillingServiceEntityController();
 
             this.hotel = new Hotel()
                              {
@@ -150,12 +156,7 @@ namespace HotelManagerLib.Tests
                                 };
             this.roomType = this.roomTypeEntityController.CreateOrUpdateEntity(this.roomType);
 
-            this.room = new Room()
-                            {
-                                HotelId = this.hotel.Id,
-                                Code = "Alex Hotel 123",
-                                RoomTypeId = this.roomType.Id,
-                            };
+            this.room = new Room() { HotelId = this.hotel.Id, Code = "Alex Hotel 123", RoomTypeId = this.roomType.Id, };
             this.room = this.roomEntityController.CreateOrUpdateEntity(this.room);
 
             this.service = new Service()
@@ -167,23 +168,23 @@ namespace HotelManagerLib.Tests
             this.service = this.serviceEntityController.CreateOrUpdateEntity(this.service);
 
             this.servicePricingList = new PricingList()
-                                   {
-                                       BillableEntityId = this.service.Id,
-                                       TypeOfBillableEntity = TypeOfBillableEntity.Service,
-                                       ValidFrom = DateTime.Now,
-                                       ValidTo = Convert.ToDateTime("31/01/2017"),
-                                       VatPrc = 13
-                                   };
+                                          {
+                                              BillableEntityId = this.service.Id,
+                                              TypeOfBillableEntity = TypeOfBillableEntity.Service,
+                                              ValidFrom = DateTime.Now,
+                                              ValidTo = Convert.ToDateTime("31/01/2017"),
+                                              VatPrc = 13
+                                          };
             this.servicePricingList = this.pricingListEntityController.CreateOrUpdateEntity(this.servicePricingList);
 
             this.roomTypePricingList = new PricingList()
-            {
-                BillableEntityId = this.roomType.Id,
-                TypeOfBillableEntity = TypeOfBillableEntity.RoomType,
-                ValidFrom = DateTime.Now,
-                ValidTo = Convert.ToDateTime("31/01/2017").Date,
-                VatPrc = 13
-            };
+                                           {
+                                               BillableEntityId = this.roomType.Id,
+                                               TypeOfBillableEntity = TypeOfBillableEntity.RoomType,
+                                               ValidFrom = DateTime.Now,
+                                               ValidTo = Convert.ToDateTime("31/01/2017").Date,
+                                               VatPrc = 13
+                                           };
             this.roomTypePricingList = this.pricingListEntityController.CreateOrUpdateEntity(this.roomTypePricingList);
 
             this.customer = new Customer()
@@ -208,56 +209,65 @@ namespace HotelManagerLib.Tests
                                    AgreedPrice = 12,
                                    Status = Status.New,
                                    Comments = "Very good!!"
-                                   };
+                               };
             this.booking = this.bookingEntityController.CreateOrUpdateEntity(this.booking);
+
             this.billing = new Billing()
-            {
-                BookingId = this.booking.Id,
-                PriceForRoom = this.booking.AgreedPrice,
-                PriceForServices = 150,
-                TotalPrice = 12150,
-                Paid = true
-            };
+                               {
+                                   BookingId = this.booking.Id,
+                                   PriceForRoom = this.booking.AgreedPrice,
+                                   PriceForServices = 150,
+                                   TotalPrice = 12150,
+                                   Paid = true
+                               };
             this.billing = this.billingEntityController.CreateOrUpdateEntity(this.billing);
+
+            this.billingService = new BillingService()
+            {
+                BillingId = this.billing.Id,
+                ServiceId = this.service.Id,
+                Quantity = 15,
+                Price = 1500,
+            };
+            this.billingService = this.billingServicesEntityController.CreateOrUpdateEntity(this.billingService);
         }
 
         /// <summary>
         /// The create billing.
         /// </summary>
         [Test]
-        public void CreateBilling()
+        public void CreateBillingService()
         {
-            var localBilling = new Billing()
+            var localBillingService = new BillingService()
             {
-                BookingId = this.booking.Id,
-                PriceForRoom = this.booking.AgreedPrice,
-                PriceForServices = 150,
-                TotalPrice = 12150,
-                Paid = true
+                BillingId = this.billing.Id,
+                ServiceId = this.service.Id,
+                Quantity = 15,
+                Price = 1500,
             };
-            var testBilling = this.billingEntityController.CreateOrUpdateEntity(localBilling);
-            Assert.AreEqual(testBilling.TotalPrice, localBilling.TotalPrice);
-            this.billingEntityController.DeleteEntity(testBilling);
+            var testBillingService = this.billingServicesEntityController.CreateOrUpdateEntity(localBillingService);
+            Assert.AreEqual(testBillingService.Quantity, localBillingService.Quantity);
+            this.billingServicesEntityController.DeleteEntity(testBillingService);
         }
 
         /// <summary>
-        /// The read all list.
+        /// The refresh entities.
         /// </summary>
         [Test]
         public void RefreshEntities()
         {
-            var list = this.billingEntityController.RefreshEntities();
+            var list = this.billingServicesEntityController.RefreshEntities();
             Assert.AreNotEqual(list.Count, null);
         }
 
         /// <summary>
-        /// The read one.
+        /// The get entity.
         /// </summary>
         [Test]
         public void GetEntity()
         {
-            var test = this.billingEntityController.GetEntity(this.billing.Id);
-            Assert.AreEqual(this.billing.Id , test.Id);
+            var test = this.billingServicesEntityController.GetEntity(this.billingService.Id);
+            Assert.AreEqual(this.billingService.Id, test.Id);
         }
 
         /// <summary>
@@ -266,13 +276,13 @@ namespace HotelManagerLib.Tests
         [Test]
         public void Update()
         {
-            this.billing.TotalPrice = 1000000;
-            
-            this.billingEntityController.CreateOrUpdateEntity(this.billing);
-            var testBilling = this.billingEntityController.GetEntity(this.billing.Id);
-           Assert.IsNotNull(testBilling);
-            Assert.AreEqual(testBilling.TotalPrice, this.billing.TotalPrice);
-            Assert.AreEqual(Environment.UserName, testBilling.UpdatedBy);
+            this.billingService.Quantity = 10;
+
+            this.billingServicesEntityController.CreateOrUpdateEntity(this.billingService);
+            var testBillingService = this.billingServicesEntityController.GetEntity(this.billingService.Id);
+            Assert.IsNotNull(testBillingService = this.billingServicesEntityController.GetEntity(this.billingService.Id));
+            Assert.AreEqual(testBillingService.Quantity , this.billingService.Quantity);
+            Assert.AreEqual(Environment.UserName , testBillingService.UpdatedBy);
         }
 
         /// <summary>
@@ -281,9 +291,9 @@ namespace HotelManagerLib.Tests
         [Test]
         public void DeleteNullReferenceException()
         {
-            var testBilling = new Billing();
-                Assert.Throws<ArgumentNullException>(
-                    () => this.billingEntityController.DeleteEntity(testBilling));
+            var testBillingService = new BillingService();
+            Assert.Throws<ArgumentNullException>(
+                () => this.billingServicesEntityController.DeleteEntity(testBillingService));
         }
 
         /// <summary>
@@ -292,6 +302,7 @@ namespace HotelManagerLib.Tests
         [TearDown]
         public void ClearHotel()
         {
+            this.billingServicesEntityController.DeleteEntity(this.billingService);
             this.bookingEntityController.DeleteEntity(this.booking);
             this.customerEntityController.DeleteEntity(this.customer);
             this.pricingListEntityController.DeleteEntity(this.servicePricingList);
