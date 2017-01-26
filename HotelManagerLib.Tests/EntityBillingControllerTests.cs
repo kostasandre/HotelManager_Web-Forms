@@ -257,8 +257,19 @@ namespace HotelManagerLib.Tests
         public void GetEntity()
         {
             var test = this.billingEntityController.GetEntity(this.billing.Id);
-            Assert.AreEqual(this.billing.Id , test.Id);
+            Assert.AreEqual(this.billing.Id, test.Id);
         }
+
+        /// <summary>
+        /// The get entity null reference exception.
+        /// </summary>
+        [Test]
+        public void GetEntityNullReferenceException()
+        {
+            Assert.Throws<ArgumentNullException>(
+                () => this.billingEntityController.GetEntity(0));
+        }
+        
 
         /// <summary>
         /// The update.
