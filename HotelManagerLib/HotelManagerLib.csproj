@@ -57,6 +57,7 @@
     <Compile Include="Controllers\Interfaces\IEntityController.cs" />
     <Compile Include="Controllers\PictureController.cs" />
     <Compile Include="Controllers\PricingListController.cs" />
+    <Compile Include="Controllers\RoomAvailabilityController.cs" />
     <Compile Include="Controllers\RoomController.cs" />
     <Compile Include="Controllers\RoomTypeController.cs" />
     <Compile Include="Controllers\ServiceController.cs" />

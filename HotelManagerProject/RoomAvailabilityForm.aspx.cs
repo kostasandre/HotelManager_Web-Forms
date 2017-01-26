@@ -48,6 +48,8 @@ namespace HotelManagerProject
         /// </summary>
         private RoomController roomController;
 
+        private RoomAvailabilityController roomAvailabilityController;
+
         /// <summary>
         /// The current month text box_ on init.
         /// </summary>
@@ -73,18 +75,18 @@ namespace HotelManagerProject
         /// </param>
         protected void NextMonthButton_OnClick(object sender, EventArgs e)
         {
-            var currentMonth =
-                DateTime.ParseExact(this.CurrentMonthTextBox.Text, "MMMM", CultureInfo.InvariantCulture).Month;
-            var nextMonth = currentMonth + 1;
-            if (nextMonth > 12)
-            {
-                nextMonth = 1;
-            }
+            //var currentMonth =
+            //    DateTime.ParseExact(this.CurrentMonthTextBox.Text, "MMMM", CultureInfo.InvariantCulture).Month;
+            //var nextMonth = currentMonth + 1;
+            //if (nextMonth > 12)
+            //{
+            //    nextMonth = 1;
+            //}
 
-            this.CurrentMonthTextBox.Text = new DateTime(2010, nextMonth, 1).ToString(
-                "MMMM",
-                CultureInfo.InvariantCulture);
-            this.drawavailableRooms(nextMonth);
+            //this.CurrentMonthTextBox.Text = new DateTime(2010, nextMonth, 1).ToString(
+            //    "MMMM",
+            //    CultureInfo.InvariantCulture);
+            //this.DrawAvailableRooms(nextMonth);
         }
 
         /// <summary>
@@ -100,7 +102,12 @@ namespace HotelManagerProject
         {
             if (!this.Page.IsPostBack)
             {
-                this.drawavailableRooms(DateTime.Now.Month);
+                var test = this.de.Value;
+                var test1 = this.de.Text;
+                var test2 = this.de.Date;
+                //ASPxDateEdit date = this.FindControl("de") as ASPxDateEdit;
+                //var dateValue = date.Value;
+                this.DrawAvailableRooms(DateTime.Now);
                 this.availableRooms.SettingsPager.Mode = GridViewPagerMode.ShowAllRecords;
             }
         }
@@ -116,18 +123,18 @@ namespace HotelManagerProject
         /// </param>
         protected void PreviousMonthButton_OnClick(object sender, EventArgs e)
         {
-            var currentMonth =
-                DateTime.ParseExact(this.CurrentMonthTextBox.Text, "MMMM", CultureInfo.InvariantCulture).Month;
-            var previousMonth = currentMonth - 1;
-            if (previousMonth < 1)
-            {
-                previousMonth = 12;
-            }
+            //var currentMonth =
+            //    DateTime.ParseExact(this.CurrentMonthTextBox.Text, "MMMM", CultureInfo.InvariantCulture).Month;
+            //var previousMonth = currentMonth - 1;
+            //if (previousMonth < 1)
+            //{
+            //    previousMonth = 12;
+            //}
 
-            this.CurrentMonthTextBox.Text = new DateTime(2010, previousMonth, 1).ToString(
-                "MMMM",
-                CultureInfo.InvariantCulture);
-            this.drawavailableRooms(previousMonth);
+            //this.CurrentMonthTextBox.Text = new DateTime(2010, previousMonth, 1).ToString(
+            //    "MMMM",
+            //    CultureInfo.InvariantCulture);
+            //this.DrawAvailableRooms(previousMonth);
         }
 
         /// <summary>
@@ -161,6 +168,9 @@ namespace HotelManagerProject
                     case AvailableStatus.NotAvailableBilled:
                         e.Cell.BackColor = Color.Blue;
                         break;
+                    case AvailableStatus.NotExistingDay:
+                        e.Cell.BackColor = Color.Gray;
+                        break;
                     default:
                         throw new ArgumentOutOfRangeException();
                 }
@@ -168,23 +178,19 @@ namespace HotelManagerProject
         }
 
         /// <summary>
-        /// The drawavailable rooms.
+        /// The Draw Available rooms.
         /// </summary>
         /// <param name="month">
         /// The month.
         /// </param>
-        private void drawavailableRooms(int month)
+        private void DrawAvailableRooms(DateTime date)
         {
             var errorlabel = this.Master?.FindControl("form1").FindControl("divErrorMessage") as Label;
-            this.bookingController = new BookingController();
-            this.roomController = new RoomController();
-            IList<Booking> bookings = new List<Booking>();
-            IList<Room> rooms = new List<Room>();
+            this.roomAvailabilityController = new RoomAvailabilityController();
 
             try
             {
-                bookings = this.bookingController.RefreshEntities();
-                rooms = this.roomController.RefreshEntities();
+               this.calendarList = this.roomAvailabilityController.BookingCalendar(date);
             }
             catch (Exception ex)
             {
@@ -193,47 +199,21 @@ namespace HotelManagerProject
                     errorlabel.Text = ex.Message;
                 }
             }
-            
-            this.calendarList = new List<BookingCalendar>();
-
-            foreach (var availableRoom in rooms)
-            {
-                var calendarEntry = new BookingCalendar();
-                foreach (var booking in bookings.Where(x => x.Room.Id == availableRoom.Id))
-                {
-                    var bookingDays = (booking.To - booking.From).Days;
-                    for (var i = 0; i < bookingDays; i++)
-                    {
-                        var checkDay = booking.From.AddDays(i);
-                        var correctProperty = $"Day{checkDay.Day}";
-                        var propertyInfo = typeof(BookingCalendar).GetProperty(correctProperty);
-                        if ((checkDay.Month == month) && (booking.Status != Status.Cancelled) && (propertyInfo != null))
-                        {
-                            switch (booking.Status)
-                            {
-                                case Status.New:
-                                    propertyInfo.SetValue(calendarEntry, AvailableStatus.NotAvailable);
-                                    break;
-
-                                case Status.Active:
-                                    propertyInfo.SetValue(calendarEntry, AvailableStatus.NotAvailableOccupied);
-                                    break;
-                                case Status.Billed:
-                                    propertyInfo.SetValue(calendarEntry, AvailableStatus.NotAvailableBilled);
-                                    break;
-                            }
-                        }
-                    }
-                }
-
-                calendarEntry.Hotel = availableRoom.HotelName;
-                calendarEntry.Room = availableRoom.Code;
-                this.calendarList.Add(calendarEntry);
-            }
 
             this.availableRooms.DataSource = this.calendarList;
             this.availableRooms.DataBind();
             this.availableRooms.HtmlDataCellPrepared += this.AvailableRoomsOnHtmlDataCellPrepared;
+        }
+
+        protected void de_Init(object sender, EventArgs e)
+        {
+            de.Date = DateTime.Today;
+        }
+
+        protected void OnDateChanged(object sender, EventArgs e)
+        {
+
+            this.DrawAvailableRooms(this.de.Date);
         }
     }
 }

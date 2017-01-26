@@ -13,6 +13,15 @@ namespace HotelManagerProject {
     public partial class RoomAvailabilityForm {
         
         /// <summary>
+        /// de control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::DevExpress.Web.ASPxDateEdit de;
+        
+        /// <summary>
         /// PreviousMonthButton control.
         /// </summary>
         /// <remarks>
@@ -38,6 +47,15 @@ namespace HotelManagerProject {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::DevExpress.Web.ASPxButton NextMonthButton;
+        
+        /// <summary>
+        /// secretInput control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button secretInput;
         
         /// <summary>
         /// availableRooms control.

@@ -5,11 +5,16 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
-    <%--   <script type="text/javascript">
+       <script type="text/javascript">
         function OnInit(s, e) {
             var calendar = s.GetCalendar();
             calendar.owner = s;
             calendar.GetMainElement().style.opacity = '0';
+        }
+        
+        function OnButtonClick() {
+            var i = 1;
+
         }
 
         function OnDropDown(s, e) {
@@ -24,6 +29,7 @@
                 var parentDateEdit = this.calendar.owner;
                 var currentDate = new Date(fastNav.activeYear, fastNav.activeMonth, 1);
                 parentDateEdit.SetDate(currentDate);
+                document.getElementById("secretInput").click();
                 parentDateEdit.HideDropDown();
             }
 
@@ -32,9 +38,9 @@
                 parentDateEdit.HideDropDown();
             }
         }
-    </script>--%>
+    </script>
 
-    <%--    <div class="container">
+<%--        <div class="container">
 
         <div class="row; alighnCenter">
 
@@ -56,10 +62,14 @@
             <div class="col-xs-5">
             </div>
             <div class="col-xs-1 col-sm-1 col-md-1 col-lg-5">
+                <dx:ASPxDateEdit AutoPostBack="True" ID="de" runat="server" Theme="BlackGlass" EnableTheming="True" ShowShadow="false"
+                    DisplayFormatString="MMM yyyy" EditFormatString="MMM yyyy" OnInit="de_Init">
+                    <ClientSideEvents DropDown="OnDropDown" Init="OnInit"/>
+                </dx:ASPxDateEdit>
                 <dx:ASPxButton CssClass="alighnCenter" OnClick="PreviousMonthButton_OnClick" ID="PreviousMonthButton" runat="server" Text="<" Width=25px Height=25px FocusRectPaddings-Padding=0 FocusRectPaddings-PaddingBottom=0 FocusRectPaddings-PaddingLeft=0 FocusRectPaddings-PaddingRight=0 FocusRectPaddings-PaddingTop=0></dx:ASPxButton>
                 <dx:ASPxTextBox CssClass="textBoxAlighn; alighnCenter" ReadOnly="True" OnInit="CurrentMonthTextBox_OnInit" ID="CurrentMonthTextBox" runat="server" Height="25px"></dx:ASPxTextBox>
                 <dx:ASPxButton CssClass="alighnCenter" OnClick="NextMonthButton_OnClick" ID="NextMonthButton" runat="server" Text=">" Height=25px FocusRectPaddings-Padding=0 FocusRectPaddings-PaddingBottom=0 FocusRectPaddings-PaddingLeft=0 FocusRectPaddings-PaddingRight=0 FocusRectPaddings-PaddingTop=0 Width=25px></dx:ASPxButton>
-
+                <asp:Button ID="secretInput" style="display: none" OnClick="OnDateChanged" runat="server" ClientIDMode="Static"/>
             </div>
         </div>
     </div>
