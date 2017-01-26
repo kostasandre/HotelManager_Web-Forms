@@ -5,27 +5,45 @@
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
 
 	<script type="text/javascript">
-		function ShowLoginWindow() {
-			if (createHotelButton) {
-				idTextBox.SetText("0");
-				nameTextBox.SetText("");
-				addressTextBox.SetText("");
-				managerTextBox.SetText("");
-				emailTextBox.SetText("");
-				phoneTextBox.SetText("");
-				taxIdSpinEdit.SetText("");
-			}
-			HotelDetailView.Show();
-		}
-		function EndCallback(s, e) {
-			idTextBox.SetText(s.cp_text1);
-			nameTextBox.SetText(s.cp_text2);
-			addressTextBox.SetText(s.cp_text3);
-			managerTextBox.SetText(s.cp_text4);
-			emailTextBox.SetText(s.cp_text5);
-			phoneTextBox.SetText(s.cp_text6);
-			taxIdSpinEdit.SetText(s.cp_text7);
-		}
+	    function SetSelectedHoteToStorage(value) {
+	       
+	        //localStorage.setItem("tempHotelId", value[0]);
+	        localStorage.setItem("tempHotelName", value[1]);
+	    }
+
+	    function HotelSelectionChanged(s, e) {
+	        s.GetRowValues(e.visibleIndex, "Id;Name", SetSelectedHoteToStorage);
+	    }
+
+	    function HotelButonClick(s, e) {
+	        var tempHotelInfo = localStorage.getItem("tempHotelName");
+	        localStorage.removeItem("tempHotelName");
+	        localStorage.setItem("Hotel", tempHotelInfo);
+	        e.processOnServer = true;
+	    }
+
+	    function ShowLoginWindow() {
+	        if (createHotelButton) {
+	            idTextBox.SetText("0");
+	            nameTextBox.SetText("");
+	            addressTextBox.SetText("");
+	            managerTextBox.SetText("");
+	            emailTextBox.SetText("");
+	            phoneTextBox.SetText("");
+	            taxIdSpinEdit.SetText("");
+	        }
+	        HotelDetailView.Show();
+	    }
+
+	    function EndCallback(s, e) {
+	        idTextBox.SetText(s.cp_text1);
+	        nameTextBox.SetText(s.cp_text2);
+	        addressTextBox.SetText(s.cp_text3);
+	        managerTextBox.SetText(s.cp_text4);
+	        emailTextBox.SetText(s.cp_text5);
+	        phoneTextBox.SetText(s.cp_text6);
+	        taxIdSpinEdit.SetText(s.cp_text7);
+	    }
 	</script>
 
 	<div class="container" style="width: 100%">
@@ -46,19 +64,20 @@
 			</div>
 			
 			<div class="col-lg-1 col-md-2 col-sm-2 col-xs-4">
-				<dx:ASPxButton ID="selectHotelASPxButton" CssClass="button" ToolTip="Gets the selected Hotel" ForeColor="AquaMarine" Theme="BlackGlass" runat="server" Text="Select Hotel" OnClick="selectHotelASPxButton_Click" />
+				<dx:ASPxButton ID="selectHotelASPxButton" CssClass="button" ToolTip="Gets the selected Hotel" ForeColor="AquaMarine" Theme="BlackGlass" runat="server" Text="Select Hotel" OnClick="SelectHotelAsPxButtonClick" 
+                    >
+				    <ClientSideEvents Click="HotelButonClick"> </ClientSideEvents>
+                    </dx:ASPxButton>
 			</div>
 
-			<div class="col-lg-10 col-md-8 col-sm-8 col-xs-12">
+			<div class="col-lg-9 col-md-8 col-sm-8 col-xs-12">
 				<div class="MainForm" style="width: 1325px">
 					<a style="font-size: 20px; color: black; font-weight: bold">Hotel List</a>
-					<dx:ASPxGridView ID="HotelGridView" runat="server" AutoGenerateColumns="False" Theme="BlackGlass" EnableTheming="True" OnCustomButtonCallback="HotelGridView_OnCustomButtonCallback" KeyFieldName="Id">
+					<dx:ASPxGridView ID="HotelGridView" runat="server" AutoGenerateColumns="False" Theme="BlackGlass" EnableTheming="True" OnCustomButtonCallback="HotelGridView_OnCustomButtonCallback" KeyFieldName="Id" ClientIDMode="Static">
 						<ClientSideEvents CustomButtonClick="function(s, e) {
 							ShowLoginWindow(); e.processOnServer = true; 
-							}"
-							EndCallback="EndCallback
-							"></ClientSideEvents>
-
+							}" EndCallback="EndCallback" SelectionChanged="HotelSelectionChanged"></ClientSideEvents>
+                        <SettingsBehavior AllowSelectSingleRowOnly="True"></SettingsBehavior>
 						<Settings ShowFilterRow="True" ShowGroupPanel="True" />
 						<SettingsSearchPanel Visible="True" />
 						<Columns>
@@ -71,7 +90,7 @@
 									</dx:GridViewCommandColumnCustomButton>
 								</CustomButtons>
 							</dx:GridViewCommandColumn>
-							<dx:GridViewDataTextColumn FieldName="Id" VisibleIndex="2" Visible="False">
+							<dx:GridViewDataTextColumn FieldName="Id" VisibleIndex="2" Visible="True">
 							</dx:GridViewDataTextColumn>
 							<dx:GridViewDataTextColumn FieldName="Name" VisibleIndex="3">
 							</dx:GridViewDataTextColumn>

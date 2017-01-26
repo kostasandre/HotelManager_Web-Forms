@@ -1,9 +1,12 @@
 ﻿$(document)
-    .ready(function() {
+    .ready(function () {
+        var hotelInfo = localStorage.getItem("Hotel");
+        replaceCssClass(hotelInfo);
         $(".collapse")
             .on("shown.bs.collapse",
                 function(e) {
                     $(".collapse").not(this).removeClass("in");
+                    
                 });
         $("[data-toggle=collapse]")
             .click(function(e) {
@@ -12,4 +15,21 @@
             });
 
     });
+
+function replaceCssClass(hotelInfo)
+{
+    if (hotelInfo == null) {
+        return;
+    } else {
+        $('#hotelLabel').removeClass("hidden");
+        $('#hotelLabel').text("Hotel: " +hotelInfo);
+        $('#a1').removeClass("hidden");
+        $('#a2').removeClass("hidden");
+        $('#a3').removeClass("hidden");
+        $('#a4').removeClass("hidden");
+        $('#a5').removeClass("hidden");
+        
+       
+    }
+}
 

@@ -33,11 +33,12 @@
                 <ul class="nav navbar-nav">
                     <li>
                         <a style="font-size: 40px; padding-top: 20px; margin-left: 20px;" href="Main.aspx" data-toggle="collapse" data-target="#">Hotel Manager</a>
+                        <asp:Label CssClass="hidden hotelLabel" ClientIDMode="Static" ID= "hotelLabel" runat="server"></asp:Label>
                     </li>
-                    <li class="dropdown"><a href="#" data-toggle="collapse" data-target="#one">Hotels</a> </li>
-                    <li class="dropdown"><a href="#" data-toggle="collapse" data-target="#two">Booking</a> </li>
-                    <li class="dropdown"><a href="#" data-toggle="collapse" data-target="#three">Billing</a> </li>
-                    <li class="dropdown"><a href="#" data-toggle="collapse" data-target="#four">Reports</a> </li>
+                    <li class="dropdown"><a class="hidden" id="a1"  href="#" data-toggle="collapse" data-target="#one">Hotels</a> </li>
+                    <li class="dropdown"><a class="hidden" id="a2" href="#" data-toggle="collapse" data-target="#two">Booking</a> </li>
+                    <li class="dropdown"><a class="hidden" id="a3" href="#" data-toggle="collapse" data-target="#three">Billing</a> </li>
+                    <li class="dropdown"><a class="hidden" id="a4" href="#" data-toggle="collapse" data-target="#four">Reports</a> </li>
                 </ul>
             </nav>
         </div>
