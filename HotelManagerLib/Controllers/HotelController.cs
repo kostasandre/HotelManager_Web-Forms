@@ -77,6 +77,7 @@ namespace HotelManagerLib.Controllers
             if (entity.Id > 0)
             {
                 this.Repository.Delete(entity.Id);
+
             }
             else
             {
