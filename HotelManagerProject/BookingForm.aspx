@@ -23,7 +23,7 @@
                 <div class="MainForm" style="width: 1000px">
 
                     <a style="font-size: 20px; color: black; font-weight: bold">Booking Form</a>
-                    <br/>
+                    <br />
                     <div class="container" style="width: 100%">
 
                         <div class="row">
@@ -40,14 +40,29 @@
                                 <label>Date From:</label>
                             </div>
                             <div style="height: 45px;" class="col-xs-11 col-sm-11 col-md-10 col-lg-3">
-                                <dx:ASPxDateEdit AllowUserInput="False" ID="dateFromCalendar" runat="server" AllowNull="False"></dx:ASPxDateEdit>
+                                <dx:ASPxDateEdit AllowUserInput="False" ID="dateFromCalendar" runat="server" AllowNull="False" ClientIDMode="Static">
+                                    <ValidationSettings EnableCustomValidation="True" ErrorDisplayMode="ImageWithTooltip" ErrorTextPosition="Right" SetFocusOnError="true">
+                                        <ErrorFrameStyle Font-Size="Large" />
+                                        <RequiredField IsRequired="True" ErrorText="Valid from is required" />
+                                    </ValidationSettings>
+                                </dx:ASPxDateEdit>
                             </div>
 
                             <div class="col-xs-1 col-sm-1 col-md-2 col-lg-2">
                                 <label>Date To:</label>
                             </div>
                             <div class="col-xs-10 col-sm-4 col-md-3 col-lg-3">
-                                <dx:ASPxDateEdit AllowUserInput="False" ID="dateToCalendar" runat="server" AllowNull="False"></dx:ASPxDateEdit>
+                                <dx:ASPxDateEdit AllowUserInput="False" ID="dateToCalendar" runat="server" AllowNull="False" ClientIDMode="Static">
+                                    <ClientSideEvents Validation="function(s, e) {
+e.isValid = (CheckDifference()&gt;=0)
+e.errorText = &quot;The Date From is greater than Date To!&quot;
+}"></ClientSideEvents>
+
+                                    <ValidationSettings EnableCustomValidation="True" ErrorDisplayMode="ImageWithTooltip" ErrorTextPosition="Right" SetFocusOnError="true">
+                                        <ErrorFrameStyle Font-Size="Large" />
+                                        <RequiredField IsRequired="True" ErrorText="Valid to is required" />
+                                    </ValidationSettings>
+                                </dx:ASPxDateEdit>
                             </div>
                         </div>
                         <br />
@@ -57,6 +72,25 @@
                             </div>
 
                         </div>
+
+                        <script type="text/javascript">
+                            function CheckDifference() {
+                                var startDate = new Date();
+                                var endDate = new Date();
+                                var difference = -1;
+                                startDate = dateFromCalendar.GetDate();
+                                if (startDate != null) {
+                                    endDate = dateToCalendar.GetDate();
+                                    var startTime = startDate.getTime();
+                                    var endTime = endDate.getTime();
+                                    difference = (endTime - startTime) / 86400000;
+
+                                }
+                                return difference;
+
+                            }
+                        </script>
+
                         <br />
                         <div class="row">
                             <div class="col-xs-12">
@@ -152,8 +186,8 @@
                                 <dx:ASPxMemo ID="commentMemoBox" runat="server" Height="71px" Width="170px"></dx:ASPxMemo>
                             </div>
                         </div>
-                         <br/>
-           
+                        <br />
+
                         <%-- <div class="row">
                 <div class="col-xs-4 col-sm-8 col-md-10 col-lg-10">
                     
