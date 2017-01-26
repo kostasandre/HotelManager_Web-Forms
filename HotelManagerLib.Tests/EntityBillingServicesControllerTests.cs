@@ -271,6 +271,16 @@ namespace HotelManagerLib.Tests
         }
 
         /// <summary>
+        /// The get entity null reference exception.
+        /// </summary>
+        [Test]
+        public void GetEntityNullReferenceException()
+        {
+            Assert.Throws<ArgumentNullException>(
+                () => this.billingServicesEntityController.GetEntity(0));
+        }
+
+        /// <summary>
         /// The update.
         /// </summary>
         [Test]

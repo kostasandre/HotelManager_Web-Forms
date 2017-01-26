@@ -137,6 +137,12 @@ namespace HotelManagerLib.Repositories
             }
         }
 
+        /// <summary>
+        /// The update.
+        /// </summary>
+        /// <param name="billingService">
+        /// The billing service.
+        /// </param>
         public void Update(BillingService billingService)
         {
             using (var context = new DataBaseContext())
