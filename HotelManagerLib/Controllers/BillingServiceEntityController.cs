@@ -94,7 +94,14 @@ namespace HotelManagerLib.Controllers
         /// </returns>
         public BillingService GetEntity(int id)
         {
-            return this.Repository.ReadOne(id);
+            if (id > 0)
+            {
+                return this.Repository.ReadOne(id);
+            }
+            else
+            {
+                throw new ArgumentNullException();
+            }
         }
 
         /// <summary>
