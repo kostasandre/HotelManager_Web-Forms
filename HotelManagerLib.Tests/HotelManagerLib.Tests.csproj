@@ -49,6 +49,7 @@
   <ItemGroup>
     <Compile Include="BookingEntityTests\BookingControllerTest.cs" />
     <Compile Include="CustomerControllerTests.cs" />
+    <Compile Include="EntityBillingServicesControllerTests.cs" />
     <Compile Include="EntityBillingControllerTests.cs" />
     <Compile Include="HotelControllerTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
