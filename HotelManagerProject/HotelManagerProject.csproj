@@ -199,7 +199,6 @@
     <Compile Include="BillingAndBillingServicesWebForm.aspx.designer.cs">
       <DependentUpon>BillingAndBillingServicesWebForm.aspx</DependentUpon>
     </Compile>
-    <Compile Include="EntityBillingControllerTests.cs" />
     <Compile Include="Reports\BillingsReport.cs">
       <SubType>Component</SubType>
     </Compile>

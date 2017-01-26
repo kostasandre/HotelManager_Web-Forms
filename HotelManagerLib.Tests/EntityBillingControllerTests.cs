@@ -7,7 +7,7 @@
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
 
-namespace HotelManagerProject
+namespace HotelManagerLib.Tests
 {
     #region
 
@@ -37,6 +37,9 @@ namespace HotelManagerProject
         /// </summary>
         private IEntityController<Billing> billingEntityController;
 
+        /// <summary>
+        /// The booking entity controller.
+        /// </summary>
         private IEntityController<Booking> bookingEntityController;
 
         /// <summary>
