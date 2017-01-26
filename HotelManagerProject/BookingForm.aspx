@@ -20,30 +20,30 @@
                 <dx:ASPxButton OnClick="cancelButton_OnClick" ID="cancelButton" runat="server" CssClass="button" ToolTip="Cancel" ForeColor="AquaMarine" Theme="BlackGlass" Text="Cancel Booking" />
             </div>
             <div class="col-lg-10 col-md-8 col-sm-8 col-xs-12">
-                <div class="MainForm" style="width: 1400px">
+                <div class="MainForm" style="width: 1000px">
 
                     <a style="font-size: 20px; color: black; font-weight: bold">Booking Form</a>
                     <br/>
                     <div class="container" style="width: 100%">
 
                         <div class="row">
-                            <div style="height: 45px;" class="col-xs-1 col-sm-1 col-md-1 col-lg-1">
+                            <div style="height: 45px;" class="col-xs-1 col-sm-1 col-md-2 col-lg-2">
                                 <label>Room Type:</label>
                             </div>
-                            <div class="col-xs-3 col-sm-1 col-md-11 col-lg-1">
+                            <div class="col-xs-3 col-sm-1 col-md-10 col-lg-1">
                                 <dx:ASPxComboBox ID="roomTypeComboBox" NullText="Select Room Type" runat="server" ValueField="Id" TextField="Code" IncrementalFilteringMode="None" DropDownStyle="DropDownList">
                                 </dx:ASPxComboBox>
                             </div>
                         </div>
                         <div class="row">
-                            <div class="col-xs-1 col-sm-1 col-md-1 col-lg-1">
+                            <div class="col-xs-1 col-sm-1 col-md-2 col-lg-2">
                                 <label>Date From:</label>
                             </div>
-                            <div style="height: 45px;" class="col-xs-11 col-sm-11 col-md-11 col-lg-2">
+                            <div style="height: 45px;" class="col-xs-11 col-sm-11 col-md-10 col-lg-3">
                                 <dx:ASPxDateEdit AllowUserInput="False" ID="dateFromCalendar" runat="server" AllowNull="False"></dx:ASPxDateEdit>
                             </div>
 
-                            <div class="col-xs-1 col-sm-1 col-md-1 col-lg-1">
+                            <div class="col-xs-1 col-sm-1 col-md-2 col-lg-2">
                                 <label>Date To:</label>
                             </div>
                             <div class="col-xs-10 col-sm-4 col-md-3 col-lg-3">
@@ -92,9 +92,9 @@
                         <br />
 
                         <div class="row">
-                            <div class="col-xs-0 col-sm-2 col-md-2 col-lg-5">
+                            <div class="col-xs-0 col-sm-0 col-md-0 col-lg-5">
                             </div>
-                            <div class="col-xs-1 col-sm-2 col-md-2 col-lg-1">
+                            <div class="col-xs-1 col-sm-1 col-md-1 col-lg-1">
                                 <label>System Price:</label>
                             </div>
                             <div class="col-xs-11 col-sm-4 col-md-3 col-lg-2">
@@ -102,9 +102,9 @@
                             </div>
                         </div>
                         <div class="row">
-                            <div class="col-xs-0 col-sm-2 col-md-2 col-lg-5">
+                            <div class="col-xs-0 col-sm-0 col-md-0 col-lg-5">
                             </div>
-                            <div class="col-xs-1 col-sm-2 col-md-2 col-lg-1">
+                            <div class="col-xs-1 col-sm-1 col-md-1 col-lg-1">
                                 <label>Agreed Price:</label>
                             </div>
                             <div class="col-xs-11 col-sm-4 col-md-3 col-lg-2">
@@ -120,12 +120,12 @@
                             </div>
                         </div>
                         <div class="row">
-                            <div class="col-xs-0 col-sm-2 col-md-2 col-lg-5">
+                            <div class="col-xs-0 col-sm-0 col-md-0 col-lg-5">
                             </div>
-                            <div class="col-xs-1 col-sm-2 col-md-2 col-lg-1">
+                            <div class="col-xs-1 col-sm-1 col-md-1 col-lg-1">
                                 <label>Search Customer:</label>
                             </div>
-                            <div style="height: 45px;" class="col-xs-3 col-sm-4 col-md-5 col-lg-3">
+                            <div style="height: 45px;" class="col-xs-3 col-sm-3 col-md-3 col-lg-3">
                                 <dx:ASPxComboBox OnValueChanged="customerComboBox_OnValueChanged" ID="customerComboBox" NullText="Search Customer" runat="server" ValueField="Id" TextField="Name" IncrementalFilteringMode="Contains" DropDownStyle="DropDown" TextFormatString="{0} {1}">
                                     <Columns>
                                         <dx:ListBoxColumn FieldName="Name" Visible="True" Caption="Name" />
@@ -143,9 +143,9 @@
                         </div>
                         <br />
                         <div class="row">
-                            <div class="col-xs-0 col-sm-2 col-md-2 col-lg-5">
+                            <div class="col-xs-0 col-sm-0 col-md-0 col-lg-5">
                             </div>
-                            <div class="col-xs-4 col-sm-4 col-md-2 col-lg-1">
+                            <div class="col-xs-1 col-sm-1 col-md-1 col-lg-1">
                                 <label>Comments:</label>
                             </div>
                             <div class="col-xs-4 col-sm-4 col-md-3 col-lg-3">
