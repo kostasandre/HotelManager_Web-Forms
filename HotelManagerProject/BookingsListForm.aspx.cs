@@ -94,6 +94,7 @@ namespace HotelManagerProject
         /// </param>
         protected void deleteBookingButton_OnClick(object sender, EventArgs e)
         {
+            var hotel = this.Session["Hotel"] as Hotel;
             this.bookingController = new BookingController();
             var errorlabel = this.Master?.FindControl("form1").FindControl("divErrorMessage") as Label;
             if (errorlabel != null)
@@ -135,15 +136,20 @@ namespace HotelManagerProject
                         errorlabel.Text += $@"'{myBooking.Id}', ";
                         this.bookingsGridView.Selection.UnselectRowByKey(id);
                     }
-                    catch (SqlException ex)
+                    catch (Exception ex)
                     {
-                        return;
+                        errorlabel.Text = ex.Message;
                     }
                 }
 
                 errorlabel.Text = errorlabel.Text.TrimEnd(' ', ',');
                 this.Session["errorMessage"] = errorlabel.Text;
-                this.bookingsGridView.DataSource = this.bookingController.RefreshEntities().OrderByDescending(x => x.Created);
+                this.bookingsGridView.DataSource = hotel != null
+                                                       ? this.bookingController.RefreshEntities()
+                                                           .Where(x => x.Room.HotelId == hotel.Id)
+                                                           .OrderByDescending(x => x.Created)
+                                                       : this.bookingController.RefreshEntities()
+                                                           .OrderByDescending(x => x.Created);
                 this.bookingsGridView.DataBind();
             }
         }
