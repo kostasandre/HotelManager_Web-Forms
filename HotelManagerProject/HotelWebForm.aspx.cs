@@ -156,6 +156,8 @@ namespace HotelManagerProject
                     try
                     {
                         this.hotelController.DeleteEntity(hotelTemp);
+                        this.deleteHotelButton.ClientSideEvents.Click = "function(s,e){ sessionStorage.removeItem('Hotel'); sessionStorage.removeItem('tempHotelName'); e.processOnServer = true; }";
+                        this.Session["Hotel"] = null;
                     }
                     catch (ArgumentNullException)
                     {
@@ -231,7 +233,7 @@ namespace HotelManagerProject
                 errorlabel.Text = string.Empty;
                 if (this.HotelGridView.VisibleRowCount == 0)
                 {
-                    errorlabel.Text = $"There are no Hotels to delete";
+                    errorlabel.Text = $"There is no Hotel selected";
                 }
 
                 var firstRun = true;
@@ -240,7 +242,7 @@ namespace HotelManagerProject
                 var selectedRowKeys = this.HotelGridView.GetSelectedFieldValues(this.HotelGridView.KeyFieldName, "Name");
                 if ((selectedRowKeys == null) || (selectedRowKeys.Count == 0))
                 {
-                    errorlabel.Text = @"Please select a Hotel first to delete";
+                    errorlabel.Text = @"Please select a Hotel first";
                     return;
                 }
 
