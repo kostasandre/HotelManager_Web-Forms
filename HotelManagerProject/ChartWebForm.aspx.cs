@@ -12,6 +12,7 @@ namespace HotelManagerProject
     #region
 
     using System;
+    using System.Linq;
     using System.Web.UI;
 
     using DevExpress.DashboardWeb;
@@ -59,9 +60,13 @@ namespace HotelManagerProject
         /// </param>
         private void AsPxDashboardViewer1OnDataLoading(object sender, DataLoadingWebEventArgs e)
         {
+            var hotel = this.Session["Hotel"] as Hotel;
             this.billingController = new BillingEntityController();
-            var billingList = this.billingController.RefreshEntities();
+            var billingList = hotel == null 
+                ? this.billingController.RefreshEntities().ToList()
+                : this.billingController.RefreshEntities().Where(x => x.Booking.Room.HotelId == hotel.Id).ToList();
             e.Data = billingList;
+            
         }
     }
 }

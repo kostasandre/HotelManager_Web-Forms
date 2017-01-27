@@ -141,17 +141,18 @@ namespace HotelManagerProject
                 if (roomTypeList != null)
                 {
                     var roomTypeTemp =
-                        roomTypeList.SingleOrDefault(x => x.Id == Convert.ToInt32(this.roomTypeComboBox.SelectedItem.Value));
+                        roomTypeList.SingleOrDefault(
+                            x => x.Id == Convert.ToInt32(this.roomTypeComboBox.SelectedItem.Value));
                     this.room.RoomTypeId = roomTypeTemp.Id;
                 }
 
             }
             //this.btOK.ClientSideEvents.Click = " function(s , e) {'hotelComboBox.SetEnabled(true);'}";
             //this.btOK.ClientSideEvents.Click = " function(s , e) {'roomTypeComboBox.SetEnabled(true);'}";
-            
+
 
             this.roomController.CreateOrUpdateEntity(this.room);
-            this.Page.Response.Redirect(this.Page.Request.Url.ToString() , true);
+            this.Page.Response.Redirect(this.Page.Request.Url.ToString(), true);
         }
 
         /// <summary>
@@ -229,15 +230,6 @@ namespace HotelManagerProject
             this.RoomGridView.JSProperties["cp_text2"] = myRoom.Code;
             this.RoomGridView.JSProperties["cp_text3"] = myRoom.HotelName;
             this.RoomGridView.JSProperties["cp_text4"] = myRoom.RoomType.Code;
-        }
-
-        protected void createRoomButton_OnClick(object sender, EventArgs e)
-        {
-            var hotel = this.Session["Hotel"] as Hotel;
-            if (Visible)
-            {
-                
-            }
         }
     }
 }
