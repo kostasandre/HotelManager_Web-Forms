@@ -132,10 +132,10 @@
                                                 </div>
                                                 <div class="col-xs-6">
                                                     <dx:ASPxComboBox ID="hotelComboBox" NullText="Select Hotel" ValueField="Id" TextField="Name" runat="server" IncrementalFilteringMode="None" DropDownStyle="DropDownList" ClientIDMode="Static">
-                                                        <ValidationSettings EnableCustomValidation="True" ErrorDisplayMode="ImageWithTooltip" ErrorTextPosition="Right" SetFocusOnError="true">
+                                             <%--           <ValidationSettings EnableCustomValidation="True" ErrorDisplayMode="ImageWithTooltip" ErrorTextPosition="Right" SetFocusOnError="true">
                                                             <ErrorFrameStyle Font-Size="Large" />
                                                             <RequiredField IsRequired="True" ErrorText="Hotel is required" />
-                                                        </ValidationSettings>
+                                                        </ValidationSettings>--%>
                                                     </dx:ASPxComboBox>
                                                 </div>
                                             </div>
@@ -167,7 +167,7 @@
                                         <div class="pcmButton">
                                             <dx:ASPxButton ID="btOK" runat="server" Text="OK" Width="80px" AutoPostBack="False" Style="float: left; margin-right: 8px" OnClick="SaveButton_OnClick">
                                                 <ClientSideEvents Click="function(s, e) {
-if (eval(&#39;codeTextBox&#39;).lastChangedValue == null || eval(&#39;billingComboBox&#39;).lastChangedValue == null || eval(&#39;billingComboBox&#39;).lastChangedValue == null)
+if (eval(&#39;codeTextBox&#39;).lastChangedValue == null )
  		{
 return false;
 }
