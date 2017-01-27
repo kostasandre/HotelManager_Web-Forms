@@ -21,6 +21,7 @@ namespace HotelManagerProject
 
     using HotelManagerLib.Controllers;
     using HotelManagerLib.Models;
+    using HotelManagerLib.Models.Persistant;
 
     #endregion
 
@@ -134,12 +135,13 @@ namespace HotelManagerProject
         /// </param>
         private void DrawAvailableRooms(DateTime date)
         {
+            var hotel = this.Session["Hotel"] as Hotel;
             var errorlabel = this.Master?.FindControl("form1").FindControl("divErrorMessage") as Label;
             this.roomAvailabilityController = new RoomAvailabilityController();
 
             try
             {
-                this.calendarList = this.roomAvailabilityController.BookingCalendar(date);
+                this.calendarList = this.roomAvailabilityController.BookingCalendar(hotel,date);
             }
             catch (Exception ex)
             {

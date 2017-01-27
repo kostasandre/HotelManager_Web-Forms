@@ -1,18 +1,15 @@
 ﻿// --------------------------------------------------------------------------------------------------------------------
-// <copyright file="HotelControllerTests.cs" company="Data Communication">
+// <copyright file="ServiceControllerTests.cs" company="Data Communication">
 //   Hotel Manager
 // </copyright>
 // <summary>
-//   The hotel controller tests.
+//   The service controller tests.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
 
 namespace HotelManagerLib.Tests
 {
-    #region
-
     using System;
-    using System.Collections.Generic;
     using System.Linq;
 
     using HotelManagerLib.Controllers;
@@ -22,12 +19,10 @@ namespace HotelManagerLib.Tests
 
     using NUnit.Framework;
 
-    #endregion
-
     /// <summary>
-    /// The hotel controller tests.
+    /// The service controller tests.
     /// </summary>
-    public class HotelControllerTests
+    public class ServiceControllerTests
     {
         /// <summary>
         /// The billing.
@@ -151,7 +146,12 @@ namespace HotelManagerLib.Tests
             };
             this.roomType = this.roomTypeController.CreateOrUpdateEntity(this.roomType);
 
-            this.room = new Room() { HotelId = this.hotel.Id, Code = "Alex Hotel 123", RoomTypeId = this.roomType.Id, };
+            this.room = new Room()
+            {
+                HotelId = this.hotel.Id,
+                Code = "Alex Hotel 123",
+                RoomTypeId = this.roomType.Id
+            };
             this.room = this.roomController.CreateOrUpdateEntity(this.room);
 
             this.service = new Service()
@@ -235,126 +235,135 @@ namespace HotelManagerLib.Tests
         }
 
         /// <summary>
-        /// The create hotel.
+        /// The create room type.
         /// </summary>
         [Test]
-        public void CreateHotel()
+        public void CreateService()
         {
-            var hotelTemp = new Hotel()
-                                {
-                                    Name = "Alex Hotel 2",
-                                    Address = "Syntagma 2",
-                                    TaxId = "AH123456 2",
-                                    Manager = "Alex 2",
-                                    Phone = "2101234567 2",
-                                    Email = "alex@outlook.com 2"
-                                };
-            hotelTemp = this.hotelController.CreateOrUpdateEntity(hotelTemp);
-
-            Assert.AreEqual(hotelTemp.Name, "Alex Hotel 2");
-            this.hotelController.DeleteEntity(hotelTemp);
-        }
-
-        /// <summary>
-        /// The delete hotel.
-        /// </summary>
-        [Test]
-        public void DeleteHotel()
-        {
-            var hotelTemp = new Hotel()
-                                {
-                                    Name = "Xaris Hotel",
-                                    Address = "Omonoia",
-                                    TaxId = "AA000000",
-                                    Manager = "Xaris",
-                                    Phone = "2262022620",
-                                    Email = "xaris@outlook.com"
-                                };
-            hotelTemp = this.hotelController.CreateOrUpdateEntity(hotelTemp);
-
-            this.hotelController.DeleteEntity(hotelTemp);
-
-            Assert.IsEmpty(this.hotelController.RefreshEntities().Where(x => x.Name == "Xaris Hotel"));
-        }
-
-        /// <summary>
-        /// The delete hotel.
-        /// </summary>
-        [Test]
-        public void DeleteNullHotel()
-        {
-            var hotelTemp = new Hotel()
+            var serviceTemp = new Service()
             {
-                Name = "Xaris Hotel",
-                Address = "Omonoia",
-                TaxId = "AA000000",
-                Manager = "Xaris",
-                Phone = "2262022620",
-                Email = "xaris@outlook.com"
+                HotelId = this.hotel.Id,
+                Code = "BXH",
+                Description = "Brunch Xaris Hotel"
+            };
+            serviceTemp = this.serviceController.CreateOrUpdateEntity(serviceTemp);
+
+            Assert.AreEqual(serviceTemp.Code, "BXH");
+            Assert.AreEqual(serviceTemp.Description, "Brunch Xaris Hotel");
+            Assert.AreEqual(serviceTemp.HotelId, this.hotel.Id);
+
+            this.serviceController.DeleteEntity(serviceTemp);
+        }
+
+        /// <summary>
+        /// The delete null service.
+        /// </summary>
+        [Test]
+        public void DeleteNullService()
+        {
+            var serviceTemp = new Service()
+            {
+                HotelId = this.hotel.Id,
+                Code = "BXH",
+                Description = "Brunch Xaris Hotel"
             };
             var exp =
-                Assert.Throws<ArgumentNullException>(() => this.hotelController.DeleteEntity(hotelTemp));
+                Assert.Throws<ArgumentNullException>(() => this.serviceController.DeleteEntity(serviceTemp));
             Assert.That(exp.Message, Is.EqualTo("Value cannot be null."));
         }
 
         /// <summary>
-        /// The get hotel.
+        /// The delete service.
         /// </summary>
         [Test]
-        public void GetHotel()
+        public void DeleteService()
         {
-            var hotelTemp = new Hotel()
-                                {
-                                    Name = "Xaris Hotel",
-                                    Address = "Omonoia",
-                                    TaxId = "AA000000",
-                                    Manager = "Xaris",
-                                    Phone = "2262022620",
-                                    Email = "xaris@outlook.com"
-                                };
-            this.hotelController.CreateOrUpdateEntity(hotelTemp);
-
-            var hotelTemp2 = this.hotelController.RefreshEntities().SingleOrDefault(x => x.Name == "Xaris Hotel");
-            if (hotelTemp2 != null)
+            var serviceTemp = new Service()
             {
-                var hotelForCheck = this.hotelController.GetEntity(hotelTemp2.Id);
-                Assert.AreEqual(hotelForCheck.Address, "Omonoia");
-                this.hotelController.DeleteEntity(hotelForCheck);
-            }
+                HotelId = this.hotel.Id,
+                Code = "BXH",
+                Description = "Brunch Xaris Hotel"
+            };
+            serviceTemp = this.serviceController.CreateOrUpdateEntity(serviceTemp);
+
+            var servicePricingListTemp = new PricingList()
+            {
+                BillableEntityId = serviceTemp.Id,
+                TypeOfBillableEntity = TypeOfBillableEntity.Service,
+                ValidFrom = DateTime.Now,
+                ValidTo = Convert.ToDateTime("31/01/2017"),
+                Price = 999,
+                VatPrc = 99
+            };
+            servicePricingListTemp = this.pricingListController.CreateOrUpdateEntity(servicePricingListTemp);
+
+            this.serviceController.DeleteEntity(serviceTemp);
+
+            Assert.IsEmpty(this.serviceController.RefreshEntities().Where(x => x.Code == "BXH"));
+            Assert.IsEmpty(this.pricingListController.RefreshEntities().Where(x => x.BillableEntityId == serviceTemp.Id && x.TypeOfBillableEntity == TypeOfBillableEntity.Service));
         }
 
         /// <summary>
-        /// The refresh hotels.
+        /// The get service.
         /// </summary>
         [Test]
-        public void RefreshHotels()
+        public void GetService()
         {
-            Assert.IsNotEmpty(this.hotelController.RefreshEntities());
+            var serviceTemp = new Service()
+            {
+                HotelId = this.hotel.Id,
+                Code = "BXH",
+                Description = "Brunch Xaris Hotel"
+            };
+            serviceTemp = this.serviceController.CreateOrUpdateEntity(serviceTemp);
 
-            // Assert.Contains(this.hotel, this.hotelController.RefreshEntities() as List<Hotel>);
+            var servicePricingListTemp = new PricingList()
+            {
+                BillableEntityId = serviceTemp.Id,
+                TypeOfBillableEntity = TypeOfBillableEntity.Service,
+                ValidFrom = DateTime.Now,
+                ValidTo = Convert.ToDateTime("31/01/2017"),
+                Price = 999,
+                VatPrc = 99
+            };
+            servicePricingListTemp = this.pricingListController.CreateOrUpdateEntity(servicePricingListTemp);
+
+            var serviceTemp2 = this.serviceController.RefreshEntities().SingleOrDefault(x => x.Code == "BXH");
+            var serviceForCheck = this.serviceController.GetEntity(serviceTemp2.Id);
+
+            var servicePricingListForCheck = this.pricingListController.GetEntity(servicePricingListTemp.Id);
+
+            Assert.AreEqual(serviceForCheck.Code, "BXH");
+            Assert.AreEqual(serviceForCheck.Description, "Brunch Xaris Hotel");
+            Assert.AreEqual(serviceForCheck.HotelId, this.hotel.Id);
+            
+            Assert.AreEqual(servicePricingListForCheck.BillableEntityId, serviceForCheck.Id);
+
+            this.serviceController.DeleteEntity(serviceForCheck);
         }
-        
+
         /// <summary>
-        /// The update hotel.
+        /// The refresh services.
         /// </summary>
         [Test]
-        public void UpdateHotel()
+        public void RefreshServices()
         {
-            this.hotel.Name = "Alex Hotel 3";
-            this.hotel.Address = "Syntagma 3";
-            this.hotel.TaxId = "AH123456 3";
-            this.hotel.Manager = "Alex 3";
-            this.hotel.Phone = "2101234567 3";
-            this.hotel.Email = "alex@outlook.com 3";
+            Assert.IsNotEmpty(this.serviceController.RefreshEntities());
+        }
 
-            this.hotel = this.hotelController.CreateOrUpdateEntity(this.hotel);
+        /// <summary>
+        /// The update service.
+        /// </summary>
+        [Test]
+        public void UpdateService()
+        {
+            this.service.Code = "BXH";
+            this.service.Description = "Brunch Xaris Hotel";
 
-            Assert.AreEqual(this.hotel.Name, "Alex Hotel 3");
-            Assert.AreEqual(this.hotel.Address, "Syntagma 3");
-            Assert.AreEqual(this.hotel.TaxId, "AH123456 3");
-            Assert.AreEqual(this.hotel.Manager, "Alex 3");
-            Assert.AreEqual(this.hotel.Phone, "2101234567 3");
-            Assert.AreEqual(this.hotel.Email, "alex@outlook.com 3");
+            this.serviceController.CreateOrUpdateEntity(this.service);
+
+            Assert.AreEqual(this.service.Code, "BXH");
+            Assert.AreEqual(this.service.Description, "Brunch Xaris Hotel");
         }
     }
 }
