@@ -44,8 +44,11 @@ namespace HotelManagerLib.Controllers
         /// <summary>
         /// The booking calendar.
         /// </summary>
-        /// <param name="month">
-        /// The month.
+        /// <param name="hotel">
+        /// The hotel.
+        /// </param>
+        /// <param name="date">
+        /// The date.
         /// </param>
         /// <returns>
         /// The <see cref="List"/>.
@@ -53,8 +56,9 @@ namespace HotelManagerLib.Controllers
         /// <exception cref="Exception">
         /// Throws exception when refresh occurs.
         /// </exception>
-        public List<BookingCalendar> BookingCalendar(DateTime date)
+        public List<BookingCalendar> BookingCalendar(Hotel hotel, DateTime date)
         {
+            
             this.bookingController = new BookingController();
             this.roomController = new RoomController();
             this.calendarList = new List<BookingCalendar>();
@@ -63,8 +67,8 @@ namespace HotelManagerLib.Controllers
 
             try
             {
-                bookings = this.bookingController.RefreshEntities();
-                rooms = this.roomController.RefreshEntities();
+                bookings = hotel != null ? this.bookingController.RefreshEntities().Where(x => x.Room.HotelId == hotel.Id).ToList() : this.bookingController.RefreshEntities();
+                rooms = hotel != null ? this.roomController.RefreshEntities().Where(x => x.HotelId == hotel.Id).ToList() : this.roomController.RefreshEntities();
             }
             catch (Exception)
             {

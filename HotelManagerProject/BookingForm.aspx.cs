@@ -70,6 +70,7 @@ namespace HotelManagerProject
         /// </param>
         protected void CalculateAvailableRoomsButton(object sender, EventArgs e)
         {
+            var hotel = this.Session["Hotel"] as Hotel;
             double roomPrice;
             var pricingListController = new PricingListController();
             this.bookingController = new BookingController();
@@ -104,7 +105,7 @@ namespace HotelManagerProject
             this.roomTypePriceTextBox.Text = roomPrice.ToString(CultureInfo.InvariantCulture);
             if ((dateFrom != null) && (dateTo != null) && (roomType != string.Empty))
             {
-                this.AvailableRooms = this.bookingController.GetAvailableRooms(roomTypeId, dateFrom, dateTo);
+                this.AvailableRooms = this.bookingController.GetAvailableRooms(hotel, roomTypeId, dateFrom, dateTo);
                 if (this.AvailableRooms.Count == 0)
                 {
                     errorlabel.Text = "No available rooms for the selected days";

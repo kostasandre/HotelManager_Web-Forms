@@ -139,11 +139,16 @@ namespace HotelManagerLib.Controllers
         /// <returns>
         /// The <see cref="bool"/>.
         /// </returns>
-        public List<Room> GetAvailableRooms(object roomTypeId, object dateFrom, object dateTo )
+        public List<Room> GetAvailableRooms(Hotel hotel,object roomTypeId, object dateFrom, object dateTo )
         {
+            
             var roomController = new RoomController();
             var availableRooms = new List<Room>();
-            var rooms = roomController.RefreshEntities().Where(x => x.RoomTypeId == Convert.ToInt32(roomTypeId));
+            var rooms = hotel != null
+                            ? roomController.RefreshEntities()
+                                .Where(x => x.RoomTypeId == Convert.ToInt32(roomTypeId) && x.HotelId == hotel.Id)
+                            : roomController.RefreshEntities().Where(x => x.RoomTypeId == Convert.ToInt32(roomTypeId));
+            //var rooms = roomController.RefreshEntities().Where(x => x.RoomTypeId == Convert.ToInt32(roomTypeId));
             foreach (var room in rooms)
             {
                 var isAvailable = !this.RefreshEntities().Any(x => x.RoomId == room.Id && x.Status != Status.Cancelled && ((x.To >= Convert.ToDateTime(dateFrom)) && (Convert.ToDateTime(dateTo) >= x.From)));
