@@ -1,6 +1,6 @@
 ﻿$(document)
     .ready(function () {
-        var hotelInfo = localStorage.getItem("Hotel");
+        var hotelInfo = sessionStorage.getItem("Hotel");
         replaceCssClass(hotelInfo);
         $(".collapse")
             .on("shown.bs.collapse",
@@ -16,8 +16,8 @@
 
     });
 
-function replaceCssClass(hotelInfo)
-{
+function replaceCssClass(hotelInfo) {
+    var firstRun;
     if (hotelInfo == null) {
         return;
     } else {
@@ -32,4 +32,3 @@ function replaceCssClass(hotelInfo)
        
     }
 }
-
