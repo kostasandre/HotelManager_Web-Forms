@@ -41,6 +41,15 @@ namespace HotelManagerProject
         /// </summary>
         private Hotel hotel;
 
+        /// <summary>
+        /// The page_ init.
+        /// </summary>
+        /// <param name="sender">
+        /// The sender.
+        /// </param>
+        /// <param name="e">
+        /// The e.
+        /// </param>
         protected void Page_Init(object sender, EventArgs e)
         {
             this.hotelController = new HotelController();
@@ -57,9 +66,8 @@ namespace HotelManagerProject
         /// <param name="e">
         /// The e.
         /// </param>
-        protected void Page_Load(object sender , EventArgs e)
+        protected void Page_Load(object sender, EventArgs e)
         {
-
         }
 
         /// <summary>
@@ -75,7 +83,6 @@ namespace HotelManagerProject
         {
             var errorlabel = this.Master?.FindControl("form1").FindControl("divErrorMessage") as Label;
             this.hotelController = new HotelController();
-            //this.hotel = new Hotel();
             try
             {
                 this.hotel = new Hotel()
@@ -164,7 +171,6 @@ namespace HotelManagerProject
 
                         errorlabel.Text += $"'{hotelTemp.Name}',";
                         this.HotelGridView.Selection.UnselectRowByKey(id);
-
                     }
                     catch (SqlException exp)
                     {
@@ -235,7 +241,7 @@ namespace HotelManagerProject
                 var firstRun = true;
                 this.Session["errorMessage"] = string.Empty;
 
-                var selectedRowKeys = this.HotelGridView.GetSelectedFieldValues(this.HotelGridView.KeyFieldName , "Name");
+                var selectedRowKeys = this.HotelGridView.GetSelectedFieldValues(this.HotelGridView.KeyFieldName, "Name");
                 if ((selectedRowKeys == null) || (selectedRowKeys.Count == 0))
                 {
                     errorlabel.Text = @"Please select a Hotel first";
@@ -245,7 +251,7 @@ namespace HotelManagerProject
                 foreach (object[] row in selectedRowKeys)
                 {
                     var id = Convert.ToInt32(row[0]);
-                    
+
                     try
                     {
                         var localHotel = this.hotelController.GetEntity(id);
@@ -267,9 +273,8 @@ namespace HotelManagerProject
                     {
                         errorlabel.Text = exp.Message;
                     }
-                    
+
                     this.Session["errorMessage"] = errorlabel.Text;
-                    
                 }
             }
         }

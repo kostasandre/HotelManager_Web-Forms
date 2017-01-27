@@ -58,12 +58,27 @@ namespace HotelManagerProject
             this.hotelController = new HotelController();
             this.roomTypeController = new RoomTypeController();
 
-            this.RoomGridView.DataSource = this.roomController.RefreshEntities();
+            var hotel = this.Session["Hotel"] as Hotel;
+
+            this.RoomGridView.DataSource = hotel != null
+                                               ? this.roomController.RefreshEntities().Where(x => x.HotelId == hotel.Id)
+                                               : this.roomController.RefreshEntities();
             this.RoomGridView.DataBind();
 
             var hotelList = this.hotelController.RefreshEntities();
             this.hotelComboBox.DataSource = hotelList;
             this.hotelComboBox.DataBind();
+            if (hotel != null)
+            {
+                this.hotelComboBox.ReadOnly = true;
+                this.hotelComboBox.ClientEnabled = false;
+                this.hotelComboBox.NullText = hotel.Name;
+            }
+            else
+            {
+                this.hotelComboBox.ReadOnly = false;
+                this.hotelComboBox.ClientEnabled = true;
+            }
 
             var roomTypeList = this.roomTypeController.RefreshEntities();
             this.roomTypeComboBox.DataSource = roomTypeList;
@@ -81,17 +96,6 @@ namespace HotelManagerProject
         /// </param>
         protected void Page_Load(object sender, EventArgs e)
         {
-            //this.roomController = new RoomController();
-            //this.hotelController = new HotelController();
-            //this.roomTypeController = new RoomTypeController();
-            //this.RoomGridView.DataSource = this.roomController.RefreshEntities();
-            //this.RoomGridView.DataBind();
-            //var hotelList = this.hotelController.RefreshEntities();
-            //this.hotelComboBox.DataSource = hotelList;
-            //this.hotelComboBox.DataBind();
-            //var roomTypeList = this.roomTypeController.RefreshEntities();
-            //this.roomTypeComboBox.DataSource = roomTypeList;
-            //this.roomTypeComboBox.DataBind();
         }
 
         /// <summary>
@@ -105,7 +109,7 @@ namespace HotelManagerProject
         /// </param>
         protected void SaveButton_OnClick(object sender, EventArgs e)
         {
-
+            var hotel = this.Session["Hotel"] as Hotel;
             this.room = new Room();
             this.roomController = new RoomController();
 
@@ -117,12 +121,20 @@ namespace HotelManagerProject
             this.room.Code = this.codeTextBox.Text;
             if (this.room.Id == 0)
             {
-                var hotelList = this.hotelComboBox.DataSource as List<Hotel>;
-                if (hotelList != null)
+                if (hotel == null)
                 {
-                    var hotelTemp =
-                        hotelList.SingleOrDefault(x => x.Id == Convert.ToInt32(this.hotelComboBox.SelectedItem.Value));
-                    this.room.HotelId = hotelTemp.Id;
+                    var hotelList = this.hotelComboBox.DataSource as List<Hotel>;
+                    if (hotelList != null)
+                    {
+                        var hotelTemp =
+                            hotelList.SingleOrDefault(
+                                x => x.Id == Convert.ToInt32(this.hotelComboBox.SelectedItem.Value));
+                        this.room.HotelId = hotelTemp.Id;
+                    }
+                }
+                else
+                {
+                    this.room.HotelId = hotel.Id;
                 }
 
                 var roomTypeList = this.roomTypeComboBox.DataSource as List<RoomType>;
@@ -132,6 +144,7 @@ namespace HotelManagerProject
                         roomTypeList.SingleOrDefault(x => x.Id == Convert.ToInt32(this.roomTypeComboBox.SelectedItem.Value));
                     this.room.RoomTypeId = roomTypeTemp.Id;
                 }
+
             }
             //this.btOK.ClientSideEvents.Click = " function(s , e) {'hotelComboBox.SetEnabled(true);'}";
             //this.btOK.ClientSideEvents.Click = " function(s , e) {'roomTypeComboBox.SetEnabled(true);'}";
@@ -216,6 +229,15 @@ namespace HotelManagerProject
             this.RoomGridView.JSProperties["cp_text2"] = myRoom.Code;
             this.RoomGridView.JSProperties["cp_text3"] = myRoom.HotelName;
             this.RoomGridView.JSProperties["cp_text4"] = myRoom.RoomType.Code;
+        }
+
+        protected void createRoomButton_OnClick(object sender, EventArgs e)
+        {
+            var hotel = this.Session["Hotel"] as Hotel;
+            if (Visible)
+            {
+                
+            }
         }
     }
 }

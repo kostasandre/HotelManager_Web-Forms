@@ -332,15 +332,18 @@ namespace HotelManagerLib.Tests
             var bookingForCheck = this.bookingController.GetEntity(bookingTemp.Id);
 
             var roomTemp2 = this.roomController.RefreshEntities().SingleOrDefault(x => x.Code == "Super Extra Room");
-            var roomForCheck = this.roomController.GetEntity(roomTemp2.Id);
+            if (roomTemp2 != null)
+            {
+                var roomForCheck = this.roomController.GetEntity(roomTemp2.Id);
 
-            Assert.AreEqual(roomForCheck.Code, "Super Extra Room");
-            Assert.AreEqual(roomForCheck.HotelId, this.hotel.Id);
-            Assert.AreEqual(roomForCheck.RoomTypeId, this.roomType.Id);
-            Assert.AreEqual(bookingForCheck.Room.Code, "Super Extra Room");
-            Assert.AreEqual(bookingForCheck.Room.HotelId, this.hotel.Id);
-            Assert.AreEqual(bookingForCheck.Room.RoomTypeId, this.roomType.Id);
-            this.roomController.DeleteEntity(roomForCheck);
+                Assert.AreEqual(roomForCheck.Code, "Super Extra Room");
+                Assert.AreEqual(roomForCheck.HotelId, this.hotel.Id);
+                Assert.AreEqual(roomForCheck.RoomTypeId, this.roomType.Id);
+                Assert.AreEqual(bookingForCheck.Room.Code, "Super Extra Room");
+                Assert.AreEqual(bookingForCheck.Room.HotelId, this.hotel.Id);
+                Assert.AreEqual(bookingForCheck.Room.RoomTypeId, this.roomType.Id);
+                this.roomController.DeleteEntity(roomForCheck);
+            }
         }
 
         /// <summary>
