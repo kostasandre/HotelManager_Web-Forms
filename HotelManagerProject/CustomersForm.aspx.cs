@@ -12,6 +12,7 @@ namespace HotelManagerProject
     #region
 
     using System;
+    using System.Data.Entity.Infrastructure;
     using System.Data.SqlClient;
     using System.Web.UI;
     using System.Web.UI.WebControls;
@@ -128,7 +129,7 @@ namespace HotelManagerProject
                     {
                         return;
                     }
-                    catch (Exception exp)
+                    catch (DbUpdateException exp)
                     {
                         errorlabel.Text = $"First you shoud delete the Bookings of this Customer!";
                     }
