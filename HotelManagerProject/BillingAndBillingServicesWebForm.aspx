@@ -20,8 +20,8 @@
 
     <div class="MainForm">
         <div class="container" style="width: 100%">
-
-            <div class="row">
+            <a style="font-size: 20px; color: black; font-weight: bold">Billing and BillingServices Form</a>
+            <div class="row" style="margin-top: 10px;">
                 <div class="col-lg-1 col-md-2 col-sm-2 col-xs-4">
                     <dx:ASPxLabel Width="90px" CssClass="Text bookingLabel" ForeColor="Black" runat="server" Text="Booking :" Theme="BlackGlass"></dx:ASPxLabel>
                 </div>
@@ -36,7 +36,7 @@
 
         <div class="row" style="margin-top: 10px;">
             <div class="col-lg-1 col-md-2 col-sm-2 col-xs-4">
-                <dx:ASPxLabel Width="100px" CssClass="Text" ForeColor="Black" runat="server" Text="Customer :" Theme="BlackGlass"></dx:ASPxLabel>
+                <dx:ASPxLabel CssClass="Text" Width="100px" ForeColor="Black" runat="server" Text="Customer :" Theme="BlackGlass"></dx:ASPxLabel>
             </div>
             <div class="col-lg-2 col-md-10 col-sm-8 col-xs-7">
                 <dx:ASPxTextBox ID="customerSurnameTextBox" NullText="Surname" runat="server"></dx:ASPxTextBox>
@@ -49,7 +49,7 @@
 
         <div class="row" style="margin-top: 10px;">
             <div class="col-lg-1 col-md-2 col-sm-2 col-xs-4">
-                <dx:ASPxLabel Width="100px" CssClass="Text" ForeColor="Black" runat="server" Text="Room :" Theme="BlackGlass"></dx:ASPxLabel>
+                <dx:ASPxLabel CssClass="Text" Width="100px" ForeColor="Black" runat="server" Text="Room :" Theme="BlackGlass"></dx:ASPxLabel>
             </div>
             <div class="col-lg-1 col-md-1 col-sm-2 col-xs-3">
                 <dx:ASPxTextBox ID="roomTextBox" NullText="Code" runat="server"></dx:ASPxTextBox>
@@ -73,7 +73,7 @@
             <div class="col-lg-7 col-md-5 col-sm-0 col-xs-0">
             </div>
             <div class="col-lg-2 col-md-2 col-sm-3 col-xs-5">
-                <dx:ASPxLabel Width="150px" CssClass="Text" ForeColor="Black" runat="server" Text="Price for room :" Theme="BlackGlass"></dx:ASPxLabel>
+                <dx:ASPxLabel CssClass="Text" Width="150px" ForeColor="Black" runat="server" Text="Price for room :" Theme="BlackGlass"></dx:ASPxLabel>
             </div>
             <div class="col-lg-1 col-md-2 col-sm-1 col-xs-1">
                 <dx:ASPxTextBox ID="priceValueTextBox" runat="server"></dx:ASPxTextBox>
@@ -119,7 +119,7 @@
                 <div class="col-lg-7 col-md-5 col-sm-0 col-xs-0">
                 </div>
                 <div class="col-lg-2 col-md-2 col-sm-3 col-xs-6">
-                    <dx:ASPxLabel Width="250px" CssClass="Text" ForeColor="Black" ID="sumOfServicesLabel" Text="Price for services :" runat="server" EnableTheming="True" Theme="BlackGlass"></dx:ASPxLabel>
+                    <dx:ASPxLabel CssClass="Text" Width="250px" ForeColor="Black" ID="sumOfServicesLabel" Text="Price for services :" runat="server" EnableTheming="True" Theme="BlackGlass"></dx:ASPxLabel>
                 </div>
                 <div class="col-lg-1 col-md-2 col-sm-1 col-xs-1">
                     <dx:ASPxTextBox ClientInstanceName="sumOfServicesTextBox" ClientIDMode="Static" ID="sumOfServicesTextBox" runat="server"></dx:ASPxTextBox>
@@ -130,7 +130,7 @@
                 <div class="col-lg-7 col-md-5 col-sm-0 col-xs-0">
                 </div>
                 <div class="col-lg-2 col-md-2 col-sm-3 col-xs-6">
-                    <dx:ASPxLabel CssClass="Text2" ID="totalSumLabel" ForeColor="Black" Text="Total price :" runat="server" EnableTheming="True" Theme="BlackGlass"></dx:ASPxLabel>
+                    <dx:ASPxLabel CssClass="Text" ID="totalSumLabel" ForeColor="#222222" Text="Total price :" runat="server" EnableTheming="True" Theme="BlackGlass"></dx:ASPxLabel>
                 </div>
                 <div class="col-lg-1 col-md-2 col-sm-1 col-xs-1">
                     <dx:ASPxTextBox ClientInstanceName="totalSumTextBox" ID="totalSumTextBox" runat="server"></dx:ASPxTextBox>
@@ -141,7 +141,7 @@
                 <div class="col-lg-9 col-md-7 col-sm-3 col-xs-6">
                 </div>
                 <div class="col-lg-1 col-md-1 col-sm-1 col-xs-2">
-                    <dx:ASPxLabel Width="80px" CssClass="Text" ID="paidLabel" ForeColor="Black" runat="server" Text="Paid :" Theme="BlackGlass"></dx:ASPxLabel>
+                    <dx:ASPxLabel CssClass="Text" Width="80px"  ID="paidLabel" ForeColor="Black" runat="server" Text="Paid :" Theme="BlackGlass"></dx:ASPxLabel>
                 </div>
                 <div class="col-lg-1 col-md-1 col-sm-1 col-xs-1">
                     <dx:ASPxCheckBox ID="paidCheckBox" runat="server"></dx:ASPxCheckBox>
@@ -156,13 +156,13 @@
             <div class="col-lg-9 col-md-8 col-sm-6 col-xs-2">
             </div>
             <div class="col-lg-1 col-md-2 col-sm-1 col-xs-3">
-                <dx:ASPxButton ClientInstanceName="saveButton" ID="saveButton" CssClass="Text2" ForeColor="Aquamarine" Text="Save" runat="server" EnableTheming="True" Theme="BlackGlass" OnClick="SaveButtonClick">
+                <dx:ASPxButton ClientInstanceName="saveButton" ID="saveButton" CssClass="button" ForeColor="Aquamarine" Text="Save" runat="server" EnableTheming="True" Theme="BlackGlass" OnClick="SaveButtonClick">
                     <ClientSideEvents CheckedChanged="function(s, e) {document.getElementById(&#39;sumOfServicesTextBox&#39;).SetEnabled(true)
 }"></ClientSideEvents>
                 </dx:ASPxButton>
             </div>
             <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2">
-                <dx:ASPxButton ID="cancelButton" runat="server" CssClass="Text2" ForeColor="Aquamarine" Text="Cancel" EnableTheming="True" Theme="BlackGlass" OnClick="CancelButtonOnClick"></dx:ASPxButton>
+                <dx:ASPxButton ID="cancelButton" runat="server" CssClass="button" ForeColor="Aquamarine" Text="Cancel" EnableTheming="True" Theme="BlackGlass" OnClick="CancelButtonOnClick"></dx:ASPxButton>
             </div>
         </div>
     </div>
@@ -195,9 +195,11 @@
                                             <Columns>
                                                 <dx:GridViewCommandColumn SelectAllCheckboxMode="Page" ShowClearFilterButton="True" ShowSelectCheckbox="True" VisibleIndex="0">
                                                 </dx:GridViewCommandColumn>
-                                                <dx:GridViewDataTextColumn FieldName="Customer.Name" VisibleIndex="2" ReadOnly="True">
+                                                <dx:GridViewDataTextColumn FieldName="Customer.Name" VisibleIndex="1" ReadOnly="True">
                                                 </dx:GridViewDataTextColumn>
-                                                <dx:GridViewDataTextColumn FieldName="Customer.Surname" VisibleIndex="3" ReadOnly="True">
+                                                <dx:GridViewDataTextColumn FieldName="Customer.Surname" VisibleIndex="2" ReadOnly="True">
+                                                </dx:GridViewDataTextColumn>
+                                                <dx:GridViewDataTextColumn Caption="Room" FieldName="Room.Code" VisibleIndex="3" ReadOnly="True">
                                                 </dx:GridViewDataTextColumn>
                                                 <dx:GridViewDataTextColumn FieldName="Comments" VisibleIndex="4" ReadOnly="True">
                                                 </dx:GridViewDataTextColumn>

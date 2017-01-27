@@ -23,10 +23,6 @@
                 roomTypeComboBox.SetText(s.cp_text4);
                 hotelComboBox.SetEnabled(false);
                 roomTypeComboBox.SetEnabled(false);
-                //hotelComboBox.HideDropDown();
-                //roomTypeComboBox.HideDropDown();
-                //hotelComboBox.classList.add('readonly');
-                //roomTypeComboBox.classList.add('readonly');
                 idTextBox.visible = 'false';
             }
 
@@ -36,7 +32,7 @@
     <div class="container" style="width: 100%">
         <div class="row">
             <div class="col-lg-1 col-md-2 col-sm-2 col-xs-4">
-                <dx:ASPxButton ID="createRoomButton" ClientIDMode="Static" CssClass="button" ToolTip="Creates a new Room" ForeColor="AquaMarine" Theme="BlackGlass" runat="server" Text="Create Room">
+                <dx:ASPxButton ID="createRoomButton" ClientIDMode="Static" CssClass="button" ToolTip="Creates a new Room" ForeColor="AquaMarine" Theme="BlackGlass" runat="server" Text="Create Room" OnClick="createRoomButton_OnClick">
                     <ClientSideEvents Click="function(s, e) {
 	                    { ShowLoginWindow(); }
                         }"></ClientSideEvents>

@@ -295,7 +295,7 @@ namespace HotelManagerLib.Tests
                 Price = 999,
                 VatPrc = 99
             };
-            servicePricingListTemp = this.pricingListController.CreateOrUpdateEntity(servicePricingListTemp);
+            this.pricingListController.CreateOrUpdateEntity(servicePricingListTemp);
 
             this.serviceController.DeleteEntity(serviceTemp);
 
@@ -329,17 +329,20 @@ namespace HotelManagerLib.Tests
             servicePricingListTemp = this.pricingListController.CreateOrUpdateEntity(servicePricingListTemp);
 
             var serviceTemp2 = this.serviceController.RefreshEntities().SingleOrDefault(x => x.Code == "BXH");
-            var serviceForCheck = this.serviceController.GetEntity(serviceTemp2.Id);
+            if (serviceTemp2 != null)
+            {
+                var serviceForCheck = this.serviceController.GetEntity(serviceTemp2.Id);
 
-            var servicePricingListForCheck = this.pricingListController.GetEntity(servicePricingListTemp.Id);
+                var servicePricingListForCheck = this.pricingListController.GetEntity(servicePricingListTemp.Id);
 
-            Assert.AreEqual(serviceForCheck.Code, "BXH");
-            Assert.AreEqual(serviceForCheck.Description, "Brunch Xaris Hotel");
-            Assert.AreEqual(serviceForCheck.HotelId, this.hotel.Id);
+                Assert.AreEqual(serviceForCheck.Code, "BXH");
+                Assert.AreEqual(serviceForCheck.Description, "Brunch Xaris Hotel");
+                Assert.AreEqual(serviceForCheck.HotelId, this.hotel.Id);
             
-            Assert.AreEqual(servicePricingListForCheck.BillableEntityId, serviceForCheck.Id);
+                Assert.AreEqual(servicePricingListForCheck.BillableEntityId, serviceForCheck.Id);
 
-            this.serviceController.DeleteEntity(serviceForCheck);
+                this.serviceController.DeleteEntity(serviceForCheck);
+            }
         }
 
         /// <summary>

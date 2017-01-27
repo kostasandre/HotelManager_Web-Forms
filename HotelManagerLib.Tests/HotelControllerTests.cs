@@ -12,7 +12,6 @@ namespace HotelManagerLib.Tests
     #region
 
     using System;
-    using System.Collections.Generic;
     using System.Linq;
 
     using HotelManagerLib.Controllers;

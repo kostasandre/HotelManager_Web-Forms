@@ -17,7 +17,13 @@
     });
 
 function replaceCssClass(hotelInfo) {
-    if (hotelInfo == null) {
+    if (hotelInfo === "null" || hotelInfo == null) {
+        $('#hotelLabel').addClass("hidden");
+        $('#a1').addClass("hidden");
+        $('#a2').addClass("hidden");
+        $('#a3').addClass("hidden");
+        $('#a4').addClass("hidden");
+        $('#a5').addClass("hidden");
         return;
     } else {
         $('#hotelLabel').removeClass("hidden");

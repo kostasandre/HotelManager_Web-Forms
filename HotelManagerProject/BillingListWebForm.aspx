@@ -69,21 +69,23 @@
                                     </dx:GridViewCommandColumnCustomButton>
                                 </CustomButtons>
                             </dx:GridViewCommandColumn>
-                            <dx:GridViewDataTextColumn FieldName="Booking.Customer.Name" VisibleIndex="2">
+                            <dx:GridViewDataTextColumn FieldName="Booking.Customer.Name" VisibleIndex="1">
                             </dx:GridViewDataTextColumn>
                             <dx:GridViewDataTextColumn FieldName="Booking.Customer.Surname" VisibleIndex="2">
                             </dx:GridViewDataTextColumn>
-                            <dx:GridViewDataTextColumn FieldName="PriceForRoom" VisibleIndex="3" ReadOnly="True">
+                            <dx:GridViewDataTextColumn Caption="Room" FieldName="Booking.Room.Code" VisibleIndex="3" ReadOnly="True">
                             </dx:GridViewDataTextColumn>
-                            <dx:GridViewDataTextColumn FieldName="PriceForServices" VisibleIndex="4">
+                            <dx:GridViewDataTextColumn FieldName="PriceForRoom" VisibleIndex="4" ReadOnly="True">
                             </dx:GridViewDataTextColumn>
-                            <dx:GridViewDataTextColumn FieldName="TotalPrice" VisibleIndex="5">
+                            <dx:GridViewDataTextColumn FieldName="PriceForServices" VisibleIndex="5">
                             </dx:GridViewDataTextColumn>
-                            <dx:GridViewDataTextColumn FieldName="Paid" VisibleIndex="6">
+                            <dx:GridViewDataTextColumn FieldName="TotalPrice" VisibleIndex="6">
                             </dx:GridViewDataTextColumn>
-                            <dx:GridViewDataTextColumn FieldName="Booking.From" VisibleIndex="7">
+                            <dx:GridViewDataTextColumn FieldName="Paid" VisibleIndex="7">
                             </dx:GridViewDataTextColumn>
-                            <dx:GridViewDataTextColumn FieldName="Booking.To" VisibleIndex="8">
+                            <dx:GridViewDataTextColumn FieldName="Booking.From" VisibleIndex="8">
+                            </dx:GridViewDataTextColumn>
+                            <dx:GridViewDataTextColumn FieldName="Booking.To" VisibleIndex="9">
                             </dx:GridViewDataTextColumn>
                         </Columns>
                     </dx:ASPxGridView>
@@ -109,7 +111,7 @@
                                 <dx:ASPxComboBox ValueField="Id" ClientIDMode="Static" ClientInstanceName="bookingComboBox" TextField="Id" ID="bookingComboBox" runat="server" Width="170px" Theme="BlackGlass" EnableTheming="True" TextFormatString="{0} {1}">
                                     <Columns>
                                         <dx:ListBoxColumn Name="Name" Caption="Name" FieldName="Customer.Name" />
-                                        <dx:ListBoxColumn  Name="Surname" Caption="Surname" FieldName="Customer.Surname" />
+                                        <dx:ListBoxColumn Name="Surname" Caption="Surname" FieldName="Customer.Surname" />
                                     </Columns>
                                 </dx:ASPxComboBox>
                             </td>
