@@ -16,8 +16,7 @@
 
     });
 
-function replaceCssClass(hotelInfo)
-{
+function replaceCssClass(hotelInfo) {
     if (hotelInfo == null) {
         return;
     } else {
