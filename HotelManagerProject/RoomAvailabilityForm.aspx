@@ -52,7 +52,7 @@
 
     <div class="container" style="width: 100%">
         <div class="row">
-            <div class="AvailableroomsForm" style="width: 1850px; ">
+            <div class="AvailableroomsForm" style="width: 1630px; ">
                 <a style="font-size: 20px; color: black; font-weight: bold">Booking List</a>
                 <dx:ASPxGridView ID="availableRooms" runat="server">
 
