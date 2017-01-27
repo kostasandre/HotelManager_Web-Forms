@@ -59,13 +59,27 @@ namespace HotelManagerProject
         {
             this.serviceController = new ServiceController();
             this.hotelController = new HotelController();
+            var hotel = this.Session["Hotel"] as Hotel;
 
-            this.ServiceGridView.DataSource = this.serviceController.RefreshEntities();
+            this.ServiceGridView.DataSource = hotel != null
+                                               ? this.serviceController.RefreshEntities().Where(x => x.HotelId == hotel.Id)
+                                               : this.serviceController.RefreshEntities();
             this.ServiceGridView.DataBind();
 
             var hotelList = this.hotelController.RefreshEntities();
             this.hotelComboBox.DataSource = hotelList;
             this.hotelComboBox.DataBind();
+            if (hotel != null)
+            {
+                this.hotelComboBox.ReadOnly = true;
+                this.hotelComboBox.ClientEnabled = false;
+                this.hotelComboBox.NullText = hotel.Name;
+            }
+            else
+            {
+                this.hotelComboBox.ReadOnly = false;
+                this.hotelComboBox.ClientEnabled = true;
+            }
         }
 
         /// <summary>
@@ -79,12 +93,6 @@ namespace HotelManagerProject
         /// </param>
         protected void Page_Load(object sender, EventArgs e)
         {
-            //if (!this.Page.IsPostBack)
-            //{
-            //    this.serviceController = new ServiceController();
-            //    this.ServiceGridView.DataSource = this.serviceController.RefreshEntities();
-            //    this.ServiceGridView.DataBind();
-            //}
         }
 
         /// <summary>
@@ -98,6 +106,7 @@ namespace HotelManagerProject
         /// </param>
         protected void SaveButton_OnClick(object sender, EventArgs e)
         {
+            var hotel = this.Session["Hotel"] as Hotel;
             this.service = new Service();
             this.serviceController = new ServiceController();
 
@@ -106,12 +115,20 @@ namespace HotelManagerProject
             this.service.Description = this.descriptionTextBox.Text;
             if (this.service.Id == 0)
             {
-                var hotelList = this.hotelComboBox.DataSource as List<Hotel>;
-                if (hotelList != null)
+                if (hotel == null)
                 {
-                    var hotelTemp =
-                        hotelList.SingleOrDefault(x => x.Id == Convert.ToInt32(this.hotelComboBox.SelectedItem.Value));
-                    this.service.HotelId = hotelTemp.Id;
+                    var hotelList = this.hotelComboBox.DataSource as List<Hotel>;
+                    if (hotelList != null)
+                    {
+                        var hotelTemp =
+                            hotelList.SingleOrDefault(
+                                x => x.Id == Convert.ToInt32(this.hotelComboBox.SelectedItem.Value));
+                        this.service.HotelId = hotelTemp.Id;
+                    }
+                }
+                else
+                {
+                    this.service.HotelId = hotel.Id;
                 }
             }
             

@@ -113,6 +113,20 @@ namespace HotelManagerLib.Controllers
             return this.Repository.ReadAllList();
         }
 
+        public IList<PricingList> GetPricingListForHotel(int hotelId)
+        {
+            using (var context = new DataBaseContext())
+            {
+                var pricingListQuery = this.Repository.ReadAllQuery(context);
+                var servicesForHotel = context.Services.Where(service => service.HotelId == hotelId);
+                return pricingListQuery.Where(
+                    pricingList =>
+                        pricingList.TypeOfBillableEntity == TypeOfBillableEntity.RoomType
+                        || (pricingList.TypeOfBillableEntity == TypeOfBillableEntity.Service
+                            && servicesForHotel.Any(service => service.Id == pricingList.BillableEntityId))).ToList();
+            }
+        }
+
         /// <summary>
         /// The room pricing.
         /// </summary>

@@ -69,6 +69,8 @@ namespace HotelManagerProject
             this.roomTypeController = new RoomTypeController();
             this.serviceController = new ServiceController();
 
+            var hotel = this.Session["Hotel"] as Hotel;
+
             this.RefreshPricingListEntityWithCodeInside();
 
             this.typeOFRadioButtonList.DataSource = typeof(TypeOfBillableEntity).GetEnumValues();
@@ -80,7 +82,9 @@ namespace HotelManagerProject
             this.roomTypeLabel.ClientVisible = false;
             this.roomTypeComboBox.ClientVisible = false;
 
-            var serviceList = this.serviceController.RefreshEntities();
+            var serviceList = hotel == null
+                                   ? this.serviceController.RefreshEntities().ToList()
+                                   : this.serviceController.RefreshEntities().Where(x => x.HotelId == hotel.Id).ToList();
             this.serviceComboBox.DataSource = serviceList;
             this.serviceComboBox.DataBind();
             this.serviceLabel.ClientVisible = false;
@@ -318,7 +322,17 @@ namespace HotelManagerProject
 
         protected void RefreshPricingListEntityWithCodeInside()
         {
-            var pricingListList = this.pricingListController.RefreshEntities();
+            var hotel = this.Session["Hotel"] as Hotel;
+            var pricingListList = new List<PricingList>();
+            if (hotel == null)
+            {
+                pricingListList = this.pricingListController.RefreshEntities() as List<PricingList>;
+            }
+            else
+            {
+                pricingListList = this.pricingListController.GetPricingListForHotel(hotel.Id) as List<PricingList>;
+            }
+                 
             foreach (var pricingList in pricingListList)
             {
                 if (pricingList.TypeOfBillableEntity == TypeOfBillableEntity.RoomType)

@@ -93,7 +93,7 @@
     float: left;
     margin-right:5px;
 }
-}
+
 
 .readonly {
     -webkit-user-select: none
@@ -107,4 +107,8 @@
     font-size: 25px; 
     padding-top: 20px; 
     margin-left: 37px;
+}
+
+.bookingLabel {
+    margin-left: unset;
 }
