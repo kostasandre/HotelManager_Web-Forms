@@ -1,18 +1,15 @@
 ﻿// --------------------------------------------------------------------------------------------------------------------
-// <copyright file="HotelControllerTests.cs" company="Data Communication">
+// <copyright file="RoomTypeControllerTests.cs" company="Data Communication">
 //   Hotel Manager
 // </copyright>
 // <summary>
-//   The hotel controller tests.
+//   The room type controller tests.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
 
 namespace HotelManagerLib.Tests
 {
-    #region
-
     using System;
-    using System.Collections.Generic;
     using System.Linq;
 
     using HotelManagerLib.Controllers;
@@ -22,12 +19,10 @@ namespace HotelManagerLib.Tests
 
     using NUnit.Framework;
 
-    #endregion
-
     /// <summary>
-    /// The hotel controller tests.
+    /// The room type controller tests.
     /// </summary>
-    public class HotelControllerTests
+    public class RoomTypeControllerTests
     {
         /// <summary>
         /// The billing.
@@ -151,7 +146,12 @@ namespace HotelManagerLib.Tests
             };
             this.roomType = this.roomTypeController.CreateOrUpdateEntity(this.roomType);
 
-            this.room = new Room() { HotelId = this.hotel.Id, Code = "Alex Hotel 123", RoomTypeId = this.roomType.Id, };
+            this.room = new Room()
+            {
+                HotelId = this.hotel.Id,
+                Code = "Alex Hotel 123",
+                RoomTypeId = this.roomType.Id
+            };
             this.room = this.roomController.CreateOrUpdateEntity(this.room);
 
             this.service = new Service()
@@ -222,7 +222,7 @@ namespace HotelManagerLib.Tests
         /// The clear hotel.
         /// </summary>
         [TearDown]
-        public void ClearHotel()
+        public void ClearRoomType()
         {
             this.bookingController.DeleteEntity(this.booking);
             this.customerController.DeleteEntity(this.customer);
@@ -238,88 +238,155 @@ namespace HotelManagerLib.Tests
         /// The create hotel.
         /// </summary>
         [Test]
-        public void CreateHotel()
+        public void CreateRoomType()
         {
-            var hotelTemp = new Hotel()
-                                {
-                                    Name = "Alex Hotel 2",
-                                    Address = "Syntagma 2",
-                                    TaxId = "AH123456 2",
-                                    Manager = "Alex 2",
-                                    Phone = "2101234567 2",
-                                    Email = "alex@outlook.com 2"
-                                };
-            hotelTemp = this.hotelController.CreateOrUpdateEntity(hotelTemp);
-
-            Assert.AreEqual(hotelTemp.Name, "Alex Hotel 2");
-            this.hotelController.DeleteEntity(hotelTemp);
-        }
-
-        /// <summary>
-        /// The delete hotel.
-        /// </summary>
-        [Test]
-        public void DeleteHotel()
-        {
-            var hotelTemp = new Hotel()
-                                {
-                                    Name = "Xaris Hotel",
-                                    Address = "Omonoia",
-                                    TaxId = "AA000000",
-                                    Manager = "Xaris",
-                                    Phone = "2262022620",
-                                    Email = "xaris@outlook.com"
-                                };
-            hotelTemp = this.hotelController.CreateOrUpdateEntity(hotelTemp);
-
-            this.hotelController.DeleteEntity(hotelTemp);
-
-            Assert.IsEmpty(this.hotelController.RefreshEntities().Where(x => x.Name == "Xaris Hotel"));
-        }
-
-        /// <summary>
-        /// The delete hotel.
-        /// </summary>
-        [Test]
-        public void DeleteNullHotel()
-        {
-            var hotelTemp = new Hotel()
+            var roomTypeTemp = new RoomType()
             {
-                Name = "Xaris Hotel",
-                Address = "Omonoia",
-                TaxId = "AA000000",
-                Manager = "Xaris",
-                Phone = "2262022620",
-                Email = "xaris@outlook.com"
+                Code = "Bungallows",
+                View = View.MountainView,
+                BedType = BedType.ModernCot,
+                Tv = true,
+                WiFi = true,
+                Sauna = true
+            };
+            roomTypeTemp = this.roomTypeController.CreateOrUpdateEntity(roomTypeTemp);
+
+            Assert.AreEqual(roomTypeTemp.Code, "Bungallows");
+            Assert.AreEqual(roomTypeTemp.View, View.MountainView);
+            Assert.AreEqual(roomTypeTemp.BedType, BedType.ModernCot);
+            Assert.AreEqual(roomTypeTemp.Tv, true);
+            Assert.AreEqual(roomTypeTemp.WiFi, true);
+            Assert.AreEqual(roomTypeTemp.Sauna, true);
+
+            this.roomTypeController.DeleteEntity(roomTypeTemp);
+        }
+
+        /// <summary>
+        /// The delete hotel.
+        /// </summary>
+        [Test]
+        public void DeleteNullRoomType()
+        {
+            var roomTypeTemp = new RoomType()
+            {
+                Code = "Bungallows",
+                View = View.MountainView,
+                BedType = BedType.ModernCot,
+                Tv = true,
+                WiFi = true,
+                Sauna = true
             };
             var exp =
-                Assert.Throws<ArgumentNullException>(() => this.hotelController.DeleteEntity(hotelTemp));
+                Assert.Throws<ArgumentNullException>(() => this.roomTypeController.DeleteEntity(roomTypeTemp));
             Assert.That(exp.Message, Is.EqualTo("Value cannot be null."));
+        }
+
+        /// <summary>
+        /// The delete room type.
+        /// </summary>
+        [Test]
+        public void DeleteRoomType()
+        {
+            var roomTypeTemp = new RoomType()
+            {
+                Code = "Bungallows",
+                View = View.MountainView,
+                BedType = BedType.ModernCot,
+                Tv = true,
+                WiFi = true,
+                Sauna = true
+            };
+            roomTypeTemp = this.roomTypeController.CreateOrUpdateEntity(roomTypeTemp);
+
+            var roomTemp = new Room()
+            {
+                HotelId = this.hotel.Id,
+                Code = "Super Extra Room",
+                RoomTypeId = roomTypeTemp.Id
+            };
+            this.roomController.CreateOrUpdateEntity(roomTemp);
+
+            var roomTypePricingListTemp = new PricingList()
+            {
+                BillableEntityId = roomTypeTemp.Id,
+                TypeOfBillableEntity = TypeOfBillableEntity.RoomType,
+                ValidFrom = DateTime.Now,
+                ValidTo = Convert.ToDateTime("31/01/2017").Date,
+                Price = 100,
+                VatPrc = 13
+            };
+            this.pricingListController.CreateOrUpdateEntity(roomTypePricingListTemp);
+
+            this.roomTypeController.DeleteEntity(roomTypeTemp);
+
+            Assert.IsEmpty(this.roomTypeController.RefreshEntities().Where(x => x.Code == "Bungallows"));
+            Assert.IsEmpty(this.roomController.RefreshEntities().Where(x => x.Code == "Super Extra Room"));
+            Assert.IsEmpty(this.pricingListController.RefreshEntities().Where(x => x.BillableEntityId == roomTypeTemp.Id && x.TypeOfBillableEntity == TypeOfBillableEntity.RoomType));
         }
 
         /// <summary>
         /// The get hotel.
         /// </summary>
         [Test]
-        public void GetHotel()
+        public void GetRoomType()
         {
-            var hotelTemp = new Hotel()
-                                {
-                                    Name = "Xaris Hotel",
-                                    Address = "Omonoia",
-                                    TaxId = "AA000000",
-                                    Manager = "Xaris",
-                                    Phone = "2262022620",
-                                    Email = "xaris@outlook.com"
-                                };
-            this.hotelController.CreateOrUpdateEntity(hotelTemp);
+            var roomTypeTemp = new RoomType()
+                                   {
+                                       Code = "Bungallows",
+                                       View = View.MountainView,
+                                       BedType = BedType.ModernCot,
+                                       Tv = true,
+                                       WiFi = true,
+                                       Sauna = true
+                                   };
+            roomTypeTemp = this.roomTypeController.CreateOrUpdateEntity(roomTypeTemp);
 
-            var hotelTemp2 = this.hotelController.RefreshEntities().SingleOrDefault(x => x.Name == "Xaris Hotel");
-            if (hotelTemp2 != null)
+            var roomTemp = new Room()
+                               {
+                                   HotelId = this.hotel.Id,
+                                   Code = "Super Extra Room",
+                                   RoomTypeId = roomTypeTemp.Id
+                               };
+            roomTemp = this.roomController.CreateOrUpdateEntity(roomTemp);
+
+            var roomTypePricingListTemp = new PricingList()
+                                              {
+                                                  BillableEntityId = roomTypeTemp.Id,
+                                                  TypeOfBillableEntity = TypeOfBillableEntity.RoomType,
+                                                  ValidFrom = DateTime.Now,
+                                                  ValidTo = Convert.ToDateTime("31/01/2017").Date,
+                                                  Price = 100,
+                                                  VatPrc = 13
+                                              };
+            roomTypePricingListTemp = this.pricingListController.CreateOrUpdateEntity(roomTypePricingListTemp);
+
+            var roomTypeTemp2 = this.roomTypeController.RefreshEntities().SingleOrDefault(x => x.Code == "Bungallows");
+            if (roomTypeTemp2 != null)
             {
-                var hotelForCheck = this.hotelController.GetEntity(hotelTemp2.Id);
-                Assert.AreEqual(hotelForCheck.Address, "Omonoia");
-                this.hotelController.DeleteEntity(hotelForCheck);
+                var roomTypeForCheck = this.roomTypeController.GetEntity(roomTypeTemp2.Id);
+
+                var roomForCheck = this.roomController.GetEntity(roomTemp.Id);
+                var roomTypePricingListForCheck = this.pricingListController.GetEntity(roomTypePricingListTemp.Id);
+
+                Assert.AreEqual(roomTypeForCheck.Code, "Bungallows");
+                Assert.AreEqual(roomTypeForCheck.View, View.MountainView);
+                Assert.AreEqual(roomTypeForCheck.BedType, BedType.ModernCot);
+                Assert.AreEqual(roomTypeForCheck.Tv, true);
+                Assert.AreEqual(roomTypeForCheck.WiFi, true);
+                Assert.AreEqual(roomTypeForCheck.Sauna, true);
+
+                Assert.AreEqual(roomForCheck.RoomType.Code, "Bungallows");
+                Assert.AreEqual(roomForCheck.RoomType.View, View.MountainView);
+                Assert.AreEqual(roomForCheck.RoomType.BedType, BedType.ModernCot);
+                Assert.AreEqual(roomForCheck.RoomType.Tv, true);
+                Assert.AreEqual(roomForCheck.RoomType.WiFi, true);
+                Assert.AreEqual(roomForCheck.RoomType.Sauna, true);
+
+                Assert.AreEqual(roomTypePricingListForCheck.BillableEntityId, roomTypeForCheck.Id);
+
+                this.pricingListController.DeleteEntity(roomTypePricingListForCheck);
+                this.roomController.DeleteEntity(roomForCheck);
+                this.roomTypeController.DeleteEntity(roomTypeForCheck);
             }
         }
 
@@ -327,34 +394,32 @@ namespace HotelManagerLib.Tests
         /// The refresh hotels.
         /// </summary>
         [Test]
-        public void RefreshHotels()
+        public void RefreshRooms()
         {
-            Assert.IsNotEmpty(this.hotelController.RefreshEntities());
-
-            // Assert.Contains(this.hotel, this.hotelController.RefreshEntities() as List<Hotel>);
+            Assert.IsNotEmpty(this.roomTypeController.RefreshEntities());
         }
-        
+
         /// <summary>
         /// The update hotel.
         /// </summary>
         [Test]
         public void UpdateHotel()
         {
-            this.hotel.Name = "Alex Hotel 3";
-            this.hotel.Address = "Syntagma 3";
-            this.hotel.TaxId = "AH123456 3";
-            this.hotel.Manager = "Alex 3";
-            this.hotel.Phone = "2101234567 3";
-            this.hotel.Email = "alex@outlook.com 3";
+            this.roomType.Code = "new Room Type Code";
+            this.roomType.View = View.SeaView;
+            this.roomType.BedType = BedType.OlympicQueen;
+            this.roomType.Sauna = false;
+            this.roomType.Tv = false;
+            this.roomType.WiFi = false;
+            
+            this.roomType = this.roomTypeController.CreateOrUpdateEntity(this.roomType);
 
-            this.hotel = this.hotelController.CreateOrUpdateEntity(this.hotel);
-
-            Assert.AreEqual(this.hotel.Name, "Alex Hotel 3");
-            Assert.AreEqual(this.hotel.Address, "Syntagma 3");
-            Assert.AreEqual(this.hotel.TaxId, "AH123456 3");
-            Assert.AreEqual(this.hotel.Manager, "Alex 3");
-            Assert.AreEqual(this.hotel.Phone, "2101234567 3");
-            Assert.AreEqual(this.hotel.Email, "alex@outlook.com 3");
+            Assert.AreEqual(this.roomType.Code, "new Room Type Code");
+            Assert.AreEqual(this.roomType.View, View.SeaView);
+            Assert.AreEqual(this.roomType.BedType, BedType.OlympicQueen);
+            Assert.AreEqual(this.roomType.Sauna, false);
+            Assert.AreEqual(this.roomType.Tv, false);
+            Assert.AreEqual(this.roomType.WiFi, false);
         }
     }
 }
