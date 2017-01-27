@@ -357,7 +357,13 @@ namespace HotelManagerLib.Tests
         [Test]
         public void UpdateService()
         {
-            
+            this.service.Code = "BXH";
+            this.service.Description = "Brunch Xaris Hotel";
+
+            this.serviceController.CreateOrUpdateEntity(this.service);
+
+            Assert.AreEqual(this.service.Code, "BXH");
+            Assert.AreEqual(this.service.Description, "Brunch Xaris Hotel");
         }
     }
 }

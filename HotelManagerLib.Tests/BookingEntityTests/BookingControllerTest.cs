@@ -280,7 +280,7 @@ namespace HotelManagerLib.Tests.BookingEntityTests
         {
             var roomtypes = this.roomTypeEntityController.RefreshEntities();
             var bookingController = new BookingController();
-            var availableRooms = bookingController.GetAvailableRooms(roomtypes[0].Id, DateTime.Now, DateTime.Now);
+            var availableRooms = bookingController.GetAvailableRooms(roomtypes[0].Id , DateTime.Now , DateTime.Now);
             Assert.AreNotEqual(availableRooms.Count , null);
 
         }
