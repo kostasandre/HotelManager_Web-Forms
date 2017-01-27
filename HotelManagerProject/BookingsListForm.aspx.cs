@@ -35,6 +35,8 @@ namespace HotelManagerProject
         /// </summary>
         private BookingController bookingController;
 
+        private HotelController hotelController;
+
         /// <summary>
         /// The bookings grid view_ on custom button callback.
         /// </summary>
@@ -158,12 +160,15 @@ namespace HotelManagerProject
         protected void Page_Init(object sender, EventArgs e)
         {
             this.bookingController = new BookingController();
+            this.hotelController = new HotelController();
+            var hotel = this.Session["Hotel"] as Hotel;
             var errorlabel = this.Master?.FindControl("form1").FindControl("divErrorMessage") as Label;
             try
             {
-                
+                //var hotel = this.hotelController.GetEntity(Convert.ToInt32(hotelId));
                 var bookingsList = this.bookingController.RefreshEntities();
-                this.bookingsGridView.DataSource = bookingsList.OrderByDescending(x => x.Created);
+                this.bookingsGridView.DataSource = hotel != null ? bookingsList.Where(x => x.Room.HotelId == hotel.Id).OrderByDescending(x => x.Created) : bookingsList.OrderByDescending(x => x.Created);
+                
                 this.bookingsGridView.DataBind();
             }
             catch (Exception ex)
