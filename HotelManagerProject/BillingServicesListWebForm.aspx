@@ -98,7 +98,7 @@
                                 <label>Service : </label>
                             </td>
                             <td>
-                                <dx:ASPxComboBox ValueField="Id" ClientInstanceName="serviceComboBox" TextField="Id" ID="serviceComboBox" runat="server" Width="170px" Theme="BlackGlass" EnableTheming="True">
+                                <dx:ASPxComboBox ValueField="Id" ClientInstanceName="billingComboBox" TextField="Id" ID="serviceComboBox" runat="server" Width="170px" Theme="BlackGlass" EnableTheming="True">
                                     <Columns>
                                         <dx:ListBoxColumn FieldName="Code" />
                                     </Columns>

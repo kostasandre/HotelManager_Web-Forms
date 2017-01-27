@@ -13,10 +13,8 @@ namespace HotelManagerLib.Controllers
 
     using System;
     using System.Collections.Generic;
-    using System.Linq;
 
     using HotelManagerLib.Controllers.Interfaces;
-    using HotelManagerLib.DBContext;
     using HotelManagerLib.Models.Persistant;
     using HotelManagerLib.Repositories;
     using HotelManagerLib.Repositories.Interfaces;

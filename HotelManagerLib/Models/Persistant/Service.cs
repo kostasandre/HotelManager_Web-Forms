@@ -30,7 +30,6 @@ namespace HotelManagerLib.Models.Persistant
         /// </summary>
         public Service()
         {
-            //this.Hotels = new List<Hotel>(); /////////////////////////////////////////////
             this.BillingServices = new List<BillingService>();
             this.Created = DateTime.Now;
             this.CreatedBy = Environment.UserName;
@@ -50,11 +49,6 @@ namespace HotelManagerLib.Models.Persistant
         /// Gets or sets the description.
         /// </summary>
         public string Description { get; set; }
-
-        /// <summary>
-        /// Gets or sets the hotels.
-        /// </summary>
-        //public virtual List<Hotel> Hotels { get; set; } ////////////////////////////////////
 
         /// <summary>
         /// Gets or sets the hotel.

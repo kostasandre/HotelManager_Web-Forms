@@ -31,17 +31,17 @@ namespace HotelManagerLib.Repositories
         /// <summary>
         /// The create.
         /// </summary>
-        /// <param name="service">
+        /// <param name="billing">
         /// The service.
         /// </param>
         /// <returns>
         /// The <see cref="Service"/>.
         /// </returns>
-        public Service Create(Service service)
+        public Service Create(Service billing)
         {
             using (var context = new DataBaseContext())
             {
-                context.Services.Add(service);
+                context.Services.Add(billing);
                 try
                 {
                     context.SaveChanges();
@@ -61,7 +61,7 @@ namespace HotelManagerLib.Repositories
                 }
             }
 
-            return service;
+            return billing;
         }
 
         /// <summary>
@@ -138,7 +138,7 @@ namespace HotelManagerLib.Repositories
         /// The update.
         /// </summary>
         /// <param name="service">
-        /// The service.
+        /// The billing.
         /// </param>
         public void Update(Service service)
         {
@@ -151,9 +151,8 @@ namespace HotelManagerLib.Repositories
                     return;
                 }
 
-                //var databaseHotel = context.Hotels.SingleOrDefault(x => x.Id == service.HotelId);         //to evala se sxolio giati sto update den mporoume na allaksoume Hotel
-                //databaseService.HotelId = databaseHotel.Id;                                               //to evala se sxolio giati sto update den mporoume na allaksoume Hotel
-
+                // var databaseHotel = context.Hotels.SingleOrDefault(x => x.Id == billing.HotelId);         //to evala se sxolio giati sto update den mporoume na allaksoume Hotel
+                // databaseService.HotelId = databaseHotel.Id;                                               //to evala se sxolio giati sto update den mporoume na allaksoume Hotel
                 databaseService.Code = service.Code;
                 databaseService.Updated = DateTime.Now;
                 databaseService.UpdatedBy = Environment.UserName;

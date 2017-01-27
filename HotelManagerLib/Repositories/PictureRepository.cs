@@ -3,7 +3,7 @@
 //   Hotel Manager
 // </copyright>
 // <summary>
-//   The picture repository.
+//   The billing repository.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
 
@@ -24,24 +24,24 @@ namespace HotelManagerLib.Repositories
     #endregion
 
     /// <summary>
-    /// The picture repository.
+    /// The billing repository.
     /// </summary>
     public class PictureRepository : IEntityRepository<Picture>
     {
         /// <summary>
         /// The create.
         /// </summary>
-        /// <param name="picture">
-        /// The picture.
+        /// <param name="billing">
+        /// The billing.
         /// </param>
         /// <returns>
         /// The <see cref="Picture"/>.
         /// </returns>
-        public Picture Create(Picture picture)
+        public Picture Create(Picture billing)
         {
             using (var context = new DataBaseContext())
             {
-                context.Pictures.Add(picture);
+                context.Pictures.Add(billing);
                 try
                 {
                     context.SaveChanges();
@@ -61,7 +61,7 @@ namespace HotelManagerLib.Repositories
                 }
             }
 
-            return picture;
+            return billing;
         }
 
         /// <summary>
@@ -71,7 +71,7 @@ namespace HotelManagerLib.Repositories
         /// The id.
         /// </param>
         /// <exception cref="ArgumentNullException">
-        /// The picture is null
+        /// The billing is null
         /// </exception>
         public void Delete(int id)
         {
@@ -138,7 +138,7 @@ namespace HotelManagerLib.Repositories
         /// The update.
         /// </summary>
         /// <param name="picture">
-        /// The picture.
+        /// The billing.
         /// </param>
         /// <exception cref="NotImplementedException">
         /// The update has not implemented

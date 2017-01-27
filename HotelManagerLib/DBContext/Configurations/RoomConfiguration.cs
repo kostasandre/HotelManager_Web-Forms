@@ -1,6 +1,6 @@
 ﻿// --------------------------------------------------------------------------------------------------------------------
-// <copyright file="RoomConfiguration.cs" company="">
-//   
+// <copyright file="RoomConfiguration.cs" company="Data Communication">
+//   Hotel Manager
 // </copyright>
 // <summary>
 //   The room configuration.
@@ -38,8 +38,7 @@ namespace HotelManagerLib.DBContext.Configurations
             this.HasMany(x => x.Pictures).WithMany();
             this.HasRequired(x => x.Hotel).WithMany(x => x.Rooms).HasForeignKey(x => x.HotelId).WillCascadeOnDelete(false);
             this.HasRequired(x => x.RoomType).WithMany(x => x.Rooms).HasForeignKey(x => x.RoomTypeId);
-
-
+            
             // Required Entities
             this.Property(x => x.Code).IsRequired().HasMaxLength(150);
         }

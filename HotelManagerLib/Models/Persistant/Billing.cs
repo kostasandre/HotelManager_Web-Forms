@@ -45,6 +45,9 @@ namespace HotelManagerLib.Models.Persistant
         /// </summary>
         public virtual Booking Booking { get; set; }
 
+        /// <summary>
+        /// Gets or sets the booking id.
+        /// </summary>
         [Browsable(false)]
         [ForeignKey("Booking")]
         public int BookingId { get; set; }

@@ -1,9 +1,9 @@
 ﻿// --------------------------------------------------------------------------------------------------------------------
-// <copyright file="CustomerRepository.cs" company="">
-//   
+// <copyright file="CustomerRepository.cs" company="Data Communication">
+//   Hotel Manager
 // </copyright>
 // <summary>
-//   The customer repository.
+//   The billing repository.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
 
@@ -24,26 +24,24 @@ namespace HotelManagerLib.Repositories
     #endregion
 
     /// <summary>
-    /// The customer repository.
+    /// The billing repository.
     /// </summary>
-    class CustomerRepository : IEntityRepository<Customer>
+    public class CustomerRepository : IEntityRepository<Customer>
     {
         /// <summary>
         /// The create.
         /// </summary>
-        /// <param name="customer">
-        /// The customer.
+        /// <param name="billing">
+        /// The billing.
         /// </param>
         /// <returns>
         /// The <see cref="Customer"/>.
         /// </returns>
-        /// <exception cref="NotImplementedException">
-        /// </exception>
-        public Customer Create(Customer customer)
+        public Customer Create(Customer billing)
         {
             using (var context = new DataBaseContext())
             {
-                context.Customers.Add(customer);
+                context.Customers.Add(billing);
                 try
                 {
                     context.SaveChanges();
@@ -63,7 +61,7 @@ namespace HotelManagerLib.Repositories
                 }
             }
 
-            return customer;
+            return billing;
         }
 
         /// <summary>
@@ -72,7 +70,8 @@ namespace HotelManagerLib.Repositories
         /// <param name="id">
         /// The id.
         /// </param>
-        /// <exception cref="NotImplementedException">
+        /// <exception cref="ArgumentNullException">
+        /// The customer is null
         /// </exception>
         public void Delete(int id)
         {
@@ -109,10 +108,8 @@ namespace HotelManagerLib.Repositories
         /// The read all list.
         /// </summary>
         /// <returns>
-        /// The <see cref="IList"/>.
+        /// The <see cref="IList{Customer}"/>.
         /// </returns>
-        /// <exception cref="NotImplementedException">
-        /// </exception>
         public IList<Customer> ReadAllList()
         {
             using (var context = new DataBaseContext())
@@ -130,8 +127,6 @@ namespace HotelManagerLib.Repositories
         /// <returns>
         /// The <see cref="IQueryable"/>.
         /// </returns>
-        /// <exception cref="NotImplementedException">
-        /// </exception>
         public IQueryable<Customer> ReadAllQuery(DataBaseContext context)
         {
             return context.Customers.Include("Bookings");
@@ -146,8 +141,6 @@ namespace HotelManagerLib.Repositories
         /// <returns>
         /// The <see cref="Customer"/>.
         /// </returns>
-        /// <exception cref="NotImplementedException">
-        /// </exception>
         public Customer ReadOne(int id)
         {
             using (var context = new DataBaseContext())
@@ -163,24 +156,25 @@ namespace HotelManagerLib.Repositories
         /// <param name="entity">
         /// The entity.
         /// </param>
-        /// <exception cref="NotImplementedException">
-        /// </exception>
         public void Update(Customer entity)
         {
             using (var context = new DataBaseContext())
             {
                 var customer = context.Customers.SingleOrDefault(x => x.Id == entity.Id);
 
-                customer.Address = entity.Address;
-                customer.Bookings = entity.Bookings;
-                customer.Email = entity.Email;
-                customer.IdNumber = entity.IdNumber;
-                customer.Name = entity.Name;
-                customer.Phone = entity.Phone;
-                customer.Surname = entity.Surname;
-                customer.TaxId = entity.TaxId;
-                customer.Updated = DateTime.Now;
-                customer.UpdatedBy = Environment.UserName;
+                if (customer != null)
+                {
+                    customer.Address = entity.Address;
+                    customer.Bookings = entity.Bookings;
+                    customer.Email = entity.Email;
+                    customer.IdNumber = entity.IdNumber;
+                    customer.Name = entity.Name;
+                    customer.Phone = entity.Phone;
+                    customer.Surname = entity.Surname;
+                    customer.TaxId = entity.TaxId;
+                    customer.Updated = DateTime.Now;
+                    customer.UpdatedBy = Environment.UserName;
+                }
 
                 try
                 {

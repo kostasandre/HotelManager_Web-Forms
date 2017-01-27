@@ -1,20 +1,30 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿// --------------------------------------------------------------------------------------------------------------------
+// <copyright file="WrongGivenPeriodException.cs" company="Data Communication">
+//   Hotel Manager
+// </copyright>
+// <summary>
+//   The wrong given period exception.
+// </summary>
+// --------------------------------------------------------------------------------------------------------------------
 
 namespace HotelManagerLib.Exceptions
 {
+    #region
+
+    using System;
     using System.Runtime.Serialization;
 
+    #endregion
+
+    /// <summary>
+    /// The wrong given period exception.
+    /// </summary>
     public class WrongGivenPeriodException : Exception
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="WrongGivenPeriodException"/> class.
         /// </summary>
         public WrongGivenPeriodException()
-            : base()
         {
         }
 
@@ -38,8 +48,8 @@ namespace HotelManagerLib.Exceptions
         /// <param name="innerException">
         /// The inner exception.
         /// </param>
-        public WrongGivenPeriodException(string message , Exception innerException)
-            : base(message , innerException)
+        public WrongGivenPeriodException(string message, Exception innerException)
+            : base(message, innerException)
         {
         }
 
@@ -52,8 +62,8 @@ namespace HotelManagerLib.Exceptions
         /// <param name="context">
         /// The context.
         /// </param>
-        protected WrongGivenPeriodException(SerializationInfo info , StreamingContext context)
-            : base(info , context)
+        protected WrongGivenPeriodException(SerializationInfo info, StreamingContext context)
+            : base(info, context)
         {
         }
     }

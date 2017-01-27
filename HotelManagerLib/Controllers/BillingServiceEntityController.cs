@@ -1,6 +1,6 @@
 ﻿// --------------------------------------------------------------------------------------------------------------------
-// <copyright file="BillingServiceEntityController.cs" company="">
-//   
+// <copyright file="BillingServiceEntityController.cs" company="Data Communication">
+//   Hotel Manager 
 // </copyright>
 // <summary>
 //   The billing service entity controller.
@@ -108,7 +108,7 @@ namespace HotelManagerLib.Controllers
         /// The refresh entities.
         /// </summary>
         /// <returns>
-        /// The <see cref="IList"/>.
+        /// The <see cref="IList{BillingService}"/>.
         /// </returns>
         public IList<BillingService> RefreshEntities()
         {

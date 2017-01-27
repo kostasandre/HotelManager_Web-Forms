@@ -1,6 +1,6 @@
 ﻿// --------------------------------------------------------------------------------------------------------------------
-// <copyright file="ServicesConfiguration.cs" company="">
-//   
+// <copyright file="ServicesConfiguration.cs" company="Data Communication">
+//   Hotel Manager
 // </copyright>
 // <summary>
 //   The services configuration.

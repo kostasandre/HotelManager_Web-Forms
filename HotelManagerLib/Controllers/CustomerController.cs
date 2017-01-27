@@ -1,6 +1,6 @@
 ﻿// --------------------------------------------------------------------------------------------------------------------
-// <copyright file="CustomerController.cs" company="">
-//   
+// <copyright file="CustomerController.cs" company="Data Communication">
+//   Hotel Manager 
 // </copyright>
 // <summary>
 //   The customer controller.
@@ -48,8 +48,6 @@ namespace HotelManagerLib.Controllers
         /// <returns>
         /// The <see cref="Customer"/>.
         /// </returns>
-        /// <exception cref="NotImplementedException">
-        /// </exception>
         public Customer CreateOrUpdateEntity(Customer entity)
         {
             if (entity.Id == 0)
@@ -70,7 +68,8 @@ namespace HotelManagerLib.Controllers
         /// <param name="entity">
         /// The entity.
         /// </param>
-        /// <exception cref="NotImplementedException">
+        /// <exception cref="ArgumentNullException">
+        /// The Customer is null
         /// </exception>
         public void DeleteEntity(Customer entity)
         {
@@ -93,7 +92,8 @@ namespace HotelManagerLib.Controllers
         /// <returns>
         /// The <see cref="Customer"/>.
         /// </returns>
-        /// <exception cref="NotImplementedException">
+        /// <exception cref="ArgumentNullException">
+        /// The Customer is null
         /// </exception>
         public Customer GetEntity(int id)
         {
@@ -111,10 +111,8 @@ namespace HotelManagerLib.Controllers
         /// The refresh entities.
         /// </summary>
         /// <returns>
-        /// The <see cref="IList"/>.
+        /// The <see cref="IList{Customer}"/>.
         /// </returns>
-        /// <exception cref="NotImplementedException">
-        /// </exception>
         public IList<Customer> RefreshEntities()
         {
             var bookingList = this.Repository.ReadAllList();

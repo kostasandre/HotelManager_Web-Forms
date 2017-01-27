@@ -1,6 +1,6 @@
 ﻿// --------------------------------------------------------------------------------------------------------------------
-// <copyright file="PictureConfiguration.cs" company="">
-//   
+// <copyright file="PictureConfiguration.cs" company="Data Communication">
+//   Hotel Manager
 // </copyright>
 // <summary>
 //   The picture configuration.

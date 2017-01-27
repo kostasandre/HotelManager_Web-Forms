@@ -108,7 +108,7 @@ namespace HotelManagerLib.Controllers
         /// The refresh entities.
         /// </summary>
         /// <returns>
-        /// The <see cref="IList"/>.
+        /// The <see cref="IList{Billing}"/>.
         /// </returns>
         public IList<Billing> RefreshEntities()
         {

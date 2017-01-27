@@ -1,6 +1,6 @@
 ﻿// --------------------------------------------------------------------------------------------------------------------
-// <copyright file="BillingServiceWithServiceDescription.cs" company="">
-//   
+// <copyright file="BillingServiceWithServiceDescription.cs" company="Data Communication">
+//   Hotel Manager
 // </copyright>
 // <summary>
 //   The billing service with service description.

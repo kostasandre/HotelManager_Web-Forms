@@ -3,7 +3,7 @@
 //   Hotel Manager
 // </copyright>
 // <summary>
-//   The room repository.
+//   The billing repository.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
 
@@ -13,7 +13,6 @@ namespace HotelManagerLib.Repositories
 
     using System;
     using System.Collections.Generic;
-    using System.Data.Entity;
     using System.Linq;
 
     using HotelManagerLib.DBContext;
@@ -23,51 +22,35 @@ namespace HotelManagerLib.Repositories
     #endregion
 
     /// <summary>
-    /// The room repository.
+    /// The billing repository.
     /// </summary>
     public class RoomRepository : IEntityRepository<Room>
     {
         /// <summary>
         /// The create.
         /// </summary>
-        /// <param name="room">
-        /// The room.
+        /// <param name="billing">
+        /// The billing.
         /// </param>
         /// <returns>
         /// The <see cref="Room"/>.
         /// </returns>
-        public Room Create(Room room)
+        public Room Create(Room billing)
         {
             using (var context = new DataBaseContext())
             {
-                context.Rooms.Add(room);
-                //if (room.Hotel != null)
-                //{
-                //    context.Entry(room.Hotel).State = EntityState.Unchanged;
-                //    room.Hotel.Rooms.Where(x => x.Id > 0)
-                //        .ToList()
-                //        .ForEach(x => context.Entry(x).State = EntityState.Unchanged);
-                //}
-
-                //if (room.RoomType != null)
-                //{
-                //    context.Entry(room.RoomType).State = EntityState.Unchanged;
-                //    room.RoomType.Rooms.Where(x => x.Id > 0)
-                //        .ToList()
-                //        .ForEach(x => context.Entry(x).State = EntityState.Unchanged);
-                //}
-
+                context.Rooms.Add(billing);
                 context.SaveChanges();
             }
 
-            return room;
+            return billing;
         }
 
         /// <summary>
         /// The delete.
         /// </summary>
         /// <param name="id">
-        /// The room id.
+        /// The billing id.
         /// </param>
         /// <exception cref="ArgumentNullException">
         /// Room is null
@@ -137,7 +120,7 @@ namespace HotelManagerLib.Repositories
         /// The update.
         /// </summary>
         /// <param name="room">
-        /// The room.
+        /// The billing.
         /// </param>
         public void Update(Room room)
         {
@@ -149,21 +132,11 @@ namespace HotelManagerLib.Repositories
                     return;
                 }
 
-                //if (room.Hotel != null)
-                //{
-                //    //var databaseHotel = context.Hotels.SingleOrDefault(x => x.Id == room.Hotel.Id);
-                //    //databaseRoom.Hotel = databaseHotel;
-                //}
-
-                // else
-                // {
-                // databaseRoom.HotelId = null;
-                // }
-
-                //var databaseHotel = context.Hotels.SingleOrDefault(x => x.Id == room.HotelId);          //to evala se sxolio giati sto update den mporoume na allaksoume Hotel
-                //databaseRoom.HotelId = databaseHotel.Id;                                               //to evala se sxolio giati sto update den mporoume na allaksoume Hotel
+                // var databaseHotel = context.Hotels.SingleOrDefault(x => x.Id == billing.HotelId);          //to evala se sxolio giati sto update den mporoume na allaksoume Hotel
+                // databaseRoom.HotelId = databaseHotel.Id;                                               //to evala se sxolio giati sto update den mporoume na allaksoume Hotel
                 databaseRoom.Code = room.Code;
-                //databaseRoom.RoomTypeId = room.RoomTypeId;                                            // to evala se sxolio giati sto update den mporoume na allaksoume room Type
+
+                // databaseRoom.RoomTypeId = billing.RoomTypeId;                                            // to evala se sxolio giati sto update den mporoume na allaksoume billing Type
                 databaseRoom.Updated = DateTime.Now;
                 databaseRoom.UpdatedBy = Environment.UserName;
 
