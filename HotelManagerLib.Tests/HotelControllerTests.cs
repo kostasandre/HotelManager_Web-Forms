@@ -276,6 +276,35 @@ namespace HotelManagerLib.Tests
             Assert.IsEmpty(this.hotelController.RefreshEntities().Where(x => x.Name == "Xaris Hotel"));
         }
 
+        ///// <summary>
+        ///// The delete hotel.
+        ///// </summary>
+        //[Test]
+        //public void DeleteHotelWithRoom()
+        //{
+        //    var hotelTemp = new Hotel()
+        //    {
+        //        Name = "Xaris Hotel",
+        //        Address = "Omonoia",
+        //        TaxId = "AA000000",
+        //        Manager = "Xaris",
+        //        Phone = "2262022620",
+        //        Email = "xaris@outlook.com"
+        //    };
+        //    hotelTemp = this.hotelController.CreateOrUpdateEntity(hotelTemp);
+
+        //    var roomTemp = new Room()
+        //    { HotelId = hotelTemp.Id,
+        //        Code = "Megalos Hotel 123",
+        //        RoomTypeId = this.roomType.Id,
+        //    };
+        //    roomTemp = this.roomController.CreateOrUpdateEntity(roomTemp);
+
+        //    this.hotelController.DeleteEntity(hotelTemp);
+
+        //    Assert.IsEmpty(this.hotelController.RefreshEntities().Where(x => x.Name == "Xaris Hotel"));
+        //}
+
         /// <summary>
         /// The delete hotel.
         /// </summary>

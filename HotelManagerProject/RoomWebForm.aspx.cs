@@ -214,7 +214,10 @@ namespace HotelManagerProject
 
                     errorlabel.Text = errorlabel.Text.TrimEnd(' ', ',');
                     this.Session["errorMessage"] = errorlabel.Text;
-                    this.RoomGridView.DataSource = this.roomController.RefreshEntities();
+                    var hotel = this.Session["Hotel"] as Hotel;
+                    this.RoomGridView.DataSource = hotel != null
+                                               ? this.roomController.RefreshEntities().Where(x => x.HotelId == hotel.Id)
+                                               : this.roomController.RefreshEntities();
                     this.RoomGridView.DataBind();
                 }
             }
