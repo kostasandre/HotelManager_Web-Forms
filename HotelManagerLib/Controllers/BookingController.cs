@@ -1,6 +1,6 @@
 ﻿// --------------------------------------------------------------------------------------------------------------------
-// <copyright file="BookingController.cs" company="">
-//   
+// <copyright file="BookingController.cs" company="Data Communication">
+//   Hotel Manager 
 // </copyright>
 // <summary>
 //   The booking controller.
@@ -16,7 +16,6 @@ namespace HotelManagerLib.Controllers
     using System.Linq;
 
     using HotelManagerLib.Controllers.Interfaces;
-    using HotelManagerLib.DBContext;
     using HotelManagerLib.Enums;
     using HotelManagerLib.Models.Persistant;
     using HotelManagerLib.Repositories;
@@ -51,8 +50,6 @@ namespace HotelManagerLib.Controllers
         /// <returns>
         /// The <see cref="Booking"/>.
         /// </returns>
-        /// <exception cref="NotImplementedException">
-        /// </exception>
         public Booking CreateOrUpdateEntity(Booking entity)
         {
             if (entity.Id == 0)
@@ -73,7 +70,8 @@ namespace HotelManagerLib.Controllers
         /// <param name="entity">
         /// The entity.
         /// </param>
-        /// <exception cref="NotImplementedException">
+        /// <exception cref="ArgumentNullException">
+        /// The Booking is null
         /// </exception>
         public void DeleteEntity(Booking entity)
         {
@@ -96,7 +94,8 @@ namespace HotelManagerLib.Controllers
         /// <returns>
         /// The <see cref="Booking"/>.
         /// </returns>
-        /// <exception cref="NotImplementedException">
+        /// <exception cref="ArgumentNullException">
+        /// The Booking is null
         /// </exception>
         public Booking GetEntity(int id)
         {
@@ -114,10 +113,8 @@ namespace HotelManagerLib.Controllers
         /// The refresh entities.
         /// </summary>
         /// <returns>
-        /// The <see cref="IList"/>.
+        /// The <see cref="IList{Booking}"/>.
         /// </returns>
-        /// <exception cref="NotImplementedException">
-        /// </exception>
         public IList<Booking> RefreshEntities()
         {
             var bookingList = this.Repository.ReadAllList();
@@ -125,10 +122,13 @@ namespace HotelManagerLib.Controllers
         }
 
         /// <summary>
-        /// The is room available.
+        /// The get available rooms.
         /// </summary>
-        /// <param name="roomType">
-        /// The room Type.
+        /// <param name="hotel">
+        /// The hotel.
+        /// </param>
+        /// <param name="roomTypeId">
+        /// The room type id.
         /// </param>
         /// <param name="dateFrom">
         /// The date from.
@@ -137,18 +137,18 @@ namespace HotelManagerLib.Controllers
         /// The date to.
         /// </param>
         /// <returns>
-        /// The <see cref="bool"/>.
+        /// The <see cref="List{Room}"/>.
         /// </returns>
-        public List<Room> GetAvailableRooms(Hotel hotel,object roomTypeId, object dateFrom, object dateTo )
+        public List<Room> GetAvailableRooms(Hotel hotel, object roomTypeId, object dateFrom, object dateTo)
         {
-            
             var roomController = new RoomController();
             var availableRooms = new List<Room>();
             var rooms = hotel != null
                             ? roomController.RefreshEntities()
                                 .Where(x => x.RoomTypeId == Convert.ToInt32(roomTypeId) && x.HotelId == hotel.Id)
                             : roomController.RefreshEntities().Where(x => x.RoomTypeId == Convert.ToInt32(roomTypeId));
-            //var rooms = roomController.RefreshEntities().Where(x => x.RoomTypeId == Convert.ToInt32(roomTypeId));
+
+            // var rooms = roomController.RefreshEntities().Where(x => x.RoomTypeId == Convert.ToInt32(roomTypeId));
             foreach (var room in rooms)
             {
                 var isAvailable = !this.RefreshEntities().Any(x => x.RoomId == room.Id && x.Status != Status.Cancelled && ((x.To >= Convert.ToDateTime(dateFrom)) && (Convert.ToDateTime(dateTo) >= x.From)));
@@ -157,6 +157,7 @@ namespace HotelManagerLib.Controllers
                     availableRooms.Add(room);
                 }
             }
+
             return availableRooms;
         }
     }

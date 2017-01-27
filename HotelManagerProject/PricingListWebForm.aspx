@@ -180,7 +180,7 @@
                                                     <dx:ASPxRadioButtonList ID="typeOFRadioButtonList" runat="server" OnSelectedIndexChanged="TypeOFRadioButtonList_OnSelectedIndexChanged" AutoPostBack="True" ClientIDMode="Static">
                                                         <ValidationSettings EnableCustomValidation="True" ErrorDisplayMode="ImageWithTooltip" ErrorTextPosition="Right" SetFocusOnError="true">
                                                             <ErrorFrameStyle Font-Size="Large" />
-                                                            <RequiredField IsRequired="True" ErrorText="Type of service is required" />
+                                                            <RequiredField IsRequired="True" ErrorText="Type of billing is required" />
                                                         </ValidationSettings>
                                                     </dx:ASPxRadioButtonList>
 

@@ -113,6 +113,15 @@ namespace HotelManagerLib.Controllers
             return this.Repository.ReadAllList();
         }
 
+        /// <summary>
+        /// The get pricing list for hotel.
+        /// </summary>
+        /// <param name="hotelId">
+        /// The hotel id.
+        /// </param>
+        /// <returns>
+        /// The <see cref="IList{PricingList}"/>.
+        /// </returns>
         public IList<PricingList> GetPricingListForHotel(int hotelId)
         {
             using (var context = new DataBaseContext())
@@ -130,11 +139,11 @@ namespace HotelManagerLib.Controllers
         /// <summary>
         /// The room pricing.
         /// </summary>
-        /// <param name="dateFrom">
-        /// The date from.
+        /// <param name="dateFromSender">
+        /// The date from sender.
         /// </param>
-        /// <param name="dateTo">
-        /// The date to.
+        /// <param name="dateToSender">
+        /// The date to sender.
         /// </param>
         /// <param name="roomTypeId">
         /// The room type id.
@@ -142,23 +151,26 @@ namespace HotelManagerLib.Controllers
         /// <returns>
         /// The <see cref="double"/>.
         /// </returns>
+        /// <exception cref="ArgumentNullException">
+        /// The given dates are null
+        /// </exception>
         /// <exception cref="WrongGivenPeriodException">
-        /// The given period is wrong
+        /// Given From date is larger than given To date
         /// </exception>
         /// <exception cref="DataException">
-        /// Can;t read from database
+        /// Can't read from database
         /// </exception>
         /// <exception cref="NullReferenceException">
-        /// Pricing list for tha days given is null
+        /// Doesn't exist pricing List for these period
         /// </exception>
         /// <exception cref="PricingPeriodDuplicateException">
-        /// Duplicate pricing period
+        /// There are two pricing List for this period
         /// </exception>
         public double RoomPricing(object dateFromSender, object dateToSender, int roomTypeId)
         {
             if (dateFromSender == null || dateToSender == null)
             {
-                throw new ArgumentNullException("Please insert correct dates");
+                throw new ArgumentNullException($"Please insert correct dates");
             }
 
             var dateFrom = Convert.ToDateTime(dateFromSender);
@@ -261,7 +273,28 @@ namespace HotelManagerLib.Controllers
             return tempPricingList.Price + (tempPricingList.Price * tempPricingList.VatPrc / 100);
         }
 
-        public bool ValidationDateForPricingList(object dateFromSender, object dateToSender, TypeOfBillableEntity typeOfEntityEnum , int BillableEntityId)
+        /// <summary>
+        /// The validation date for pricing list.
+        /// </summary>
+        /// <param name="dateFromSender">
+        /// The date from sender.
+        /// </param>
+        /// <param name="dateToSender">
+        /// The date to sender.
+        /// </param>
+        /// <param name="typeOfEntityEnum">
+        /// The type of entity enum.
+        /// </param>
+        /// <param name="billableEntityId">
+        /// The billable entity id.
+        /// </param>
+        /// <returns>
+        /// The <see cref="bool"/>.
+        /// </returns>
+        /// <exception cref="DataException">
+        /// Can't read from database
+        /// </exception>
+        public bool ValidationDateForPricingList(object dateFromSender, object dateToSender, TypeOfBillableEntity typeOfEntityEnum, int billableEntityId)
         {
             var dateFrom = Convert.ToDateTime(dateFromSender);
             var dateTo = Convert.ToDateTime(dateToSender);
@@ -276,7 +309,7 @@ namespace HotelManagerLib.Controllers
                         this.Repository.ReadAllQuery(context)
                             .Where(
                                 x =>
-                                    x.BillableEntityId == BillableEntityId
+                                    x.BillableEntityId == billableEntityId
                                     && x.TypeOfBillableEntity == typeOfEntityEnum)
                             .ToList();
                 }

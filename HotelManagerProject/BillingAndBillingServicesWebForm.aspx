@@ -26,7 +26,7 @@
                     <dx:ASPxLabel CssClass="Text" Width="90px" ForeColor="Black" runat="server" Text="Booking :" Theme="BlackGlass"></dx:ASPxLabel>
                 </div>
                 <div class="col-lg-1 col-md-2 col-sm-2 col-xs-4">
-                    <dx:ASPxButton ID="SearchButton" runat="server" ToolTip="Search for your desired booking." Theme="BlackGlass">
+                    <dx:ASPxButton ID="SearchButton" runat="server" ToolTip="Search for your desired billing." Theme="BlackGlass">
                         <Image Width="50px" Height="20px" Url="Images/searched.jpg"></Image>
                         <ClientSideEvents Click="function(s, e) { ShowLoginWindow(); }" />
                     </dx:ASPxButton>
@@ -73,7 +73,7 @@
             <div class="col-lg-7 col-md-5 col-sm-0 col-xs-0">
             </div>
             <div class="col-lg-2 col-md-2 col-sm-3 col-xs-5">
-                <dx:ASPxLabel CssClass="Text" Width="150px" ForeColor="Black" runat="server" Text="Price for room :" Theme="BlackGlass"></dx:ASPxLabel>
+                <dx:ASPxLabel CssClass="Text" Width="150px" ForeColor="Black" runat="server" Text="Price for billing :" Theme="BlackGlass"></dx:ASPxLabel>
             </div>
             <div class="col-lg-1 col-md-2 col-sm-1 col-xs-1">
                 <dx:ASPxTextBox ID="priceValueTextBox" runat="server"></dx:ASPxTextBox>
@@ -119,7 +119,7 @@
                 <div class="col-lg-7 col-md-5 col-sm-0 col-xs-0">
                 </div>
                 <div class="col-lg-2 col-md-2 col-sm-3 col-xs-6">
-                    <dx:ASPxLabel CssClass="Text" Width="250px" ForeColor="Black" ID="sumOfServicesLabel" Text="Price for services :" runat="server" EnableTheming="True" Theme="BlackGlass"></dx:ASPxLabel>
+                    <dx:ASPxLabel CssClass="Text" Width="250px" ForeColor="Black" ID="sumOfServicesLabel" Text="Price for billings :" runat="server" EnableTheming="True" Theme="BlackGlass"></dx:ASPxLabel>
                 </div>
                 <div class="col-lg-1 col-md-2 col-sm-1 col-xs-1">
                     <dx:ASPxTextBox ClientInstanceName="sumOfServicesTextBox" ClientIDMode="Static" ID="sumOfServicesTextBox" runat="server"></dx:ASPxTextBox>

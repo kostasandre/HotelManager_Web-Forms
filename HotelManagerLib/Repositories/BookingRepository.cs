@@ -1,9 +1,9 @@
 ﻿// --------------------------------------------------------------------------------------------------------------------
-// <copyright file="BookingRepository.cs" company="">
-//   
+// <copyright file="BookingRepository.cs" company="Data Communication">
+//   Hotel Manager
 // </copyright>
 // <summary>
-//   The booking repository.
+//   The billing repository.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
 
@@ -24,26 +24,24 @@ namespace HotelManagerLib.Repositories
     #endregion
 
     /// <summary>
-    /// The booking repository.
+    /// The billing repository.
     /// </summary>
-    class BookingRepository : IEntityRepository<Booking>
+    public class BookingRepository : IEntityRepository<Booking>
     {
         /// <summary>
         /// The create.
         /// </summary>
-        /// <param name="booking">
-        /// The booking.
+        /// <param name="billing">
+        /// The billing.
         /// </param>
         /// <returns>
         /// The <see cref="Booking"/>.
         /// </returns>
-        /// <exception cref="NotImplementedException">
-        /// </exception>
-        public Booking Create(Booking booking)
+        public Booking Create(Booking billing)
         {
             using (var context = new DataBaseContext())
             {
-                context.Bookings.Add(booking);
+                context.Bookings.Add(billing);
                 try
                 {
                     context.SaveChanges();
@@ -63,7 +61,7 @@ namespace HotelManagerLib.Repositories
                 }
             }
 
-            return booking;
+            return billing;
         }
 
         /// <summary>
@@ -107,14 +105,13 @@ namespace HotelManagerLib.Repositories
         /// The read all list.
         /// </summary>
         /// <returns>
-        /// The <see cref="IList"/>.
+        /// The <see cref="IList{Booking}"/>.
         /// </returns>
         public IList<Booking> ReadAllList()
         {
             using (var context = new DataBaseContext())
             {
                 return context.Bookings.Include("Room").Include("Customer").ToList();
-                
             }
         }
 
@@ -141,14 +138,11 @@ namespace HotelManagerLib.Repositories
         /// <returns>
         /// The <see cref="Booking"/>.
         /// </returns>
-        /// <exception cref="NotImplementedException">
-        /// </exception>
         public Booking ReadOne(int id)
         {
             using (var context = new DataBaseContext())
             {
                 return context.Bookings.Include("Room").Include("Customer").SingleOrDefault(x => x.Id == id);
-                
             }
         }
 
@@ -158,24 +152,25 @@ namespace HotelManagerLib.Repositories
         /// <param name="entity">
         /// The entity.
         /// </param>
-        /// <exception cref="NotImplementedException">
-        /// </exception>
         public void Update(Booking entity)
         {
             using (var context = new DataBaseContext())
             {
                 var booking = context.Bookings.SingleOrDefault(x => x.Id == entity.Id);
-                
-                booking.AgreedPrice = entity.AgreedPrice;
-                booking.Comments = entity.Comments;
-                booking.CustomerId = entity.CustomerId;
-                booking.From = entity.From;
-                booking.To = entity.To;
-                booking.RoomId = entity.RoomId;
-                booking.Status = entity.Status;
-                booking.SystemPrice = entity.SystemPrice;
-                booking.Updated = DateTime.Now;
-                booking.UpdatedBy = Environment.UserName;
+
+                if (booking != null)
+                {
+                    booking.AgreedPrice = entity.AgreedPrice;
+                    booking.Comments = entity.Comments;
+                    booking.CustomerId = entity.CustomerId;
+                    booking.From = entity.From;
+                    booking.To = entity.To;
+                    booking.RoomId = entity.RoomId;
+                    booking.Status = entity.Status;
+                    booking.SystemPrice = entity.SystemPrice;
+                    booking.Updated = DateTime.Now;
+                    booking.UpdatedBy = Environment.UserName;
+                }
 
                 try
                 {

@@ -12,7 +12,6 @@ namespace HotelManagerLib.Models.Persistant
     #region
 
     using System;
-    using System.Collections.Generic;
     using System.ComponentModel;
 
     using HotelManagerLib.Models.Persistant.Interfaces;

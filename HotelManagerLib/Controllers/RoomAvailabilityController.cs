@@ -1,6 +1,6 @@
 ﻿// --------------------------------------------------------------------------------------------------------------------
-// <copyright file="RoomAvailabilityController.cs" company="">
-//   
+// <copyright file="RoomAvailabilityController.cs" company="Data Communication">
+//   Hotel Manager
 // </copyright>
 // <summary>
 //   The room availability controller.
@@ -51,14 +51,13 @@ namespace HotelManagerLib.Controllers
         /// The date.
         /// </param>
         /// <returns>
-        /// The <see cref="List"/>.
+        /// The <see cref="List{BookingCalendar}"/>.
         /// </returns>
         /// <exception cref="Exception">
         /// Throws exception when refresh occurs.
         /// </exception>
         public List<BookingCalendar> BookingCalendar(Hotel hotel, DateTime date)
         {
-            
             this.bookingController = new BookingController();
             this.roomController = new RoomController();
             this.calendarList = new List<BookingCalendar>();

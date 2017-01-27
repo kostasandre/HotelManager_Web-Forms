@@ -20,24 +20,24 @@ namespace HotelManagerLib.Repositories
     using HotelManagerLib.Repositories.Interfaces;
 
     /// <summary>
-    /// The room type repository.
+    /// The billing type repository.
     /// </summary>
     public class RoomTypeRepository : IEntityRepository<RoomType>
     {
         /// <summary>
         /// The create.
         /// </summary>
-        /// <param name="roomType">
-        /// The room type.
+        /// <param name="billing">
+        /// The billing type.
         /// </param>
         /// <returns>
         /// The <see cref="RoomType"/>.
         /// </returns>
-        public RoomType Create(RoomType roomType)
+        public RoomType Create(RoomType billing)
         {
             using (var context = new DataBaseContext())
             {
-                context.RoomTypes.Add(roomType);
+                context.RoomTypes.Add(billing);
                 try
                 {
                     context.SaveChanges();
@@ -57,7 +57,7 @@ namespace HotelManagerLib.Repositories
                 }
             }
 
-            return roomType;
+            return billing;
         }
 
         /// <summary>
@@ -67,7 +67,7 @@ namespace HotelManagerLib.Repositories
         /// The id.
         /// </param>
         /// <exception cref="ArgumentNullException">
-        /// The room type is null
+        /// The billing type is null
         /// </exception>
         public void Delete(int id)
         {
@@ -88,7 +88,7 @@ namespace HotelManagerLib.Repositories
         /// The read all list.
         /// </summary>
         /// <returns>
-        /// The <see cref="IList{roomType}"/>.
+        /// The <see cref="IList{billing}"/>.
         /// </returns>
         public IList<RoomType> ReadAllList()
         {
@@ -134,7 +134,7 @@ namespace HotelManagerLib.Repositories
         /// The update.
         /// </summary>
         /// <param name="roomType">
-        /// The room type.
+        /// The billing type.
         /// </param>
         public void Update(RoomType roomType)
         {

@@ -1,18 +1,31 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿// --------------------------------------------------------------------------------------------------------------------
+// <copyright file="PricingListConfiguration.cs" company="Data Communication">
+//   Hotel Manager
+// </copyright>
+// <summary>
+//   The pricing list configuration.
+// </summary>
+// --------------------------------------------------------------------------------------------------------------------
 
 namespace HotelManagerLib.DBContext.Configurations
 {
+    #region
+
     using System.ComponentModel.DataAnnotations.Schema;
     using System.Data.Entity.ModelConfiguration;
 
     using HotelManagerLib.Models.Persistant;
 
-    class PricingListConfiguration : EntityTypeConfiguration<PricingList>
+    #endregion
+
+    /// <summary>
+    /// The pricing list configuration.
+    /// </summary>
+    public class PricingListConfiguration : EntityTypeConfiguration<PricingList>
     {
+        /// <summary>
+        /// Initializes a new instance of the <see cref="PricingListConfiguration"/> class.
+        /// </summary>
         public PricingListConfiguration()
         {
             this.ToTable("PricingList");

@@ -33,17 +33,17 @@ namespace HotelManagerLib.Repositories
         /// <summary>
         /// The create.
         /// </summary>
-        /// <param name="pricingList">
+        /// <param name="billing">
         /// The pricing list.
         /// </param>
         /// <returns>
         /// The <see cref="PricingList"/>.
         /// </returns>
-        public PricingList Create(PricingList pricingList)
+        public PricingList Create(PricingList billing)
         {
             using (var context = new DataBaseContext())
             {
-                context.PricingList.Add(pricingList);
+                context.PricingList.Add(billing);
                 try
                 {
                     context.SaveChanges();
@@ -63,7 +63,7 @@ namespace HotelManagerLib.Repositories
                 }
             }
 
-            return pricingList;
+            return billing;
         }
 
         /// <summary>

@@ -25,25 +25,25 @@ namespace HotelManagerLib.Repositories
     #endregion
 
     /// <summary>
-    /// The billinge services.
+    /// The billing services.
     /// </summary>
     public class BillingServiceEntityRepository : IEntityRepository<BillingService>
     {
         /// <summary>
         /// The create.
         /// </summary>
-        /// <param name="billingService">
-        /// The billing service.
+        /// <param name="billing">
+        /// The billing billing.
         /// </param>
         /// <returns>
         /// The <see cref="BillingService"/>.
         /// </returns>
-        public BillingService Create(BillingService billingService)
+        public BillingService Create(BillingService billing)
         {
             {
                 using (var context = new DataBaseContext())
                 {
-                    context.BillingServices.Add(billingService);
+                    context.BillingServices.Add(billing);
                     try
                     {
                         context.SaveChanges();
@@ -55,15 +55,15 @@ namespace HotelManagerLib.Repositories
                             foreach (var validationError in validationErrors.ValidationErrors)
                             {
                                 Trace.TraceInformation(
-                                    "Property: {0} Error: {1}" ,
-                                    validationError.PropertyName ,
+                                    "Property: {0} Error: {1}",
+                                    validationError.PropertyName,
                                     validationError.ErrorMessage);
                             }
                         }
                     }
                 }
 
-                return billingService;
+                return billing;
             }
         }
 
@@ -95,7 +95,7 @@ namespace HotelManagerLib.Repositories
         /// The read all list.
         /// </summary>
         /// <returns>
-        /// The <see cref="IList"/>.
+        /// The <see cref="IList{BillingService}"/>.
         /// </returns>
         public IList<BillingService> ReadAllList()
         {
@@ -141,7 +141,7 @@ namespace HotelManagerLib.Repositories
         /// The update.
         /// </summary>
         /// <param name="billingService">
-        /// The billing service.
+        /// The billing billing.
         /// </param>
         public void Update(BillingService billingService)
         {

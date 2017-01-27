@@ -3,7 +3,7 @@
 //   Hotel Manager
 // </copyright>
 // <summary>
-//   The hotel repository.
+//   The billing repository.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
 
@@ -24,24 +24,24 @@ namespace HotelManagerLib.Repositories
     #endregion
 
     /// <summary>
-    /// The hotel repository.
+    /// The billing repository.
     /// </summary>
     public class HotelRepository : IEntityRepository<Hotel>
     {
         /// <summary>
         /// The create.
         /// </summary>
-        /// <param name="hotel">
-        /// The hotel.
+        /// <param name="billing">
+        /// The billing.
         /// </param>
         /// <returns>
         /// The <see cref="Hotel"/>.
         /// </returns>
-        public Hotel Create(Hotel hotel)
+        public Hotel Create(Hotel billing)
         {
             using (var context = new DataBaseContext())
             {
-                context.Hotels.Add(hotel);
+                context.Hotels.Add(billing);
                 try
                 {
                     context.SaveChanges();
@@ -61,7 +61,7 @@ namespace HotelManagerLib.Repositories
                 }
             }
 
-            return hotel;
+            return billing;
         }
 
         /// <summary>
@@ -138,7 +138,7 @@ namespace HotelManagerLib.Repositories
         /// The update.
         /// </summary>
         /// <param name="hotel">
-        /// The hotel.
+        /// The billing.
         /// </param>
         public void Update(Hotel hotel)
         {
@@ -158,7 +158,7 @@ namespace HotelManagerLib.Repositories
                 databaseHotel.Phone = hotel.Phone;
                 databaseHotel.TaxId = hotel.TaxId;
 
-                // databaseHotel.PictureId = hotel.PictureId;
+                // databaseHotel.PictureId = billing.PictureId;
                 databaseHotel.Updated = DateTime.Now;
                 databaseHotel.UpdatedBy = Environment.UserName;
                 context.SaveChanges();

@@ -31,13 +31,13 @@ namespace HotelManagerLib.Repositories.Interfaces
         /// <summary>
         /// The create.
         /// </summary>
-        /// <param name="entity">
-        /// The entity.
+        /// <param name="billing">
+        /// The billing.
         /// </param>
         /// <returns>
         /// The <see cref="T"/>.
         /// </returns>
-        T Create(T entity);
+        T Create(T billing);
 
         /// <summary>
         /// The delete.
@@ -81,7 +81,7 @@ namespace HotelManagerLib.Repositories.Interfaces
         /// The update.
         /// </summary>
         /// <param name="entity">
-        /// The entity.
+        /// The billing.
         /// </param>
         void Update(T entity);
     }

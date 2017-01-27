@@ -27,18 +27,18 @@ namespace HotelManagerLib.Repositories
         /// <summary>
         /// The create.
         /// </summary>
-        /// <param name="billling">
-        /// The billling.
+        /// <param name="billing">
+        /// The billing.
         /// </param>
         /// <returns>
         /// The <see cref="Billing"/>.
         /// </returns>
-        public Billing Create(Billing billling)
+        public Billing Create(Billing billing)
         {
             {
                 using (var context = new DataBaseContext())
                 {
-                    context.Billings.Add(billling);
+                    context.Billings.Add(billing);
                     try
                     {
                         context.SaveChanges();
@@ -58,7 +58,7 @@ namespace HotelManagerLib.Repositories
                     }
                 }
 
-                return billling;
+                return billing;
             }
         }
 
@@ -90,7 +90,7 @@ namespace HotelManagerLib.Repositories
         /// The read all list.
         /// </summary>
         /// <returns>
-        /// The <see cref="IList"/>.
+        /// The <see cref="IList{Billing}"/>.
         /// </returns>
         public IList<Billing> ReadAllList()
         {
