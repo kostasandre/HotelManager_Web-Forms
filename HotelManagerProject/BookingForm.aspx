@@ -187,22 +187,6 @@ e.errorText = &quot;The Date From is greater than Date To!&quot;
                             </div>
                         </div>
                         <br />
-
-                        <%-- <div class="row">
-                <div class="col-xs-4 col-sm-8 col-md-10 col-lg-10">
-                    
-                </div>
-                <div class="col-xs-3 col-sm-2 col-md-1 col-lg-1" style="text-align: right">
-                    <dx:ASPxButton OnClick="saveBookingButton_OnClick" ID= "saveBookingButton" runat="server" Text="Save" Width=60px></dx:ASPxButton>
-                </div>
-                 <div class="col-xs-3 col-sm-2 col-md-1 col-lg-1" style="text-align: right">
-                    <dx:ASPxButton OnClick="cancelButton_OnClick" ID= "cancelButton" runat="server" Text="Cancel" Width="60px"></dx:ASPxButton>
-                </div>
-                <br/>
-                <br/>
-                
-
-            </div>--%>
                     </div>
                 </div>
             </div>
@@ -221,7 +205,7 @@ e.errorText = &quot;The Date From is greater than Date To!&quot;
                     <table>
                         <tr>
                             <td>
-                                <label>Name:  </label>
+                                <dx:ASPxLabel runat="server" Text="Name:"></dx:ASPxLabel>
                             </td>
                             <td>
                                 <dx:ASPxTextBox ClientInstanceName="nameTextBox" ValidateRequestMode="Enabled" ID="nameTextBox" runat="server" Width="170px">
