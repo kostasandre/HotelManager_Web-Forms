@@ -60,13 +60,8 @@
 }
 
 .Text {
-    font-size: large;
-    margin-right: 10px;
-}
-
-.Text2 {
-    font-size: large;
-    margin-right: 55px;
+    font-weight: bold;
+    font-size: 14px;
 }
 
 .billingTextBox {

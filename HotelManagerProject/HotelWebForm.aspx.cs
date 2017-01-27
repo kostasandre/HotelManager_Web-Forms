@@ -148,6 +148,8 @@ namespace HotelManagerProject
                     var hotelTemp = new Hotel() { Id = id };
                     try
                     {
+                        var localHotel = this.hotelController.GetEntity(hotelTemp.Id);
+                        this.Session["Hotel"] = localHotel;
                         this.hotelController.DeleteEntity(hotelTemp);
                         this.deleteHotelButton.ClientSideEvents.Click = "function(s,e){ sessionStorage.removeItem('Hotel'); sessionStorage.removeItem('tempHotelName'); e.processOnServer = true; }";
                         this.Session["Hotel"] = null;
