@@ -61,52 +61,57 @@ namespace HotelManagerProject
         /// </param>
         protected void BtOkClick(object sender, EventArgs e)
         {
+            var hotel = this.Session["Hotel"] as Hotel;
             var errorlabel = this.Master?.FindControl("form1").FindControl("divErrorMessage") as Label;
-            this.billingEntityController = new BillingEntityController();
-            this.bookingEntityController = new BookingController();
-            this.booking = new Booking();
-            var myBooking = Convert.ToInt32(this.bookingComboBox.SelectedItem.Value);
+            if (errorlabel != null)
+            {
+                errorlabel.Text = string.Empty;
+                this.billingEntityController = new BillingEntityController();
+                this.bookingEntityController = new BookingController();
+                this.booking = new Booking();
+                var myBooking = Convert.ToInt32(this.bookingComboBox.SelectedItem.Value);
            
-            try
-            {
-                this.booking = this.bookingEntityController.GetEntity(myBooking);
-                this.billing = new Billing
+                try
                 {
-                    Id = Convert.ToInt32(this.idTextBox.Text),
-                    BookingId = this.booking.Id,
-                    Paid = this.paidCheckBox.Checked,
-                    PriceForRoom = Convert.ToDouble(this.priceForRoomTextBox.Text),
-                    PriceForServices = Convert.ToDouble(this.priceForServicesTextBox.Text),
-                    TotalPrice = Convert.ToDouble(this.totalPricerTextBox.Text)
-                };
+                    this.booking = this.bookingEntityController.GetEntity(myBooking);
+                    this.billing = new Billing
+                                       {
+                                           Id = Convert.ToInt32(this.idTextBox.Text),
+                                           BookingId = this.booking.Id,
+                                           Paid = this.paidCheckBox.Checked,
+                                           PriceForRoom = Convert.ToDouble(this.priceForRoomTextBox.Text),
+                                           PriceForServices = Convert.ToDouble(this.priceForServicesTextBox.Text),
+                                           TotalPrice = Convert.ToDouble(this.totalPricerTextBox.Text)
+                                       };
                 
-                this.billingEntityController.CreateOrUpdateEntity(this.billing);
-                this.BillingListGridView.DataSource = this.billingEntityController.RefreshEntities();
-                this.BillingListGridView.DataBind();
-                this.paidCheckBox.Text = string.Empty;
-                this.priceForRoomTextBox.Text = string.Empty;
-                this.totalPricerTextBox.Text = string.Empty;
-                this.priceForServicesTextBox.Text = string.Empty;
-            }
-            catch (SqlException ex)
-            {
-                if (errorlabel != null)
-                {
-                    errorlabel.Text = "Something went wrong with the database.Please check the connection string.";
+                    this.billingEntityController.CreateOrUpdateEntity(this.billing);
+                    this.BillingListGridView.DataSource = hotel != null ? this.billingEntityController.RefreshEntities().Where(x => x.Booking.Room.HotelId == hotel.Id) : this.billingEntityController.RefreshEntities();
+                    this.BillingListGridView.DataBind();
+                    this.paidCheckBox.Text = string.Empty;
+                    this.priceForRoomTextBox.Text = string.Empty;
+                    this.totalPricerTextBox.Text = string.Empty;
+                    this.priceForServicesTextBox.Text = string.Empty;
                 }
-            }
-            catch (ArgumentNullException ex)
-            {
-                if (errorlabel != null)
+                catch (SqlException ex)
                 {
-                    errorlabel.Text = "Couldn't create the current Billing";
+                    if (errorlabel != null)
+                    {
+                        errorlabel.Text = "Something went wrong with the database.Please check the connection string.";
+                    }
                 }
-            }
-            catch (Exception ex)
-            {
-                if (errorlabel != null)
+                catch (ArgumentNullException ex)
                 {
-                    errorlabel.Text = ex.Message;
+                    if (errorlabel != null)
+                    {
+                        errorlabel.Text = "Couldn't create the current Billing";
+                    }
+                }
+                catch (Exception ex)
+                {
+                    if (errorlabel != null)
+                    {
+                        errorlabel.Text = "You can't change an already paid billing";
+                    }
                 }
             }
         }
@@ -159,60 +164,65 @@ namespace HotelManagerProject
         /// </param>
         protected void DeleteBillingButtonClick(object sender, EventArgs e)
         {
+            var hotel = this.Session["Hotel"] as Hotel;
             var errorlabel = this.Master?.FindControl("form1").FindControl("divErrorMessage") as Label;
             if (errorlabel != null)
             {
                 errorlabel.Text = string.Empty;
-                if (this.BillingListGridView.VisibleRowCount == 0)
+                if (errorlabel != null)
                 {
-                    errorlabel.Text = @"There are no companies to delete";
-                }
-
-                var firstRun = true;
-                this.Session["errorMessage"] = string.Empty;
-
-                var selectedRowKeys = this.BillingListGridView.GetSelectedFieldValues(
-                    this.BillingListGridView.KeyFieldName,
-                    "Id");
-                if ((selectedRowKeys == null) || (selectedRowKeys.Count == 0))
-                {
-                    errorlabel.Text = @"Please select a billing first to delete";
-                    return;
-                }
-
-                foreach (object[] row in selectedRowKeys)
-                {
-                    var id = Convert.ToInt32(row[0]);
-                    var myBilling = new Billing { Id = id };
-                    try
+                    errorlabel.Text = string.Empty;
+                    if (this.BillingListGridView.VisibleRowCount == 0)
                     {
-                        this.billingEntityController.DeleteEntity(myBilling);
+                        errorlabel.Text = @"There are no companies to delete";
                     }
-                    catch (ArgumentNullException)
+
+                    var firstRun = true;
+                    this.Session["errorMessage"] = string.Empty;
+
+                    var selectedRowKeys = this.BillingListGridView.GetSelectedFieldValues(
+                        this.BillingListGridView.KeyFieldName,
+                        "Id");
+                    if ((selectedRowKeys == null) || (selectedRowKeys.Count == 0))
                     {
-                        if (firstRun)
+                        errorlabel.Text = @"Please select a billing first to delete";
+                        return;
+                    }
+
+                    foreach (object[] row in selectedRowKeys)
+                    {
+                        var id = Convert.ToInt32(row[0]);
+                        var myBilling = new Billing { Id = id };
+                        try
                         {
-                            errorlabel.Text = @"You can't delete ";
-                            firstRun = false;
+                            this.billingEntityController.DeleteEntity(myBilling);
                         }
+                        catch (ArgumentNullException)
+                        {
+                            if (firstRun)
+                            {
+                                errorlabel.Text = @"You can't delete ";
+                                firstRun = false;
+                            }
 
-                        errorlabel.Text += $@"'{myBilling.Id}', ";
-                        this.BillingListGridView.Selection.UnselectRowByKey(id);
+                            errorlabel.Text += $@"'{myBilling.Id}', ";
+                            this.BillingListGridView.Selection.UnselectRowByKey(id);
+                        }
+                        catch (SqlException ex)
+                        {
+                            errorlabel.Text = ex.Message;
+                        }
+                        catch (Exception ex)
+                        {
+                            errorlabel.Text = ex.Message;
+                        }
                     }
-                    catch (SqlException ex)
-                    {
-                        errorlabel.Text = ex.Message;
-                    }
-                    catch (Exception ex)
-                    {
-                        errorlabel.Text = ex.Message;
-                    }
+
+                    errorlabel.Text = errorlabel.Text.TrimEnd(' ', ',');
+                    this.Session["errorMessage"] = errorlabel.Text;
+                    this.BillingListGridView.DataSource = hotel != null ? this.billingEntityController.RefreshEntities().Where(x => x.Booking.Room.HotelId == hotel.Id) : this.billingEntityController.RefreshEntities();
+                    this.BillingListGridView.DataBind();
                 }
-
-                errorlabel.Text = errorlabel.Text.TrimEnd(' ', ',');
-                this.Session["errorMessage"] = errorlabel.Text;
-                this.BillingListGridView.DataSource = this.billingEntityController.RefreshEntities();
-                this.BillingListGridView.DataBind();
             }
         }
 

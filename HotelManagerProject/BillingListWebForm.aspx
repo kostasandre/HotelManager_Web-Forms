@@ -122,7 +122,7 @@
                                 <label>Booking : </label>
                             </td>
                             <td>
-                                <dx:ASPxComboBox ValueField="Id" ClientIDMode="Static" ClientInstanceName="billingComboBox" TextField="Id" ID="bookingComboBox" runat="server" Width="170px" Theme="BlackGlass" EnableTheming="True" TextFormatString="{0} {1}">
+                                <dx:ASPxComboBox ValueField="Id" ClientIDMode="Static" ClientInstanceName="bookingComboBox" TextField="Id" ID="bookingComboBox" runat="server" Width="170px" Theme="BlackGlass" EnableTheming="True" TextFormatString="{0} {1}">
                                     <Columns>
                                         <dx:ListBoxColumn Name="Name" Caption="Name" FieldName="Customer.Name" />
                                         <dx:ListBoxColumn Name="Surname" Caption="Surname" FieldName="Customer.Surname" />
