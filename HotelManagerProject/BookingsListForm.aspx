@@ -76,7 +76,7 @@
                             </dx:GridViewDataTextColumn>
                             <dx:GridViewDataTextColumn FieldName="Customer.Surname" VisibleIndex="6">
                             </dx:GridViewDataTextColumn>
-                            <dx:GridViewDataTextColumn FieldName="Room.Code" VisibleIndex="7">
+                            <dx:GridViewDataTextColumn FieldName="Room.Code" VisibleIndex="7" Caption="Room">
                             </dx:GridViewDataTextColumn>
                             <dx:GridViewDataTextColumn FieldName="From" VisibleIndex="8">
                             </dx:GridViewDataTextColumn>

@@ -23,7 +23,7 @@
                         <div style="height: 45px; padding-left: unset" class="col-xs-1 col-sm-1 col-md-2 col-lg-2">
                             <dx:ASPxLabel CssClass="Text" ForeColor="#222222" Text="Room Type :" runat="server" EnableTheming="True" Theme="BlackGlass"></dx:ASPxLabel>
                         </div>
-                        <div class="col-xs-3 col-sm-1 col-md-10 col-lg-3">
+                        <div style="padding-left: 5px" class="col-xs-3 col-sm-1 col-md-10 col-lg-6">
                             <dx:ASPxComboBox ID="roomTypeComboBox" NullText="Select Room Type" runat="server" ValueField="Id" TextField="Code" IncrementalFilteringMode="None" DropDownStyle="DropDownList">
                             </dx:ASPxComboBox>
                         </div>
@@ -153,14 +153,16 @@ e.errorText = &quot;The Date From is greater than Date To!&quot;
                     <div class="col-xs-1 col-sm-1 col-md-1 col-lg-2">
                         <dx:ASPxLabel CssClass="Text" ForeColor="#222222" Text="Search Customer :" runat="server" EnableTheming="True" Theme="BlackGlass"></dx:ASPxLabel>
                     </div>
-                    <div style="height: 45px;" class="col-xs-3 col-sm-3 col-md-3 col-lg-2">
+                    <div style="height: 45px; padding-right: 10px" class="col-xs-3 col-sm-3 col-md-3 col-lg-3">
                         <dx:ASPxComboBox OnValueChanged="customerComboBox_OnValueChanged" ID="customerComboBox" NullText="Search Customer" runat="server" ValueField="Id" TextField="Name" IncrementalFilteringMode="Contains" DropDownStyle="DropDown" TextFormatString="{0} {1}">
                             <Columns>
                                 <dx:ListBoxColumn FieldName="Name" Visible="True" Caption="Name" />
                                 <dx:ListBoxColumn Caption="Surname" FieldName="Surname" />
                             </Columns>
                         </dx:ASPxComboBox>
-                         <dx:ASPxButton ID="createCustomerButton" runat="server" Text="New Customer">
+                    </div>
+                    <div class="col-xs-3 col-sm-3 col-md-3 col-lg-1">
+                         <dx:ASPxButton ID="createCustomerButton" Height="25px" Width="40px" runat="server" Text="New" FocusRectBorder-BorderWidth=0 FocusRectPaddings-Padding=0 FocusRectPaddings-PaddingBottom=0 FocusRectPaddings-PaddingLeft=0 FocusRectPaddings-PaddingRight=0 FocusRectPaddings-PaddingTop=0>
                             <ClientSideEvents Click="function(s, e) { ShowLoginWindow(); }" />
                         </dx:ASPxButton>
                     </div>
@@ -196,7 +198,7 @@ e.errorText = &quot;The Date From is greater than Date To!&quot;
 
 
     <dx:ASPxPopupControl ClientInstanceName="createUserPopUp" Width="330px" Height="250px"
-        MaxWidth="900px" MaxHeight="800px" MinHeight="150px" MinWidth="150px" ID="createUserPopUp"
+        MaxWidth="800px" MaxHeight="800px" MinHeight="150px" MinWidth="150px" ID="createUserPopUp"
         PopupElementID="imgButton" HeaderText="Customer Details"
         runat="server" EnableViewState="false" PopupHorizontalAlign="WindowCenter" PopupVerticalAlign="WindowCenter" EnableHierarchyRecreation="True" AllowDragging="True" PopupAnimationType="Fade" Modal="True" Theme="BlackGlass">
         <ModalBackgroundStyle BackColor="Black">
@@ -207,7 +209,7 @@ e.errorText = &quot;The Date From is greater than Date To!&quot;
                     <table>
                         <tr>
                             <td>
-                                <asp:Label runat="server" Text="Name :"></asp:Label>
+                                <label>Name: </label>
                             </td>
                             <td>
                                 <dx:ASPxTextBox ClientInstanceName="nameTextBox" ValidateRequestMode="Enabled" ID="nameTextBox" runat="server" Width="170px">
@@ -220,7 +222,7 @@ e.errorText = &quot;The Date From is greater than Date To!&quot;
                         </tr>
                         <tr>
                             <td>
-                                <asp:Label runat="server" Text="Surname:"></asp:Label>
+                                <label>Surname:  </label>
                             </td>
                             <td>
                                 <dx:ASPxTextBox ClientInstanceName="surnameText" ValidateRequestMode="Enabled" ID="surNameTextBox" runat="server" Width="170px">
@@ -234,7 +236,7 @@ e.errorText = &quot;The Date From is greater than Date To!&quot;
 
                         <tr>
                             <td>
-                                <asp:Label runat="server" Text="Id:"></asp:Label>
+                                <label>Id:  </label>
                             </td>
                             <td>
                                 <dx:ASPxTextBox ClientInstanceName="idNumberText" ID="idNumberTextBox" runat="server" Width="170px">
@@ -252,7 +254,7 @@ e.errorText = &quot;The Date From is greater than Date To!&quot;
                         </tr>
                         <tr>
                             <td>
-                                <asp:Label runat="server" Text="Tax Id :"></asp:Label>
+                                <label>Tax Id:  </label>
                             </td>
                             <td>
                                 <dx:ASPxTextBox ID="taxIdTextBox" runat="server" Width="170px">
@@ -268,7 +270,7 @@ e.errorText = &quot;The Date From is greater than Date To!&quot;
                         </tr>
                         <tr>
                             <td>
-                                <asp:Label runat="server" Text="Address:"></asp:Label>
+                                <label>Address:  </label>
                             </td>
                             <td>
                                 <dx:ASPxTextBox ID="addressTextBox" runat="server" Width="170px"></dx:ASPxTextBox>
@@ -276,7 +278,7 @@ e.errorText = &quot;The Date From is greater than Date To!&quot;
                         </tr>
                         <tr>
                             <td>
-                                <asp:Label runat="server" Text="Email :"></asp:Label>
+                                <label>Email:  </label>
                             </td>
                             <td>
                                 <dx:ASPxTextBox ID="emailTextBox" runat="server" Width="170px">
@@ -288,7 +290,7 @@ e.errorText = &quot;The Date From is greater than Date To!&quot;
                         </tr>
                         <tr>
                             <td>
-                                <asp:Label runat="server" Text="Phone :"></asp:Label>
+                                <label>Phone:  </label>
                             </td>
                             <td>
                                 <dx:ASPxTextBox ID="phoneTextBox" runat="server" Width="170px">
