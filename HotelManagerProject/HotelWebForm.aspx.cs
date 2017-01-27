@@ -226,7 +226,6 @@ namespace HotelManagerProject
             this.hotelController = new HotelController();
 
             var errorlabel = this.Master?.FindControl("form1").FindControl("divErrorMessage") as Label;
-            //var hotelLabel = this.Master?.FindControl("form1").FindControl("hotelLabel") as Label;
             if (errorlabel != null)
             {
                 errorlabel.Text = string.Empty;
@@ -252,13 +251,6 @@ namespace HotelManagerProject
                     try
                     {
                         var localHotel = this.hotelController.GetEntity(id);
-                        //if (hotelLabel != null)
-                        //{
-                        //    hotelLabel.Text = $"Hotel: {localHotel.Name}";
-                        //    hotelLabel.CssClass = hotelLabel.CssClass.Replace("hidden", "hotelLabel");
-                        //    //this.selectHotelASPxButton.ClientSideEvents.Click = $@"function(s, e) {{localStorage.setItem('Hotel', {localHotel.Id});}}";
-                        //}
-
                         this.Session["Hotel"] = localHotel;
                     }
                     catch (ArgumentNullException)
