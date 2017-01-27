@@ -32,7 +32,7 @@
             <nav class="navbar navbar-inverse" role="navigation" id="topmenu">
                 <ul class="nav navbar-nav">
                     <li>
-                        <a style="font-size: 40px; padding-top: 20px; margin-left: 20px;" href="Main.aspx" data-toggle="collapse" data-target="#">Hotel Manager</a>
+                        <a style="font-size: 40px; padding-top: 20px; margin-left: 20px;" href="HotelWebForm.aspx" data-toggle="collapse" data-target="#">Hotel Manager</a>
                         <asp:Label CssClass="hidden hotelLabel" ClientIDMode="Static" ID= "hotelLabel" runat="server"></asp:Label>
                     </li>
                     <li class="dropdown"><a class="hidden" id="a1"  href="#" data-toggle="collapse" data-target="#one">Hotels</a> </li>

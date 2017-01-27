@@ -8,7 +8,7 @@
 	    function SetSelectedHoteToStorage(value) {
 	       
 	        //localStorage.setItem("tempHotelId", value[0]);
-	        localStorage.setItem("tempHotelName", value[1]);
+	        sessionStorage.setItem("tempHotelName", value[1]);
 	    }
 
 	    function HotelSelectionChanged(s, e) {
@@ -16,9 +16,9 @@
 	    }
 
 	    function HotelButonClick(s, e) {
-	        var tempHotelInfo = localStorage.getItem("tempHotelName");
-	        localStorage.removeItem("tempHotelName");
-	        localStorage.setItem("Hotel", tempHotelInfo);
+	        var tempHotelInfo = sessionStorage.getItem("tempHotelName");
+	        sessionStorage.removeItem("tempHotelName");
+	        sessionStorage.setItem("Hotel", tempHotelInfo);
 	        e.processOnServer = true;
 	    }
 
