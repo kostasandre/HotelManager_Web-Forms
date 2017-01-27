@@ -13,6 +13,7 @@ namespace HotelManagerProject
 
     using System;
     using System.Data.SqlClient;
+    using System.Linq;
     using System.Web.UI;
     using System.Web.UI.WebControls;
 
@@ -123,14 +124,15 @@ namespace HotelManagerProject
         {
             this.billingEntityController = new BillingEntityController();
             this.bookingEntityController = new BookingController();
+            var hotel = this.Session["Hotel"] as Hotel;
+                this.bookingComboBox.DataSource = hotel != null ? this.bookingEntityController.RefreshEntities().Where(x => x.Room.HotelId == hotel.Id) : this.bookingEntityController.RefreshEntities();
+                this.bookingComboBox.SelectedIndex = 0;
+                this.bookingComboBox.Value = "Customer.Name";
+                this.bookingComboBox.DataBind();
 
-            this.bookingComboBox.DataSource = this.bookingEntityController.RefreshEntities();
-            this.bookingComboBox.SelectedIndex = 0;
-            this.bookingComboBox.Value = "Customer.Name";
-            this.bookingComboBox.DataBind();
 
-            this.BillingListGridView.DataSource = this.billingEntityController.RefreshEntities();
-            this.BillingListGridView.DataBind();
+                this.BillingListGridView.DataSource = hotel != null ? this.billingEntityController.RefreshEntities().Where(x => x.Booking.Room.HotelId == hotel.Id) : this.billingEntityController.RefreshEntities();
+                this.BillingListGridView.DataBind();
         }
 
         /// <summary>
