@@ -17,7 +17,6 @@
     });
 
 function replaceCssClass(hotelInfo) {
-    var firstRun;
     if (hotelInfo == null) {
         return;
     } else {

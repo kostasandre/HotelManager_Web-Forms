@@ -57,6 +57,7 @@ namespace HotelManagerProject
         /// </param>
         protected void Page_Load(object sender , EventArgs e)
         {
+            var hotel = this.Session["Hotel"] as Hotel;
             var errorlabel = this.Master?.FindControl("form1").FindControl("divErrorMessage") as Label;
             if (!this.IsPostBack)
             {
@@ -80,9 +81,7 @@ namespace HotelManagerProject
                         }
                         else
                         {
-                            var serviceTemp =
-                                this.servicEntityController.RefreshEntities()
-                                    .SingleOrDefault(x => x.Id == pricingList.BillableEntityId) as Service;
+                            var serviceTemp = hotel != null ? this.servicEntityController.RefreshEntities().SingleOrDefault(x => x.Id == pricingList.BillableEntityId && x.HotelId == hotel.Id) as Service : this.servicEntityController.RefreshEntities().SingleOrDefault(x => x.Id == pricingList.BillableEntityId) as Service;
                             if (serviceTemp != null)
                             {
                                 pricingList.BillableEntityCode = serviceTemp.Code;
@@ -90,7 +89,7 @@ namespace HotelManagerProject
                         }
                     }
 
-                    var report = new PricingListReport { DataSource = pricingListList };
+                    var report = new PricingListReport { DataSource = pricingListList};
                     this.ASPxPricingListWebDocumentViewer.OpenReport(report);
                 }
                 catch (SqlException ex)

@@ -108,7 +108,7 @@ namespace HotelManagerProject
         {
             var errorlabel = this.Master?.FindControl("form1").FindControl("divErrorMessage") as Label;
             var selectedRowKeys = this.BookingListGridview.GetSelectedFieldValues(
-                this.BookingListGridview.KeyFieldName ,
+                this.BookingListGridview.KeyFieldName,
                 "Id");
             if ((selectedRowKeys == null) || (selectedRowKeys.Count == 0))
             {
@@ -127,7 +127,8 @@ namespace HotelManagerProject
 
                         var booking = this.bookingEntityController.GetEntity(id);
                         this.bookingIdTextBox.Text = id.ToString();
-                        this.customerSurnameTextBox.Text = this.customerEntityController.GetEntity(booking.CustomerId).Surname;
+                        this.customerSurnameTextBox.Text =
+                            this.customerEntityController.GetEntity(booking.CustomerId).Surname;
                         this.priceValueTextBox.Text = booking.AgreedPrice.ToString(CultureInfo.InvariantCulture);
                         this.customerNameTextBox.Text = this.customerEntityController.GetEntity(booking.CustomerId).Name;
                         this.fromTextBox.Text = booking.From.ToShortDateString().ToString(CultureInfo.InvariantCulture);
@@ -143,7 +144,7 @@ namespace HotelManagerProject
                             {
                                 try
                                 {
-                                    this.price = this.pricingListEntityController.ServicePricing(booking.From , item.Id);
+                                    this.price = this.pricingListEntityController.ServicePricing(booking.From, item.Id);
                                 }
                                 catch (ArgumentNullException ex)
                                 {
@@ -156,11 +157,11 @@ namespace HotelManagerProject
 
                                 {
                                     var myBillingService = new BillingService
-                                    {
-                                        Service = item ,
-                                        Price = this.price ,
-                                        Quantity = 0
-                                    };
+                                                               {
+                                                                   Service = item,
+                                                                   Price = this.price,
+                                                                   Quantity = 0
+                                                               };
                                     billingServices.Add(myBillingService);
                                 }
                             }
@@ -170,13 +171,13 @@ namespace HotelManagerProject
                             billingServices.Select(
                                 item =>
                                     new BillingServiceWithServiceDescription
-                                    {
-                                        Id = item.Service.Id,
-                                        Description = item.Service.Description,
-                                        Quantity = item.Quantity,
-                                        PricePerUnit = item.Price,
-                                        TotalPrice = 0
-                                    }).ToList();
+                                        {
+                                            Id = item.Service.Id,
+                                            Description = item.Service.Description,
+                                            Quantity = item.Quantity,
+                                            PricePerUnit = item.Price,
+                                            TotalPrice = 0
+                                        }).ToList();
 
                         this.Session["billingServiceWithServiceDescription"] = this.myBillingServices;
                         this.BillingListGridView.DataSource = this.myBillingServices;
@@ -227,6 +228,7 @@ namespace HotelManagerProject
         /// </param>
         protected void Page_Init(object sender, EventArgs e)
         {
+            var hotel = this.Session["Hotel"] as Hotel;
             var errorlabel = this.Master?.FindControl("form1").FindControl("divErrorMessage") as Label;
             if (!this.IsPostBack)
             {
@@ -246,7 +248,7 @@ namespace HotelManagerProject
             this.bookingEntityController = new BookingController();
             try
             {
-                this.BookingListGridview.DataSource = this.bookingEntityController.RefreshEntities().Where(x => x.Status == Status.Active);
+                this.BookingListGridview.DataSource = hotel != null ? this.bookingEntityController.RefreshEntities().Where(x => x.Status == Status.Active && x.Room.HotelId == hotel.Id) : this.bookingEntityController.RefreshEntities();
                 this.BookingListGridview.DataBind();
                 this.BillingListGridView.DataSource = this.myBillingServices;
                 this.BillingListGridView.DataBind();
