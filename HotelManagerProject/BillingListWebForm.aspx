@@ -17,6 +17,20 @@
             createBillingPopUp.Show();
         }
         function EndCallback(s, e) {
+            if (s.cp_text === true) {
+                paidCheckBox.SetEnabled(false);
+                priceForRoomTextBox.SetEnabled(false);
+                priceForServicesTextBox.SetEnabled(false);
+                totalPricerTextBox.SetEnabled(false);
+                bookingComboBox.SetEnabled(false);
+            }
+            else {
+                paidCheckBox.SetEnabled(true);
+                priceForRoomTextBox.SetEnabled(true);
+                priceForServicesTextBox.SetEnabled(true);
+                totalPricerTextBox.SetEnabled(true);
+                bookingComboBox.SetEnabled(true);
+            }
             paidCheckBox.SetChecked(s.cp_text);
             priceForRoomTextBox.SetText(s.cp_text1);
             priceForServicesTextBox.SetText(s.cp_text2);
