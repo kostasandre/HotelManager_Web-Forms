@@ -47,6 +47,8 @@
     <Reference Include="System.ComponentModel.DataAnnotations" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="BookingEntityTests\BookingControllerTest.cs" />
+    <Compile Include="CustomerControllerTests.cs" />
     <Compile Include="EntityBillingServicesControllerTests.cs" />
     <Compile Include="EntityBillingControllerTests.cs" />
     <Compile Include="HotelControllerTests.cs" />

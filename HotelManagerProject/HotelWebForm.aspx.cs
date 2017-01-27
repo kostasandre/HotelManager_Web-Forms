@@ -16,6 +16,7 @@ namespace HotelManagerProject
     using System.Web.UI;
     using System.Web.UI.WebControls;
 
+    using DevExpress.Utils;
     using DevExpress.Web;
     using DevExpress.XtraRichEdit.Model.History;
 
@@ -207,6 +208,78 @@ namespace HotelManagerProject
                 this.HotelGridView.JSProperties["cp_text5"] = myHotel.Email;
                 this.HotelGridView.JSProperties["cp_text6"] = myHotel.Phone;
                 this.HotelGridView.JSProperties["cp_text7"] = myHotel.TaxId;
+            }
+        }
+
+        /// <summary>
+        /// The select hotel as px button_ click.
+        /// </summary>
+        /// <param name="sender">
+        /// The sender.
+        /// </param>
+        /// <param name="e">
+        /// The e.
+        /// </param>
+        protected void SelectHotelAsPxButtonClick(object sender , EventArgs e)
+        {
+            this.hotelController = new HotelController();
+
+            var errorlabel = this.Master?.FindControl("form1").FindControl("divErrorMessage") as Label;
+            //var hotelLabel = this.Master?.FindControl("form1").FindControl("hotelLabel") as Label;
+            if (errorlabel != null)
+            {
+                errorlabel.Text = string.Empty;
+                if (this.HotelGridView.VisibleRowCount == 0)
+                {
+                    errorlabel.Text = $"There are no Hotels to delete";
+                }
+
+                var firstRun = true;
+                this.Session["errorMessage"] = string.Empty;
+
+                var selectedRowKeys = this.HotelGridView.GetSelectedFieldValues(this.HotelGridView.KeyFieldName , "Name");
+                if ((selectedRowKeys == null) || (selectedRowKeys.Count == 0))
+                {
+                    errorlabel.Text = @"Please select a Hotel first to delete";
+                    return;
+                }
+
+                foreach (object[] row in selectedRowKeys)
+                {
+                    var id = Convert.ToInt32(row[0]);
+                    
+                    try
+                    {
+                        var localHotel = this.hotelController.GetEntity(id);
+                        //if (hotelLabel != null)
+                        //{
+                        //    hotelLabel.Text = $"Hotel: {localHotel.Name}";
+                        //    hotelLabel.CssClass = hotelLabel.CssClass.Replace("hidden", "hotelLabel");
+                        //    //this.selectHotelASPxButton.ClientSideEvents.Click = $@"function(s, e) {{localStorage.setItem('Hotel', {localHotel.Id});}}";
+                        //}
+
+                        this.Session["Hotel"] = localHotel;
+                    }
+                    catch (ArgumentNullException)
+                    {
+                        if (firstRun)
+                        {
+                            errorlabel.Text = $"Please select a Hotel first ";
+                            firstRun = false;
+                        }
+                    }
+                    catch (SqlException exp)
+                    {
+                        errorlabel.Text = $"Sql error: " + exp.Message;
+                    }
+                    catch (Exception exp)
+                    {
+                        errorlabel.Text = exp.Message;
+                    }
+                    
+                    this.Session["errorMessage"] = errorlabel.Text;
+                    
+                }
             }
         }
     }
