@@ -23,7 +23,7 @@
 
             <div class="row">
                 <div class="col-lg-1 col-md-2 col-sm-2 col-xs-4">
-                    <dx:ASPxLabel Width="90px" CssClass="Text" ForeColor="Black" runat="server" Text="Booking :" Theme="BlackGlass"></dx:ASPxLabel>
+                    <dx:ASPxLabel Width="90px" CssClass="Text bookingLabel" ForeColor="Black" runat="server" Text="Booking :" Theme="BlackGlass"></dx:ASPxLabel>
                 </div>
                 <div class="col-lg-1 col-md-2 col-sm-2 col-xs-4">
                     <dx:ASPxButton ID="SearchButton" runat="server" ToolTip="Search for your desired booking." Theme="BlackGlass">
